@@ -282,6 +282,28 @@ def coverage_html(title, names, counts, new_counts, scale):
     return f"<div><h4>{esc(title)}</h4><table>{''.join(rows)}</table></div>"
 
 
+EMAIL_CSS = (
+    "body{margin:0;background:#EDF1F1}"
+    "td,div,a,span,b{font-family:Arial,Helvetica,sans-serif}"
+    ".w{background:#fff}.h{background:#082F36;padding:28px 32px 26px}"
+    ".k{font-size:11px;letter-spacing:.14em;color:#B9C8CA;font-weight:bold}"
+    ".ti{font-size:40px;line-height:1.05;font-weight:bold;color:#fff;margin-top:14px}"
+    ".d{font-size:14px;color:#D5DFE0;margin-top:10px}"
+    ".p{padding:24px 32px 8px;font-size:15px;line-height:1.55;color:#13262B}"
+    ".al{padding:12px 16px;background:#FFF4CC;border-left:4px solid #F2B705;margin-bottom:16px}"
+    ".l{padding:8px 32px 0}.hd{font-size:20px;font-weight:bold;color:#13262B;border-bottom:2px solid #13262B;padding-bottom:8px}"
+    ".n{width:44px;padding:14px 0;border-bottom:1px solid #CFD9DA;font-size:22px;color:#0C4650;vertical-align:top}"
+    ".s{padding:14px 0;border-bottom:1px solid #CFD9DA;vertical-align:top}"
+    ".t{font-size:16px;line-height:1.35;font-weight:bold;color:#13262B;text-decoration:none}"
+    ".new{font-size:10px;font-weight:bold;color:#082F36;background:#F2B705;border-radius:3px;padding:1px 6px}"
+    ".m{font-size:13px;line-height:1.5;color:#55686E;margin-top:4px}.m b{color:#13262B}"
+    ".c{padding:24px 32px 8px;font-size:13px;color:#55686E}"
+    ".bt{display:inline-block;background:#0C4650;color:#fff;font-size:14px;font-weight:bold;text-decoration:none;padding:11px 20px;border-radius:4px}"
+    ".f{padding:20px 32px 28px}.sg{background:#082F36;border-radius:6px;padding:20px 24px}"
+    ".mg{font-size:17px;line-height:1.4;font-weight:bold;color:#fff}.wh{font-size:13px;color:#D5DFE0;margin-top:10px}.wh b{color:#fff}"
+)
+
+
 def email_bodies(report_date, days, top, new_ids, br_new, sa_new, n_items, message, alert):
     """Corpo do e-mail diário: as 10 principais, na mesma ordem do PDF, e a assinatura do Li Marcitão."""
     if new_ids:
@@ -291,56 +313,29 @@ def email_bodies(report_date, days, top, new_ids, br_new, sa_new, n_items, messa
         lead = (f"No new stories entered the report today. The 10 most relevant of the last {days} days are below; "
                 f"the full report ({n_items} stories) is attached as a PDF.")
     long_date = fmt_date(report_date, long=True)
-    f = "font-family:Arial,Helvetica,sans-serif;"
-    rows = ""
-    text_rows = []
+    rows, text_rows = "", []
     for n, i in enumerate(top, 1):
         place = COUNTRY.get(i["country"], i["country"])
         is_new = i["id"] in new_ids
-        chip = (f' <span style="{f}font-size:10px;font-weight:bold;letter-spacing:.06em;color:#082F36;background:#F2B705;'
-                f'border-radius:3px;padding:1px 6px;">NEW</span>') if is_new else ""
+        chip = ' <span class="new">NEW</span>' if is_new else ""
         pay = " (subscription required)" if i.get("access") == "paywall" else ""
-        rows += (
-            f'<tr><td valign="top" style="{f}padding:14px 0 14px 0;border-bottom:1px solid #CFD9DA;width:44px;font-size:22px;'
-            f'color:#0C4650;line-height:1;">{n:02d}</td>'
-            f'<td valign="top" style="{f}padding:14px 0;border-bottom:1px solid #CFD9DA;">'
-            f'<a href="{esc(i["url"])}" style="{f}font-size:16px;line-height:1.35;font-weight:bold;color:#13262B;text-decoration:none;">'
-            f'{esc(i["title_en"])}</a>{chip}'
-            f'<div style="{f}font-size:13px;line-height:1.5;color:#55686E;margin-top:4px;"><b style="color:#13262B;">{esc(op_name(i))}</b>'
-            f' &middot; {esc(place)} &middot; {esc(fmt_date(i["date"]))} &middot; Relevance {i["relevance"]}/5 &middot; '
-            f'<a href="{esc(i["url"])}" style="color:#0C4650;font-weight:bold;">{esc(i["source"])}</a>{pay}</div></td></tr>')
+        rows += (f'<tr><td class="n">{n:02d}</td><td class="s"><a class="t" href="{esc(i["url"])}">{esc(i["title_en"])}</a>{chip}'
+                 f'<div class="m"><b>{esc(op_name(i))}</b> &middot; {esc(place)} &middot; {esc(fmt_date(i["date"]))} &middot; '
+                 f'Relevance {i["relevance"]}/5 &middot; {esc(i["source"])}{pay}</div></td></tr>\n')
         text_rows.append(f'{n}. {op_name(i)} ({place}){" [NEW]" if is_new else ""} - {i["title_en"]}{pay}\n   {i["url"]}')
-    alert_html = (f'<tr><td style="{f}padding:12px 16px;background:#FFF4CC;border-left:4px solid #F2B705;font-size:14px;'
-                  f'color:#13262B;">{esc(alert)}</td></tr><tr><td style="height:16px;"></td></tr>') if alert else ""
-    html_body = f"""<!DOCTYPE html><html lang="en"><body style="margin:0;padding:0;background:#EDF1F1;">
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#EDF1F1;"><tr><td align="center" style="padding:24px 12px;">
-<table role="presentation" width="640" cellpadding="0" cellspacing="0" style="max-width:640px;width:100%;background:#FFFFFF;">
-<tr><td style="background:#082F36;padding:28px 32px 26px;">
-  <div style="{f}font-size:11px;letter-spacing:.14em;color:#B9C8CA;font-weight:bold;">HILONG BRASIL &nbsp;&middot;&nbsp; OIL &amp; GAS INTELLIGENCE</div>
-  <div style="{f}font-size:40px;line-height:1.05;font-weight:bold;color:#FFFFFF;margin-top:14px;letter-spacing:-.02em;">Market Report<span style="color:#F2B705;">.</span></div>
-  <div style="{f}font-size:14px;color:#D5DFE0;margin-top:10px;">{esc(long_date)}</div>
-</td></tr>
-<tr><td style="padding:24px 32px 8px;">
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
-  {alert_html}
-  <tr><td style="{f}font-size:15px;line-height:1.55;color:#13262B;">{esc(lead)}</td></tr>
-  </table>
-</td></tr>
-<tr><td style="padding:8px 32px 0;">
-  <div style="{f}font-size:20px;font-weight:bold;color:#13262B;border-bottom:2px solid #13262B;padding-bottom:8px;">Top stories</div>
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0">{rows}</table>
-</td></tr>
-<tr><td style="padding:24px 32px 8px;">
-  <a href="{SITE}" style="{f}display:inline-block;background:#0C4650;color:#FFFFFF;font-size:14px;font-weight:bold;text-decoration:none;padding:11px 20px;border-radius:4px;">Open the Market Report</a>
-  <span style="{f}font-size:13px;color:#55686E;">&nbsp;&nbsp;Full report attached as a PDF.</span>
-</td></tr>
-<tr><td style="padding:20px 32px 28px;">
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#082F36;border-radius:6px;"><tr>
-  <td style="padding:20px 24px;">
-    <div style="{f}font-size:17px;line-height:1.4;font-weight:bold;color:#FFFFFF;">{esc(message)}</div>
-    <div style="{f}font-size:13px;color:#D5DFE0;margin-top:10px;"><b style="color:#FFFFFF;">Li Marcit&atilde;o</b> &middot; Market news agent, Hilong Brasil</div>
-  </td></tr></table>
-</td></tr>
+    alert_html = f'<div class="al">{esc(alert)}</div>' if alert else ""
+    html_body = f"""<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><style>{EMAIL_CSS}</style></head><body>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" bgcolor="#EDF1F1"><tr><td align="center" style="padding:24px 12px">
+<table role="presentation" class="w" width="640" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" style="max-width:640px;width:100%">
+<tr><td class="h" bgcolor="#082F36"><div class="k">HILONG BRASIL &middot; OIL &amp; GAS INTELLIGENCE</div>
+<div class="ti">Market Report<span style="color:#F2B705">.</span></div><div class="d">{esc(long_date)}</div></td></tr>
+<tr><td class="p">{alert_html}{esc(lead)}</td></tr>
+<tr><td class="l"><div class="hd">Top stories</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+{rows}</table></td></tr>
+<tr><td class="c"><a class="bt" href="{SITE}">Open the Market Report</a> &nbsp; Full report attached as a PDF.</td></tr>
+<tr><td class="f"><div class="sg"><div class="mg">{esc(message)}</div>
+<div class="wh"><b>Li Marcit&atilde;o</b> &middot; Market news agent, Hilong Brasil</div></div></td></tr>
 </table></td></tr></table></body></html>"""
     text_body = "\n".join(
         ([alert, ""] if alert else [])
