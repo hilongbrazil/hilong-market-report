@@ -8,6 +8,9 @@ Uso:
       [--base-ref HEAD]        ref do git usada para marcar o que é novo (NEW)
       [--edition "Daily edition"]
       [--message "..."]        mensagem positiva do dia (padrão: escolhida pela data)
+      [--email-html arquivo]   grava o corpo do e-mail em HTML (10 principais + assinatura)
+      [--email-text arquivo]   grava o mesmo corpo em texto simples
+      [--alert "..."]          aviso na primeira linha do e-mail (ex.: falha no push)
 
 Requer o Playwright com Chromium (já instalado no ambiente da rotina).
 """
@@ -279,21 +282,89 @@ def coverage_html(title, names, counts, new_counts, scale):
     return f"<div><h4>{esc(title)}</h4><table>{''.join(rows)}</table></div>"
 
 
+def email_bodies(report_date, days, top, new_ids, br_new, sa_new, n_items, message, alert):
+    """Corpo do e-mail diário: as 10 principais, na mesma ordem do PDF, e a assinatura do Li Marcitão."""
+    if new_ids:
+        lead = (f"{br_new} new {'story' if br_new == 1 else 'stories'} in Brazil and {sa_new} in South America today. "
+                f"The 10 most relevant of the last {days} days are below; the full report ({n_items} stories) is attached as a PDF.")
+    else:
+        lead = (f"No new stories entered the report today. The 10 most relevant of the last {days} days are below; "
+                f"the full report ({n_items} stories) is attached as a PDF.")
+    long_date = fmt_date(report_date, long=True)
+    f = "font-family:Arial,Helvetica,sans-serif;"
+    rows = ""
+    text_rows = []
+    for n, i in enumerate(top, 1):
+        place = COUNTRY.get(i["country"], i["country"])
+        is_new = i["id"] in new_ids
+        chip = (f' <span style="{f}font-size:10px;font-weight:bold;letter-spacing:.06em;color:#082F36;background:#F2B705;'
+                f'border-radius:3px;padding:1px 6px;">NEW</span>') if is_new else ""
+        pay = " (subscription required)" if i.get("access") == "paywall" else ""
+        rows += (
+            f'<tr><td valign="top" style="{f}padding:14px 0 14px 0;border-bottom:1px solid #CFD9DA;width:44px;font-size:22px;'
+            f'color:#0C4650;line-height:1;">{n:02d}</td>'
+            f'<td valign="top" style="{f}padding:14px 0;border-bottom:1px solid #CFD9DA;">'
+            f'<a href="{esc(i["url"])}" style="{f}font-size:16px;line-height:1.35;font-weight:bold;color:#13262B;text-decoration:none;">'
+            f'{esc(i["title_en"])}</a>{chip}'
+            f'<div style="{f}font-size:13px;line-height:1.5;color:#55686E;margin-top:4px;"><b style="color:#13262B;">{esc(op_name(i))}</b>'
+            f' &middot; {esc(place)} &middot; {esc(fmt_date(i["date"]))} &middot; Relevance {i["relevance"]}/5 &middot; '
+            f'<a href="{esc(i["url"])}" style="color:#0C4650;font-weight:bold;">{esc(i["source"])}</a>{pay}</div></td></tr>')
+        text_rows.append(f'{n}. {op_name(i)} ({place}){" [NEW]" if is_new else ""} - {i["title_en"]}{pay}\n   {i["url"]}')
+    alert_html = (f'<tr><td style="{f}padding:12px 16px;background:#FFF4CC;border-left:4px solid #F2B705;font-size:14px;'
+                  f'color:#13262B;">{esc(alert)}</td></tr><tr><td style="height:16px;"></td></tr>') if alert else ""
+    html_body = f"""<!DOCTYPE html><html lang="en"><body style="margin:0;padding:0;background:#EDF1F1;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#EDF1F1;"><tr><td align="center" style="padding:24px 12px;">
+<table role="presentation" width="640" cellpadding="0" cellspacing="0" style="max-width:640px;width:100%;background:#FFFFFF;">
+<tr><td style="background:#082F36;padding:28px 32px 26px;">
+  <div style="{f}font-size:11px;letter-spacing:.14em;color:#B9C8CA;font-weight:bold;">HILONG BRASIL &nbsp;&middot;&nbsp; OIL &amp; GAS INTELLIGENCE</div>
+  <div style="{f}font-size:40px;line-height:1.05;font-weight:bold;color:#FFFFFF;margin-top:14px;letter-spacing:-.02em;">Market Report<span style="color:#F2B705;">.</span></div>
+  <div style="{f}font-size:14px;color:#D5DFE0;margin-top:10px;">{esc(long_date)}</div>
+</td></tr>
+<tr><td style="padding:24px 32px 8px;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+  {alert_html}
+  <tr><td style="{f}font-size:15px;line-height:1.55;color:#13262B;">{esc(lead)}</td></tr>
+  </table>
+</td></tr>
+<tr><td style="padding:8px 32px 0;">
+  <div style="{f}font-size:20px;font-weight:bold;color:#13262B;border-bottom:2px solid #13262B;padding-bottom:8px;">Top stories</div>
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0">{rows}</table>
+</td></tr>
+<tr><td style="padding:24px 32px 8px;">
+  <a href="{SITE}" style="{f}display:inline-block;background:#0C4650;color:#FFFFFF;font-size:14px;font-weight:bold;text-decoration:none;padding:11px 20px;border-radius:4px;">Open the Market Report</a>
+  <span style="{f}font-size:13px;color:#55686E;">&nbsp;&nbsp;Full report attached as a PDF.</span>
+</td></tr>
+<tr><td style="padding:20px 32px 28px;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#082F36;border-radius:6px;"><tr>
+  <td style="padding:20px 24px;">
+    <div style="{f}font-size:17px;line-height:1.4;font-weight:bold;color:#FFFFFF;">{esc(message)}</div>
+    <div style="{f}font-size:13px;color:#D5DFE0;margin-top:10px;"><b style="color:#FFFFFF;">Li Marcit&atilde;o</b> &middot; Market news agent, Hilong Brasil</div>
+  </td></tr></table>
+</td></tr>
+</table></td></tr></table></body></html>"""
+    text_body = "\n".join(
+        ([alert, ""] if alert else [])
+        + [f"Hilong Market Report - {long_date}", "", lead, "", "TOP STORIES", ""]
+        + ["\n\n".join(text_rows), "", f"Open the Market Report: {SITE}", "", message, "", "Li Marcitão",
+           "Market news agent, Hilong Brasil"])
+    return html_body, text_body
+
+
 def build_html(args):
     news = json.loads((ROOT / "data" / "news.json").read_text(encoding="utf-8"))
     run = json.loads((ROOT / "data" / "run.json").read_text(encoding="utf-8"))
     updated = dt.datetime.fromisoformat(news["updated_at"])
     report_date = args.date or updated.date().isoformat()
     start = (dt.date.fromisoformat(report_date) - dt.timedelta(days=args.days)).isoformat()
-    items = [i for i in news["items"] if start <= i["date"] <= report_date]
-
     new_ids = set()
     if args.base_ref:
         res = subprocess.run(["git", "-C", str(ROOT), "show", f"{args.base_ref}:data/news.json"],
                              capture_output=True, text=True)
         if res.returncode == 0:
             old = {i["id"] for i in json.loads(res.stdout)["items"]}
-            new_ids = {i["id"] for i in items if i["id"] not in old}
+            new_ids = {i["id"] for i in news["items"] if i["id"] not in old}
+    # entram as notícias da janela e todas as novas desta edição, mesmo com data de publicação anterior
+    items = [i for i in news["items"] if start <= i["date"] <= report_date or i["id"] in new_ids]
     new_items = [i for i in items if i["id"] in new_ids]
 
     br = [i for i in items if i["region"] == "BR"]
@@ -417,7 +488,9 @@ def build_html(args):
         '<span>marketreport.hilongbrazil.com</span>'
         '<span>Page <span class="pageNumber"></span> of <span class="totalPages"></span></span></div>'
     )
-    return doc, footer, report_date, len(items)
+    email = email_bodies(report_date, args.days, top, new_ids, br_new, sa_new, len(items), message, args.alert)
+    stats = {"date": report_date, "stories": len(items), "new_br": br_new, "new_sa": sa_new}
+    return doc, footer, stats, email
 
 
 def main():
@@ -429,11 +502,18 @@ def main():
     ap.add_argument("--edition", default="Daily edition")
     ap.add_argument("--message")
     ap.add_argument("--html", help="também grava o HTML intermediário neste caminho")
+    ap.add_argument("--email-html", help="grava o corpo do e-mail em HTML")
+    ap.add_argument("--email-text", help="grava o corpo do e-mail em texto simples")
+    ap.add_argument("--alert", help="aviso na primeira linha do e-mail (ex.: falha no push)")
     args = ap.parse_args()
 
-    doc, footer, report_date, n = build_html(args)
+    doc, footer, stats, email = build_html(args)
     if args.html:
         Path(args.html).write_text(doc, encoding="utf-8")
+    if args.email_html:
+        Path(args.email_html).write_text(email[0], encoding="utf-8")
+    if args.email_text:
+        Path(args.email_text).write_text(email[1], encoding="utf-8")
     from playwright.sync_api import sync_playwright
     with sync_playwright() as p:
         browser = p.chromium.launch()
@@ -447,7 +527,8 @@ def main():
         page.pdf(path=args.out, prefer_css_page_size=True, print_background=True, display_header_footer=True,
                  header_template="<span></span>", footer_template=footer)
         browser.close()
-    print(f"OK: {args.out} ({n} stories, edition {report_date})")
+    print(f"OK: {args.out} ({stats['stories']} stories, edition {stats['date']}, "
+          f"new: {stats['new_br']} Brazil, {stats['new_sa']} South America)")
     return 0
 
 

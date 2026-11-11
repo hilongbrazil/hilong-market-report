@@ -9,6 +9,7 @@ Site estático publicado em https://marketreport.hilongbrazil.com (Netlify, depl
 - A rotina diária altera somente `data/news.json`, `data/run.json` e `data/archive/`.
 - `data/archive/AAAA-MM.json`: notícias com mais de 60 dias, movidas para cá.
 - `scripts/validate.py`: valida o `news.json` e o `run.json`. Rodar antes de todo commit.
+- `scripts/build_pdf.py`: gera o relatório completo em PDF e o corpo do e-mail diário, sempre em inglês (seção 6).
 
 ## Rotina diária de atualização
 
@@ -111,6 +112,8 @@ Cada item segue este formato:
 
 ### 5. Gravar e publicar
 
+Antes de alterar qualquer arquivo, logo depois do `git pull`, anotar o hash do commit atual (`git rev-parse --short HEAD`). Ele é o `--base-ref` da seção 6 e serve para marcar as notícias novas.
+
 1. Inserir os itens novos em `data/news.json` e atualizar `updated_at` com data e hora de Brasília (formato ISO, `-03:00`).
 2. Mover itens com mais de 60 dias para `data/archive/AAAA-MM.json` (mesmo formato de lista).
 3. Regravar `data/run.json` com o registro desta varredura, mantendo o campo `schedule` como está:
@@ -123,6 +126,32 @@ Cada item segue este formato:
 5. Commit na `main` com a mensagem `Atualiza notícias AAAA-MM-DD (N novas)` e push.
 6. Não alterar `index.html`, `live.html`, `assets/` nem outros arquivos nesta rotina.
 
-### 6. Resumo final
+### 6. PDF e e-mail diário
 
-Encerrar com um resumo curto **em inglês**: quantidade de notícias novas por região, os títulos (em inglês) das três a cinco mais relevantes, em ordem de relevância e com o Brasil primeiro, e o link https://marketreport.hilongbrazil.com. Se o push falhar ou nenhuma notícia entrar, dizer isso claramente na primeira linha.
+Todo dia, depois do push (mesmo que nenhuma notícia tenha entrado), gerar o relatório em PDF e enviar o e-mail. O relatório completo vai sempre em PDF e sempre em inglês.
+
+1. Gerar o PDF e o corpo do e-mail em uma pasta fora do repositório (a pasta de rascunho da sessão):
+
+   ```
+   python3 scripts/build_pdf.py \
+     --out <pasta>/Hilong-Market-Report-AAAA-MM-DD.pdf \
+     --base-ref <hash anotado no início> \
+     --email-html <pasta>/email.html --email-text <pasta>/email.txt
+   ```
+
+   - O PDF traz a capa com os números do dia, as 10 principais, o relatório completo dos últimos 7 dias (Brasil por grupo de empresas, América do Sul por país), a cobertura das 23 empresas da lista prioritária e a assinatura do Li Marcitão com a mensagem positiva do dia.
+   - `email.html` e `email.txt` trazem as 10 principais na mesma ordem do PDF (nota maior primeiro, Brasil antes da América do Sul, mais recente antes) e a mesma assinatura.
+   - `--message "..."` troca a mensagem positiva do dia (uma frase curta, em inglês, redação própria). Sem o parâmetro, o script escolhe uma pela data.
+   - `--alert "..."` põe um aviso na primeira linha do e-mail. Usar quando o push falhar (por exemplo, `--alert "Push failed: the page was not updated today."`).
+   - `--days N` muda a janela do relatório (padrão: 7 dias).
+2. Conferir o resultado: o comando termina com `OK:` e o PDF existe e tem mais de uma página.
+3. Enviar um único e-mail pelo conector do Gmail, aos destinatários definidos na tarefa agendada:
+   - assunto: `Hilong Market Report - AAAA-MM-DD`;
+   - `htmlBody`: o conteúdo de `email.html`, sem alterações; `body`: o conteúdo de `email.txt`;
+   - anexo: o PDF, com `filename` `Hilong-Market-Report-AAAA-MM-DD.pdf`, `mimeType` `application/pdf` e `content` na forma de referência de arquivo `sha256:<sha256 do arquivo>:<caminho absoluto>` (obter o hash com `sha256sum`).
+4. Se o anexo for recusado, gerar de novo com `--alert "The PDF could not be attached today; the full report is on the page."` e enviar o e-mail sem anexo. Se o envio falhar, não tentar outro caminho: registrar no resumo final.
+5. Não fazer commit do PDF nem dos arquivos do e-mail. Não alterar o `scripts/build_pdf.py` nesta rotina.
+
+### 7. Resumo final
+
+Encerrar com um resumo curto **em inglês**: quantidade de notícias novas por região, os títulos (em inglês) das três a cinco mais relevantes, em ordem de relevância e com o Brasil primeiro, e o link https://marketreport.hilongbrazil.com. Dizer também se o e-mail foi enviado e se o PDF foi anexado. Se o push falhar ou nenhuma notícia entrar, dizer isso claramente na primeira linha.
