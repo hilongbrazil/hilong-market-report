@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-11T19:18:19-03:00",
+  "updated_at": "2026-11-11T19:20:15-03:00",
   "items": [
     {
       "id": "2026-11-11-petrobras-resultado-3t26",
@@ -408,6 +408,23 @@
       "summary_en": "Five areas grouped into three projects, with about 2,200 wells and projected peak capacity of 270,000 barrels per day over a 16 to 26 year horizon.",
       "source": "El Diario de Madrid",
       "url": "https://www.eldiariodemadrid.es/articulo/economia/ypf-inversion-44000-millones-vaca-muerta-petroleo/20261107170121146352.html",
+      "via": "site"
+    },
+    {
+      "id": "2026-11-04-tenaris-resultado-3t26",
+      "date": "2026-11-04",
+      "region": "SA",
+      "country": "AR",
+      "operator": "Tenaris",
+      "category": "resultados",
+      "environment": "geral",
+      "relevance": 2,
+      "title_pt": "Vendas da Tenaris sobem 5% no 3T26, para US$ 3,1 bi; tubos na América do Sul caem 12%",
+      "title_en": "Tenaris Q3 sales rise 5% to US$ 3.1 bn; South America tube sales fall 12%",
+      "summary_pt": "O Ebitda foi de US$ 756 mi (margem de 24,4%) e o lucro líquido de US$ 521 mi. As vendas de tubos na América do Sul caíram para US$ 447 mi, com menos tubos para dutos na Argentina e menos serviços de revestimento na Guiana. A empresa vê a perfuração crescer na Argentina e prevê vendas e Ebitda maiores no 4T26.",
+      "summary_en": "EBITDA was US$ 756 mn (24.4% margin) and net income US$ 521 mn. Tube sales in South America dropped to US$ 447 mn on fewer pipeline pipes in Argentina and less coating work in Guyana. The company sees drilling rising in Argentina and expects higher sales and EBITDA in Q4.",
+      "source": "SEC (Tenaris 6-K)",
+      "url": "https://www.sec.gov/Archives/edgar/data/0001190723/000117184326007191/f6k_110426ern.htm",
       "via": "site"
     },
     {

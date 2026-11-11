@@ -1,7 +1,7 @@
 {
-  "run_at": "2026-11-11T19:18:19-03:00",
-  "searches": 59,
-  "new_items": 11,
+  "run_at": "2026-11-11T19:20:15-03:00",
+  "searches": 80,
+  "new_items": 12,
   "schedule": {
     "type": "daily",
     "time": "06:41"
@@ -25,109 +25,18 @@
     "PRIO",
     "TotalEnergies",
     "Foz do Amazonas",
-    "Búzios"
+    "Búzios",
+    "SLB",
+    "Baker Hughes",
+    "Weatherford",
+    "Tenaris",
+    "Confab",
+    "Apolo Tubulars",
+    "Jereh",
+    "Kerui",
+    "OCTG"
   ],
   "queries": [
-    {
-      "q": "Carmo Energy notícias novembro 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "PetroReconcavo notícias novembro 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Brava Energia notícias novembro 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Origem Energia notícias novembro 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Mandacaru Energia petróleo notícias 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Seacrest Petróleo notícias novembro 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "PetroVictory Energy news November 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Alvopetro October 2026 sales volumes operational update",
-      "ch": "site",
-      "found": 1
-    },
-    {
-      "q": "Brava Energia Atlanta Papa-Terra produção outubro 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Vipetro petróleo Espírito Santo notícias 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Brava Energia 3T26 resultado lucro produção outubro",
-      "ch": "site",
-      "found": 1
-    },
-    {
-      "q": "PetroReconcavo contrato gás natural Petrobras interrupção produção gás novembro 2026",
-      "ch": "site",
-      "found": 1
-    },
-    {
-      "q": "Seacrest Petróleo Polo Norte Capixaba Cricaré 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Carmo Energy Carmópolis perfuração sonda investimento 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Brava Energia produção outubro 2026 80.683 boe/d",
-      "ch": "site",
-      "found": 1
-    },
-    {
-      "q": "Petro-Victory Energy press release October November 2026 Brazil Potiguar",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Origem Energia Pilar Alagoas gás poços novembro 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Mandacaru Energia Bacia Potiguar campos produção 2026 novembro",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Vipetro Petróleo campos terrestres Espírito Santo ANP 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Brava Energia campo de Atlanta Papa-Terra sonda Lone Star novos poços novembro 2026",
-      "ch": "site",
-      "found": 1
-    },
     {
       "q": "Carmo Energy LinkedIn",
       "ch": "linkedin",
@@ -320,6 +229,111 @@
     },
     {
       "q": "Petrobras Mãe de Ouro Bacia Potiguar sonda NS-42 perfuração novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "SLB Brasil contrato Petrobras novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Baker Hughes Brazil contract Petrobras award October November 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Weatherford contract Brazil Latin America Petrobras 2026 third quarter award",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Tenaris third quarter 2026 results Brazil Argentina OCTG Vaca Muerta",
+      "ch": "site",
+      "found": 1
+    },
+    {
+      "q": "Tenaris Confab Pindamonhangaba tubos contrato Petrobras 2026 novembro",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Apolo Tubulars tubos OCTG Lorena 2026 notícias",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Jereh Brasil América Latina 2026 contrato equipamentos petróleo sonda fraturamento",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Kerui Petroleum Brazil South America 2026 drilling rig contract delivery",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Jereh Group news November 2026 oilfield equipment delivery Argentina Brazil Latin America",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "SLB OneSubsea Brazil award November 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Baker Hughes Brasil novembro 2026 Petrobras contrato fábrica investimento",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Weatherford Brasil 2026 contrato Petrobras novembro Macaé",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "SLB Brasil (linkedin.com, instagram.com, x.com)",
+      "ch": "instagram",
+      "found": 0
+    },
+    {
+      "q": "Baker Hughes Brasil (linkedin.com, instagram.com, x.com)",
+      "ch": "linkedin",
+      "found": 0
+    },
+    {
+      "q": "Weatherford Brasil (linkedin.com, instagram.com, x.com)",
+      "ch": "x",
+      "found": 0
+    },
+    {
+      "q": "Tenaris Brasil Confab (linkedin.com, instagram.com, x.com)",
+      "ch": "x",
+      "found": 0
+    },
+    {
+      "q": "TenarisConfab Pindamonhangaba (linkedin.com, instagram.com, x.com)",
+      "ch": "linkedin",
+      "found": 0
+    },
+    {
+      "q": "Apolo Tubulars (linkedin.com, instagram.com, x.com)",
+      "ch": "linkedin",
+      "found": 0
+    },
+    {
+      "q": "Jereh Group Latin America (linkedin.com, instagram.com, x.com)",
+      "ch": "linkedin",
+      "found": 0
+    },
+    {
+      "q": "Kerui Petroleum (linkedin.com, instagram.com, x.com)",
+      "ch": "x",
+      "found": 0
+    },
+    {
+      "q": "OCTG tubos hastes de bombeio fornecedores Brasil contrato licitação Petrobras novembro 2026",
       "ch": "site",
       "found": 0
     }
