@@ -1,7 +1,7 @@
 {
-  "run_at": "2026-11-11T19:20:15-03:00",
-  "searches": 80,
-  "new_items": 12,
+  "run_at": "2026-11-11T19:28:07-03:00",
+  "searches": 98,
+  "new_items": 16,
   "schedule": {
     "type": "daily",
     "time": "06:41"
@@ -34,99 +34,16 @@
     "Apolo Tubulars",
     "Jereh",
     "Kerui",
-    "OCTG"
+    "OCTG",
+    "ANP",
+    "Eneva",
+    "Petroborn",
+    "Shell",
+    "Onshore Nordeste",
+    "Sondas terrestres",
+    "Azevedo & Travassos"
   ],
   "queries": [
-    {
-      "q": "Carmo Energy LinkedIn",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "PetroReconcavo LinkedIn Instagram publicação novembro 2026",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "Brava Energia LinkedIn Instagram publicação novembro 2026",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "Origem Energia LinkedIn Instagram",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "Mandacaru Energia LinkedIn Instagram",
-      "ch": "instagram",
-      "found": 0
-    },
-    {
-      "q": "Seacrest Petróleo (linkedin.com, instagram.com, x.com)",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "Petro-Victory Energy (linkedin.com, instagram.com, x.com)",
-      "ch": "x",
-      "found": 0
-    },
-    {
-      "q": "Alvopetro Energy (linkedin.com, instagram.com, x.com)",
-      "ch": "instagram",
-      "found": 0
-    },
-    {
-      "q": "Brava Energia Atlanta Papa-Terra (linkedin.com, instagram.com, x.com)",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "Vipetro Petróleo (linkedin.com, instagram.com, x.com)",
-      "ch": "instagram",
-      "found": 0
-    },
-    {
-      "q": "\"Setor de gás vê espaço para estocagem\" Origem",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "PetroReconcavo teleconferência 3T26 sondas perfuração workover campanha 2027 investimentos",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Brava Energia onshore venda ativos Potiguar Recôncavo sondas perfuração novembro 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Petrobras novembro 2026 contrato sonda perfuração poços anúncio",
-      "ch": "site",
-      "found": 1
-    },
-    {
-      "q": "Petrobras Margem Equatorial descoberta poço exploratório novembro 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Petrobras onshore Bahia Urucu campos terrestres sondas terrestres licitação 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Equinor Brasil Bacalhau Raia Peregrino notícias novembro 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Perenco Brasil notícias novembro 2026 Pargo Cherne Bagre",
-      "ch": "site",
-      "found": 0
-    },
     {
       "q": "PRIO 3T26 resultado produção outubro 2026 Wahoo Peregrino poços 2027",
       "ch": "site",
@@ -334,6 +251,96 @@
     },
     {
       "q": "OCTG tubos hastes de bombeio fornecedores Brasil contrato licitação Petrobras novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "ANP novembro 2026 oferta permanente leilão blocos resolução diretoria aprova",
+      "ch": "site",
+      "found": 1
+    },
+    {
+      "q": "ANP boletim produção petróleo gás setembro 2026 recorde milhões barris",
+      "ch": "site",
+      "found": 1
+    },
+    {
+      "q": "Eneva 3T26 resultado poços perfuração Parnaíba Amazonas novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Petroborn Óleo e Gás 2026 campos Bahia Recôncavo notícias",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Shell Brasil novembro 2026 Gato do Mato Orca pré-sal investimento anúncio",
+      "ch": "site",
+      "found": 1
+    },
+    {
+      "q": "onshore Sergipe Bahia Rio Grande do Norte Alagoas poços perfuração campos terrestres novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "sonda terrestre perfuração workover contrato Braserv San Antonio Internacional 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Eneva lucro terceiro trimestre 2026 resultado ENEV3 novembro",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "\"ANP\" aprova novembro 2026 campos maduros royalties redução onshore resolução",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "sonda de perfuração terrestre contrato assinado onshore Brasil outubro novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Bacia Potiguar Mossoró onshore petróleo novembro 2026 investimento poços produtores independentes",
+      "ch": "site",
+      "found": 1
+    },
+    {
+      "q": "Sergipe Águas Profundas SEAP FPSO Petrobras novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Bahia Recôncavo onshore petróleo gás novembro 2026 campo poço perfuração independente",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Azevedo & Travassos Energia R$ 67,5 milhões investimentos ampliar produção de petróleo",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Eneva lucro R$ 323 milhões 3T26 Ebitda gás Parnaíba",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Azevedo & Travassos Energia AZTE3 plano de investimento R$ 67,5 milhões poços Potiguar novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Eneva resultado terceiro trimestre 2026 lucro líquido R$ 323 milhões",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Eneva novembro 2026 poço perfuração Bacia do Parnaíba Amazonas descoberta gás campanha exploratória",
       "ch": "site",
       "found": 0
     }

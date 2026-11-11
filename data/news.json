@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-11T19:20:15-03:00",
+  "updated_at": "2026-11-11T19:28:07-03:00",
   "items": [
     {
       "id": "2026-11-11-petrobras-resultado-3t26",
@@ -156,6 +156,23 @@
       "via": "site"
     },
     {
+      "id": "2026-11-06-governo-retoma-aaas-52-blocos",
+      "date": "2026-11-06",
+      "region": "BR",
+      "country": "BR",
+      "operator": "Setor",
+      "category": "regulatorio",
+      "environment": "geral",
+      "relevance": 3,
+      "title_pt": "Governo retoma avaliação ambiental de bacias e abre caminho para ofertar 52 blocos",
+      "title_en": "Government resumes basin environmental assessments, paving the way to offer 52 blocks",
+      "summary_pt": "Portaria conjunta do MME e do MMA dá 30 dias para aprovar os estudos de Sergipe-Alagoas/Jacuípe (29 blocos no mar) e do Solimões (23 blocos em terra), com foco em gás natural. A Bacia de Pelotas fica fora de novas ofertas até a conclusão da sua própria avaliação.",
+      "summary_en": "A joint MME/MMA ordinance gives 30 days to approve the studies for Sergipe-Alagoas/Jacuípe (29 offshore blocks) and Solimões (23 onshore blocks), where gas is the main target. The Pelotas basin stays out of new offers until its own assessment is completed.",
+      "source": "eixos",
+      "url": "https://eixos.com.br/petroleo-e-gas/governo-retoma-avaliacao-ambiental-e-abre-caminho-para-leiloar-52-blocos-pelotas-fica-condicionada/",
+      "via": "site"
+    },
+    {
       "id": "2026-11-05-petroreconcavo-resultado-3t26",
       "date": "2026-11-05",
       "region": "BR",
@@ -272,6 +289,57 @@
       "summary_en": "The platform hit nameplate capacity on October 31 with the start-up of well BUZ 100. P-80 (Búzios 9) and P-82 (Búzios 10) are on their way to Brazil for start-up in 2027; P-83 (Búzios 11) is planned and Búzios 12 is out to tender. The field should host 12 FPSOs.",
       "source": "Agência Petrobras",
       "url": "https://agencia.petrobras.com.br/w/negocio/plataforma-p-78-b%C3%BAzios-6-atinge-topo-de-produ%C3%A7%C3%A3o-com-180-mil-barris-por-dia",
+      "via": "site"
+    },
+    {
+      "id": "2026-11-03-azevedo-travassos-plano-potiguar",
+      "date": "2026-11-03",
+      "region": "BR",
+      "country": "BR",
+      "operator": "Azevedo & Travassos Energia",
+      "category": "investimentos",
+      "environment": "onshore",
+      "relevance": 5,
+      "title_pt": "Azevedo & Travassos Energia vai investir R$ 67,5 mi em 18 poços na Bacia Potiguar",
+      "title_en": "Azevedo & Travassos Energia to invest R$ 67.5 mn in 18 wells in the Potiguar Basin",
+      "summary_pt": "O plano de 2027 a 2029 busca elevar a produção de cerca de 50 bbl/d para perto de 800 boe/d. A reativação de poços começa em dezembro de 2026 em Periquito, Periquito Nordeste, Tanatau e Andorinha, e novos poços exploratórios estão previstos nos blocos POT-610 e POT-566.",
+      "summary_en": "The 2027–2029 plan aims to lift output from about 50 bbl/d to roughly 800 boe/d. Well reactivations start in December 2026 at Periquito, Periquito Nordeste, Tanatau and Andorinha, and new exploration wells are planned in blocks POT-610 and POT-566.",
+      "source": "Portal Energia Limpa",
+      "url": "https://energialimpa.live/azevedo-travassos-planeja-multiplicar-producao-de-petroleo-na-bacia-potiguar-ate-2029/",
+      "via": "site"
+    },
+    {
+      "id": "2026-11-03-anp-producao-recorde-setembro",
+      "date": "2026-11-03",
+      "region": "BR",
+      "country": "BR",
+      "operator": "Setor",
+      "category": "producao",
+      "environment": "geral",
+      "relevance": 3,
+      "title_pt": "Produção de petróleo e gás do Brasil bate recorde em setembro, com 6,12 milhões de boe/d",
+      "title_en": "Brazil's oil and gas output hits record 6.12 million boe/d in September",
+      "summary_pt": "Segundo o boletim da ANP, a produção de óleo foi de 4,711 milhões de bbl/d (alta de 20,3% em um ano) e a de gás, de 223,98 milhões de m³/d. O pré-sal respondeu por 83,3% do total, com 205 poços; os campos marítimos somaram 98,1% do óleo e 89% do gás. Campos operados pela Petrobras entregaram 87%.",
+      "summary_en": "According to the ANP bulletin, oil output was 4.711 million bbl/d (up 20.3% in a year) and gas 223.98 million m³/d. The pre-salt supplied 83.3% of the total from 205 wells; offshore fields accounted for 98.1% of oil and 89% of gas. Petrobras-operated fields delivered 87%.",
+      "source": "Mercado & Consumo",
+      "url": "https://mercadoeconsumo.com.br/03/11/2026/economia/producao-de-petroleo-e-gas-natural-no-brasil-alcanca-novo-recorde-em-setembro/",
+      "via": "site"
+    },
+    {
+      "id": "2026-10-31-shell-orca-ate-15-pocos",
+      "date": "2026-10-31",
+      "region": "BR",
+      "country": "BR",
+      "operator": "Shell",
+      "category": "perfuracao",
+      "environment": "offshore",
+      "relevance": 3,
+      "title_pt": "Shell prevê até 15 poços em Orca e Ibama abre prazo para pedido de audiência pública",
+      "title_en": "Shell plans up to 15 wells at Orca as Ibama opens public-hearing window",
+      "summary_pt": "O edital do Ibama de 27 de outubro abre 45 dias para pedidos de audiência sobre os estudos ambientais do projeto. O campo do pré-sal de Santos vai produzir pelo FPSO Gato do Mato, de 120 mil bpd, a partir de 2029; o navio-sonda Valaris DS-8 deve iniciar os trabalhos no 1T27.",
+      "summary_en": "Ibama's notice of October 27 opens 45 days to request a hearing on the project's environmental studies. The Santos pre-salt field will produce through the 120,000 bpd Gato do Mato FPSO from 2029; the Valaris DS-8 drillship is due to start work in Q1 2027.",
+      "source": "Click Petróleo e Gás",
+      "url": "https://clickpetroleoegas.com.br/shell-planeja-perfurar-ate-15-pocos-no-pre-sal-brasileiro-para-conectar-a-plataforma-capaz-de-produzir-120-mil-barris-de-petroleo-por-dia-asaf04",
       "via": "site"
     },
     {
@@ -423,7 +491,7 @@
       "title_en": "Tenaris Q3 sales rise 5% to US$ 3.1 bn; South America tube sales fall 12%",
       "summary_pt": "O Ebitda foi de US$ 756 mi (margem de 24,4%) e o lucro líquido de US$ 521 mi. As vendas de tubos na América do Sul caíram para US$ 447 mi, com menos tubos para dutos na Argentina e menos serviços de revestimento na Guiana. A empresa vê a perfuração crescer na Argentina e prevê vendas e Ebitda maiores no 4T26.",
       "summary_en": "EBITDA was US$ 756 mn (24.4% margin) and net income US$ 521 mn. Tube sales in South America dropped to US$ 447 mn on fewer pipeline pipes in Argentina and less coating work in Guyana. The company sees drilling rising in Argentina and expects higher sales and EBITDA in Q4.",
-      "source": "SEC (Tenaris 6-K)",
+      "source": "Tenaris (SEC 6-K)",
       "url": "https://www.sec.gov/Archives/edgar/data/0001190723/000117184326007191/f6k_110426ern.htm",
       "via": "site"
     },
