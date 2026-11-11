@@ -1,7 +1,7 @@
 {
-  "run_at": "2026-11-11T19:28:07-03:00",
-  "searches": 98,
-  "new_items": 16,
+  "run_at": "2026-11-11T19:32:24-03:00",
+  "searches": 124,
+  "new_items": 26,
   "schedule": {
     "type": "daily",
     "time": "06:41"
@@ -16,16 +16,12 @@
     "PetroVictory",
     "Alvopetro",
     "Enauta",
-    "Atlanta",
-    "Papa-Terra",
     "Vipetro",
     "Petrobras",
     "Equinor",
     "Perenco",
     "PRIO",
     "TotalEnergies",
-    "Foz do Amazonas",
-    "Búzios",
     "SLB",
     "Baker Hughes",
     "Weatherford",
@@ -34,146 +30,25 @@
     "Apolo Tubulars",
     "Jereh",
     "Kerui",
-    "OCTG",
     "ANP",
     "Eneva",
     "Petroborn",
     "Shell",
     "Onshore Nordeste",
     "Sondas terrestres",
-    "Azevedo & Travassos"
+    "YPF",
+    "Vista Energy",
+    "Vaca Muerta",
+    "Pan American Energy",
+    "Ecopetrol",
+    "ExxonMobil",
+    "Staatsolie",
+    "Perupetro",
+    "Petroecuador",
+    "YPFB",
+    "PDVSA"
   ],
   "queries": [
-    {
-      "q": "PRIO 3T26 resultado produção outubro 2026 Wahoo Peregrino poços 2027",
-      "ch": "site",
-      "found": 2
-    },
-    {
-      "q": "TotalEnergies Brasil novembro 2026 Lapa Mero Atapu Sépia investimento",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Prio prevê perfurar oito poços em 2027 investor day Peregrino Albacora Leste",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Agência Petrobras notícias novembro 2026 Búzios FPSO contrato produção recorde",
-      "ch": "site",
-      "found": 2
-    },
-    {
-      "q": "Equinor Brasil Raia perfuração FPSO Bacalhau produção terceiro trimestre 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Perenco Brasil 2026 produção Campos poços perfuração campanha Pargo novembro",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "TotalEnergies Brazil November 2026 announcement offshore pre-salt block stake",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Petrobras novembro 2026 (linkedin.com, instagram.com, x.com)",
-      "ch": "x",
-      "found": 0
-    },
-    {
-      "q": "Equinor Brasil (linkedin.com, instagram.com, x.com)",
-      "ch": "x",
-      "found": 0
-    },
-    {
-      "q": "Perenco Brasil (linkedin.com, instagram.com, x.com)",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "PRIO petróleo (linkedin.com, instagram.com, x.com)",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "TotalEnergies Brasil (linkedin.com, instagram.com, x.com)",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "Petrobras webcast resultados 3T26",
-      "ch": "youtube",
-      "found": 0
-    },
-    {
-      "q": "PRIO Brava PetroReconcavo resultados 3T26 teleconferência",
-      "ch": "youtube",
-      "found": 0
-    },
-    {
-      "q": "eixos petróleo gás onshore novembro 2026 entrevista",
-      "ch": "youtube",
-      "found": 0
-    },
-    {
-      "q": "Petrobras Webcast 3T26 resultados terceiro trimestre 2026 canal oficial",
-      "ch": "youtube",
-      "found": 0
-    },
-    {
-      "q": "PetroReconcavo RECV3 3T26 teleconferência de resultados",
-      "ch": "youtube",
-      "found": 0
-    },
-    {
-      "q": "PRIO 3T26 webinar resultados Brava Energia 3T26 videoconferência",
-      "ch": "youtube",
-      "found": 0
-    },
-    {
-      "q": "Equinor third quarter 2026 results Bacalhau Brazil production ramp-up",
-      "ch": "site",
-      "found": 1
-    },
-    {
-      "q": "TotalEnergies third quarter 2026 results Brazil Mero-4 Lapa production",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Petrobras Mãe de Ouro Bacia Potiguar sonda NS-42 perfuração novembro 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "SLB Brasil contrato Petrobras novembro 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Baker Hughes Brazil contract Petrobras award October November 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Weatherford contract Brazil Latin America Petrobras 2026 third quarter award",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Tenaris third quarter 2026 results Brazil Argentina OCTG Vaca Muerta",
-      "ch": "site",
-      "found": 1
-    },
-    {
-      "q": "Tenaris Confab Pindamonhangaba tubos contrato Petrobras 2026 novembro",
-      "ch": "site",
-      "found": 0
-    },
     {
       "q": "Apolo Tubulars tubos OCTG Lorena 2026 notícias",
       "ch": "site",
@@ -341,6 +216,136 @@
     },
     {
       "q": "Eneva novembro 2026 poço perfuração Bacia do Parnaíba Amazonas descoberta gás campanha exploratória",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "YPF resultados tercer trimestre 2026 producción shale inversiones noviembre",
+      "ch": "site",
+      "found": 1
+    },
+    {
+      "q": "Vista Energy tercer trimestre 2026 resultados producción pozos Vaca Muerta",
+      "ch": "site",
+      "found": 1
+    },
+    {
+      "q": "Pan American Energy Pluspetrol Vaca Muerta noviembre 2026 inversión pozos anuncio",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Vaca Muerta equipos de perforación torres contrato perforadora noviembre 2026",
+      "ch": "site",
+      "found": 1
+    },
+    {
+      "q": "Ecopetrol noviembre 2026 perforación pozos hallazgo inversión anuncio",
+      "ch": "site",
+      "found": 1
+    },
+    {
+      "q": "Guyana ExxonMobil Stabroek November 2026 Uaru Hammerhead production start-up",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Suriname Staatsolie TotalEnergies GranMorgu November 2026 drilling Block 58",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "OilNOW Guyana November 2026 ExxonMobil production Yellowtail Uaru drilling wells",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Staatsolie Suriname november 2026 onshore drilling wells production nearshore",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Perupetro Petroperú noviembre 2026 lotes Talara contrato perforación pozos inversión",
+      "ch": "site",
+      "found": 1
+    },
+    {
+      "q": "Petroecuador noviembre 2026 producción perforación pozos taladros campos licitación",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "YPFB Bolivia noviembre 2026 perforación pozo exploratorio hidrocarburos inversión",
+      "ch": "site",
+      "found": 1
+    },
+    {
+      "q": "PDVSA Venezuela Chevron noviembre 2026 producción taladros perforación empresas mixtas",
+      "ch": "site",
+      "found": 1
+    },
+    {
+      "q": "Ecopetrol Anadarko pozo Komodo ANLA retira exigencias perforación 2027",
+      "ch": "site",
+      "found": 1
+    },
+    {
+      "q": "ExxonMobil third quarter 2026 Guyana production barrels per day Uaru start-up Hess Chevron",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Ecuador petróleo noviembre 2026 Petroecuador pozos producción barriles torres de perforación",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Bolivia YPFB noviembre 2026 hidrocarburos pozo perforación anuncio gobierno Paz ley",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Campetrol taladros activos Colombia octubre 2026 informe perforación workover",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Pan American Energy noviembre 2026 Vaca Muerta pozos perforación Cerro Dragón inversión",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Argentina convencional Chubut Santa Cruz Mendoza equipos perforación workover pulling noviembre 2026 reactivación",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Guyana oil news November 2026 ExxonMobil Longtail Hammerhead approval drilling campaign rig",
+      "ch": "site",
+      "found": 1
+    },
+    {
+      "q": "Vaca Muerta producción récord octubre 2026 petróleo Neuquén barriles pozos perforados",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Perupetro Lote 207 adjudicación SPT Energy Lote 192 Petroperú noviembre 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Ecuador ronda petrolera licitación campos Sacha inversión privada noviembre 2026 anuncio ministerio",
+      "ch": "site",
+      "found": 1
+    },
+    {
+      "q": "YPFB pozo perforación resultado gas noviembre 2026 Bolivia descubrimiento inicia",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Colombia taladros activos Campetrol informe septiembre octubre 2026 perforación producción petróleo",
       "ch": "site",
       "found": 0
     }
