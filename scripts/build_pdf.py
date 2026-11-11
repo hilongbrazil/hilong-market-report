@@ -5,7 +5,12 @@ Uso:
   python3 scripts/build_pdf.py --out /caminho/Hilong-Market-Report-AAAA-MM-DD.pdf
       [--date AAAA-MM-DD]      data da edição (padrão: data de updated_at)
       [--days 7]               janela de notícias incluídas no relatório
-      [--base-ref HEAD]        ref do git usada para marcar o que é novo (NEW)
+      [--base-ref HEAD]        ref do git anterior à varredura: garante que as notícias recém-incluídas entrem
+                               no relatório mesmo com data de publicação fora da janela
+      [--record]               registra a edição em data/reports.json (só no envio real)
+
+Notícia nova (NEW) é a que ainda não saiu em nenhum relatório registrado em data/reports.json; as novas vêm
+primeiro. Uma mesma notícia aparece em no máximo dois relatórios.
       [--edition "Daily edition"]
       [--message "..."]        mensagem positiva do dia (padrão: escolhida pela data)
       [--email-html arquivo]   grava o corpo do e-mail em HTML (10 principais + assinatura)
@@ -226,8 +231,31 @@ def op_name(item):
     return "Sector" if item["operator"] == "Setor" else item["operator"]
 
 
+NEW_IDS = set()      # notícias que ainda não saíram em nenhum relatório; preenchido em build_html
+MAX_REPORTS = 2      # uma mesma notícia aparece em no máximo dois relatórios
+LOG = ROOT / "data" / "reports.json"
+
+
 def rank_key(item):
-    return (-item["relevance"], item["region"] != "BR", -dt.date.fromisoformat(item["date"]).toordinal())
+    # notícia nova primeiro; depois relevância, Brasil antes da América do Sul e a mais recente antes
+    return (item["id"] not in NEW_IDS, -item["relevance"], item["region"] != "BR",
+            -dt.date.fromisoformat(item["date"]).toordinal())
+
+
+def load_log():
+    try:
+        reports = json.loads(LOG.read_text(encoding="utf-8")).get("reports", [])
+        return [r for r in reports if isinstance(r.get("date"), str) and isinstance(r.get("ids"), list)]
+    except Exception:  # noqa: BLE001
+        return []
+
+
+def record_report(report_date, ids):
+    """Registra a edição em data/reports.json (uma entrada por data; refazer no mesmo dia substitui)."""
+    reports = [r for r in load_log() if r["date"] != report_date]
+    reports.append({"date": report_date, "ids": sorted(ids)})
+    reports.sort(key=lambda r: r["date"])
+    LOG.write_text(json.dumps({"reports": reports[-60:]}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
 def rel_html(score, label=True):
@@ -308,10 +336,14 @@ def email_bodies(report_date, days, top, new_ids, br_new, sa_new, n_items, messa
     """Corpo do e-mail diário: as 10 principais, na mesma ordem do PDF, e a assinatura do Li Marcitão."""
     if new_ids:
         lead = (f"{br_new} new {'story' if br_new == 1 else 'stories'} in Brazil and {sa_new} in South America today. "
-                f"The 10 most relevant of the last {days} days are below; the full report ({n_items} stories) is attached as a PDF.")
+                f"The top {len(top)} are below, new stories first; the full report ({n_items} "
+                f"{'story' if n_items == 1 else 'stories'}) is attached as a PDF.")
+    elif top:
+        lead = (f"No new stories entered the report today. The {len(top)} below {'is' if len(top) == 1 else 'are'} carried over "
+                f"from the previous report for the last time; the full report is attached as a PDF.")
     else:
-        lead = (f"No new stories entered the report today. The 10 most relevant of the last {days} days are below; "
-                f"the full report ({n_items} stories) is attached as a PDF.")
+        lead = ("No stories qualify for today's report: nothing new was found, and earlier stories have already "
+                "appeared in two reports. The coverage summary is attached as a PDF.")
     long_date = fmt_date(report_date, long=True)
     rows, text_rows = "", []
     for n, i in enumerate(top, 1):
@@ -324,23 +356,24 @@ def email_bodies(report_date, days, top, new_ids, br_new, sa_new, n_items, messa
                  f'Relevance {i["relevance"]}/5 &middot; {esc(i["source"])}{pay}</div></td></tr>\n')
         text_rows.append(f'{n}. {op_name(i)} ({place}){" [NEW]" if is_new else ""} - {i["title_en"]}{pay}\n   {i["url"]}')
     alert_html = f'<div class="al">{esc(alert)}</div>' if alert else ""
+    top_block = (f'<tr><td class="l"><div class="hd">Top stories</div>\n'
+                 f'<table role="presentation" width="100%" cellpadding="0" cellspacing="0">\n{rows}</table></td></tr>') if top else ""
     html_body = f"""<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><style>{EMAIL_CSS}</style></head><body>
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" bgcolor="#EDF1F1"><tr><td align="center" style="padding:24px 12px">
 <table role="presentation" class="w" width="640" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" style="max-width:640px;width:100%">
 <tr><td class="h" bgcolor="#082F36"><div class="k">HILONG BRASIL &middot; OIL &amp; GAS INTELLIGENCE</div>
 <div class="ti">Market Report<span style="color:#F2B705">.</span></div><div class="d">{esc(long_date)}</div></td></tr>
 <tr><td class="p">{alert_html}{esc(lead)}</td></tr>
-<tr><td class="l"><div class="hd">Top stories</div>
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0">
-{rows}</table></td></tr>
+{top_block}
 <tr><td class="c"><a class="bt" href="{SITE}">Open the Market Report</a> &nbsp; Full report attached as a PDF.</td></tr>
 <tr><td class="f"><div class="sg"><div class="mg">{esc(message)}</div>
 <div class="wh"><b>Li Marcit&atilde;o</b> &middot; Market news agent, Hilong Brasil</div></div></td></tr>
 </table></td></tr></table></body></html>"""
     text_body = "\n".join(
         ([alert, ""] if alert else [])
-        + [f"Hilong Market Report - {long_date}", "", lead, "", "TOP STORIES", ""]
-        + ["\n\n".join(text_rows), "", f"Open the Market Report: {SITE}", "", message, "", "Li Marcitão",
+        + [f"Hilong Market Report - {long_date}", "", lead, ""]
+        + (["TOP STORIES", "", "\n\n".join(text_rows), ""] if top else [])
+        + [f"Open the Market Report: {SITE}", "", message, "", "Li Marcitão",
            "Market news agent, Hilong Brasil"])
     return html_body, text_body
 
@@ -358,8 +391,19 @@ def build_html(args):
         if res.returncode == 0:
             old = {i["id"] for i in json.loads(res.stdout)["items"]}
             new_ids = {i["id"] for i in news["items"] if i["id"] not in old}
-    # entram as notícias da janela e todas as novas desta edição, mesmo com data de publicação anterior
-    items = [i for i in news["items"] if start <= i["date"] <= report_date or i["id"] in new_ids]
+    # candidatas: as notícias da janela e todas as que entraram nesta edição, mesmo com data de publicação anterior
+    candidates = [i for i in news["items"] if start <= i["date"] <= report_date or i["id"] in new_ids]
+    # quantas edições anteriores já trouxeram cada notícia (edições com data anterior à deste relatório)
+    seen = {}
+    for rep in load_log():
+        if rep["date"] < report_date:
+            for sid in set(rep["ids"]):
+                seen[sid] = seen.get(sid, 0) + 1
+    # nova = nunca saiu em relatório; cada notícia sai em no máximo MAX_REPORTS relatórios
+    items = [i for i in candidates if seen.get(i["id"], 0) < MAX_REPORTS]
+    new_ids = {i["id"] for i in items if seen.get(i["id"], 0) == 0}
+    NEW_IDS.clear()
+    NEW_IDS.update(new_ids)
     new_items = [i for i in items if i["id"] in new_ids]
 
     br = [i for i in items if i["region"] == "BR"]
@@ -379,7 +423,7 @@ def build_html(args):
     message = args.message or MESSAGES[dt.date.fromisoformat(report_date).toordinal() % len(MESSAGES)]
 
     kpis = [
-        ("New stories", len(new_items), f"added in this edition" if new_ids else "no new stories marked"),
+        ("New stories", len(new_items), "first time in a report" if new_ids else "no new stories today"),
         ("Brazil", len(br), f"{br_new} new" if new_ids else "stories in the report"),
         ("South America", len(sa), f"{sa_new} new" if new_ids else "stories in the report"),
         ("Searches run", run.get("searches", 0), "sites, social networks and YouTube"),
@@ -445,8 +489,9 @@ def build_html(args):
 <section class="kpis">{kpi_html}</section>
 
 <section class="sec first pad">
-  <div class="sec-h"><h2>Top stories</h2><span class="hint">Highest relevance first · Brazil before South America · newest first</span></div>
+  <div class="sec-h"><h2>Top stories</h2><span class="hint">New stories first · then highest relevance · Brazil before South America</span></div>
   <ol class="top">{top_html}</ol>
+  {'' if top else '<p style="margin:4mm 0;color:#55686E">No stories qualify for today&#39;s report: nothing new was found and earlier stories have already appeared in two reports.</p>'}
 </section>
 
 <section class="sec pad page-break">
@@ -472,7 +517,7 @@ def build_html(args):
     <div class="who"><b>Li Marcitão</b> · Market news agent, Hilong Brasil · <a href="{SITE}">marketreport.hilongbrazil.com</a></div>
   </div>
 </section>
-<p class="method">Relevance runs from 5 (direct interest to Hilong in Brazil: land drilling and workover rigs, OCTG, sucker rods, downhole tools and the onshore operators on the priority list) to 1 (general market context). Every story carries a confirmed publication date and a public source link; titles and summaries are written for this report.</p>
+<p class="method">Relevance runs from 5 (direct interest to Hilong in Brazil: land drilling and workover rigs, OCTG, sucker rods, downhole tools and the onshore operators on the priority list) to 1 (general market context). Every story carries a confirmed publication date and a public source link; titles and summaries are written for this report. Stories marked NEW appear in a report for the first time and come first; each story is shown in at most two reports.</p>
 """
     doc = (f'<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Hilong Market Report {report_date}</title>'
            f"<style>{CSS}</style></head><body>{body}</body></html>")
@@ -484,7 +529,8 @@ def build_html(args):
         '<span>Page <span class="pageNumber"></span> of <span class="totalPages"></span></span></div>'
     )
     email = email_bodies(report_date, args.days, top, new_ids, br_new, sa_new, len(items), message, args.alert)
-    stats = {"date": report_date, "stories": len(items), "new_br": br_new, "new_sa": sa_new}
+    stats = {"date": report_date, "stories": len(items), "new_br": br_new, "new_sa": sa_new,
+             "ids": [i["id"] for i in items]}
     return doc, footer, stats, email
 
 
@@ -500,6 +546,8 @@ def main():
     ap.add_argument("--email-html", help="grava o corpo do e-mail em HTML")
     ap.add_argument("--email-text", help="grava o corpo do e-mail em texto simples")
     ap.add_argument("--alert", help="aviso na primeira linha do e-mail (ex.: falha no push)")
+    ap.add_argument("--record", action="store_true",
+                    help="registra esta edição em data/reports.json (usar só no envio real, não em testes)")
     args = ap.parse_args()
 
     doc, footer, stats, email = build_html(args)
@@ -522,6 +570,8 @@ def main():
         page.pdf(path=args.out, prefer_css_page_size=True, print_background=True, display_header_footer=True,
                  header_template="<span></span>", footer_template=footer)
         browser.close()
+    if args.record:
+        record_report(stats["date"], stats["ids"])
     print(f"OK: {args.out} ({stats['stories']} stories, edition {stats['date']}, "
           f"new: {stats['new_br']} Brazil, {stats['new_sa']} South America)")
     return 0

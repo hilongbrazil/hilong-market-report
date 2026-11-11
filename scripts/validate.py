@@ -97,6 +97,16 @@ def main() -> int:
         except Exception as exc:  # noqa: BLE001
             print(f"ERRO: run.json inválido: {exc!r}")
             return 1
+    log_path = ROOT / "data" / "reports.json"
+    if log_path.exists():
+        try:
+            reports = json.loads(log_path.read_text(encoding="utf-8"))["reports"]
+            assert isinstance(reports, list)
+            for rep in reports:
+                assert re.fullmatch(r"\d{4}-\d{2}-\d{2}", rep["date"]) and isinstance(rep["ids"], list)
+        except Exception as exc:  # noqa: BLE001
+            print(f"ERRO: reports.json inválido: {exc!r}")
+            return 1
     br = sum(1 for it in items if it["region"] == "BR")
     print(f"OK: {len(items)} notícias ({br} Brasil, {len(items) - br} América do Sul)")
     return 0
