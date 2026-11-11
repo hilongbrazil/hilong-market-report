@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Market Report | Hilong Brasil</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #EDF1F1;
+    --sheet: #FFFFFF;
+    --ink: #13262B;
+    --muted: #55686E;
+    --line: #CFD9DA;
+    --petrol: #0C4650;
+    --petrol-deep: #082F36;
+    --br: #0E7C66;
+    --sa: #B36B00;
+    --signal: #F2B705;
+    --font: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font);
+    font-size: 17px;
+    line-height: 1.5;
+  }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--signal); outline-offset: 2px; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+
+  /* Masthead */
+  .mast { background: var(--petrol); color: #fff; }
+  .mast .wrap { padding-top: 22px; padding-bottom: 30px; }
+  .mast-top { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+  .brand { font-weight: 600; font-size: 15px; letter-spacing: .01em; opacity: .9; }
+  .lang { display: inline-flex; border: 1px solid rgba(255,255,255,.45); border-radius: 4px; overflow: hidden; }
+  .lang button {
+    font: inherit; font-size: 14px; font-weight: 600; color: #fff; background: transparent;
+    border: 0; padding: 6px 12px; cursor: pointer;
+  }
+  .lang button[aria-pressed="true"] { background: #fff; color: var(--petrol-deep); }
+  .mast h1 {
+    margin: 26px 0 6px;
+    font-stretch: 68%;
+    font-weight: 800;
+    font-size: clamp(44px, 9vw, 92px);
+    line-height: .92;
+    letter-spacing: -.01em;
+  }
+  .mast .sub { margin: 0; font-size: clamp(17px, 2.2vw, 21px); max-width: 34em; opacity: .92; }
+  .edition { margin: 18px 0 0; font-size: 15px; opacity: .85; }
+  .edition strong { font-weight: 700; }
+
+  /* Filters */
+  .filters { background: var(--sheet); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 5; }
+  .filters .wrap { display: flex; flex-wrap: wrap; gap: 12px 16px; align-items: center; padding-top: 12px; padding-bottom: 12px; }
+  .seg { display: inline-flex; border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+  .seg button {
+    font: inherit; font-size: 15px; font-weight: 600; color: var(--ink); background: var(--sheet);
+    border: 0; border-right: 1px solid var(--line); padding: 8px 14px; cursor: pointer; white-space: nowrap;
+  }
+  .seg button:last-child { border-right: 0; }
+  .seg button .n { font-weight: 400; color: var(--muted); margin-left: 6px; }
+  .seg button[aria-pressed="true"] { background: var(--petrol-deep); color: #fff; }
+  .seg button[aria-pressed="true"] .n { color: rgba(255,255,255,.75); }
+  .filters select, .filters input[type="search"] {
+    font: inherit; font-size: 15px; color: var(--ink); background: var(--sheet);
+    border: 1px solid var(--line); border-radius: 4px; padding: 8px 10px; min-height: 40px;
+  }
+  .filters input[type="search"] { flex: 1 1 180px; min-width: 150px; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  /* Log */
+  main .wrap { padding-top: 28px; padding-bottom: 56px; }
+  .day { display: grid; grid-template-columns: 112px 1fr; }
+  .day-label {
+    position: relative; padding: 2px 20px 0 0; text-align: right;
+    font-stretch: 75%; line-height: 1.1;
+  }
+  .day-label .d { display: block; font-size: 30px; font-weight: 800; }
+  .day-label .w { display: block; font-size: 14px; color: var(--muted); margin-top: 2px; }
+  .day-label .inner { position: sticky; top: 76px; }
+  .track { border-left: 2px solid var(--petrol); padding: 0 0 26px 0; position: relative; }
+  .day:last-child .track { padding-bottom: 0; }
+  .track::before {
+    content: ""; position: absolute; left: -12px; top: 16px; width: 12px; height: 2px; background: var(--petrol);
+  }
+  .item {
+    position: relative; background: var(--sheet); margin: 0 0 10px 22px; padding: 16px 20px 16px;
+    border: 1px solid var(--line); border-radius: 3px;
+  }
+  .item::before {
+    content: ""; position: absolute; left: -29px; top: 22px; width: 12px; height: 12px; border-radius: 50%;
+    background: var(--br); border: 2px solid var(--paper);
+  }
+  .item[data-region="SA"]::before { background: var(--sa); }
+  .tags { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 14px; margin-bottom: 6px; }
+  .tags .op { font-weight: 700; }
+  .tags .ct { color: var(--br); font-weight: 600; }
+  .item[data-region="SA"] .tags .ct { color: var(--sa); }
+  .tags .cat { color: var(--muted); }
+  .item h2 { margin: 0 0 6px; font-size: 21px; line-height: 1.22; font-weight: 700; font-stretch: 88%; max-width: 34em; }
+  .item h2 a { text-decoration: none; }
+  .item h2 a:hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; }
+  .item p { margin: 0; max-width: 66ch; }
+  .item .src { margin-top: 10px; font-size: 14px; color: var(--muted); }
+  .item .src a { color: var(--petrol); font-weight: 600; }
+
+  .legend { display: flex; flex-wrap: wrap; gap: 6px 20px; font-size: 14px; color: var(--muted); margin: 0 0 22px 112px; padding-left: 24px; }
+  .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 7px; background: var(--br); }
+  .legend .sa i { background: var(--sa); }
+
+  .state { background: var(--sheet); border: 1px solid var(--line); border-radius: 3px; padding: 28px 24px; max-width: 40em; }
+  .state h2 { margin: 0 0 6px; font-size: 21px; }
+  .state p { margin: 0 0 14px; color: var(--muted); }
+  .state button {
+    font: inherit; font-weight: 600; font-size: 15px; background: var(--petrol-deep); color: #fff;
+    border: 0; border-radius: 4px; padding: 9px 16px; cursor: pointer;
+  }
+
+  footer { border-top: 1px solid var(--line); }
+  footer .wrap { padding-top: 20px; padding-bottom: 36px; font-size: 14px; color: var(--muted); }
+  footer p { margin: 0; max-width: 70ch; }
+
+  @media (max-width: 640px) {
+    body { font-size: 16px; }
+    .wrap { padding: 0 16px; }
+    .day { grid-template-columns: 1fr; }
+    .day-label { text-align: left; padding: 0 0 8px; }
+    .day-label .inner { position: static; display: flex; align-items: baseline; gap: 10px; }
+    .day-label .d { font-size: 24px; }
+    .track { margin-left: 5px; }
+    .track::before { display: none; }
+    .item { margin-left: 18px; padding: 14px 16px; }
+    .item::before { left: -25px; }
+    .legend { margin-left: 0; padding-left: 0; }
+    .filters { position: static; }
+    .seg { width: 100%; }
+    .seg button { flex: 1; padding: 8px 6px; }
+    .filters select { flex: 1 1 45%; min-width: 0; }
+  }
+</style>
+</head>
+<body>
+
+<header class="mast">
+  <div class="wrap">
+    <div class="mast-top">
+      <span class="brand">Hilong Brasil</span>
+      <div class="lang" role="group" aria-label="Idioma / Language">
+        <button type="button" data-lang="pt" aria-pressed="true">PT</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+    </div>
+    <h1>Market Report</h1>
+    <p class="sub" data-i18n="sub"></p>
+    <p class="edition" id="edition" aria-live="polite"></p>
+  </div>
+</header>
+
+<div class="filters">
+  <div class="wrap">
+    <div class="seg" role="group" id="regionSeg" aria-label="Região"></div>
+    <label class="sr" for="opSel" data-i18n="operator"></label>
+    <select id="opSel"></select>
+    <label class="sr" for="catSel" data-i18n="category"></label>
+    <select id="catSel"></select>
+    <label class="sr" for="q" data-i18n="search"></label>
+    <input type="search" id="q" autocomplete="off">
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <div class="legend" id="legend"></div>
+    <div id="log"></div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap"><p data-i18n="foot"></p></div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  var T = {
+    pt: {
+      sub: "Notícias de óleo e gás das operadoras do Brasil e da América do Sul, atualizadas todos os dias úteis.",
+      updated: "Atualizado em", count1: "notícia", countN: "notícias",
+      all: "Todas", BR: "Brasil", SA: "América do Sul",
+      operator: "Operadora", allOps: "Todas as operadoras",
+      category: "Assunto", allCats: "Todos os assuntos",
+      search: "Buscar", searchPh: "Buscar por palavra",
+      source: "Fonte", read: "ler a matéria original",
+      emptyT: "Nenhuma notícia com esses filtros", emptyP: "Tente outra operadora, outro assunto ou outra palavra.", clear: "Limpar filtros",
+      errT: "Não foi possível carregar as notícias", errP: "Verifique a conexão e recarregue a página.", reload: "Recarregar",
+      foot: "Os resumos são elaborados pela Hilong Brasil a partir das fontes indicadas. Abra o link de cada notícia para ler a matéria original.",
+      sector: "Setor",
+      cats: { resultados: "Resultados", producao: "Produção", perfuracao: "Perfuração", investimentos: "Investimentos", contratos: "Contratos e licitações", regulatorio: "Regulatório", exploracao: "Exploração", mercado: "Mercado", fusoes: "Fusões e aquisições", outros: "Outros" },
+      countries: { BR: "Brasil", AR: "Argentina", CO: "Colômbia", GY: "Guiana", SR: "Suriname", PE: "Peru", EC: "Equador", BO: "Bolívia", VE: "Venezuela", CL: "Chile", UY: "Uruguai", PY: "Paraguai", TT: "Trinidad e Tobago" }
+    },
+    en: {
+      sub: "Oil and gas news from operators in Brazil and South America, updated every business day.",
+      updated: "Updated on", count1: "story", countN: "stories",
+      all: "All", BR: "Brazil", SA: "South America",
+      operator: "Operator", allOps: "All operators",
+      category: "Topic", allCats: "All topics",
+      search: "Search", searchPh: "Search by keyword",
+      source: "Source", read: "read the original story",
+      emptyT: "No stories match these filters", emptyP: "Try another operator, topic or keyword.", clear: "Clear filters",
+      errT: "The news could not be loaded", errP: "Check your connection and reload the page.", reload: "Reload",
+      foot: "Summaries are written by Hilong Brasil from the sources shown. Open each story's link to read the original article.",
+      sector: "Industry",
+      cats: { resultados: "Results", producao: "Production", perfuracao: "Drilling", investimentos: "Investment", contratos: "Contracts and tenders", regulatorio: "Regulation", exploracao: "Exploration", mercado: "Market", fusoes: "M&A", outros: "Other" },
+      countries: { BR: "Brazil", AR: "Argentina", CO: "Colombia", GY: "Guyana", SR: "Suriname", PE: "Peru", EC: "Ecuador", BO: "Bolivia", VE: "Venezuela", CL: "Chile", UY: "Uruguay", PY: "Paraguay", TT: "Trinidad and Tobago" }
+    }
+  };
+
+  var state = { lang: "pt", region: "all", op: "", cat: "", q: "" };
+  var data = { updated_at: null, items: [] };
+  var failed = false;
+
+  try {
+    var saved = localStorage.getItem("mr_lang");
+    if (saved === "pt" || saved === "en") state.lang = saved;
+  } catch (e) { /* storage unavailable */ }
+
+  function $(id) { return document.getElementById(id); }
+  function el(tag, cls, text) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text != null) n.textContent = text;
+    return n;
+  }
+  function t() { return T[state.lang]; }
+  function locale() { return state.lang === "pt" ? "pt-BR" : "en-GB"; }
+  function parseDay(s) { var p = s.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]); }
+  function opName(o) { return o === "Setor" ? t().sector : o; }
+  function norm(s) { return (s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, ""); }
+  function safeUrl(u) { return /^https?:\/\//i.test(u || "") ? u : "#"; }
+
+  function matches(it, skipRegion) {
+    if (!skipRegion && state.region !== "all" && it.region !== state.region) return false;
+    if (state.op && it.operator !== state.op) return false;
+    if (state.cat && it.category !== state.cat) return false;
+    if (state.q) {
+      var hay = norm([it.title_pt, it.title_en, it.summary_pt, it.summary_en, it.operator, it.source].join(" "));
+      if (hay.indexOf(norm(state.q)) === -1) return false;
+    }
+    return true;
+  }
+
+  function renderChrome() {
+    var L = t();
+    document.documentElement.lang = state.lang === "pt" ? "pt-BR" : "en";
+    Array.prototype.forEach.call(document.querySelectorAll("[data-i18n]"), function (n) {
+      n.textContent = L[n.getAttribute("data-i18n")];
+    });
+    Array.prototype.forEach.call(document.querySelectorAll(".lang button"), function (b) {
+      b.setAttribute("aria-pressed", String(b.getAttribute("data-lang") === state.lang));
+    });
+    $("q").placeholder = L.searchPh;
+
+    // Region control with counts that respect the other filters
+    var seg = $("regionSeg"); seg.textContent = "";
+    ["all", "BR", "SA"].forEach(function (r) {
+      var b = el("button"); b.type = "button";
+      b.setAttribute("aria-pressed", String(state.region === r));
+      b.appendChild(document.createTextNode(L[r]));
+      var n = data.items.filter(function (it) { return matches(it, true) && (r === "all" || it.region === r); }).length;
+      b.appendChild(el("span", "n", String(n)));
+      b.addEventListener("click", function () { state.region = r; render(); });
+      seg.appendChild(b);
+    });
+
+    // Operator select
+    var ops = {};
+    data.items.forEach(function (it) { ops[it.operator] = 1; });
+    var opSel = $("opSel"); opSel.textContent = "";
+    var o0 = el("option", null, L.allOps); o0.value = ""; opSel.appendChild(o0);
+    Object.keys(ops).sort(function (a, b) {
+      if (a === "Setor") return 1; if (b === "Setor") return -1; return a.localeCompare(b);
+    }).forEach(function (o) {
+      var op = el("option", null, opName(o)); op.value = o; opSel.appendChild(op);
+    });
+    opSel.value = state.op;
+
+    // Category select
+    var cats = {};
+    data.items.forEach(function (it) { cats[it.category] = 1; });
+    var catSel = $("catSel"); catSel.textContent = "";
+    var c0 = el("option", null, L.allCats); c0.value = ""; catSel.appendChild(c0);
+    Object.keys(cats).sort(function (a, b) {
+      return (L.cats[a] || a).localeCompare(L.cats[b] || b);
+    }).forEach(function (c) {
+      var op = el("option", null, L.cats[c] || c); op.value = c; catSel.appendChild(op);
+    });
+    catSel.value = state.cat;
+
+    // Legend
+    var lg = $("legend"); lg.textContent = "";
+    var a = el("span", "br"); a.appendChild(el("i")); a.appendChild(document.createTextNode(L.BR)); lg.appendChild(a);
+    var s = el("span", "sa"); s.appendChild(el("i")); s.appendChild(document.createTextNode(L.SA)); lg.appendChild(s);
+
+    // Edition line
+    var ed = $("edition"); ed.textContent = "";
+    if (data.updated_at) {
+      var d = new Date(data.updated_at);
+      var when = new Intl.DateTimeFormat(locale(), {
+        day: "numeric", month: "long", year: "numeric", hour: "2-digit", minute: "2-digit",
+        timeZone: "America/Sao_Paulo"
+      }).format(d);
+      ed.appendChild(document.createTextNode(L.updated + " "));
+      ed.appendChild(el("strong", null, when));
+    }
+  }
+
+  function stateBox(title, text, btn, fn) {
+    var box = el("div", "state");
+    box.appendChild(el("h2", null, title));
+    box.appendChild(el("p", null, text));
+    var b = el("button", null, btn); b.type = "button"; b.addEventListener("click", fn);
+    box.appendChild(b);
+    return box;
+  }
+
+  function renderLog() {
+    var L = t();
+    var log = $("log"); log.textContent = "";
+    if (failed) {
+      log.appendChild(stateBox(L.errT, L.errP, L.reload, function () { location.reload(); }));
+      return;
+    }
+    var list = data.items.filter(function (it) { return matches(it, false); });
+    list.sort(function (a, b) { return a.date < b.date ? 1 : a.date > b.date ? -1 : 0; });
+    if (!list.length) {
+      log.appendChild(stateBox(L.emptyT, L.emptyP, L.clear, function () {
+        state.region = "all"; state.op = ""; state.cat = ""; state.q = ""; $("q").value = ""; render();
+      }));
+      return;
+    }
+    var monFmt = new Intl.DateTimeFormat(locale(), { month: "short" });
+    var dayFmt = { format: function (d) { return d.getDate() + " " + monFmt.format(d); } };
+    var wkFmt = new Intl.DateTimeFormat(locale(), { weekday: "long" });
+    var current = null, track = null;
+    list.forEach(function (it) {
+      if (it.date !== current) {
+        current = it.date;
+        var day = el("section", "day");
+        var lab = el("div", "day-label");
+        var inner = el("div", "inner");
+        var dt = parseDay(it.date);
+        inner.appendChild(el("span", "d", dayFmt.format(dt).replace(".", "")));
+        inner.appendChild(el("span", "w", wkFmt.format(dt)));
+        lab.appendChild(inner);
+        track = el("div", "track");
+        day.appendChild(lab); day.appendChild(track);
+        log.appendChild(day);
+      }
+      var art = el("article", "item");
+      art.setAttribute("data-region", it.region);
+      var tags = el("div", "tags");
+      tags.appendChild(el("span", "op", opName(it.operator)));
+      tags.appendChild(el("span", "ct", L.countries[it.country] || it.country));
+      tags.appendChild(el("span", "cat", L.cats[it.category] || it.category));
+      art.appendChild(tags);
+      var h = el("h2");
+      var a = el("a", null, it["title_" + state.lang] || it.title_pt);
+      a.href = safeUrl(it.url); a.target = "_blank"; a.rel = "noopener noreferrer";
+      h.appendChild(a); art.appendChild(h);
+      art.appendChild(el("p", null, it["summary_" + state.lang] || it.summary_pt));
+      var src = el("p", "src");
+      src.appendChild(document.createTextNode(L.source + ": " + it.source + ", "));
+      var sa = el("a", null, L.read);
+      sa.href = safeUrl(it.url); sa.target = "_blank"; sa.rel = "noopener noreferrer";
+      src.appendChild(sa);
+      art.appendChild(src);
+      track.appendChild(art);
+    });
+  }
+
+  function render() { renderChrome(); renderLog(); }
+
+  Array.prototype.forEach.call(document.querySelectorAll(".lang button"), function (b) {
+    b.addEventListener("click", function () {
+      state.lang = b.getAttribute("data-lang");
+      try { localStorage.setItem("mr_lang", state.lang); } catch (e) { /* ignore */ }
+      render();
+    });
+  });
+  $("opSel").addEventListener("change", function (e) { state.op = e.target.value; render(); });
+  $("catSel").addEventListener("change", function (e) { state.cat = e.target.value; render(); });
+  $("q").addEventListener("input", function (e) { state.q = e.target.value.trim(); renderChrome_counts(); renderLog(); });
+
+  // Typing must not rebuild the search field, so only the counts refresh here.
+  function renderChrome_counts() {
+    var btns = $("regionSeg").querySelectorAll("button");
+    ["all", "BR", "SA"].forEach(function (r, i) {
+      var n = data.items.filter(function (it) { return matches(it, true) && (r === "all" || it.region === r); }).length;
+      if (btns[i]) btns[i].querySelector(".n").textContent = String(n);
+    });
+  }
+
+  function start(payload) {
+    data = { updated_at: payload.updated_at || null, items: Array.isArray(payload.items) ? payload.items : [] };
+    render();
+  }
+
+  if (window.__NEWS__) {
+    start(window.__NEWS__);
+  } else {
+    render();
+    fetch("data/news.json?t=" + Date.now(), { cache: "no-store" })
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(start)
+      .catch(function () { failed = true; render(); });
+  }
+})();
+</script>
+</body>
+</html>
