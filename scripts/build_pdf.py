@@ -3,10 +3,12 @@
 
 Uso:
   python3 scripts/build_pdf.py --out /caminho/Hilong-Market-Report-AAAA-MM-DD.pdf
-      [--date AAAA-MM-DD]      data da edição (padrão: data de updated_at)
+      [--date AAAA-MM-DD|today] data da edição (padrão: data de updated_at; "today" = hoje em Brasília)
       [--days 7]               janela de notícias incluídas no relatório
-      [--base-ref HEAD]        ref do git anterior à varredura: garante que as notícias recém-incluídas entrem
-                               no relatório mesmo com data de publicação fora da janela
+      [--base-ref HEAD|auto]   ref do git anterior à varredura: garante que as notícias recém-incluídas entrem
+                               no relatório mesmo com data de publicação fora da janela. "auto" = último commit
+                               que gravou data/reports.json (o envio anterior), usado pela tarefa das 8h
+      [--check-scan]           avisa no e-mail se a varredura do dia ainda não tinha terminado
       [--record]               registra a edição em data/reports.json (só no envio real)
 
 Notícia nova (NEW) é a que ainda não saiu em nenhum relatório registrado em data/reports.json; as novas vêm
@@ -375,7 +377,16 @@ def build_html(args):
     news = json.loads((ROOT / "data" / "news.json").read_text(encoding="utf-8"))
     run = json.loads((ROOT / "data" / "run.json").read_text(encoding="utf-8"))
     updated = dt.datetime.fromisoformat(news["updated_at"])
+    if args.date == "today":
+        args.date = dt.datetime.now(dt.timezone(dt.timedelta(hours=-3))).date().isoformat()
     report_date = args.date or updated.date().isoformat()
+    if args.check_scan and not args.alert and str(run.get("run_at", ""))[:10] != report_date:
+        args.alert = ("Today's 6:00 scan had not finished when this report was sent. "
+                      "The stories below are the latest available; anything new will come in tomorrow's report.")
+    if args.base_ref == "auto":
+        res = subprocess.run(["git", "-C", str(ROOT), "log", "-1", "--format=%H", "--", "data/reports.json"],
+                             capture_output=True, text=True)
+        args.base_ref = res.stdout.strip() or "HEAD"
     start = (dt.date.fromisoformat(report_date) - dt.timedelta(days=args.days)).isoformat()
     new_ids = set()
     if args.base_ref:
@@ -539,6 +550,8 @@ def main():
     ap.add_argument("--email-html", help="grava o corpo do e-mail em HTML")
     ap.add_argument("--email-text", help="grava o corpo do e-mail em texto simples")
     ap.add_argument("--alert", help="aviso na primeira linha do e-mail (ex.: falha no push)")
+    ap.add_argument("--check-scan", action="store_true",
+                    help="avisa no e-mail se data/run.json não for de hoje (varredura não terminou)")
     ap.add_argument("--record", action="store_true",
                     help="registra esta edição em data/reports.json (usar só no envio real, não em testes)")
     args = ap.parse_args()

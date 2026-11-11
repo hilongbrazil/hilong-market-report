@@ -14,6 +14,11 @@ Site estático publicado em https://marketreport.hilongbrazil.com (Netlify, depl
 
 ## Rotina diária de atualização
 
+Duas tarefas agendadas, todos os dias (horário de Brasília):
+
+- **6h00, varredura:** seções 1 a 5 (pesquisar, selecionar, escrever, gravar e publicar) e o resumo da seção 7. Não gera PDF nem envia e-mail.
+- **7h55, relatório:** só a seção 6 (PDF e e-mail), para o e-mail chegar por volta das 8h. Usa o que a varredura publicou.
+
 Objetivo: registrar as principais notícias do mercado de óleo e gás no Brasil e na América do Sul publicadas desde a última atualização (`updated_at`), com foco no que interessa a uma empresa de serviços e equipamentos de petróleo (sondas de perfuração e workover, OCTG, hastes de bombeio, ferramentas de fundo de poço).
 
 **Prioridade: o mercado brasileiro vem sempre primeiro.** Pesquisar todas as empresas da lista prioritária abaixo, na ordem em que aparecem (onshore, depois offshore, depois fornecedores), antes de passar para a América do Sul.
@@ -113,8 +118,6 @@ Cada item segue este formato:
 
 ### 5. Gravar e publicar
 
-Antes de alterar qualquer arquivo, logo depois do `git pull`, anotar o hash do commit atual (`git rev-parse --short HEAD`). Ele é o `--base-ref` da seção 6 e serve para marcar as notícias novas.
-
 1. Inserir os itens novos em `data/news.json` e atualizar `updated_at` com data e hora de Brasília (formato ISO, `-03:00`).
 2. Mover itens com mais de 60 dias para `data/archive/AAAA-MM.json` (mesmo formato de lista).
 3. Regravar `data/run.json` com o registro desta varredura, mantendo o campo `schedule` como está:
@@ -129,16 +132,18 @@ Antes de alterar qualquer arquivo, logo depois do `git pull`, anotar o hash do c
 
 ### 6. PDF e e-mail diário
 
-Todo dia, depois do push (mesmo que nenhuma notícia tenha entrado), gerar o relatório em PDF e enviar o e-mail. O relatório completo vai sempre em PDF e sempre em inglês.
+Feita pela tarefa das 7h55, todos os dias (mesmo que nenhuma notícia tenha entrado), depois de `git pull` na `main`. O relatório completo vai sempre em PDF e sempre em inglês.
 
 1. Gerar o PDF e o corpo do e-mail em uma pasta fora do repositório (a pasta de rascunho da sessão):
 
    ```
    python3 scripts/build_pdf.py \
      --out <pasta>/Hilong-Market-Report-AAAA-MM-DD.pdf \
-     --base-ref <hash anotado no início> --record \
+     --date today --base-ref auto --check-scan --record \
      --email-html <pasta>/email.html --email-text <pasta>/email.txt
    ```
+
+   - `--base-ref auto` compara com o último envio registrado, para que toda notícia gravada desde então entre no relatório. `--check-scan` põe um aviso no e-mail se a varredura das 6h ainda não tiver terminado; o envio acontece assim mesmo.
 
    - O PDF traz a capa com os números do dia, as 10 principais, o relatório completo dos últimos 7 dias (Brasil por grupo de empresas, América do Sul por país), a cobertura das 23 empresas da lista prioritária e a assinatura do Li Marcitão com a mensagem positiva do dia.
    - **Notícia nova primeiro:** o relatório do dia prioriza o que ainda não saiu em nenhum relatório anterior (marcado NEW); depois vêm as demais por nota, Brasil antes da América do Sul e a mais recente antes.
