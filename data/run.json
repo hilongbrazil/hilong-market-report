@@ -1,7 +1,7 @@
 {
-  "run_at": "2026-11-11T19:09:47-03:00",
-  "searches": 33,
-  "new_items": 5,
+  "run_at": "2026-11-11T19:18:19-03:00",
+  "searches": 59,
+  "new_items": 11,
   "schedule": {
     "type": "daily",
     "time": "06:41"
@@ -18,7 +18,14 @@
     "Enauta",
     "Atlanta",
     "Papa-Terra",
-    "Vipetro"
+    "Vipetro",
+    "Petrobras",
+    "Equinor",
+    "Perenco",
+    "PRIO",
+    "TotalEnergies",
+    "Foz do Amazonas",
+    "Búzios"
   ],
   "queries": [
     {
@@ -183,6 +190,136 @@
     },
     {
       "q": "Brava Energia onshore venda ativos Potiguar Recôncavo sondas perfuração novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Petrobras novembro 2026 contrato sonda perfuração poços anúncio",
+      "ch": "site",
+      "found": 1
+    },
+    {
+      "q": "Petrobras Margem Equatorial descoberta poço exploratório novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Petrobras onshore Bahia Urucu campos terrestres sondas terrestres licitação 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Equinor Brasil Bacalhau Raia Peregrino notícias novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Perenco Brasil notícias novembro 2026 Pargo Cherne Bagre",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "PRIO 3T26 resultado produção outubro 2026 Wahoo Peregrino poços 2027",
+      "ch": "site",
+      "found": 2
+    },
+    {
+      "q": "TotalEnergies Brasil novembro 2026 Lapa Mero Atapu Sépia investimento",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Prio prevê perfurar oito poços em 2027 investor day Peregrino Albacora Leste",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Agência Petrobras notícias novembro 2026 Búzios FPSO contrato produção recorde",
+      "ch": "site",
+      "found": 2
+    },
+    {
+      "q": "Equinor Brasil Raia perfuração FPSO Bacalhau produção terceiro trimestre 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Perenco Brasil 2026 produção Campos poços perfuração campanha Pargo novembro",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "TotalEnergies Brazil November 2026 announcement offshore pre-salt block stake",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Petrobras novembro 2026 (linkedin.com, instagram.com, x.com)",
+      "ch": "x",
+      "found": 0
+    },
+    {
+      "q": "Equinor Brasil (linkedin.com, instagram.com, x.com)",
+      "ch": "x",
+      "found": 0
+    },
+    {
+      "q": "Perenco Brasil (linkedin.com, instagram.com, x.com)",
+      "ch": "linkedin",
+      "found": 0
+    },
+    {
+      "q": "PRIO petróleo (linkedin.com, instagram.com, x.com)",
+      "ch": "linkedin",
+      "found": 0
+    },
+    {
+      "q": "TotalEnergies Brasil (linkedin.com, instagram.com, x.com)",
+      "ch": "linkedin",
+      "found": 0
+    },
+    {
+      "q": "Petrobras webcast resultados 3T26",
+      "ch": "youtube",
+      "found": 0
+    },
+    {
+      "q": "PRIO Brava PetroReconcavo resultados 3T26 teleconferência",
+      "ch": "youtube",
+      "found": 0
+    },
+    {
+      "q": "eixos petróleo gás onshore novembro 2026 entrevista",
+      "ch": "youtube",
+      "found": 0
+    },
+    {
+      "q": "Petrobras Webcast 3T26 resultados terceiro trimestre 2026 canal oficial",
+      "ch": "youtube",
+      "found": 0
+    },
+    {
+      "q": "PetroReconcavo RECV3 3T26 teleconferência de resultados",
+      "ch": "youtube",
+      "found": 0
+    },
+    {
+      "q": "PRIO 3T26 webinar resultados Brava Energia 3T26 videoconferência",
+      "ch": "youtube",
+      "found": 0
+    },
+    {
+      "q": "Equinor third quarter 2026 results Bacalhau Brazil production ramp-up",
+      "ch": "site",
+      "found": 1
+    },
+    {
+      "q": "TotalEnergies third quarter 2026 results Brazil Mero-4 Lapa production",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Petrobras Mãe de Ouro Bacia Potiguar sonda NS-42 perfuração novembro 2026",
       "ch": "site",
       "found": 0
     }
