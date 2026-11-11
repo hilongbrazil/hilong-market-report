@@ -12,7 +12,7 @@ CATEGORIES = {
     "resultados", "producao", "perfuracao", "investimentos", "contratos",
     "regulatorio", "exploracao", "mercado", "fusoes", "outros",
 }
-VIA = {"site", "linkedin", "x"}
+VIA = {"site", "linkedin", "x", "youtube"}
 REQUIRED = [
     "id", "date", "region", "country", "operator", "category",
     "title_pt", "title_en", "summary_pt", "summary_en", "source", "url", "via",
@@ -53,7 +53,7 @@ def main() -> int:
         if it.get("category") not in CATEGORIES:
             errors.append(f"{tag}: category desconhecida")
         if it.get("via") not in VIA:
-            errors.append(f"{tag}: via deve ser site, linkedin ou x")
+            errors.append(f"{tag}: via deve ser site, linkedin, x ou youtube")
         if not re.match(r"^https?://", it.get("url", "")):
             errors.append(f"{tag}: url deve começar com http(s)://")
         for key in ("summary_pt", "summary_en"):

@@ -13,15 +13,21 @@ Objetivo: registrar as principais notícias de óleo e gás das operadoras do Br
 
 ### 1. Pesquisar
 
-Usar WebSearch (e WebFetch quando precisar confirmar data ou números). Fazer buscas separadas por operadora e por país; uma busca genérica não cobre tudo.
+Usar WebSearch (e WebFetch quando precisar confirmar data ou números). Fazer buscas separadas por empresa e por país; uma busca genérica não cobre tudo. Cada execução deve passar pelas quatro frentes abaixo: sites, LinkedIn, YouTube e X.
 
-**Brasil:** Petrobras, PRIO, Brava Energia, PetroReconcavo, Eneva, Carmo Energy, Seacrest, Origem Energia, Petroborn, PetroVictory, Alvopetro, Equinor, Shell, TotalEnergies, ANP (leilões, oferta permanente, regulação) e onshore do Nordeste (Sergipe, Bahia, Rio Grande do Norte, Alagoas).
+**Operadoras no Brasil:** Petrobras, PRIO, Brava Energia, PetroReconcavo, Eneva, Carmo Energy, Seacrest, Origem Energia, Petroborn, PetroVictory, Alvopetro, Equinor, Shell, TotalEnergies, ANP (leilões, oferta permanente, regulação) e onshore do Nordeste (Sergipe, Bahia, Rio Grande do Norte, Alagoas).
 
-**América do Sul:** Argentina (YPF, Vista, Pan American Energy, Pluspetrol, Vaca Muerta), Colômbia (Ecopetrol), Guiana e Suriname (ExxonMobil, Staatsolie, TotalEnergies), Peru (Petroperú, Perupetro), Equador (Petroecuador), Bolívia (YPFB), Venezuela (PDVSA) e demais países quando houver fato relevante.
+**Operadoras na América do Sul:** Argentina (YPF, Vista, Pan American Energy, Pluspetrol, Vaca Muerta), Colômbia (Ecopetrol), Guiana e Suriname (ExxonMobil, Staatsolie, TotalEnergies), Peru (Petroperú, Perupetro), Equador (Petroecuador), Bolívia (YPFB), Venezuela (PDVSA) e demais países quando houver fato relevante.
 
-**Veículos de referência:** eixos, Brasil Energia / PetróleoHoje, TN Petróleo, PetroNotícias, Agência Petrobras, sites de RI das companhias, Reuters, BNamericas, OilNOW, Ámbito, Rigzone, Offshore Engineer.
+**Demais empresas (serviços, sondas e equipamentos), quando a notícia for sobre Brasil ou América do Sul:** SLB, Halliburton, Baker Hughes, Weatherford, NOV, Tenaris, Vallourec, TechnipFMC, Subsea7, Foresea, Constellation, Ocyan, Valaris, Seadrill, Transocean, Noble, Nabors, Helmerich & Payne, San Antonio Internacional, Braserv, e contratos de sondas terrestres de perfuração e workover. No campo `operator`, usar o nome da empresa.
 
-**LinkedIn e X:** incluir apenas o que aparecer em resultados públicos de busca (publicações oficiais das operadoras). Marcar `via` como `linkedin` ou `x`. Não tentar fazer login.
+**Sites de referência:** eixos, Brasil Energia / PetróleoHoje, TN Petróleo, PetroNotícias, Agência Petrobras, sites de RI das companhias, Reuters, BNamericas, OilNOW, Ámbito, Rigzone, Offshore Engineer.
+
+**LinkedIn:** para cada empresa das listas acima, buscar as publicações recentes da página oficial (por exemplo, "Petrobras LinkedIn" mais o assunto ou o mês). Incluir somente publicação oficial da empresa, com data visível e link público que abre sem login. Marcar `via` como `linkedin` e `source` com o nome da empresa. Não tentar fazer login nem contornar bloqueios. Se houver um conector de dados do LinkedIn disponível na sessão, usar o conector para ler as publicações das páginas das empresas.
+
+**YouTube:** buscar vídeos publicados desde a última atualização nos canais oficiais das empresas e dos veículos do setor (webcasts de resultados, anúncios de projetos, entrevistas de executivos). Registrar apenas o que o título e a descrição do vídeo afirmam; não atribuir ao vídeo nada que não esteja escrito na página. Marcar `via` como `youtube` e `source` com o nome do canal.
+
+**X:** publicações oficiais das empresas que aparecerem em resultados públicos de busca. Marcar `via` como `x`.
 
 ### 2. Selecionar
 
@@ -47,13 +53,13 @@ Cada item segue este formato:
   "summary_pt": "...", "summary_en": "...",
   "source": "Nome do veículo",
   "url": "https://...",
-  "via": "site | linkedin | x"
+  "via": "site | linkedin | x | youtube"
 }
 ```
 
 - `date` é a data de publicação da matéria.
 - Título e resumo são redação própria, nunca cópia do texto da fonte. Resumo com uma ou duas frases (até 320 caracteres), só com fatos e números que constam na fonte.
-- Português do Brasil e inglês com o mesmo conteúdo.
+- Inglês e português do Brasil com o mesmo conteúdo. O inglês é o idioma padrão da página: `title_en` e `summary_en` nunca podem ficar vazios.
 - Usar sempre o mesmo nome para a mesma operadora (conferir os já usados no arquivo).
 
 ### 4. Gravar e publicar
@@ -66,4 +72,4 @@ Cada item segue este formato:
 
 ### 5. Resumo final
 
-Encerrar com um resumo curto em português, que é o texto enviado por e-mail: quantidade de notícias novas por região, os títulos das três a cinco mais importantes e o link https://marketreport.hilongbrazil.com. Se o push falhar ou nenhuma notícia entrar, dizer isso claramente na primeira linha.
+Encerrar com um resumo curto **em inglês**, que é o texto enviado por e-mail: quantidade de notícias novas por região, os títulos (em inglês) das três a cinco mais importantes e o link https://marketreport.hilongbrazil.com. Se o push falhar ou nenhuma notícia entrar, dizer isso claramente na primeira linha.

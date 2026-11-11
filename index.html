@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -155,9 +155,9 @@
   <div class="wrap">
     <div class="mast-top">
       <span class="brand">Hilong Brasil</span>
-      <div class="lang" role="group" aria-label="Idioma / Language">
-        <button type="button" data-lang="pt" aria-pressed="true">PT</button>
-        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      <div class="lang" role="group" aria-label="Language / Idioma">
+        <button type="button" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang="pt" aria-pressed="false">PT</button>
       </div>
     </div>
     <h1>Market Report</h1>
@@ -201,7 +201,7 @@
       operator: "Operadora", allOps: "Todas as operadoras",
       category: "Assunto", allCats: "Todos os assuntos",
       search: "Buscar", searchPh: "Buscar por palavra",
-      source: "Fonte", read: "ler a matéria original",
+      source: "Fonte", read: "abrir o original",
       emptyT: "Nenhuma notícia com esses filtros", emptyP: "Tente outra operadora, outro assunto ou outra palavra.", clear: "Limpar filtros",
       errT: "Não foi possível carregar as notícias", errP: "Verifique a conexão e recarregue a página.", reload: "Recarregar",
       foot: "Os resumos são elaborados pela Hilong Brasil a partir das fontes indicadas. Abra o link de cada notícia para ler a matéria original.",
@@ -216,7 +216,7 @@
       operator: "Operator", allOps: "All operators",
       category: "Topic", allCats: "All topics",
       search: "Search", searchPh: "Search by keyword",
-      source: "Source", read: "read the original story",
+      source: "Source", read: "open the original",
       emptyT: "No stories match these filters", emptyP: "Try another operator, topic or keyword.", clear: "Clear filters",
       errT: "The news could not be loaded", errP: "Check your connection and reload the page.", reload: "Reload",
       foot: "Summaries are written by Hilong Brasil from the sources shown. Open each story's link to read the original article.",
@@ -226,12 +226,12 @@
     }
   };
 
-  var state = { lang: "pt", region: "all", op: "", cat: "", q: "" };
+  var state = { lang: "en", region: "all", op: "", cat: "", q: "" };
   var data = { updated_at: null, items: [] };
   var failed = false;
 
   try {
-    var saved = localStorage.getItem("mr_lang");
+    var saved = localStorage.getItem("mr_lang_v2");
     if (saved === "pt" || saved === "en") state.lang = saved;
   } catch (e) { /* storage unavailable */ }
 
@@ -375,12 +375,13 @@
       tags.appendChild(el("span", "cat", L.cats[it.category] || it.category));
       art.appendChild(tags);
       var h = el("h2");
-      var a = el("a", null, it["title_" + state.lang] || it.title_pt);
+      var a = el("a", null, it["title_" + state.lang] || it.title_en);
       a.href = safeUrl(it.url); a.target = "_blank"; a.rel = "noopener noreferrer";
       h.appendChild(a); art.appendChild(h);
-      art.appendChild(el("p", null, it["summary_" + state.lang] || it.summary_pt));
+      art.appendChild(el("p", null, it["summary_" + state.lang] || it.summary_en));
       var src = el("p", "src");
-      src.appendChild(document.createTextNode(L.source + ": " + it.source + ", "));
+      var viaLabel = { linkedin: "LinkedIn", x: "X", youtube: "YouTube" }[it.via];
+      src.appendChild(document.createTextNode(L.source + ": " + it.source + (viaLabel ? " (" + viaLabel + ")" : "") + ", "));
       var sa = el("a", null, L.read);
       sa.href = safeUrl(it.url); sa.target = "_blank"; sa.rel = "noopener noreferrer";
       src.appendChild(sa);
@@ -394,7 +395,7 @@
   Array.prototype.forEach.call(document.querySelectorAll(".lang button"), function (b) {
     b.addEventListener("click", function () {
       state.lang = b.getAttribute("data-lang");
-      try { localStorage.setItem("mr_lang", state.lang); } catch (e) { /* ignore */ }
+      try { localStorage.setItem("mr_lang_v2", state.lang); } catch (e) { /* ignore */ }
       render();
     });
   });
