@@ -12,7 +12,7 @@ CATEGORIES = {
     "resultados", "producao", "perfuracao", "investimentos", "contratos",
     "regulatorio", "exploracao", "mercado", "fusoes", "outros",
 }
-VIA = {"site", "linkedin", "x", "youtube"}
+VIA = {"site", "linkedin", "instagram", "x", "youtube"}
 ENVIRONMENTS = {"onshore", "offshore", "geral"}
 REQUIRED = [
     "id", "date", "region", "country", "operator", "category", "environment",
@@ -55,10 +55,12 @@ def main() -> int:
             errors.append(f"{tag}: category desconhecida")
         if it.get("environment") not in ENVIRONMENTS:
             errors.append(f"{tag}: environment deve ser onshore, offshore ou geral")
+        if not isinstance(it.get("relevance"), int) or not 1 <= it["relevance"] <= 5:
+            errors.append(f"{tag}: relevance deve ser um inteiro de 1 a 5")
         if it.get("access", "open") not in {"open", "paywall"}:
             errors.append(f"{tag}: access deve ser open ou paywall")
         if it.get("via") not in VIA:
-            errors.append(f"{tag}: via deve ser site, linkedin, x ou youtube")
+            errors.append(f"{tag}: via deve ser site, linkedin, instagram, x ou youtube")
         if not re.match(r"^https?://", it.get("url", "")):
             errors.append(f"{tag}: url deve começar com http(s)://")
         for key in ("summary_pt", "summary_en"):

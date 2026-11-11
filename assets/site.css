@@ -93,6 +93,15 @@ main.news .wrap { padding-top: 28px; padding-bottom: 56px; }
 .legend { display: flex; flex-wrap: wrap; gap: 6px 20px; font-size: 14px; color: var(--muted); margin: 0 0 22px 112px; padding-left: 24px; }
 .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 7px; background: var(--br); }
 .legend .sa i { background: var(--sa); }
+.top-stories { background: var(--sheet); border: 1px solid var(--line); border-top: 4px solid var(--signal); border-radius: 3px; padding: 18px 22px 10px; margin: 0 0 30px; }
+.top-stories h2 { margin: 0 0 8px; font-size: 17px; font-weight: 800; }
+.top-stories ol { list-style: none; margin: 0; padding: 0; counter-reset: rank; }
+.top-stories li { counter-increment: rank; position: relative; padding: 10px 0 10px 46px; border-top: 1px solid var(--line); }
+.top-stories li:first-child { border-top: 0; }
+.top-stories li::before { content: counter(rank); position: absolute; left: 0; top: 8px; font-size: 30px; font-weight: 800; font-stretch: 75%; line-height: 1; color: var(--petrol); }
+.top-stories .tags { margin-bottom: 2px; }
+.top-stories a.t { font-size: 19px; font-weight: 700; font-stretch: 88%; line-height: 1.25; text-decoration: none; }
+.top-stories a.t:hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; }
 .state { background: var(--sheet); border: 1px solid var(--line); border-radius: 3px; padding: 28px 24px; max-width: 40em; }
 .state h2 { margin: 0 0 6px; font-size: 21px; }
 .state p { margin: 0 0 14px; color: var(--muted); }

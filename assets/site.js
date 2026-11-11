@@ -3,7 +3,7 @@
 
   var T = {
     pt: {
-      navNews: "Notícias", navLive: "Painel ao vivo", openLive: "Abrir o painel ao vivo",
+      navNews: "Notícias", navLive: "Painel ao vivo", openLive: "Abrir o painel ao vivo", topT: "Destaques da semana",
       sub: "Notícias de óleo e gás das operadoras e empresas do setor no Brasil e na América do Sul.",
       updated: "Atualizado em",
       all: "Todas", BR: "Brasil", SA: "América do Sul",
@@ -29,13 +29,13 @@
       liveFoot: "O relógio e a contagem regressiva são em tempo real. As buscas exibidas são a reprodução da última varredura feita pelo agente; os dados da página se atualizam sozinhos quando uma nova varredura termina.",
       noData: "Sem notícias neste recorte.", story1: "notícia", storyN: "notícias", newShort: "nova(s)",
       envs: { onshore: "Onshore", offshore: "Offshore", geral: "Geral" },
-      chs: { site: "Sites", linkedin: "LinkedIn", youtube: "YouTube", x: "X" },
-      chShort: { site: "Web", linkedin: "LinkedIn", youtube: "YouTube", x: "X" },
+      chs: { site: "Sites", linkedin: "LinkedIn", instagram: "Instagram", youtube: "YouTube", x: "X" },
+      chShort: { site: "Web", linkedin: "LinkedIn", instagram: "Instagram", youtube: "YouTube", x: "X" },
       cats: { resultados: "Resultados", producao: "Produção", perfuracao: "Perfuração", investimentos: "Investimentos", contratos: "Contratos e licitações", regulatorio: "Regulatório", exploracao: "Exploração", mercado: "Mercado", fusoes: "Fusões e aquisições", outros: "Outros" },
       countries: { BR: "Brasil", AR: "Argentina", CO: "Colômbia", GY: "Guiana", SR: "Suriname", PE: "Peru", EC: "Equador", BO: "Bolívia", VE: "Venezuela", CL: "Chile", UY: "Uruguai", PY: "Paraguai", TT: "Trinidad e Tobago" }
     },
     en: {
-      navNews: "News", navLive: "Live panel", openLive: "Open the live panel",
+      navNews: "News", navLive: "Live panel", openLive: "Open the live panel", topT: "Top stories this week",
       sub: "Oil and gas news from operators and industry companies in Brazil and South America.",
       updated: "Updated on",
       all: "All", BR: "Brazil", SA: "South America",
@@ -61,8 +61,8 @@
       liveFoot: "The clock and the countdown are real time. The searches shown are a replay of the agent's latest scan; the page data refreshes by itself when a new scan finishes.",
       noData: "No stories in this view.", story1: "story", storyN: "stories", newShort: "new",
       envs: { onshore: "Onshore", offshore: "Offshore", geral: "General" },
-      chs: { site: "Websites", linkedin: "LinkedIn", youtube: "YouTube", x: "X" },
-      chShort: { site: "Web", linkedin: "LinkedIn", youtube: "YouTube", x: "X" },
+      chs: { site: "Websites", linkedin: "LinkedIn", instagram: "Instagram", youtube: "YouTube", x: "X" },
+      chShort: { site: "Web", linkedin: "LinkedIn", instagram: "Instagram", youtube: "YouTube", x: "X" },
       cats: { resultados: "Results", producao: "Production", perfuracao: "Drilling", investimentos: "Investment", contratos: "Contracts and tenders", regulatorio: "Regulation", exploracao: "Exploration", mercado: "Market", fusoes: "M&A", outros: "Other" },
       countries: { BR: "Brazil", AR: "Argentina", CO: "Colombia", GY: "Guyana", SR: "Suriname", PE: "Peru", EC: "Ecuador", BO: "Bolivia", VE: "Venezuela", CL: "Chile", UY: "Uruguay", PY: "Paraguay", TT: "Trinidad and Tobago" }
     }
@@ -70,7 +70,7 @@
 
   var ENV_ORDER = ["onshore", "offshore", "geral"];
   var ENV_COLOR = { onshore: "var(--env-onshore)", offshore: "var(--env-offshore)", geral: "var(--env-geral)" };
-  var CH_ORDER = ["site", "linkedin", "youtube", "x"];
+  var CH_ORDER = ["site", "linkedin", "instagram", "youtube", "x"];
   var SCOPES = ["all", "BR", "SA"];
   var PAGE = document.body.getAttribute("data-page");
   var NEWS_URL = "index.html";
@@ -103,7 +103,16 @@
   function safeUrl(u) { return /^https?:\/\//i.test(u || "") ? u : "#"; }
   function title(it) { return it["title_" + state.lang] || it.title_en || it.title_pt; }
   function summary(it) { return it["summary_" + state.lang] || it.summary_en || it.summary_pt; }
-  function byDateDesc(a, b) { return a.date < b.date ? 1 : a.date > b.date ? -1 : 0; }
+  function rel(it) { return typeof it.relevance === "number" ? it.relevance : 1; }
+  function byRank(a, b) { return rel(b) - rel(a) || (a.region === b.region ? 0 : a.region === "BR" ? -1 : 1) || (a.date < b.date ? 1 : a.date > b.date ? -1 : 0); }
+  function byDateDesc(a, b) { return a.date < b.date ? 1 : a.date > b.date ? -1 : byRank(a, b); }
+  function topStories(n) {
+    if (!data.items.length) return [];
+    var last = data.items.reduce(function (m, it) { return it.date > m ? it.date : m; }, "0000-00-00");
+    var from = parseDay(last); from.setDate(from.getDate() - 6);
+    var cut = isoDay(from);
+    return data.items.filter(function (it) { return it.date >= cut; }).sort(byRank).slice(0, n);
+  }
   function ext(a, url) { a.href = safeUrl(url); a.target = "_blank"; a.rel = "noopener noreferrer"; return a; }
   function newsLink(key, value) { return NEWS_URL + "?" + key + "=" + encodeURIComponent(value); }
   function fmtStamp(iso, opts) {
@@ -122,7 +131,7 @@
   }
   function sourceLine(it) {
     var L = t(), src = el("p", "src");
-    var via = { linkedin: "LinkedIn", x: "X", youtube: "YouTube" }[it.via];
+    var via = { linkedin: "LinkedIn", instagram: "Instagram", x: "X", youtube: "YouTube" }[it.via];
     src.appendChild(document.createTextNode(L.source + ": " + it.source + (via ? " (" + via + ")" : "") + ", "));
     src.appendChild(ext(el("a", null, L.read), it.url));
     if (it.access === "paywall") src.appendChild(el("span", "lock", "(" + L.paywall + ")"));
@@ -264,12 +273,24 @@
       track.appendChild(art);
     });
   }
-  function renderNews() { renderNewsChrome(); renderLog(); writeParams(); }
+  function renderTop() {
+    var box = $("top"), ol = $("topList"); ol.textContent = "";
+    var filtered = state.region !== "all" || state.op || state.cat || state.env || state.q;
+    var list = filtered || failed ? [] : topStories(5);
+    box.hidden = !list.length;
+    list.forEach(function (it) {
+      var li = el("li"); li.setAttribute("data-region", it.region);
+      li.appendChild(tagsFor(it));
+      li.appendChild(ext(el("a", "t", title(it)), it.url));
+      ol.appendChild(li);
+    });
+  }
+  function renderNews() { renderNewsChrome(); renderTop(); renderLog(); writeParams(); }
   function bindNews() {
     $("opSel").addEventListener("change", function (e) { state.op = e.target.value; renderNews(); });
     $("catSel").addEventListener("change", function (e) { state.cat = e.target.value; renderNews(); });
     $("envSel").addEventListener("change", function (e) { state.env = e.target.value; renderNews(); });
-    $("q").addEventListener("input", function (e) { state.q = e.target.value.trim(); regionCounts(); renderLog(); writeParams(); });
+    $("q").addEventListener("input", function (e) { state.q = e.target.value.trim(); regionCounts(); renderTop(); renderLog(); writeParams(); });
   }
 
   /* ---------- Live panel ---------- */
@@ -429,7 +450,7 @@
   }
 
   /* Spotlight: one story at a time */
-  function spotList() { return data.items.slice().sort(byDateDesc).slice(0, 10); }
+  function spotList() { return topStories(10); }
   function renderSpot() {
     var list = spotList(), box = $("spotBody"); box.textContent = "";
     if (!list.length) { box.appendChild(el("p", "none", t().noData)); return; }
