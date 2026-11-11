@@ -310,71 +310,64 @@ def coverage_html(title, names, counts, new_counts, scale):
     return f"<div><h4>{esc(title)}</h4><table>{''.join(rows)}</table></div>"
 
 
-EMAIL_CSS = (
-    "body{margin:0;background:#EDF1F1}"
-    "td,div,a,span,b{font-family:Arial,Helvetica,sans-serif}"
-    ".w{background:#fff}.h{background:#082F36;padding:28px 32px 26px}"
-    ".k{font-size:11px;letter-spacing:.14em;color:#B9C8CA;font-weight:bold}"
-    ".ti{font-size:40px;line-height:1.05;font-weight:bold;color:#fff;margin-top:14px}"
-    ".d{font-size:14px;color:#D5DFE0;margin-top:10px}"
-    ".p{padding:24px 32px 8px;font-size:15px;line-height:1.55;color:#13262B}"
-    ".al{padding:12px 16px;background:#FFF4CC;border-left:4px solid #F2B705;margin-bottom:16px}"
-    ".l{padding:8px 32px 0}.hd{font-size:20px;font-weight:bold;color:#13262B;border-bottom:2px solid #13262B;padding-bottom:8px}"
-    ".n{width:44px;padding:14px 0;border-bottom:1px solid #CFD9DA;font-size:22px;color:#0C4650;vertical-align:top}"
-    ".s{padding:14px 0;border-bottom:1px solid #CFD9DA;vertical-align:top}"
-    ".t{font-size:16px;line-height:1.35;font-weight:bold;color:#13262B;text-decoration:none}"
-    ".new{font-size:10px;font-weight:bold;color:#082F36;background:#F2B705;border-radius:3px;padding:1px 6px}"
-    ".m{font-size:13px;line-height:1.5;color:#55686E;margin-top:4px}.m b{color:#13262B}"
-    ".c{padding:24px 32px 8px;font-size:13px;color:#55686E}"
-    ".bt{display:inline-block;background:#0C4650;color:#fff;font-size:14px;font-weight:bold;text-decoration:none;padding:11px 20px;border-radius:4px}"
-    ".f{padding:20px 32px 28px}.sg{background:#082F36;border-radius:6px;padding:20px 24px}"
-    ".mg{font-size:17px;line-height:1.4;font-weight:bold;color:#fff}.wh{font-size:13px;color:#D5DFE0;margin-top:10px}.wh b{color:#fff}"
-)
-
-
 def email_bodies(report_date, days, top, new_ids, br_new, sa_new, n_items, message, alert):
-    """Corpo do e-mail diário: as 10 principais, na mesma ordem do PDF, e a assinatura do Li Marcitão."""
+    """Corpo do e-mail diário: as principais notícias na mesma ordem do PDF, sem links, e a assinatura do Li Marcitão.
+
+    Usa só estilos inline e atributos de tabela: o conector do Gmail remove blocos <style> e atributos class.
+    """
+    n_new = br_new + sa_new
     if new_ids:
-        lead = (f"{br_new} new {'story' if br_new == 1 else 'stories'} in Brazil and {sa_new} in South America today. "
-                f"The top {len(top)} are below, new stories first; the full report ({n_items} "
-                f"{'story' if n_items == 1 else 'stories'}) is attached as a PDF.")
+        lead = f"{n_new} new {'story' if n_new == 1 else 'stories'} today: {br_new} in Brazil and {sa_new} in South America."
+        intro = (f"Here {'is the top story' if len(top) == 1 else f'are the top {len(top)}'}, new stories first. "
+                 f"The full report ({n_items} {'story' if n_items == 1 else 'stories'}) is attached as a PDF.")
     elif top:
-        lead = (f"No new stories entered the report today. The {len(top)} below {'is' if len(top) == 1 else 'are'} carried over "
-                f"from the previous report for the last time; the full report is attached as a PDF.")
+        lead = "No new stories today."
+        intro = (f"The {len(top)} below {'is' if len(top) == 1 else 'are'} carried over from the previous report for the last time. "
+                 "The full report is attached as a PDF.")
     else:
-        lead = ("No stories qualify for today's report: nothing new was found, and earlier stories have already "
-                "appeared in two reports. The coverage summary is attached as a PDF.")
+        lead = "No stories for today's report."
+        intro = ("Nothing new was found, and earlier stories have already appeared in two reports. "
+                 "The coverage summary is attached as a PDF.")
     long_date = fmt_date(report_date, long=True)
+    ff = "font-family:Arial,Helvetica,sans-serif"
     rows, text_rows = "", []
     for n, i in enumerate(top, 1):
         place = COUNTRY.get(i["country"], i["country"])
         is_new = i["id"] in new_ids
-        chip = ' <span class="new">NEW</span>' if is_new else ""
-        pay = " (subscription required)" if i.get("access") == "paywall" else ""
-        rows += (f'<tr><td class="n">{n:02d}</td><td class="s"><a class="t" href="{esc(i["url"])}">{esc(i["title_en"])}</a>{chip}'
-                 f'<div class="m"><b>{esc(op_name(i))}</b> &middot; {esc(place)} &middot; {esc(fmt_date(i["date"]))} &middot; '
-                 f'Relevance {i["relevance"]}/5 &middot; {esc(i["source"])}{pay}</div></td></tr>\n')
-        text_rows.append(f'{n}. {op_name(i)} ({place}){" [NEW]" if is_new else ""} - {i["title_en"]}{pay}\n   {i["url"]}')
-    alert_html = f'<div class="al">{esc(alert)}</div>' if alert else ""
-    top_block = (f'<tr><td class="l"><div class="hd">Top stories</div>\n'
-                 f'<table role="presentation" width="100%" cellpadding="0" cellspacing="0">\n{rows}</table></td></tr>') if top else ""
-    html_body = f"""<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><style>{EMAIL_CSS}</style></head><body>
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" bgcolor="#EDF1F1"><tr><td align="center" style="padding:24px 12px">
-<table role="presentation" class="w" width="640" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" style="max-width:640px;width:100%">
-<tr><td class="h" bgcolor="#082F36"><div class="k">HILONG BRASIL &middot; OIL &amp; GAS INTELLIGENCE</div>
-<div class="ti">Market Report<span style="color:#F2B705">.</span></div><div class="d">{esc(long_date)}</div></td></tr>
-<tr><td class="p">{alert_html}{esc(lead)}</td></tr>
-{top_block}
-<tr><td class="c"><a class="bt" href="{SITE}">Open the Market Report</a> &nbsp; Full report attached as a PDF.</td></tr>
-<tr><td class="f"><div class="sg"><div class="mg">{esc(message)}</div>
-<div class="wh"><b>Li Marcit&atilde;o</b> &middot; Market news agent, Hilong Brasil</div></div></td></tr>
-</table></td></tr></table></body></html>"""
+        # o conector remove a propriedade background; o selo NEW vai só com cor de texto
+        chip = ' &nbsp;<span style="color:#B45F00;font-size:11px;font-weight:bold">&#9679; NEW</span>' if is_new else ""
+        rows += (
+            f'<tr><td width="46" valign="top" style="{ff};padding:18px 0;border-bottom:1px solid #DDE5E6;font-size:24px;'
+            f'font-weight:bold;color:#0C4650">{n:02d}</td>'
+            f'<td valign="top" style="{ff};padding:18px 0;border-bottom:1px solid #DDE5E6">'
+            f'<div style="font-size:11px;font-weight:bold;letter-spacing:1px;color:#0C4650">{esc(op_name(i).upper())}'
+            f' &nbsp;&middot;&nbsp; {esc(place.upper())}{chip}</div>'
+            f'<div style="font-size:17px;line-height:23px;font-weight:bold;color:#13262B;padding-top:5px">{esc(i["title_en"])}</div>'
+            f'<div style="font-size:14px;line-height:21px;color:#44575C;padding-top:5px">{esc(i["summary_en"])}</div></td></tr>\n')
+        text_rows.append(f'{n}. {op_name(i).upper()} - {place}{" - NEW" if is_new else ""}\n{i["title_en"]}\n{i["summary_en"]}')
+    alert_html = (f'<tr><td bgcolor="#FFF4CC" style="{ff};padding:12px 16px;font-size:14px;color:#13262B;'
+                  f'border-left:4px solid #F2B705">{esc(alert)}</td></tr><tr><td height="16"></td></tr>\n') if alert else ""
+    top_block = (f'<tr><td style="padding:8px 32px 0"><table width="100%" cellpadding="0" cellspacing="0">\n{rows}</table></td></tr>\n'
+                 if top else "")
+    html_body = f"""<table width="100%" cellpadding="0" cellspacing="0" bgcolor="#EDF1F1"><tr><td align="center" style="padding:24px 10px">
+<table width="620" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" style="max-width:620px;width:100%">
+<tr><td bgcolor="#082F36" style="{ff};padding:30px 32px 28px">
+<div style="font-size:11px;font-weight:bold;letter-spacing:2px;color:#9FB4B7">HILONG BRASIL</div>
+<div style="font-size:36px;line-height:40px;font-weight:bold;color:#FFFFFF;padding-top:10px">Market Report<span style="color:#F2B705">.</span></div>
+<div style="font-size:14px;color:#D5DFE0;padding-top:8px">{esc(long_date)}</div></td></tr>
+<tr><td style="padding:26px 32px 6px"><table width="100%" cellpadding="0" cellspacing="0">
+{alert_html}<tr><td style="{ff};font-size:18px;line-height:26px;font-weight:bold;color:#13262B">{esc(lead)}</td></tr>
+<tr><td style="{ff};font-size:14px;line-height:21px;color:#55686E;padding-top:6px">{esc(intro)}</td></tr></table></td></tr>
+{top_block}<tr><td style="padding:26px 32px 30px"><table width="100%" cellpadding="0" cellspacing="0"><tr><td bgcolor="#082F36" style="{ff};padding:22px 24px">
+<div style="font-size:17px;line-height:25px;font-weight:bold;color:#FFFFFF">{esc(message)}</div>
+<div style="font-size:13px;color:#D5DFE0;padding-top:10px"><b style="color:#FFFFFF">Li Marcit&atilde;o</b> &nbsp;&middot;&nbsp; Hilong Brasil</div>
+</td></tr></table></td></tr>
+</table></td></tr></table>"""
     text_body = "\n".join(
         ([alert, ""] if alert else [])
-        + [f"Hilong Market Report - {long_date}", "", lead, ""]
-        + (["TOP STORIES", "", "\n\n".join(text_rows), ""] if top else [])
-        + [f"Open the Market Report: {SITE}", "", message, "", "Li Marcitão",
-           "Market news agent, Hilong Brasil"])
+        + [f"HILONG MARKET REPORT - {long_date}", "", lead, intro, ""]
+        + (["\n\n".join(text_rows), ""] if top else [])
+        + [message, "", "Li Marcitão", "Hilong Brasil"])
     return html_body, text_body
 
 
