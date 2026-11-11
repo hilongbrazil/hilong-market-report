@@ -3,7 +3,7 @@
   "searches": 13,
   "new_items": 15,
   "schedule": {
-    "type": "weekdays",
+    "type": "daily",
     "time": "06:41"
   },
   "terms": [

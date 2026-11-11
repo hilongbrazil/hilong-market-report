@@ -481,13 +481,14 @@
       while (n <= now) n += step;
       return n;
     }
-    if (run.schedule && run.schedule.type === "weekdays" && /^\d\d:\d\d$/.test(run.schedule.time || "")) {
+    if (run.schedule && (run.schedule.type === "weekdays" || run.schedule.type === "daily") && /^\d\d:\d\d$/.test(run.schedule.time || "")) {
+      var everyDay = run.schedule.type === "daily";
       var hh = +run.schedule.time.slice(0, 2), mm = +run.schedule.time.slice(3, 5);
       var sp = new Date(now - 3 * 3600000); /* Brasília is UTC-3, no daylight saving */
       for (var d = 0; d < 8; d++) {
         var cand = Date.UTC(sp.getUTCFullYear(), sp.getUTCMonth(), sp.getUTCDate() + d, hh + 3, mm);
         var wd = new Date(cand - 3 * 3600000).getUTCDay();
-        if (cand > now && wd >= 1 && wd <= 5) return cand;
+        if (cand > now && (everyDay || (wd >= 1 && wd <= 5))) return cand;
       }
     }
     return null;
