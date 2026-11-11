@@ -13,8 +13,9 @@ CATEGORIES = {
     "regulatorio", "exploracao", "mercado", "fusoes", "outros",
 }
 VIA = {"site", "linkedin", "x", "youtube"}
+ENVIRONMENTS = {"onshore", "offshore", "geral"}
 REQUIRED = [
-    "id", "date", "region", "country", "operator", "category",
+    "id", "date", "region", "country", "operator", "category", "environment",
     "title_pt", "title_en", "summary_pt", "summary_en", "source", "url", "via",
 ]
 MAX_SUMMARY = 320
@@ -52,6 +53,8 @@ def main() -> int:
             errors.append(f"{tag}: region e country não combinam")
         if it.get("category") not in CATEGORIES:
             errors.append(f"{tag}: category desconhecida")
+        if it.get("environment") not in ENVIRONMENTS:
+            errors.append(f"{tag}: environment deve ser onshore, offshore ou geral")
         if it.get("via") not in VIA:
             errors.append(f"{tag}: via deve ser site, linkedin, x ou youtube")
         if not re.match(r"^https?://", it.get("url", "")):
@@ -71,6 +74,17 @@ def main() -> int:
         for e in errors:
             print(" -", e)
         return 1
+    run_path = ROOT / "data" / "run.json"
+    if run_path.exists():
+        try:
+            run = json.loads(run_path.read_text(encoding="utf-8"))
+            assert isinstance(run.get("run_at"), str)
+            assert isinstance(run.get("searches"), int)
+            assert isinstance(run.get("new_items"), int)
+            assert isinstance(run.get("terms"), list) and all(isinstance(t, str) for t in run["terms"])
+        except Exception as exc:  # noqa: BLE001
+            print(f"ERRO: run.json inválido: {exc!r}")
+            return 1
     br = sum(1 for it in items if it["region"] == "BR")
     print(f"OK: {len(items)} notícias ({br} Brasil, {len(items) - br} América do Sul)")
     return 0

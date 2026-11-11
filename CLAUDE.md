@@ -3,13 +3,15 @@
 Site estático publicado em https://marketreport.hilongbrazil.com (Netlify, deploy automático a cada push na branch `main`).
 
 - `index.html`: a página (HTML, CSS e JS em um arquivo só, sem dependências).
-- `data/news.json`: as notícias. É o único arquivo que a rotina diária altera.
+- `data/news.json`: as notícias.
+- `data/run.json`: registro da última varredura (alimenta o painel "Market pulse" da página).
+- A rotina diária altera somente `data/news.json`, `data/run.json` e `data/archive/`.
 - `data/archive/AAAA-MM.json`: notícias com mais de 60 dias, movidas para cá.
-- `scripts/validate.py`: valida o `news.json`. Rodar antes de todo commit.
+- `scripts/validate.py`: valida o `news.json` e o `run.json`. Rodar antes de todo commit.
 
 ## Rotina diária de atualização
 
-Objetivo: registrar as principais notícias de óleo e gás das operadoras do Brasil e da América do Sul publicadas desde a última atualização (`updated_at`), com foco no que interessa a uma empresa de serviços e equipamentos de petróleo (sondas de perfuração e workover, OCTG, hastes de bombeio, ferramentas de fundo de poço).
+Objetivo: registrar as principais notícias de óleo e gás das operadoras e demais empresas do setor no Brasil e na América do Sul publicadas desde a última atualização (`updated_at`), com foco no que interessa a uma empresa de serviços e equipamentos de petróleo (sondas de perfuração e workover, OCTG, hastes de bombeio, ferramentas de fundo de poço).
 
 ### 1. Pesquisar
 
@@ -49,6 +51,7 @@ Cada item segue este formato:
   "country": "BR, AR, CO, GY, SR, PE, EC, BO, VE, CL, UY, PY ou TT",
   "operator": "Nome da operadora, ou Setor quando for geral",
   "category": "resultados | producao | perfuracao | investimentos | contratos | regulatorio | exploracao | mercado | fusoes | outros",
+  "environment": "onshore | offshore | geral",
   "title_pt": "...", "title_en": "...",
   "summary_pt": "...", "summary_en": "...",
   "source": "Nome do veículo",
@@ -58,6 +61,7 @@ Cada item segue este formato:
 ```
 
 - `date` é a data de publicação da matéria.
+- `environment`: `onshore` quando a notícia trata de ativos ou operações em terra (inclui não convencional, como Vaca Muerta), `offshore` quando trata de ativos no mar, `geral` quando cobre os dois ou é corporativa (resultados, mercado, regulação ampla).
 - Título e resumo são redação própria, nunca cópia do texto da fonte. Resumo com uma ou duas frases (até 320 caracteres), só com fatos e números que constam na fonte.
 - Inglês e português do Brasil com o mesmo conteúdo. O inglês é o idioma padrão da página: `title_en` e `summary_en` nunca podem ficar vazios.
 - Usar sempre o mesmo nome para a mesma operadora (conferir os já usados no arquivo).
@@ -66,9 +70,10 @@ Cada item segue este formato:
 
 1. Inserir os itens novos em `data/news.json` e atualizar `updated_at` com data e hora de Brasília (formato ISO, `-03:00`).
 2. Mover itens com mais de 60 dias para `data/archive/AAAA-MM.json` (mesmo formato de lista).
-3. Rodar `python3 scripts/validate.py`. Corrigir até passar.
-4. Commit na `main` com a mensagem `Atualiza notícias AAAA-MM-DD (N novas)` e push.
-5. Não alterar `index.html` nem outros arquivos nesta rotina.
+3. Regravar `data/run.json` com o registro desta varredura: `run_at` (data e hora de Brasília, ISO), `searches` (número de buscas feitas), `new_items` (notícias novas gravadas) e `terms` (lista com os nomes das empresas, países e temas efetivamente pesquisados nesta execução, de 15 a 40 nomes curtos). Registrar só o que foi de fato pesquisado.
+4. Rodar `python3 scripts/validate.py`. Corrigir até passar.
+5. Commit na `main` com a mensagem `Atualiza notícias AAAA-MM-DD (N novas)` e push.
+6. Não alterar `index.html` nem outros arquivos nesta rotina.
 
 ### 5. Resumo final
 
