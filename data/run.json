@@ -1,94 +1,188 @@
 {
-  "run_at": "2026-11-11T15:00:00-03:00",
-  "searches": 13,
-  "new_items": 15,
+  "run_at": "2026-11-11T19:09:47-03:00",
+  "searches": 33,
+  "new_items": 5,
   "schedule": {
     "type": "daily",
     "time": "06:41"
   },
   "terms": [
-    "Petrobras",
-    "PRIO",
-    "Brava Energia",
+    "Carmo Energy",
     "PetroReconcavo",
-    "Eneva",
-    "ANP",
-    "Onshore Nordeste",
-    "YPF",
-    "Vaca Muerta",
-    "Ecopetrol",
-    "ExxonMobil",
-    "Staatsolie",
-    "Guyana",
-    "Suriname",
-    "Petroperú",
-    "Petroecuador",
-    "YPFB",
-    "PDVSA"
+    "Brava Energia",
+    "Origem Energia",
+    "Mandacaru Energia",
+    "Seacrest Petróleo",
+    "PetroVictory",
+    "Alvopetro",
+    "Enauta",
+    "Atlanta",
+    "Papa-Terra",
+    "Vipetro"
   ],
   "queries": [
     {
-      "q": "Petrobras notícias novembro 2026",
-      "ch": "site",
-      "found": 3
-    },
-    {
-      "q": "PRIO Brava Energia PetroReconcavo notícias novembro 2026",
-      "ch": "site",
-      "found": 1
-    },
-    {
-      "q": "ANP leilão oferta permanente petróleo gás novembro 2026",
+      "q": "Carmo Energy notícias novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "YPF Vaca Muerta noticias noviembre 2026",
-      "ch": "site",
-      "found": 4
-    },
-    {
-      "q": "Ecopetrol noticias noviembre 2026",
-      "ch": "site",
-      "found": 1
-    },
-    {
-      "q": "Guyana Suriname oil ExxonMobil Staatsolie November 2026",
-      "ch": "site",
-      "found": 1
-    },
-    {
-      "q": "Prio prevê perfurar oito poços em 2027",
-      "ch": "site",
-      "found": 1
-    },
-    {
-      "q": "PetroReconcavo produção outubro 2026",
-      "ch": "site",
-      "found": 1
-    },
-    {
-      "q": "Brava Energia resultado 3T26",
-      "ch": "site",
-      "found": 1
-    },
-    {
-      "q": "Eneva perfura poço Bacia do Amazonas novembro 2026",
+      "q": "PetroReconcavo notícias novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "onshore Brasil sondas campos maduros Sergipe Bahia novembro 2026",
+      "q": "Brava Energia notícias novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Origem Energia notícias novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Mandacaru Energia petróleo notícias 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Seacrest Petróleo notícias novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "PetroVictory Energy news November 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Alvopetro October 2026 sales volumes operational update",
       "ch": "site",
       "found": 1
     },
     {
-      "q": "Petroperú Petroecuador YPFB PDVSA petróleo noticias noviembre 2026",
+      "q": "Brava Energia Atlanta Papa-Terra produção outubro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Vipetro petróleo Espírito Santo notícias 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Brava Energia 3T26 resultado lucro produção outubro",
       "ch": "site",
       "found": 1
     },
     {
-      "q": "Exxon Uaru start-up Guyana November 2026",
+      "q": "PetroReconcavo contrato gás natural Petrobras interrupção produção gás novembro 2026",
+      "ch": "site",
+      "found": 1
+    },
+    {
+      "q": "Seacrest Petróleo Polo Norte Capixaba Cricaré 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Carmo Energy Carmópolis perfuração sonda investimento 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Brava Energia produção outubro 2026 80.683 boe/d",
+      "ch": "site",
+      "found": 1
+    },
+    {
+      "q": "Petro-Victory Energy press release October November 2026 Brazil Potiguar",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Origem Energia Pilar Alagoas gás poços novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Mandacaru Energia Bacia Potiguar campos produção 2026 novembro",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Vipetro Petróleo campos terrestres Espírito Santo ANP 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Brava Energia campo de Atlanta Papa-Terra sonda Lone Star novos poços novembro 2026",
+      "ch": "site",
+      "found": 1
+    },
+    {
+      "q": "Carmo Energy LinkedIn",
+      "ch": "linkedin",
+      "found": 0
+    },
+    {
+      "q": "PetroReconcavo LinkedIn Instagram publicação novembro 2026",
+      "ch": "linkedin",
+      "found": 0
+    },
+    {
+      "q": "Brava Energia LinkedIn Instagram publicação novembro 2026",
+      "ch": "linkedin",
+      "found": 0
+    },
+    {
+      "q": "Origem Energia LinkedIn Instagram",
+      "ch": "linkedin",
+      "found": 0
+    },
+    {
+      "q": "Mandacaru Energia LinkedIn Instagram",
+      "ch": "instagram",
+      "found": 0
+    },
+    {
+      "q": "Seacrest Petróleo (linkedin.com, instagram.com, x.com)",
+      "ch": "linkedin",
+      "found": 0
+    },
+    {
+      "q": "Petro-Victory Energy (linkedin.com, instagram.com, x.com)",
+      "ch": "x",
+      "found": 0
+    },
+    {
+      "q": "Alvopetro Energy (linkedin.com, instagram.com, x.com)",
+      "ch": "instagram",
+      "found": 0
+    },
+    {
+      "q": "Brava Energia Atlanta Papa-Terra (linkedin.com, instagram.com, x.com)",
+      "ch": "linkedin",
+      "found": 0
+    },
+    {
+      "q": "Vipetro Petróleo (linkedin.com, instagram.com, x.com)",
+      "ch": "instagram",
+      "found": 0
+    },
+    {
+      "q": "\"Setor de gás vê espaço para estocagem\" Origem",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "PetroReconcavo teleconferência 3T26 sondas perfuração workover campanha 2027 investimentos",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Brava Energia onshore venda ativos Potiguar Recôncavo sondas perfuração novembro 2026",
       "ch": "site",
       "found": 0
     }

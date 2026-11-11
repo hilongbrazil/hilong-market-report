@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-11T18:50:00-03:00",
+  "updated_at": "2026-11-11T19:09:47-03:00",
   "items": [
     {
       "id": "2026-11-11-petrobras-resultado-3t26",
@@ -50,6 +50,40 @@
       "summary_en": "The new spending range for the year is US$ 24–25.5 bn, part of the company's upward revision of its operational and financial projections.",
       "source": "Mercado & Consumo",
       "url": "https://mercadoeconsumo.com.br/11/11/2026/mc-capital/petrobras-revisa-projecao-de-capex-em-2026-de-us-194-bi-para-us-24-bi-a-us-255-bi/",
+      "via": "site"
+    },
+    {
+      "id": "2026-11-11-brava-perfuracao-atlanta",
+      "date": "2026-11-11",
+      "region": "BR",
+      "country": "BR",
+      "operator": "Brava Energia",
+      "category": "perfuracao",
+      "environment": "offshore",
+      "relevance": 4,
+      "title_pt": "Brava inicia a perfuração de dois novos poços no campo de Atlanta",
+      "title_en": "Brava starts drilling two new wells at the Atlanta field",
+      "summary_pt": "A sonda Lone Star seguiu para a Bacia de Santos depois de concluir os poços PPT-52 e PPT-53 em Papa-Terra; o PPT-53 ainda aguarda aprovação regulatória para entrar em produção. Os poços de Atlanta devem ser interligados no 1T27, com primeiro óleo previsto para o 2T27.",
+      "summary_en": "The Lone Star rig moved to the Santos Basin after finishing wells PPT-52 and PPT-53 at Papa-Terra; PPT-53 still awaits regulatory approval to start up. The Atlanta wells should be tied in during Q1 2027, with first oil expected in Q2 2027.",
+      "source": "PetroNotícias",
+      "url": "https://petronoticias.com.br/brava-energia-inicia-perfuracao-de-dois-novos-pocos-no-campo-de-atlanta/",
+      "via": "site"
+    },
+    {
+      "id": "2026-11-10-brava-producao-outubro",
+      "date": "2026-11-10",
+      "region": "BR",
+      "country": "BR",
+      "operator": "Brava Energia",
+      "category": "producao",
+      "environment": "geral",
+      "relevance": 4,
+      "title_pt": "Produção da Brava recua para 80,7 mil boe/d em outubro com falha de bomba em Atlanta",
+      "title_en": "Brava output slips to 80.7 kboe/d in October as pump failure hits Atlanta",
+      "summary_pt": "A produção caiu cerca de 2,7% ante setembro. Atlanta ficou em 18,7 mil bbl/d, com dois poços parados até 9 de novembro, e Papa-Terra chegou a 13,2 mil bbl/d, maior nível desde setembro de 2020. O onshore somou 30,1 mil boe/d, com o óleo do Potiguar em alta pelo oitavo mês seguido.",
+      "summary_en": "Output fell about 2.7% from September. Atlanta averaged 18.7 kbbl/d with two wells shut in until November 9, while Papa-Terra reached 13.2 kbbl/d, its highest since September 2020. Onshore output was 30.1 kboe/d, with Potiguar oil up for the eighth month in a row.",
+      "source": "Click Petróleo e Gás",
+      "url": "https://clickpetroleoegas.com.br/dois-pocos-interrompidos-por-falha-em-bomba-derrubam-um-dos-ativos-para-187-mil-barris-por-dia-enquanto-outro-alcanca-seu-maior-nivel-em-seis-anos-com-132-mil-bpd-afch",
       "via": "site"
     },
     {
@@ -105,6 +139,23 @@
       "via": "site"
     },
     {
+      "id": "2026-11-09-brava-resultado-3t26",
+      "date": "2026-11-09",
+      "region": "BR",
+      "country": "BR",
+      "operator": "Brava Energia",
+      "category": "resultados",
+      "environment": "geral",
+      "relevance": 3,
+      "title_pt": "Brava tem prejuízo de R$ 156 mi no 3T26 com marcação a mercado de hedge; Ebitda ajustado sobe 22%",
+      "title_en": "Brava posts R$ 156 mn Q3 loss on hedge mark-to-market; adjusted EBITDA up 22%",
+      "summary_pt": "Um ano antes a companhia havia lucrado R$ 121 mi. O Ebitda ajustado foi de R$ 1,58 bi, a receita líquida de R$ 3,39 bi e a produção média de 82,4 mil boe/d, 10% abaixo de um ano antes. O custo de extração ficou em US$ 13,4/boe e a alavancagem em 2,0x.",
+      "summary_en": "A year earlier the company had earned R$ 121 mn. Adjusted EBITDA reached R$ 1.58 bn, net revenue R$ 3.39 bn and output averaged 82.4 kboe/d, down 10% year on year. Lifting cost was US$ 13.4/boe and leverage held at 2.0x.",
+      "source": "Tribuna do Sertão",
+      "url": "https://www.tribunadosertao.com.br/geral/2026/11/09/1017545-brava-tem-prejuizo-de-r-156-mi-no-3o-trimestre-ante-lucro-de-r-121-mi-reportado-um-ano-antes",
+      "via": "site"
+    },
+    {
       "id": "2026-11-05-petroreconcavo-resultado-3t26",
       "date": "2026-11-05",
       "region": "BR",
@@ -122,6 +173,23 @@
       "via": "site"
     },
     {
+      "id": "2026-11-05-alvopetro-3t26-poco-183-g2",
+      "date": "2026-11-05",
+      "region": "BR",
+      "country": "BR",
+      "operator": "Alvopetro",
+      "category": "perfuracao",
+      "environment": "onshore",
+      "relevance": 5,
+      "title_pt": "Alvopetro encontra 96,9 m de net pay de gás no poço 183-G2 e vende 2.966 boepd no 3T26",
+      "title_en": "Alvopetro logs 96.9 m of net gas pay at 183-G2 and sells 2,966 boepd in Q3",
+      "summary_pt": "O poço 183-G2 chegou a 3.189,8 m e deve ser interligado à planta de Murucututu no início de 2027 e completado em até 13 intervalos. As vendas no Brasil foram de 2.834 boepd no 3T26 e cerca de 3.095 boepd em outubro; a capacidade de Murucututu está sendo ampliada para 600 mil m³/d.",
+      "summary_en": "The 183-G2 well reached 3,189.8 m and should be tied in to the Murucututu facility in early 2027 and completed in up to 13 intervals. Brazil sales were 2,834 boepd in Q3 and about 3,095 boepd in October; Murucututu capacity is being expanded to 600 e3m3/d.",
+      "source": "Investing News Network",
+      "url": "https://investingnews.com/alvopetro-announces-q3-2026-financial-results-and-an-operational-update-including-183-g2-well-results/",
+      "via": "site"
+    },
+    {
       "id": "2026-11-03-onshore-nordeste-novo-ciclo",
       "date": "2026-11-03",
       "region": "BR",
@@ -136,6 +204,23 @@
       "summary_en": "The figure runs through August. The report highlights Carmo Energy's recovery of mature fields in Sergipe and Alvopetro's expansion of infrastructure and drilling in Bahia.",
       "source": "Movimento Econômico",
       "url": "https://movimentoeconomico.com.br/estados/alagoas/2026/11/03/onshore-no-nordeste-ganha-novo-ciclo-com-gas-natural-perfuracoes-e-investimentos/",
+      "via": "site"
+    },
+    {
+      "id": "2026-11-03-petroreconcavo-parada-utg-catu",
+      "date": "2026-11-03",
+      "region": "BR",
+      "country": "BR",
+      "operator": "PetroReconcavo",
+      "category": "producao",
+      "environment": "onshore",
+      "relevance": 4,
+      "title_pt": "PetroReconcavo interrompe parte da produção de gás na Bahia durante parada da UTG Catu",
+      "title_en": "PetroReconcavo halts part of its Bahia gas output during UTG Catu maintenance",
+      "summary_pt": "A manutenção programada da unidade de tratamento de gás de Catu vai de 26 de outubro a cerca de 19 de novembro (25 dias) e tira de operação perto de 2,4 mil boe/d de gás dos polos Miranga e Tiê e de três campos do polo Remanso. A produção de óleo não é afetada.",
+      "summary_en": "Scheduled maintenance at the Catu gas treatment unit runs from October 26 to about November 19 (25 days) and takes roughly 2.4 kboe/d of gas offline from the Miranga and Tiê hubs and three Remanso fields. Oil output is not affected.",
+      "source": "InfoMoney",
+      "url": "https://www.infomoney.com.br/mercados/petroreconcavo-interrompe-producao-de-gas-na-bahia-para-manutencao/",
       "via": "site"
     },
     {
