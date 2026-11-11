@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Live panel | Hilong Market Report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..800&display=swap" rel="stylesheet">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body data-page="live">
+
+<div class="top">
+  <div class="wide">
+    <a class="brand" href="index.html">Hilong Brasil<span>Market Report</span></a>
+    <span class="clock" id="clock" aria-hidden="true"></span>
+    <nav class="nav" aria-label="Pages">
+      <a href="index.html" data-i18n="navNews"></a>
+      <a href="live.html" aria-current="page" data-i18n="navLive"></a>
+    </nav>
+    <button type="button" class="ctl" id="pauseBtn"></button>
+    <div class="lang" role="group" aria-label="Language / Idioma">
+      <button type="button" data-lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-lang="pt" aria-pressed="false">PT</button>
+    </div>
+  </div>
+</div>
+
+<div class="ticker">
+  <span class="ticker-label"><span class="live" aria-hidden="true"></span><span data-i18n="latest"></span></span>
+  <div class="ticker-view"><div class="ticker-run" id="ticker"></div></div>
+</div>
+
+<main class="wide board">
+  <div class="main-col">
+    <section class="spot" id="spot" aria-labelledby="spotT">
+      <h2 id="spotT" data-i18n="spotT"></h2>
+      <div id="spotBody"></div>
+      <div class="spot-nav">
+        <button type="button" id="spotPrev" data-i18n="prev"></button>
+        <span class="count" id="spotCount"></span>
+        <span class="spot-bar"><i id="spotBar"></i></span>
+        <button type="button" id="spotNext" data-i18n="next"></button>
+      </div>
+    </section>
+
+    <div class="kpi-head">
+      <h2 data-i18n="kpiT"></h2>
+      <div class="scope" role="group" id="scopeSeg" aria-label="Scope"></div>
+    </div>
+    <div class="tiles" id="tiles"></div>
+
+    <div class="charts">
+      <div class="chart"><h3 data-i18n="topics"></h3><div class="rows" id="cTopics"></div></div>
+      <div class="chart"><h3 data-i18n="companies"></h3><div class="rows" id="cCompanies"></div></div>
+      <div class="chart"><h3 data-i18n="countriesT"></h3><div class="rows" id="cCountries"></div></div>
+      <div class="chart"><h3 data-i18n="envT"></h3><div id="cEnv"></div></div>
+      <div class="chart"><h3 data-i18n="perDay"></h3><div id="cDays"></div></div>
+      <div class="chart"><h3 data-i18n="channels"></h3><div class="rows" id="cChannels"></div></div>
+    </div>
+  </div>
+
+  <aside class="agent" id="agent" aria-labelledby="agentT" hidden>
+    <h2 id="agentT" data-i18n="agentT"></h2>
+    <div class="agent-stats">
+      <div class="stat"><span class="l" data-i18n="lastScan"></span><span class="v" id="lastV"></span><span class="s" id="lastS"></span></div>
+      <div class="stat count"><span class="l" data-i18n="nextScan"></span><span class="v" id="nextV"></span><span class="s" id="nextS"></span></div>
+      <div class="stat"><span class="v" id="searchV">0</span><span class="l" data-i18n="searchesL"></span></div>
+      <div class="stat"><span class="v" id="newV">0</span><span class="l" data-i18n="newL"></span></div>
+    </div>
+
+    <div class="feed-head">
+      <h2 data-i18n="feedT"></h2>
+      <p id="replayLine"></p>
+    </div>
+    <ol class="feed" id="feed" aria-live="off"></ol>
+
+    <div class="cover">
+      <h2 data-i18n="coverT"></h2>
+      <ul class="chips" id="chips"></ul>
+    </div>
+  </aside>
+</main>
+
+<footer class="wide live-foot"><p data-i18n="liveFoot"></p></footer>
+
+<div class="tip" id="tip" role="status"></div>
+
+<script src="assets/site.js"></script>
+</body>
+</html>

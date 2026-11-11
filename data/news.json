@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-11T15:00:00-03:00",
+  "updated_at": "2026-11-11T18:50:00-03:00",
   "items": [
     {
       "id": "2026-11-11-petrobras-resultado-3t26",
@@ -63,7 +63,8 @@
       "summary_en": "The campaign covers the Peregrino, Frade and Wahoo fields. The company expects to hold output flat, with no decline, until mid-2028.",
       "source": "Brasil Energia",
       "url": "https://brasilenergia.com.br/petroleoegas/ep/prio-preve-perfurar-pelo-menos-oito-pocos-em-2027",
-      "via": "site"
+      "via": "site",
+      "access": "paywall"
     },
     {
       "id": "2026-11-09-brent-queda-petroleiras",
@@ -82,8 +83,8 @@
       "via": "site"
     },
     {
-      "id": "2026-11-06-petroreconcavo-producao-outubro",
-      "date": "2026-11-06",
+      "id": "2026-11-09-petroreconcavo-producao-outubro",
+      "date": "2026-11-09",
       "region": "BR",
       "country": "BR",
       "operator": "PetroReconcavo",
@@ -91,10 +92,10 @@
       "environment": "onshore",
       "title_pt": "Produção da PetroReconcavo recua 4,1% em outubro, para 22,5 mil boe/d",
       "title_en": "PetroReconcavo output falls 4.1% in October to 22.5 kboe/d",
-      "summary_pt": "O gás caiu 7,4% com a parada programada da estação de tratamento de um parceiro na Bahia. No Ativo Potiguar, a produção ficou em 11,3 mil boe/d (-3,1%).",
-      "summary_en": "Gas fell 7.4% due to a scheduled shutdown at a partner's gas treatment station in Bahia. The Potiguar asset produced 11.3 kboe/d (-3.1%).",
-      "source": "Visno Invest",
-      "url": "https://visnoinvest.com.br/news/16296/petroreconcavo-recv3-registra-producao-de-225-mil-boe-dia-em-outubro",
+      "summary_pt": "O Ativo Potiguar produziu 11,3 mil boe/d (-3,1%) e o Ativo Bahia, 11,2 mil boe/d (-5,1%), este afetado pela parada de um parceiro. As entregas somaram 679,8 mil boe, ante 702,8 mil em setembro.",
+      "summary_en": "The Potiguar asset produced 11.3 kboe/d (-3.1%) and the Bahia asset 11.2 kboe/d (-5.1%), the latter affected by a partner shutdown. Deliveries totalled 679.8 kboe, against 702.8 kboe in September.",
+      "source": "brapi",
+      "url": "https://brapi.dev/news/producao-da-petroreconcavo-cai-4-1-em-outubro-para-22-5-mil-7660c670",
       "via": "site"
     },
     {
@@ -107,10 +108,10 @@
       "environment": "onshore",
       "title_pt": "PetroReconcavo tem lucro de R$ 236 mi no 3T26, alta de 94%",
       "title_en": "PetroReconcavo posts R$ 236 mn Q3 profit, up 94%",
-      "summary_pt": "Apesar do resultado financeiro, a produção média do trimestre foi de 23,6 mil boe/d, 10% abaixo do mesmo período de 2025.",
-      "summary_en": "Despite the financial result, average output in the quarter was 23.6 kboe/d, 10% below the same period of 2025.",
-      "source": "Brasil Energia",
-      "url": "https://brasilenergia.com.br/petroleoegas/empresas/petroreconcavo-tem-lucro-de-r-236-milhoes-no-3t26-alta-de-94",
+      "summary_pt": "A produção de petróleo cresceu 4% sobre o trimestre anterior, para 14,2 mil barris por dia, com destaque para o Ativo Bahia (+9%), apoiada em intervenções em poços e nos projetos de injeção de água.",
+      "summary_en": "Oil output grew 4% over the previous quarter to 14.2 thousand barrels per day, led by the Bahia asset (+9%), supported by well interventions and water injection projects.",
+      "source": "Paranoá Energia",
+      "url": "https://www.paranoaenergia.com.br/noticias/2026/11/05/petroreconcavo-anuncia-lucro-liquido-de-r-236-mi-no-3o-tri-com-alta-de-94/",
       "via": "site"
     },
     {

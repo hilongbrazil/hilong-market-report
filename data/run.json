@@ -2,6 +2,10 @@
   "run_at": "2026-11-11T15:00:00-03:00",
   "searches": 13,
   "new_items": 15,
+  "schedule": {
+    "type": "weekdays",
+    "time": "06:41"
+  },
   "terms": [
     "Petrobras",
     "PRIO",
@@ -21,5 +25,72 @@
     "Petroecuador",
     "YPFB",
     "PDVSA"
+  ],
+  "queries": [
+    {
+      "q": "Petrobras notícias novembro 2026",
+      "ch": "site",
+      "found": 3
+    },
+    {
+      "q": "PRIO Brava Energia PetroReconcavo notícias novembro 2026",
+      "ch": "site",
+      "found": 1
+    },
+    {
+      "q": "ANP leilão oferta permanente petróleo gás novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "YPF Vaca Muerta noticias noviembre 2026",
+      "ch": "site",
+      "found": 4
+    },
+    {
+      "q": "Ecopetrol noticias noviembre 2026",
+      "ch": "site",
+      "found": 1
+    },
+    {
+      "q": "Guyana Suriname oil ExxonMobil Staatsolie November 2026",
+      "ch": "site",
+      "found": 1
+    },
+    {
+      "q": "Prio prevê perfurar oito poços em 2027",
+      "ch": "site",
+      "found": 1
+    },
+    {
+      "q": "PetroReconcavo produção outubro 2026",
+      "ch": "site",
+      "found": 1
+    },
+    {
+      "q": "Brava Energia resultado 3T26",
+      "ch": "site",
+      "found": 1
+    },
+    {
+      "q": "Eneva perfura poço Bacia do Amazonas novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "onshore Brasil sondas campos maduros Sergipe Bahia novembro 2026",
+      "ch": "site",
+      "found": 1
+    },
+    {
+      "q": "Petroperú Petroecuador YPFB PDVSA petróleo noticias noviembre 2026",
+      "ch": "site",
+      "found": 1
+    },
+    {
+      "q": "Exxon Uaru start-up Guyana November 2026",
+      "ch": "site",
+      "found": 0
+    }
   ]
 }

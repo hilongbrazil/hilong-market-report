@@ -2,9 +2,10 @@
 
 Site estático publicado em https://marketreport.hilongbrazil.com (Netlify, deploy automático a cada push na branch `main`).
 
-- `index.html`: a página (HTML, CSS e JS em um arquivo só, sem dependências).
+- `index.html`: página de notícias. `live.html`: painel ao vivo (indicadores e atividade do agente).
+- `assets/site.css` e `assets/site.js`: estilo e código das duas páginas.
 - `data/news.json`: as notícias.
-- `data/run.json`: registro da última varredura (alimenta o painel "Market pulse" da página).
+- `data/run.json`: registro da última varredura (alimenta o painel ao vivo).
 - A rotina diária altera somente `data/news.json`, `data/run.json` e `data/archive/`.
 - `data/archive/AAAA-MM.json`: notícias com mais de 60 dias, movidas para cá.
 - `scripts/validate.py`: valida o `news.json` e o `run.json`. Rodar antes de todo commit.
@@ -36,6 +37,7 @@ Usar WebSearch (e WebFetch quando precisar confirmar data ou números). Fazer bu
 - Prioridade: perfuração e sondas, campanhas de workover, contratos e licitações, produção, investimentos (capex), descobertas, leilões, fusões e aquisições, resultados trimestrais, mudanças regulatórias.
 - Deixar de fora: recomendações de ações, opinião sem fato novo, política sem efeito direto no setor, conteúdo patrocinado.
 - Só entra notícia com data de publicação confirmada e link que abre. Na dúvida sobre a data ou sobre um número, não incluir.
+- O link precisa abrir a matéria para qualquer leitor, sem login. Conferir cada link com WebFetch antes de gravar. Se a fonte for fechada para assinantes (por exemplo, Brasil Energia), procurar outra fonte aberta para o mesmo fato; só usar a fonte fechada quando não houver alternativa e, nesse caso, incluir `"access": "paywall"` no item.
 - Não repetir: conferir `url` e assunto contra o que já está em `news.json`.
 - Meta: de 5 a 15 notícias novas por dia, equilibrando Brasil e América do Sul. Se não houver nada relevante, não inventar: registrar zero.
 
@@ -56,7 +58,8 @@ Cada item segue este formato:
   "summary_pt": "...", "summary_en": "...",
   "source": "Nome do veículo",
   "url": "https://...",
-  "via": "site | linkedin | x | youtube"
+  "via": "site | linkedin | x | youtube",
+  "access": "paywall (opcional; só quando a fonte exige assinatura)"
 }
 ```
 
@@ -70,10 +73,15 @@ Cada item segue este formato:
 
 1. Inserir os itens novos em `data/news.json` e atualizar `updated_at` com data e hora de Brasília (formato ISO, `-03:00`).
 2. Mover itens com mais de 60 dias para `data/archive/AAAA-MM.json` (mesmo formato de lista).
-3. Regravar `data/run.json` com o registro desta varredura: `run_at` (data e hora de Brasília, ISO), `searches` (número de buscas feitas), `new_items` (notícias novas gravadas) e `terms` (lista com os nomes das empresas, países e temas efetivamente pesquisados nesta execução, de 15 a 40 nomes curtos). Registrar só o que foi de fato pesquisado.
+3. Regravar `data/run.json` com o registro desta varredura, mantendo o campo `schedule` como está:
+   - `run_at`: data e hora de Brasília (ISO, `-03:00`);
+   - `searches`: número de buscas feitas; `new_items`: notícias novas gravadas;
+   - `terms`: nomes das empresas, países e temas efetivamente pesquisados (de 15 a 40 nomes curtos);
+   - `queries`: lista das buscas realmente feitas nesta execução, na ordem (até 60), cada uma com `q` (o texto da busca), `ch` (`site`, `linkedin`, `youtube` ou `x`) e `found` (quantas notícias novas saíram dessa busca; pode ser 0).
+   Registrar só o que foi de fato pesquisado: o painel ao vivo reproduz essa lista para o leitor.
 4. Rodar `python3 scripts/validate.py`. Corrigir até passar.
 5. Commit na `main` com a mensagem `Atualiza notícias AAAA-MM-DD (N novas)` e push.
-6. Não alterar `index.html` nem outros arquivos nesta rotina.
+6. Não alterar `index.html`, `live.html`, `assets/` nem outros arquivos nesta rotina.
 
 ### 5. Resumo final
 

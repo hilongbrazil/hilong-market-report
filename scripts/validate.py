@@ -55,6 +55,8 @@ def main() -> int:
             errors.append(f"{tag}: category desconhecida")
         if it.get("environment") not in ENVIRONMENTS:
             errors.append(f"{tag}: environment deve ser onshore, offshore ou geral")
+        if it.get("access", "open") not in {"open", "paywall"}:
+            errors.append(f"{tag}: access deve ser open ou paywall")
         if it.get("via") not in VIA:
             errors.append(f"{tag}: via deve ser site, linkedin, x ou youtube")
         if not re.match(r"^https?://", it.get("url", "")):
@@ -82,6 +84,14 @@ def main() -> int:
             assert isinstance(run.get("searches"), int)
             assert isinstance(run.get("new_items"), int)
             assert isinstance(run.get("terms"), list) and all(isinstance(t, str) for t in run["terms"])
+            sched = run.get("schedule")
+            assert isinstance(sched, dict) and sched.get("type") in {"weekdays", "interval"}, "schedule ausente"
+            queries = run.get("queries")
+            assert isinstance(queries, list) and queries, "queries ausente"
+            for q in queries:
+                assert isinstance(q.get("q"), str) and q["q"].strip(), "query sem texto"
+                assert q.get("ch") in VIA, "query com canal inválido"
+                assert isinstance(q.get("found"), int), "query sem found"
         except Exception as exc:  # noqa: BLE001
             print(f"ERRO: run.json inválido: {exc!r}")
             return 1
