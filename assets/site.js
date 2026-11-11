@@ -3,6 +3,7 @@
 
   var T = {
     pt: {
+      meet: "Conheça o Li Marcitão", aiNote: "Li Marcitão é um personagem virtual gerado por IA.", close: "Fechar",
       navNews: "Notícias", navLive: "Painel ao vivo", openLive: "Abrir o painel ao vivo", topT: "Destaques da semana",
       sub: "Notícias de óleo e gás das operadoras e empresas do setor no Brasil e na América do Sul.",
       updated: "Atualizado em",
@@ -35,6 +36,7 @@
       countries: { BR: "Brasil", AR: "Argentina", CO: "Colômbia", GY: "Guiana", SR: "Suriname", PE: "Peru", EC: "Equador", BO: "Bolívia", VE: "Venezuela", CL: "Chile", UY: "Uruguai", PY: "Paraguai", TT: "Trinidad e Tobago" }
     },
     en: {
+      meet: "Meet Li Marcitão", aiNote: "Li Marcitão is an AI-generated virtual character.", close: "Close",
       navNews: "News", navLive: "Live panel", openLive: "Open the live panel", topT: "Top stories this week",
       sub: "Oil and gas news from operators and industry companies in Brazil and South America.",
       updated: "Updated on",
@@ -619,10 +621,68 @@
     }, 300000);
   }
 
+  /* ---------- Li Marcitão, the presenter ---------- */
+
+  var avatar = null, avLang = "en";
+  function avatarText() {
+    if (!avatar) return;
+    var L = t();
+    $("liLabel").textContent = L.meet;
+    $("liBtn").setAttribute("aria-label", L.meet);
+    $("liNote").textContent = L.aiNote;
+    $("liClose").textContent = L.close;
+  }
+  function avatarPlay(lang) {
+    avLang = lang;
+    var v = $("liVideo"), src = avatar.videos[lang];
+    Array.prototype.forEach.call(document.querySelectorAll(".li-langs button"), function (b) {
+      b.setAttribute("aria-pressed", String(b.getAttribute("data-v") === lang));
+    });
+    $("liCaption").textContent = (avatar.captions || {})[lang] || "";
+    $("liCaption").lang = lang === "zh" ? "zh-CN" : "en";
+    if (v.getAttribute("src") !== src) v.setAttribute("src", src);
+    v.currentTime = 0;
+    var p = v.play(); if (p && p.catch) p.catch(function () { /* the person can press play */ });
+  }
+  function buildAvatar(cfg) {
+    if (!cfg || !cfg.image || !cfg.videos || !/^https?:|^assets\//.test(cfg.image)) return;
+    avatar = cfg;
+    var btn = el("button", "li-btn"); btn.type = "button"; btn.id = "liBtn";
+    var img = el("img"); img.src = cfg.image; img.alt = ""; img.width = 64; img.height = 64;
+    btn.appendChild(img); btn.appendChild(el("span", null)).id = "liLabel";
+    var dlg = el("dialog", "li-dlg"); dlg.id = "liDlg"; dlg.setAttribute("aria-labelledby", "liName");
+    var head = el("div", "li-head");
+    head.appendChild(el("h2", null, "Li Marcitão")).id = "liName";
+    var close = el("button", "li-close"); close.type = "button"; close.id = "liClose"; head.appendChild(close);
+    dlg.appendChild(head);
+    var v = el("video"); v.id = "liVideo"; v.controls = true; v.playsInline = true; v.preload = "none"; v.poster = cfg.image;
+    dlg.appendChild(v);
+    var langs = el("div", "li-langs"); langs.setAttribute("role", "group");
+    [["en", "English"], ["zh", "中文"]].forEach(function (p) {
+      if (!cfg.videos[p[0]]) return;
+      var b = el("button", null, p[1]); b.type = "button"; b.setAttribute("data-v", p[0]);
+      b.addEventListener("click", function () { avatarPlay(p[0]); });
+      langs.appendChild(b);
+    });
+    dlg.appendChild(langs);
+    dlg.appendChild(el("p", "li-caption")).id = "liCaption";
+    dlg.appendChild(el("p", "li-note")).id = "liNote";
+    document.body.appendChild(btn); document.body.appendChild(dlg);
+    function shut() { v.pause(); if (dlg.open) dlg.close(); }
+    btn.addEventListener("click", function () {
+      if (dlg.showModal) dlg.showModal(); else dlg.setAttribute("open", "");
+      avatarPlay(cfg.videos[avLang] ? avLang : "en");
+    });
+    close.addEventListener("click", shut);
+    dlg.addEventListener("click", function (e) { if (e.target === dlg) shut(); });
+    dlg.addEventListener("close", function () { v.pause(); });
+    avatarText();
+  }
+
   /* ---------- Boot ---------- */
 
   function renderAll() {
-    renderCommon();
+    renderCommon(); avatarText();
     if (PAGE === "news") renderNews();
     if (PAGE === "live") { renderLive(); }
   }
@@ -642,6 +702,9 @@
   if (PAGE === "live") { bindLive(); }
   renderCommon();
   if (PAGE === "live") tick();
+
+  if (window.__AVATAR__) buildAvatar(window.__AVATAR__);
+  else getJson("assets/avatar.json").then(buildAvatar).catch(function () { /* no presenter configured */ });
 
   if (window.__NEWS__) {
     start(window.__NEWS__, window.__RUN__ || null);
