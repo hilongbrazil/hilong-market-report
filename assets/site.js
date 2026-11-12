@@ -3,7 +3,7 @@
 
   var T = {
     pt: {
-      focus: "Foco Hilong", supplier: "Fornecedor", focusHint: "= interesse direto da Hilong (sondas, workover, operadoras onshore)",
+      mNew: "notícias novas", mAll: "no período", mSearch: "buscas", focus: "Foco Hilong", supplier: "Fornecedor", focusHint: "= interesse direto da Hilong (sondas, workover, operadoras onshore)",
       meet: "Conheça o Li Marcitão", aiNote: "Li Marcitão é um personagem virtual gerado por IA.", close: "Fechar",
       navNews: "Notícias", navLive: "Painel ao vivo", openLive: "Abrir o painel ao vivo", topT: "Destaques da semana",
       sub: "Notícias de óleo e gás das operadoras e empresas do setor no Brasil e na América do Sul.",
@@ -37,7 +37,7 @@
       countries: { BR: "Brasil", AR: "Argentina", CO: "Colômbia", GY: "Guiana", SR: "Suriname", PE: "Peru", EC: "Equador", BO: "Bolívia", VE: "Venezuela", CL: "Chile", UY: "Uruguai", PY: "Paraguai", TT: "Trinidad e Tobago" }
     },
     en: {
-      focus: "Hilong focus", supplier: "Supplier", focusHint: "= direct interest for Hilong (rigs, workover, onshore operators)",
+      mNew: "new stories", mAll: "in the period", mSearch: "searches", focus: "Hilong focus", supplier: "Supplier", focusHint: "= direct interest for Hilong (rigs, workover, onshore operators)",
       meet: "Meet Li Marcitão", aiNote: "Li Marcitão is an AI-generated virtual character.", close: "Close",
       navNews: "News", navLive: "Live panel", openLive: "Open the live panel", topT: "Top stories this week",
       sub: "Oil and gas news from operators and industry companies in Brazil and South America.",
@@ -80,7 +80,7 @@
   var PAGE = document.body.getAttribute("data-page");
   var NEWS_URL = "index.html";
 
-  var state = { lang: "en", region: "all", op: "", cat: "", env: "", q: "" };
+  var state = { lang: "en", region: "all", op: "", cat: "", env: "", sup: false, q: "" };
   var data = { updated_at: null, items: [] };
   var run = null;
   var failed = false;
@@ -174,6 +174,7 @@
     if (state.op && it.operator !== state.op) return false;
     if (state.cat && it.category !== state.cat) return false;
     if (state.env && envOf(it) !== state.env) return false;
+    if (state.sup && SUPPLIERS.indexOf(it.operator) === -1) return false;
     if (state.q) {
       var hay = norm([it.title_pt, it.title_en, it.summary_pt, it.summary_en, it.operator, it.source].join(" "));
       if (hay.indexOf(norm(state.q)) === -1) return false;
@@ -184,6 +185,7 @@
     var p = new URLSearchParams(location.search);
     if (p.get("region") === "BR" || p.get("region") === "SA") state.region = p.get("region");
     state.op = p.get("op") || ""; state.cat = p.get("cat") || ""; state.env = p.get("env") || ""; state.q = p.get("q") || "";
+    state.sup = p.get("sup") === "1";
   }
   function writeParams() {
     var p = new URLSearchParams();
@@ -191,6 +193,7 @@
     if (state.op) p.set("op", state.op);
     if (state.cat) p.set("cat", state.cat);
     if (state.env) p.set("env", state.env);
+    if (state.sup) p.set("sup", "1");
     if (state.q) p.set("q", state.q);
     var s = p.toString();
     try { history.replaceState(null, "", location.pathname + (s ? "?" + s : "")); } catch (e) { /* file preview */ }
@@ -232,6 +235,21 @@
       return (L.cats[a] || a).localeCompare(L.cats[b] || b);
     }), function (c) { return L.cats[c] || c; }, state.cat);
     fillSelect($("envSel"), L.allEnvs, ENV_ORDER.filter(function (e) { return envs[e]; }), function (e) { return L.envs[e]; }, state.env);
+    var quick = $("quick"); quick.textContent = "";
+    [["onshore", L.envs.onshore, state.env === "onshore", function () { state.env = state.env === "onshore" ? "" : "onshore"; }],
+     ["offshore", L.envs.offshore, state.env === "offshore", function () { state.env = state.env === "offshore" ? "" : "offshore"; }],
+     ["supplier", L.supplier, state.sup, function () { state.sup = !state.sup; }]].forEach(function (c) {
+      var b = el("button", "chip dot " + c[0], c[1]); b.type = "button";
+      b.setAttribute("aria-pressed", String(c[2]));
+      b.addEventListener("click", function () { c[3](); renderNews(); });
+      quick.appendChild(b);
+    });
+    var ms = $("mastStats"); ms.textContent = "";
+    var stats = [[data.items.length, L.mAll]];
+    if (run) { stats.unshift([run.new_items || 0, L.mNew]); stats.push([run.searches || 0, L.mSearch]); }
+    if (data.items.length) stats.forEach(function (v) {
+      var d = el("div", "ms"); d.appendChild(el("b", null, String(v[0]))); d.appendChild(el("span", null, v[1])); ms.appendChild(d);
+    });
     var lg = $("legend"); lg.textContent = "";
     var a = el("span", "br"); a.appendChild(el("i")); a.appendChild(document.createTextNode(L.BR)); lg.appendChild(a);
     var s = el("span", "sa"); s.appendChild(el("i")); s.appendChild(document.createTextNode(L.SA)); lg.appendChild(s);
@@ -258,7 +276,7 @@
     var list = data.items.filter(function (it) { return matches(it, false); }).sort(byDateDesc);
     if (!list.length) {
       log.appendChild(stateBox(L.emptyT, L.emptyP, L.clear, function () {
-        state.region = "all"; state.op = ""; state.cat = ""; state.env = ""; state.q = ""; renderNews();
+        state.region = "all"; state.op = ""; state.cat = ""; state.env = ""; state.sup = false; state.q = ""; renderNews();
       }));
       return;
     }
@@ -288,7 +306,7 @@
   }
   function renderTop() {
     var box = $("top"), ol = $("topList"); ol.textContent = "";
-    var filtered = state.region !== "all" || state.op || state.cat || state.env || state.q;
+    var filtered = state.region !== "all" || state.op || state.cat || state.env || state.sup || state.q;
     var list = filtered || failed ? [] : topStories(5);
     box.hidden = !list.length;
     list.forEach(function (it, i) {

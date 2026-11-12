@@ -22,6 +22,7 @@ primeiro. Uma mesma notícia aparece em no máximo dois relatórios.
 Requer o Playwright com Chromium (já instalado no ambiente da rotina).
 """
 import argparse
+import base64
 import datetime as dt
 import html
 import json
@@ -75,7 +76,7 @@ CSS = r"""
 * { box-sizing: border-box; }
 html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 body { margin: 0; color: var(--ink); background: #fff;
-  font-family: "Inter", "Helvetica Neue", Arial, sans-serif; font-size: 9.4pt; line-height: 1.45; }
+  font-family: "Archivo", "Inter", "Helvetica Neue", Arial, sans-serif; font-size: 9.4pt; line-height: 1.45; }
 a { color: inherit; text-decoration: none; }
 .pad { padding-left: 15mm; padding-right: 15mm; }
 
@@ -90,8 +91,8 @@ a { color: inherit; text-decoration: none; }
 .brandrow .brand b { font-weight: 800; }
 .brandrow .brand span { opacity: .7; font-weight: 500; margin-left: 2.2mm; }
 .edition { border: .8pt solid rgba(255,255,255,.45); border-radius: 20mm; padding: 1.1mm 3.6mm; font-size: 7.4pt; }
-.mast h1 { font-family: "Inter Display", "Inter", sans-serif; font-weight: 800; font-size: 52pt; line-height: .92;
-  letter-spacing: -.035em; margin: 8mm 0 3.4mm; position: relative; z-index: 1; }
+.mast h1 { font-family: "Archivo", "Inter Display", "Inter", sans-serif; font-weight: 800; font-stretch: 72%; font-size: 58pt; line-height: .92;
+  letter-spacing: -.01em; margin: 8mm 0 3.4mm; position: relative; z-index: 1; }
 .mast h1 i { font-style: normal; color: var(--signal); }
 .mast .sub { margin: 0; max-width: 118mm; font-size: 10.6pt; line-height: 1.4; color: rgba(255,255,255,.86); position: relative; z-index: 1; }
 .dateline { margin-top: 5.5mm; padding-top: 3mm; border-top: .8pt solid rgba(255,255,255,.22); display: flex;
@@ -104,7 +105,7 @@ a { color: inherit; text-decoration: none; }
 .kpi + .kpi { padding-left: 5mm; }
 .kpi:last-child { border-right: 0; }
 .kpi .label { font-size: 7.6pt; letter-spacing: .09em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
-.kpi .value { font-family: "Inter Display", "Inter", sans-serif; font-size: 24pt; font-weight: 700; line-height: 1.05;
+.kpi .value { font-family: "Archivo", "Inter Display", "Inter", sans-serif; font-size: 24pt; font-weight: 700; line-height: 1.05;
   letter-spacing: -.02em; margin-top: 1mm; }
 .kpi .note { font-size: 8pt; color: var(--muted); margin-top: .6mm; }
 
@@ -113,7 +114,7 @@ a { color: inherit; text-decoration: none; }
 .sec.first { margin-top: 5.5mm; }
 .sec-h { display: flex; align-items: baseline; justify-content: space-between; border-bottom: 1.6pt solid var(--ink);
   padding-bottom: 1.8mm; margin-bottom: 1mm; break-after: avoid; }
-.sec-h h2 { font-family: "Inter Display", "Inter", sans-serif; font-size: 17pt; font-weight: 800; letter-spacing: -.02em; margin: 0; }
+.sec-h h2 { font-family: "Archivo", "Inter Display", "Inter", sans-serif; font-size: 17pt; font-weight: 800; letter-spacing: -.02em; margin: 0; }
 .sec-h .hint { font-size: 7.8pt; color: var(--muted); }
 .page-break { break-before: page; margin-top: 0; }
 .group-h { display: flex; align-items: center; gap: 2.4mm; margin: 6.4mm 0 0; padding: 1.6mm 3mm; background: var(--soft);
@@ -135,7 +136,7 @@ a { color: inherit; text-decoration: none; }
 .top { list-style: none; margin: 0; padding: 0; }
 .top li { display: grid; grid-template-columns: 10mm 1fr 21mm; column-gap: 2mm; align-items: start; padding: 2.05mm 0;
   border-bottom: .6pt solid var(--line); break-inside: avoid; }
-.top .n { font-family: "Inter Display", "Inter", sans-serif; font-size: 16pt; font-weight: 300; line-height: 1; color: var(--petrol);
+.top .n { font-family: "Archivo", "Inter Display", "Inter", sans-serif; font-size: 16pt; font-weight: 300; line-height: 1; color: var(--petrol);
   letter-spacing: -.03em; }
 .top .t { font-size: 10.2pt; font-weight: 650; line-height: 1.26; }
 .top .m { font-size: 7.8pt; color: var(--muted); margin-top: .6mm; }
@@ -185,16 +186,27 @@ a { color: inherit; text-decoration: none; }
 .sign::after { content: ""; position: absolute; right: -22mm; top: -26mm; width: 74mm; height: 74mm; border-radius: 50%;
   border: 10mm solid rgba(242,183,5,.08); }
 .avatar { width: 23mm; height: 23mm; border-radius: 50%; background: var(--signal); color: var(--petrol-deep); display: flex;
-  align-items: center; justify-content: center; font-family: "Inter Display", "Inter", sans-serif; font-weight: 800; font-size: 19pt;
+  align-items: center; justify-content: center; font-family: "Archivo", "Inter Display", "Inter", sans-serif; font-weight: 800; font-size: 19pt;
   overflow: hidden; border: 1.2pt solid rgba(255,255,255,.7); }
 .avatar img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 18%; }
-.sign .msg { font-family: "Inter Display", "Inter", sans-serif; font-size: 13.4pt; font-weight: 600; line-height: 1.3; letter-spacing: -.01em;
+.sign .msg { font-family: "Archivo", "Inter Display", "Inter", sans-serif; font-size: 13.4pt; font-weight: 600; line-height: 1.3; letter-spacing: -.01em;
   position: relative; z-index: 1; }
 .sign .who { margin-top: 2.6mm; font-size: 8.8pt; color: rgba(255,255,255,.8); position: relative; z-index: 1; }
 .sign .who b { color: #fff; }
 .sign .who a { color: var(--signal); font-weight: 600; }
 .method { margin: 5mm 15mm 0; font-size: 7.6pt; color: var(--muted); line-height: 1.5; }
 """
+
+
+def font_css():
+    """Archivo (a fonte do site) embutida no PDF a partir de assets/fonts; sem o arquivo, o PDF usa Inter."""
+    f = ROOT / "assets" / "fonts" / "archivo-latin.woff2"
+    try:
+        b64 = base64.b64encode(f.read_bytes()).decode("ascii")
+    except Exception:  # noqa: BLE001
+        return ""
+    return ('@font-face { font-family: "Archivo"; font-style: normal; font-weight: 100 900; font-stretch: 62% 125%; '
+            f'src: url(data:font/woff2;base64,{b64}) format("woff2"); }}\n')
 
 
 def fetch_data_uri(url):
@@ -364,6 +376,8 @@ def email_bodies(report_date, days, top, new_ids, br_new, sa_new, n_items, messa
         is_new = i["id"] in new_ids
         # o conector remove a propriedade background; o selo NEW vai só com cor de texto
         chip = ' &nbsp;<span style="color:#B45F00;font-size:11px;font-weight:bold">&#9679; NEW</span>' if is_new else ""
+        if is_focus(i):
+            chip += ' &nbsp;<span style="color:#0C4650;font-size:11px;font-weight:bold">&#9679; HILONG FOCUS</span>'
         rows += (
             f'<tr><td width="46" valign="top" style="{ff};padding:18px 0;border-bottom:1px solid #DDE5E6;font-size:24px;'
             f'font-weight:bold;color:#0C4650">{n:02d}</td>'
@@ -372,7 +386,7 @@ def email_bodies(report_date, days, top, new_ids, br_new, sa_new, n_items, messa
             f' &nbsp;&middot;&nbsp; {esc(place.upper())}{chip}</div>'
             f'<div style="font-size:17px;line-height:23px;font-weight:bold;color:#13262B;padding-top:5px">{esc(i["title_en"])}</div>'
             f'<div style="font-size:14px;line-height:21px;color:#44575C;padding-top:5px">{esc(i["summary_en"])}</div></td></tr>\n')
-        text_rows.append(f'{n}. {op_name(i).upper()} - {place}{" - NEW" if is_new else ""}\n{i["title_en"]}\n{i["summary_en"]}')
+        text_rows.append(f'{n}. {op_name(i).upper()} - {place}{" - NEW" if is_new else ""}{" - HILONG FOCUS" if is_focus(i) else ""}\n{i["title_en"]}\n{i["summary_en"]}')
     alert_html = (f'<tr><td bgcolor="#FFF4CC" style="{ff};padding:12px 16px;font-size:14px;color:#13262B;'
                   f'border-left:4px solid #F2B705">{esc(alert)}</td></tr><tr><td height="16"></td></tr>\n') if alert else ""
     top_block = (f'<tr><td style="padding:8px 32px 0"><table width="100%" cellpadding="0" cellspacing="0">\n{rows}</table></td></tr>\n'
@@ -551,7 +565,7 @@ def build_html(args):
 <p class="method">Relevance runs from 5 (direct interest to Hilong in Brazil: land drilling and workover rigs, OCTG, sucker rods, downhole tools and the onshore operators on the priority list) to 1 (general market context). Every story carries a confirmed publication date and a public source link; titles and summaries are written for this report. Stories marked HILONG FOCUS have relevance 5. Stories marked NEW appear in a report for the first time and come first; each story is shown in at most two reports.</p>
 """
     doc = (f'<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Hilong Market Report {report_date}</title>'
-           f"<style>{CSS}</style></head><body>{body}</body></html>")
+           f"<style>{font_css()}{CSS}</style></head><body>{body}</body></html>")
     footer = (
         '<div style="width:100%;padding:0 15mm;font-family:Inter,Helvetica,Arial,sans-serif;font-size:7pt;color:#55686E;'
         'display:flex;justify-content:space-between;align-items:center;-webkit-print-color-adjust:exact;">'
