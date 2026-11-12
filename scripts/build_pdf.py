@@ -153,7 +153,14 @@ a { color: inherit; text-decoration: none; }
 .story h3 { font-size: 11pt; font-weight: 700; line-height: 1.27; margin: 0 0 1.3mm; letter-spacing: -.005em; }
 .story p { margin: 0; color: #2A3C41; }
 .story .tags { margin-top: 1.9mm; font-size: 7.8pt; color: var(--muted); display: flex; flex-wrap: wrap; gap: 1.2mm 2.2mm; align-items: center; }
-.tag { border: .6pt solid var(--line); border-radius: .9mm; padding: .2mm 1.7mm; color: var(--ink); background: #fff; }
+.tag { border-radius: 3mm; padding: .25mm 2.2mm; color: var(--muted); background: var(--paper); font-weight: 600; white-space: nowrap; }
+.tag.onshore { background: #FBE9E1; color: #A63E12; }
+.tag.offshore { background: #E3EEFC; color: #1F5FB0; }
+.tag.supplier { background: #ECE7F8; color: #4B3596; }
+.focus-tag { display: inline-block; font-size: 6.4pt; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: #0A1F24;
+  background: var(--signal); border-radius: 3mm; padding: .3mm 2mm; vertical-align: 1.2pt; margin-left: 1.6mm; white-space: nowrap; }
+.story.focus { border-left: 2.6pt solid var(--signal); padding-left: 3mm; }
+.top li.focus .n { font-weight: 700; }
 .story .tags .src { margin-left: auto; }
 .pay { font-style: italic; }
 
@@ -266,24 +273,43 @@ def rel_html(score, label=True):
     return f'<span class="rel"><span class="pips">{pips}</span>{text}</span>'
 
 
+def is_focus(item):
+    return item.get("relevance") == 5
+
+
+FOCUS_TAG = '<span class="focus-tag">Hilong focus</span>'
+
+
+def env_tags(item):
+    """Etiquetas coloridas: fornecedor e ambiente (onshore/offshore); "geral" não leva etiqueta."""
+    out = ""
+    if item["operator"] in SUPPLIERS:
+        out += '<span class="tag supplier">Supplier</span>'
+    env = item.get("environment")
+    if env in ("onshore", "offshore"):
+        out += f'<span class="tag {env}">{esc(ENVIRONMENT[env])}</span>'
+    return out
+
+
 def story_html(item, new_ids):
     new = '<span class="new">NEW</span>' if item["id"] in new_ids else ""
+    focus = FOCUS_TAG if is_focus(item) else ""
     place = COUNTRY.get(item["country"], item["country"])
     pay = ' <span class="pay">(subscription required)</span>' if item.get("access") == "paywall" else ""
     return f"""
-<article class="story">
+<article class="story{" focus" if focus else ""}">
   <div class="rail">
     <div class="date">{esc(fmt_date(item["date"]))}</div>
     <div class="op">{esc(op_name(item))}</div>
     {rel_html(item["relevance"])}
   </div>
   <div>
-    <h3>{esc(item["title_en"])}{new}</h3>
+    <h3>{esc(item["title_en"])}{new}{focus}</h3>
     <p>{esc(item["summary_en"])}</p>
     <div class="tags">
       <span><span class="dot {item["region"]}"></span>{esc(place)}</span>
+      {env_tags(item)}
       <span class="tag">{esc(CATEGORY.get(item["category"], item["category"]))}</span>
-      <span class="tag">{esc(ENVIRONMENT.get(item["environment"], item["environment"]))}</span>
       <span class="src-wrap" style="margin-left:auto">Source: <a class="src" href="{esc(item["url"])}">{esc(item["source"])}</a>{pay}</span>
     </div>
   </div>
@@ -441,11 +467,12 @@ def build_html(args):
     for n, i in enumerate(top, 1):
         new = '<span class="new">NEW</span>' if i["id"] in new_ids else ""
         pay = " (subscription required)" if i.get("access") == "paywall" else ""
+        focus = FOCUS_TAG if is_focus(i) else ""
         top_html += f"""
-<li>
+<li class="{'focus' if focus else ''}">
   <div class="n">{n:02d}</div>
   <div>
-    <div class="t">{esc(i["title_en"])}{new}</div>
+    <div class="t">{esc(i["title_en"])}{new}{focus}</div>
     <div class="m"><span class="dot {i["region"]}"></span><b>{esc(op_name(i))}</b> · {esc(COUNTRY.get(i["country"], i["country"]))} ·
       {esc(fmt_date(i["date"]))} · {esc(CATEGORY.get(i["category"], ""))} · <a class="src" href="{esc(i["url"])}">{esc(i["source"])}</a>{pay}</div>
   </div>
@@ -521,7 +548,7 @@ def build_html(args):
     <div class="who"><b>Li Marcitão</b> · Market news agent, Hilong Brasil · <a href="{SITE}">marketreport.hilongbrazil.com</a></div>
   </div>
 </section>
-<p class="method">Relevance runs from 5 (direct interest to Hilong in Brazil: land drilling and workover rigs, OCTG, sucker rods, downhole tools and the onshore operators on the priority list) to 1 (general market context). Every story carries a confirmed publication date and a public source link; titles and summaries are written for this report. Stories marked NEW appear in a report for the first time and come first; each story is shown in at most two reports.</p>
+<p class="method">Relevance runs from 5 (direct interest to Hilong in Brazil: land drilling and workover rigs, OCTG, sucker rods, downhole tools and the onshore operators on the priority list) to 1 (general market context). Every story carries a confirmed publication date and a public source link; titles and summaries are written for this report. Stories marked HILONG FOCUS have relevance 5. Stories marked NEW appear in a report for the first time and come first; each story is shown in at most two reports.</p>
 """
     doc = (f'<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Hilong Market Report {report_date}</title>'
            f"<style>{CSS}</style></head><body>{body}</body></html>")

@@ -3,6 +3,7 @@
 
   var T = {
     pt: {
+      focus: "Foco Hilong", supplier: "Fornecedor", focusHint: "= interesse direto da Hilong (sondas, workover, operadoras onshore)",
       meet: "Conheça o Li Marcitão", aiNote: "Li Marcitão é um personagem virtual gerado por IA.", close: "Fechar",
       navNews: "Notícias", navLive: "Painel ao vivo", openLive: "Abrir o painel ao vivo", topT: "Destaques da semana",
       sub: "Notícias de óleo e gás das operadoras e empresas do setor no Brasil e na América do Sul.",
@@ -36,6 +37,7 @@
       countries: { BR: "Brasil", AR: "Argentina", CO: "Colômbia", GY: "Guiana", SR: "Suriname", PE: "Peru", EC: "Equador", BO: "Bolívia", VE: "Venezuela", CL: "Chile", UY: "Uruguai", PY: "Paraguai", TT: "Trinidad e Tobago" }
     },
     en: {
+      focus: "Hilong focus", supplier: "Supplier", focusHint: "= direct interest for Hilong (rigs, workover, onshore operators)",
       meet: "Meet Li Marcitão", aiNote: "Li Marcitão is an AI-generated virtual character.", close: "Close",
       navNews: "News", navLive: "Live panel", openLive: "Open the live panel", topT: "Top stories this week",
       sub: "Oil and gas news from operators and industry companies in Brazil and South America.",
@@ -71,6 +73,7 @@
   };
 
   var ENV_ORDER = ["onshore", "offshore", "geral"];
+  var SUPPLIERS = ["SLB", "Baker Hughes", "Weatherford", "Tenaris", "Confab", "Apolo Tubulars", "Jereh", "Kerui"];
   var ENV_COLOR = { onshore: "var(--env-onshore)", offshore: "var(--env-offshore)", geral: "var(--env-geral)" };
   var CH_ORDER = ["site", "linkedin", "instagram", "youtube", "x"];
   var SCOPES = ["all", "BR", "SA"];
@@ -123,12 +126,16 @@
     return new Intl.DateTimeFormat(locale(), o).format(new Date(iso));
   }
 
+  function chip(cls, text) { return el("span", "chip " + cls, text); }
+  function isFocus(it) { return rel(it) === 5; }
   function tagsFor(it) {
     var L = t(), tags = el("div", "tags");
     tags.appendChild(el("span", "op", opName(it.operator)));
-    tags.appendChild(el("span", "ct", L.countries[it.country] || it.country));
-    tags.appendChild(el("span", "cat", L.cats[it.category] || it.category));
-    if (envOf(it) !== "geral") tags.appendChild(el("span", "env", L.envs[envOf(it)]));
+    tags.appendChild(chip("ct", L.countries[it.country] || it.country));
+    if (SUPPLIERS.indexOf(it.operator) > -1) tags.appendChild(chip("dot supplier", L.supplier));
+    if (envOf(it) !== "geral") tags.appendChild(chip("dot " + envOf(it), L.envs[envOf(it)]));
+    tags.appendChild(chip("cat", L.cats[it.category] || it.category));
+    if (isFocus(it)) tags.appendChild(chip("dot focus", L.focus));
     return tags;
   }
   function sourceLine(it) {
@@ -228,6 +235,9 @@
     var lg = $("legend"); lg.textContent = "";
     var a = el("span", "br"); a.appendChild(el("i")); a.appendChild(document.createTextNode(L.BR)); lg.appendChild(a);
     var s = el("span", "sa"); s.appendChild(el("i")); s.appendChild(document.createTextNode(L.SA)); lg.appendChild(s);
+    lg.appendChild(chip("dot onshore", L.envs.onshore)); lg.appendChild(chip("dot offshore", L.envs.offshore));
+    lg.appendChild(chip("dot supplier", L.supplier)); lg.appendChild(chip("dot focus", L.focus));
+    lg.appendChild(el("span", "hint", L.focusHint));
     var ed = $("edition"); ed.textContent = "";
     if (data.updated_at) {
       ed.appendChild(document.createTextNode(L.updated + " "));
@@ -268,6 +278,7 @@
       }
       var art = el("article", "item");
       art.setAttribute("data-region", it.region);
+      if (isFocus(it)) art.classList.add("focus");
       art.appendChild(tagsFor(it));
       var h = el("h2"); h.appendChild(ext(el("a", null, title(it)), it.url)); art.appendChild(h);
       art.appendChild(el("p", null, summary(it)));
@@ -280,10 +291,11 @@
     var filtered = state.region !== "all" || state.op || state.cat || state.env || state.q;
     var list = filtered || failed ? [] : topStories(5);
     box.hidden = !list.length;
-    list.forEach(function (it) {
-      var li = el("li"); li.setAttribute("data-region", it.region);
+    list.forEach(function (it, i) {
+      var li = el("li", i === 0 ? "lead" : null); li.setAttribute("data-region", it.region);
       li.appendChild(tagsFor(it));
       li.appendChild(ext(el("a", "t", title(it)), it.url));
+      if (i === 0) { li.appendChild(el("p", "sum", summary(it))); li.appendChild(sourceLine(it)); }
       ol.appendChild(li);
     });
   }
