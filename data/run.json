@@ -1,7 +1,7 @@
 {
-  "run_at": "2026-11-12T16:15:00-03:00",
-  "searches": 11,
-  "new_items": 1,
+  "run_at": "2026-11-12T17:15:00-03:00",
+  "searches": 12,
+  "new_items": 0,
   "schedule": {
     "type": "hourly",
     "from": "06:00",
@@ -12,70 +12,79 @@
     "PetroNotícias",
     "Agência Petrobras",
     "Click Petróleo e Gás",
-    "Petrobras",
-    "Equinor",
-    "Perenco",
-    "PRIO",
-    "TotalEnergies",
-    "Transpetro",
-    "ANP",
-    "Oferta Permanente",
-    "FPSOs",
-    "Pré-sal"
+    "SLB",
+    "Baker Hughes",
+    "Weatherford",
+    "Tenaris",
+    "Confab",
+    "Apolo Tubulars",
+    "Expro",
+    "Jereh",
+    "Kerui",
+    "Inpasa",
+    "TAG",
+    "Ecopetrol",
+    "Colômbia",
+    "Sondas"
   ],
   "queries": [
     {
-      "q": "eixos petróleo gás notícias 12 novembro 2026",
+      "q": "eixos petróleo gás 12 novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "PetroNotícias 12 novembro 2026",
+      "q": "PetroNotícias sonda contrato novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Agência Petrobras notícia 12/11/2026",
+      "q": "Click Petróleo e Gás 12 novembro 2026 petróleo",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Click Petróleo e Gás offshore plataforma novembro 2026",
+      "q": "SLB OR Baker Hughes OR Weatherford Brazil contract November 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Petrobras anuncia 12 de novembro 2026",
+      "q": "Tenaris Confab OR Apolo Tubulars novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Equinor Brasil OR Perenco Brasil notícia novembro 2026",
+      "q": "Expro OR Jereh OR Kerui Brazil news November 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "PRIO fato relevante OR comunicado novembro 2026",
+      "q": "Agência Petrobras mais recentes 12 novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "ANP notícias 12 novembro 2026 oferta permanente leilão",
+      "q": "Ecopetrol resultados tercer trimestre 2026 12 noviembre",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Petrobras offshore news November 12, 2026",
-      "ch": "site",
-      "found": 1
-    },
-    {
-      "q": "ANP diretoria aprova novembro 2026 petróleo",
+      "q": "Ecopetrol utilidad neta tercer trimestre 2026 resultados publicados",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Transpetro OR TotalEnergies Brasil notícia 11 novembro 2026",
+      "q": "Ecopetrol Brava Energia aquisição",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Transportadora Associada de Gás OR Inpasa gás novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Ecopetrol reporta utilidad tercer trimestre 2026 producción barriles",
       "ch": "site",
       "found": 0
     }
