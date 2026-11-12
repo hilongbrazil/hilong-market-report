@@ -1,6 +1,23 @@
 {
-  "updated_at": "2026-11-12T13:25:00-03:00",
+  "updated_at": "2026-11-12T16:15:00-03:00",
   "items": [
+    {
+      "id": "2026-11-12-sbm-offshore-q3-p87-hull",
+      "date": "2026-11-12",
+      "region": "BR",
+      "country": "BR",
+      "operator": "SBM Offshore",
+      "category": "resultados",
+      "environment": "offshore",
+      "relevance": 3,
+      "title_pt": "SBM Offshore eleva previsão de receita de 2026 para US$ 7,9 bi; casco do FPSO P-87 da Petrobras começa a ser construído",
+      "title_en": "SBM Offshore lifts 2026 revenue outlook to US$ 7.9 bn as hull work starts on Petrobras' P-87",
+      "summary_pt": "A SBM elevou a previsão de receita direcional de 2026 de cerca de US$ 7,6 bi para US$ 7,9 bi. O casco do FPSO P-87 (SEAP II), de 120 mil bpd, começou a ser construído na China, com entrega à Petrobras prevista para 2030; o P-81 (SEAP I) fica para 2031.",
+      "summary_en": "SBM raised its 2026 directional revenue guidance from about US$ 7.6 bn to US$ 7.9 bn. Hull construction for the 120,000 bpd FPSO P-87 (SEAP II) has begun in China, with handover to Petrobras due in 2030; P-81 (SEAP I) is due in 2031.",
+      "source": "SBM Offshore (GlobeNewswire)",
+      "url": "https://globenewswire.com/news-release/2026/11/12/3401220/0/en/sbm-offshore-third-quarter-2026-trading-update.html",
+      "via": "site"
+    },
     {
       "id": "2026-11-12-bp-petrobras-bumerangue-talks",
       "date": "2026-11-12",

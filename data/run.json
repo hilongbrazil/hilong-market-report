@@ -1,7 +1,7 @@
 {
-  "run_at": "2026-11-12T15:25:00-03:00",
-  "searches": 12,
-  "new_items": 0,
+  "run_at": "2026-11-12T16:15:00-03:00",
+  "searches": 11,
+  "new_items": 1,
   "schedule": {
     "type": "hourly",
     "from": "06:00",
@@ -12,77 +12,70 @@
     "PetroNotícias",
     "Agência Petrobras",
     "Click Petróleo e Gás",
-    "Carmo Energy",
-    "PetroReconcavo",
-    "Brava Energia",
-    "Origem Energia",
-    "Mandacaru Energia",
-    "Seacrest Petróleo",
-    "PetroVictory",
-    "Alvopetro",
-    "Petroborn",
-    "Eneva",
-    "Vipetro",
-    "Onshore Nordeste"
+    "Petrobras",
+    "Equinor",
+    "Perenco",
+    "PRIO",
+    "TotalEnergies",
+    "Transpetro",
+    "ANP",
+    "Oferta Permanente",
+    "FPSOs",
+    "Pré-sal"
   ],
   "queries": [
     {
-      "q": "eixos petróleo e gás notícias 12 novembro 2026",
+      "q": "eixos petróleo gás notícias 12 novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "PetroNotícias petróleo novembro 2026",
+      "q": "PetroNotícias 12 novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Agência Petrobras notícias novembro 2026",
+      "q": "Agência Petrobras notícia 12/11/2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Click Petróleo e Gás onshore sonda poço novembro 2026",
+      "q": "Click Petróleo e Gás offshore plataforma novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Carmo Energy OR PetroReconcavo OR Origem Energia notícia novembro 2026",
+      "q": "Petrobras anuncia 12 de novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Brava Energia notícia 12 novembro 2026",
+      "q": "Equinor Brasil OR Perenco Brasil notícia novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Mandacaru Energia OR Seacrest Petróleo OR PetroVictory OR Petroborn OR Vipetro novembro 2026",
+      "q": "PRIO fato relevante OR comunicado novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Eneva OR Alvopetro news November 2026",
+      "q": "ANP notícias 12 novembro 2026 oferta permanente leilão",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Brava Energia esclarece perfuração poços Atlanta impacto financeiro",
+      "q": "Petrobras offshore news November 12, 2026",
+      "ch": "site",
+      "found": 1
+    },
+    {
+      "q": "ANP diretoria aprova novembro 2026 petróleo",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "onshore Bahia Sergipe Rio Grande do Norte sonda workover poços novembro 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Brava Energia CVM US$ 550 milhões 100 mil boe/d",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Petrobras nova etapa exploração Rio Grande do Norte chegada de sonda",
+      "q": "Transpetro OR TotalEnergies Brasil notícia 11 novembro 2026",
       "ch": "site",
       "found": 0
     }
