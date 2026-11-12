@@ -1,6 +1,40 @@
 {
-  "updated_at": "2026-11-12T12:25:00-03:00",
+  "updated_at": "2026-11-12T13:25:00-03:00",
   "items": [
+    {
+      "id": "2026-11-12-bp-petrobras-bumerangue-talks",
+      "date": "2026-11-12",
+      "region": "BR",
+      "country": "BR",
+      "operator": "Petrobras",
+      "category": "fusoes",
+      "environment": "offshore",
+      "relevance": 3,
+      "title_pt": "BP negocia venda de fatia de Bumerangue à Petrobras, segundo fontes",
+      "title_en": "BP in talks to sell a Bumerangue stake to Petrobras, sources say",
+      "summary_pt": "Segundo fontes, a BP negocia ceder à Petrobras parte do bloco Bumerangue, na Bacia de Santos, sua maior descoberta em 25 anos, com cerca de 8 bilhões de barris de líquidos. Uma campanha exploratória está prevista para os próximos meses; a decisão de investimento não deve sair antes de 2027.",
+      "summary_en": "According to sources, BP is negotiating to sell Petrobras part of the Bumerangue block in the Santos Basin, its largest find in 25 years, with about 8 billion barrels of liquids. An exploration campaign is planned for the coming months; FID is not expected before 2027.",
+      "source": "InfoMoney",
+      "url": "https://www.infomoney.com.br/mercados/bp-negocia-vender-fatia-de-sua-maior-descoberta-em-25-anos-a-petrobras-dizem-fontes/",
+      "via": "site"
+    },
+    {
+      "id": "2026-11-12-petrobras-tag-guarantee-payment",
+      "date": "2026-11-12",
+      "region": "BR",
+      "country": "BR",
+      "operator": "TAG",
+      "category": "outros",
+      "environment": "geral",
+      "relevance": 3,
+      "title_pt": "Petrobras vai pagar R$ 3,6 bi à TAG por garantias da venda de 2019",
+      "title_en": "Petrobras to pay TAG R$ 3.6 bn under guarantees from the 2019 sale",
+      "summary_pt": "A Petrobras vai pagar R$ 3,6 bilhões à TAG por garantias previstas no contrato de venda da transportadora, em 2019. O compromisso está ligado às futuras definições regulatórias sobre a Malha Nordeste de gasodutos.",
+      "summary_en": "Petrobras will pay R$ 3.6 billion to TAG under guarantees set in the 2019 contract for the sale of the gas transporter. The commitment is tied to pending regulatory decisions on the Northeast pipeline network (Malha Nordeste).",
+      "source": "eixos",
+      "url": "https://eixos.com.br/newsletters/comece-seu-dia/ao-admitir-possibilidade-de-ajuste-petrobras-indica-dificuldades-para-cumprir-politica-de-precos/",
+      "via": "site"
+    },
     {
       "id": "2026-11-11-eneva-lucro-3t26",
       "date": "2026-11-11",

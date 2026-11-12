@@ -1,7 +1,7 @@
 {
-  "run_at": "2026-11-12T12:25:00-03:00",
-  "searches": 12,
-  "new_items": 1,
+  "run_at": "2026-11-12T13:25:00-03:00",
+  "searches": 10,
+  "new_items": 2,
   "schedule": {
     "type": "hourly",
     "from": "06:00",
@@ -10,78 +10,68 @@
   "terms": [
     "eixos",
     "PetroNotícias",
+    "Agência Petrobras",
     "Click Petróleo e Gás",
-    "Carmo Energy",
-    "PetroReconcavo",
-    "Brava Energia",
-    "Origem Energia",
-    "Mandacaru Energia",
-    "Seacrest Petróleo",
-    "PetroVictory",
-    "Alvopetro",
-    "Petroborn",
-    "Eneva",
-    "Vipetro",
-    "Onshore Nordeste"
+    "Petrobras",
+    "Equinor",
+    "Perenco",
+    "PRIO",
+    "TotalEnergies",
+    "Transpetro",
+    "ANP",
+    "TAG",
+    "BP",
+    "Bumerangue",
+    "Sergipe Águas Profundas"
   ],
   "queries": [
     {
-      "q": "eixos petróleo gás notícias hoje 12 novembro 2026",
+      "q": "petróleo gás notícias 12 novembro 2026 eixos petronotícias",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "PetroNotícias onshore poços novembro 2026",
+      "q": "Agência Petrobras notícia 12 de novembro de 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Click Petróleo e Gás sonda terrestre workover novembro 2026",
+      "q": "Click Petróleo e Gás Petrobras Equinor PRIO novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Carmo Energy OR PetroReconcavo notícia novembro 2026",
+      "q": "Equinor Brasil Bacalhau Raia novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Origem Energia OR Mandacaru Energia OR Seacrest Petróleo novembro 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Eneva resultado terceiro trimestre 2026 gás Parnaíba",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Alvopetro OR PetroVictory OR Petroborn OR Vipetro news November 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Brava Energia fato relevante novembro 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Eneva lucro 3T26 resultado",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Eneva lucro líquido terceiro trimestre 2026 novembro",
+      "q": "Petrobras sonda contrato poços notícia 11-12/11/2026",
       "ch": "site",
       "found": 1
     },
     {
-      "q": "PetroReconcavo contrato longo prazo Petrobras gás natural",
+      "q": "ANP notícia novembro 2026 oferta permanente leilão",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Origem Energia OR Petro-Victory OR Seacrest onshore Bahia Rio Grande do Norte Alagoas",
+      "q": "PRIO Peregrino Frade Wahoo notícia novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "TotalEnergies Brasil OR Transpetro OR Perenco Brasil novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Petrobras pagará R$ 3,6 bilhões TAG garantia Malha Nordeste",
+      "ch": "site",
+      "found": 1
+    },
+    {
+      "q": "Petrobras Sergipe Águas Profundas SEAP FLNG exportação GNL",
       "ch": "site",
       "found": 0
     }
