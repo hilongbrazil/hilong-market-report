@@ -1,5 +1,5 @@
 {
-  "run_at": "2026-11-12T19:15:00-03:00",
+  "run_at": "2026-11-12T20:15:00-03:00",
   "searches": 12,
   "new_items": 0,
   "schedule": {
@@ -12,19 +12,20 @@
     "PetroNotícias",
     "Agência Petrobras",
     "Click Petróleo e Gás",
-    "Petrobras",
-    "Equinor",
-    "Perenco",
-    "PRIO",
-    "TotalEnergies",
-    "Transpetro",
-    "ANP",
-    "PPSA",
-    "Oferta Permanente",
-    "Búzios",
-    "Bacalhau",
-    "Raia",
-    "Peregrino"
+    "SLB",
+    "Baker Hughes",
+    "Weatherford",
+    "Tenaris",
+    "Confab",
+    "Apolo Tubulars",
+    "Expro",
+    "Jereh",
+    "Kerui",
+    "Inpasa",
+    "TAG",
+    "Ecopetrol",
+    "Colômbia",
+    "Sondas"
   ],
   "queries": [
     {
@@ -33,57 +34,57 @@
       "found": 0
     },
     {
-      "q": "PetroNotícias novembro 2026 Petrobras contrato",
+      "q": "PetroNotícias novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Site oficial: Agência Petrobras (mais recentes)",
+      "q": "Agência Petrobras notícias 12/11/2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Click Petróleo e Gás Petrobras novembro 2026",
+      "q": "Click Petróleo e Gás petróleo onshore novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Petrobras Reuters November 12 2026",
+      "q": "SLB Brazil contract November 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Equinor Brasil Bacalhau Raia novembro 2026",
+      "q": "Baker Hughes Weatherford Brazil Petrobras November 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "TotalEnergies Perenco Brasil novembro 2026",
+      "q": "Tenaris Confab Apolo Tubulars Brasil novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "PRIO Peregrino Frade notícia novembro 2026",
+      "q": "Expro Jereh Kerui Brazil news November 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Transpetro notícia novembro 2026",
+      "q": "TAG Transportadora Associada de Gás Inpasa novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "ANP oferta permanente leilão novembro 2026",
+      "q": "Ecopetrol resultados tercer trimestre 2026 12 noviembre",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "PPSA leilão Búzios resultado lotes 12 de novembro",
+      "q": "Ecopetrol reportó utilidad neta tercer trimestre 2026 billones",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "PPSA parceria estatal argentina leilão gás 2027",
+      "q": "\"12 de novembro de 2026\" petróleo sonda poços",
       "ch": "site",
       "found": 0
     }
