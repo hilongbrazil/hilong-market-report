@@ -3,8 +3,9 @@
   "searches": 124,
   "new_items": 26,
   "schedule": {
-    "type": "daily",
-    "time": "06:00"
+    "type": "hourly",
+    "from": "06:00",
+    "to": "21:00"
   },
   "terms": [
     "Carmo Energy",

@@ -513,6 +513,17 @@
       while (n <= now) n += step;
       return n;
     }
+    if (run.schedule && run.schedule.type === "hourly" && /^\d\d:\d\d$/.test(run.schedule.from || "") && /^\d\d:\d\d$/.test(run.schedule.to || "")) {
+      /* one round per hour inside a daily window, e.g. 06:00 to 21:00 (Brasília); no rounds at night */
+      var h0 = +run.schedule.from.slice(0, 2), m0 = +run.schedule.from.slice(3, 5), h1 = +run.schedule.to.slice(0, 2);
+      var bp = new Date(now - 3 * 3600000);
+      for (var dd = 0; dd < 2; dd++) {
+        for (var hr = h0; hr <= h1; hr++) {
+          var c2 = Date.UTC(bp.getUTCFullYear(), bp.getUTCMonth(), bp.getUTCDate() + dd, hr + 3, m0);
+          if (c2 > now) return c2;
+        }
+      }
+    }
     if (run.schedule && (run.schedule.type === "weekdays" || run.schedule.type === "daily") && /^\d\d:\d\d$/.test(run.schedule.time || "")) {
       var everyDay = run.schedule.type === "daily";
       var hh = +run.schedule.time.slice(0, 2), mm = +run.schedule.time.slice(3, 5);

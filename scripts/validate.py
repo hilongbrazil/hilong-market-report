@@ -87,7 +87,10 @@ def main() -> int:
             assert isinstance(run.get("new_items"), int)
             assert isinstance(run.get("terms"), list) and all(isinstance(t, str) for t in run["terms"])
             sched = run.get("schedule")
-            assert isinstance(sched, dict) and sched.get("type") in {"daily", "weekdays", "interval"}, "schedule ausente"
+            assert isinstance(sched, dict) and sched.get("type") in {"daily", "weekdays", "interval", "hourly"}, "schedule ausente"
+            if sched["type"] == "hourly":
+                assert re.fullmatch(r"\d\d:\d\d", sched.get("from", "")) and re.fullmatch(r"\d\d:\d\d", sched.get("to", "")), \
+                    "schedule hourly precisa de from e to (HH:MM)"
             queries = run.get("queries")
             assert isinstance(queries, list) and queries, "queries ausente"
             for q in queries:

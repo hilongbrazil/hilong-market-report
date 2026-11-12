@@ -14,10 +14,13 @@ Site estático publicado em https://marketreport.hilongbrazil.com (Netlify, depl
 
 ## Rotina diária de atualização
 
-Duas tarefas agendadas, todos os dias (horário de Brasília):
+Três tarefas agendadas, todos os dias (horário de Brasília). Nada roda das 22h às 6h.
 
-- **6h00, varredura:** seções 1 a 5 (pesquisar, selecionar, escrever, gravar e publicar) e o resumo da seção 7. Não gera PDF nem envia e-mail.
-- **7h55, relatório:** só a seção 6 (PDF e e-mail), para o e-mail chegar por volta das 8h. Usa o que a varredura publicou.
+- **6h00, varredura completa:** seções 1 a 5 (pesquisar, selecionar, escrever, gravar e publicar) e o resumo da seção 7, passando por todas as empresas da lista. Não gera PDF nem envia e-mail.
+- **De hora em hora, das 7h às 21h, rodada rápida:** seção 1b, depois as seções 2 a 5. Não gera PDF nem envia e-mail. (Em teste na semana de 12/11/2026.)
+- **7h55, relatório:** só a seção 6 (PDF e e-mail), para o e-mail chegar por volta das 8h. Usa o que as varreduras publicaram até ali.
+
+Cada varredura (a completa e cada rodada) regrava o `data/run.json`; o painel ao vivo mostra sempre a última que terminou.
 
 Objetivo: registrar as principais notícias do mercado de óleo e gás no Brasil e na América do Sul publicadas desde a última atualização (`updated_at`), com foco no que interessa a uma empresa de serviços e equipamentos de petróleo (sondas de perfuração e workover, OCTG, hastes de bombeio, ferramentas de fundo de poço).
 
@@ -67,6 +70,19 @@ Fornecedores:
 **LinkedIn, Instagram e X:** para cada empresa da lista prioritária, buscar as publicações recentes do perfil oficial (por exemplo, "Carmo Energy LinkedIn", "PetroReconcavo Instagram"). Incluir somente publicação oficial da empresa, com data visível e link público que abre sem login. Marcar `via` como `linkedin`, `instagram` ou `x` e `source` com o nome da empresa. Não tentar fazer login nem contornar bloqueios. Se houver um conector de dados de redes sociais disponível na sessão, usar o conector.
 
 **YouTube:** buscar vídeos publicados desde a última atualização nos canais oficiais das empresas e dos veículos do setor (webcasts de resultados, anúncios de projetos, entrevistas de executivos). Registrar apenas o que o título e a descrição do vídeo afirmam; não atribuir ao vídeo nada que não esteja escrito na página. Marcar `via` como `youtube` e `source` com o nome do canal.
+
+### 1b. Rodada rápida (de hora em hora, das 7h às 21h)
+
+Uma rodada curta, de no máximo 12 buscas, só para pegar o que saiu desde as últimas horas:
+
+1. Sempre: as notícias mais recentes de eixos, PetroNotícias, Agência Petrobras e Click Petróleo e Gás (canal `site`).
+2. Um bloco da lista prioritária, conforme a hora da rodada (resto da divisão da hora por 3):
+   - resto 0 (9h, 12h, 15h, 18h, 21h): onshore, empresas 1 a 10;
+   - resto 1 (7h, 10h, 13h, 16h, 19h): offshore, empresas 11 a 15, e ANP;
+   - resto 2 (8h, 11h, 14h, 17h, 20h): fornecedores, empresas 16 a 23, e uma busca da América do Sul.
+   Agrupar empresas na mesma busca quando fizer sentido, para caber nas 12 buscas.
+3. Procurar notícias das últimas 48 horas que ainda não estejam em `news.json` (conferir `url` e assunto). Os critérios de seleção, relevância e escrita são os mesmos das seções 2 a 4.
+4. Gravar como na seção 5, com estas diferenças: `terms` pode ter menos de 15 nomes (só o que a rodada pesquisou); se nada novo entrar, não alterar `news.json` e regravar só o `run.json` (com `new_items` 0), para o painel mostrar a rodada; mensagem do commit `Rodada AAAA-MM-DD HHh (N novas)`.
 
 ### 2. Selecionar
 
@@ -127,7 +143,7 @@ Cada item segue este formato:
    - `queries`: lista das buscas realmente feitas nesta execução, na ordem (até 60), cada uma com `q` (o texto da busca), `ch` (`site`, `linkedin`, `instagram`, `youtube` ou `x`) e `found` (quantas notícias novas saíram dessa busca; pode ser 0).
    Registrar só o que foi de fato pesquisado: o painel ao vivo reproduz essa lista para o leitor.
 4. Rodar `python3 scripts/validate.py`. Corrigir até passar.
-5. Commit na `main` com a mensagem `Atualiza notícias AAAA-MM-DD (N novas)` e push.
+5. Commit na `main` com a mensagem `Atualiza notícias AAAA-MM-DD (N novas)` e push. Antes do push, fazer `git pull --rebase`. Se der conflito (outra varredura gravou ao mesmo tempo), desfazer o rebase (`git rebase --abort`), voltar para `origin/main` (`git reset --hard origin/main`), inserir de novo só os itens novos desta varredura que ainda não estiverem no arquivo, regravar o `run.json`, validar e enviar outra vez.
 6. Não alterar `index.html`, `live.html`, `assets/` nem outros arquivos nesta rotina.
 
 ### 6. PDF e e-mail diário
