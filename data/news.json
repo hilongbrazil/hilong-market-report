@@ -1,6 +1,40 @@
 {
-  "updated_at": "2026-11-11T19:32:24-03:00",
+  "updated_at": "2026-11-12T06:29:51-03:00",
   "items": [
+    {
+      "id": "2026-11-11-petrobras-11-plataformas-acima-capacidade",
+      "date": "2026-11-11",
+      "region": "BR",
+      "country": "BR",
+      "operator": "Petrobras",
+      "category": "producao",
+      "environment": "offshore",
+      "relevance": 4,
+      "title_pt": "Petrobras obtém aval para 11 plataformas produzirem 282 mil barris/dia acima da capacidade original",
+      "title_en": "Petrobras gets 11 platforms cleared to add 282,000 bpd above original capacity",
+      "summary_pt": "Onze plataformas da Petrobras passaram a ter autorização para operar acima da capacidade de projeto, somando cerca de 282 mil barris/dia sem investimento adicional nas unidades. Segundo Magda Chambriard, a medida antecipa em quatro anos produção já licenciada.",
+      "summary_en": "Eleven Petrobras platforms are now authorized to run above their design capacity, adding about 282,000 bpd with no extra investment in the units. CEO Magda Chambriard says this brings forward by four years output from capacity already licensed.",
+      "source": "Agência Brasil",
+      "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/petrobras-amplia-capacidade-de-11-plataformas-sem-novos-investimentos",
+      "via": "site"
+    },
+    {
+      "id": "2026-11-10-karoon-neon-custo-revisado",
+      "date": "2026-11-10",
+      "region": "BR",
+      "country": "BR",
+      "operator": "Karoon Energy",
+      "category": "investimentos",
+      "environment": "offshore",
+      "relevance": 3,
+      "title_pt": "Karoon reduz custo do projeto Neon para US$ 800–950 milhões e mira FID no 2º semestre de 2027",
+      "title_en": "Karoon cuts Neon project cost to US$ 800–950 mn and targets FID in 2H27",
+      "summary_pt": "O novo conceito do Neon, na Bacia de Santos, prevê três poços produtores submarinos e um injetor de gás, com pico de 25 a 30 mil barris/dia e primeiro óleo em 2030. A FID depende da venda de 30% a 50% do ativo a um sócio.",
+      "summary_en": "Karoon's revised Neon concept in the Santos Basin uses three subsea producers and one gas injector for a 25,000–30,000 bpd peak, with first oil targeted for 2030. FID depends on farming down a 30%–50% stake.",
+      "source": "Click Petróleo e Gás",
+      "url": "https://clickpetroleoegas.com.br/us-250-milhoes-a-menos-tres-pocos-submarinos-e-pico-de-30-mil-barris-por-dia-projeto-neon-avanca-a-engenharia-mas-ainda-depende-de-socio-para-destravar-investimento-em-2027-afch/",
+      "via": "site"
+    },
     {
       "id": "2026-11-11-petrobras-resultado-3t26",
       "date": "2026-11-11",

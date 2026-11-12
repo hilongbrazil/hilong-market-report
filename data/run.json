@@ -1,7 +1,7 @@
 {
-  "run_at": "2026-11-11T19:32:24-03:00",
-  "searches": 124,
-  "new_items": 26,
+  "run_at": "2026-11-12T06:29:51-03:00",
+  "searches": 73,
+  "new_items": 2,
   "schedule": {
     "type": "hourly",
     "from": "06:00",
@@ -16,338 +16,514 @@
     "Seacrest Petróleo",
     "PetroVictory",
     "Alvopetro",
-    "Enauta",
+    "Petroborn",
+    "Eneva",
     "Vipetro",
     "Petrobras",
     "Equinor",
     "Perenco",
     "PRIO",
     "TotalEnergies",
+    "Transpetro",
+    "ANP",
     "SLB",
     "Baker Hughes",
     "Weatherford",
     "Tenaris",
+    "Expro",
     "Confab",
     "Apolo Tubulars",
     "Jereh",
     "Kerui",
-    "ANP",
-    "Eneva",
-    "Petroborn",
+    "Inpasa",
+    "TAG",
     "Shell",
-    "Onshore Nordeste",
+    "Karoon",
     "Sondas terrestres",
+    "Onshore Nordeste",
     "YPF",
-    "Vista Energy",
     "Vaca Muerta",
-    "Pan American Energy",
     "Ecopetrol",
-    "ExxonMobil",
-    "Staatsolie",
     "Perupetro",
-    "Petroecuador",
+    "ExxonMobil",
     "YPFB",
-    "PDVSA"
+    "Petroecuador"
   ],
   "queries": [
     {
-      "q": "Apolo Tubulars tubos OCTG Lorena 2026 notícias",
+      "q": "Site oficial: Carmo Energy",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Jereh Brasil América Latina 2026 contrato equipamentos petróleo sonda fraturamento",
+      "q": "Site oficial: PetroReconcavo",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Kerui Petroleum Brazil South America 2026 drilling rig contract delivery",
+      "q": "Site oficial: Brava Energia",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Jereh Group news November 2026 oilfield equipment delivery Argentina Brazil Latin America",
+      "q": "Site oficial: Origem Energia",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "SLB OneSubsea Brazil award November 2026",
+      "q": "Site oficial: Mandacaru Energia",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Baker Hughes Brasil novembro 2026 Petrobras contrato fábrica investimento",
+      "q": "Site oficial: Seacrest Petróleo",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Weatherford Brasil 2026 contrato Petrobras novembro Macaé",
+      "q": "Site oficial: PetroVictory",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "SLB Brasil (linkedin.com, instagram.com, x.com)",
+      "q": "Site oficial: Alvopetro",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: Petroborn",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: Eneva",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: Vipetro",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: Petrobras",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: Equinor",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: Perenco",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: PRIO",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: TotalEnergies",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: Transpetro",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: ANP",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: SLB",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: Baker Hughes",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: Weatherford",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: Tenaris",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: Expro",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: Confab",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: Apolo Tubulars",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: Jereh",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: Kerui",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: Inpasa",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: TAG",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "PetroReconcavo fato relevante comunicado ao mercado novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Eneva fato relevante comunicado novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "PRIO fato relevante comunicado novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Equinor Brasil notícias novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Expro press release November 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Jereh Group news November 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Apolo Tubulars Dexxos 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "TAG Transportadora Associada de Gás novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "PetroNotícias petróleo gás novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "eixos petróleo e gás notícias",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "petróleo onshore sonda perfuração workover notícia 12 novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Petrobras notícia hoje 12 de novembro de 2026",
+      "ch": "site",
+      "found": 1
+    },
+    {
+      "q": "PetroReconcavo, Brava, Eneva, Origem: notícias de 11/11/2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "sonda terrestre contrato workover Bahia Sergipe RN novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Braserv / San Antonio Internacional sonda contrato 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Shell, Equinor e TotalEnergies Brasil: anúncios novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "ANP oferta permanente leilão blocos dezembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "BNamericas oil gas Brazil November 11 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Karoon Neon revised development concept November 2026",
+      "ch": "site",
+      "found": 1
+    },
+    {
+      "q": "PetroReconcavo LinkedIn",
+      "ch": "linkedin",
+      "found": 0
+    },
+    {
+      "q": "Carmo Energy Instagram",
       "ch": "instagram",
       "found": 0
     },
     {
-      "q": "Baker Hughes Brasil (linkedin.com, instagram.com, x.com)",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "Weatherford Brasil (linkedin.com, instagram.com, x.com)",
+      "q": "Brava Energia X",
       "ch": "x",
       "found": 0
     },
     {
-      "q": "Tenaris Brasil Confab (linkedin.com, instagram.com, x.com)",
-      "ch": "x",
+      "q": "Petrobras webcast resultados 3T26 YouTube",
+      "ch": "youtube",
       "found": 0
     },
     {
-      "q": "TenarisConfab Pindamonhangaba (linkedin.com, instagram.com, x.com)",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "Apolo Tubulars (linkedin.com, instagram.com, x.com)",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "Jereh Group Latin America (linkedin.com, instagram.com, x.com)",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "Kerui Petroleum (linkedin.com, instagram.com, x.com)",
-      "ch": "x",
-      "found": 0
-    },
-    {
-      "q": "OCTG tubos hastes de bombeio fornecedores Brasil contrato licitação Petrobras novembro 2026",
+      "q": "Vaca Muerta noticias petróleo 12 noviembre 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "ANP novembro 2026 oferta permanente leilão blocos resolução diretoria aprova",
-      "ch": "site",
-      "found": 1
-    },
-    {
-      "q": "ANP boletim produção petróleo gás setembro 2026 recorde milhões barris",
-      "ch": "site",
-      "found": 1
-    },
-    {
-      "q": "Eneva 3T26 resultado poços perfuração Parnaíba Amazonas novembro 2026",
+      "q": "YPF Pluspetrol Pan American Energy 11 noviembre 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Petroborn Óleo e Gás 2026 campos Bahia Recôncavo notícias",
+      "q": "Ecopetrol resultados tercer trimestre 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Shell Brasil novembro 2026 Gato do Mato Orca pré-sal investimento anúncio",
-      "ch": "site",
-      "found": 1
-    },
-    {
-      "q": "onshore Sergipe Bahia Rio Grande do Norte Alagoas poços perfuração campos terrestres novembro 2026",
+      "q": "Colombia perforación Ecopetrol GeoPark noviembre 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "sonda terrestre perfuração workover contrato Braserv San Antonio Internacional 2026",
+      "q": "Perú Petroperú Perupetro lote noviembre 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Eneva lucro terceiro trimestre 2026 resultado ENEV3 novembro",
+      "q": "ExxonMobil Guyana Stabroek November 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "\"ANP\" aprova novembro 2026 campos maduros royalties redução onshore resolução",
+      "q": "OilNOW Guyana Suriname Staatsolie",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "sonda de perfuração terrestre contrato assinado onshore Brasil outubro novembro 2026",
+      "q": "YPFB Bolivia / Petroecuador noviembre 2026",
       "ch": "site",
+      "found": 0
+    }
+  ],
+  "sites": [
+    {
+      "name": "Carmo Energy",
+      "url": "https://carmoenergy.com/noticias",
+      "status": "ok",
       "found": 0
     },
     {
-      "q": "Bacia Potiguar Mossoró onshore petróleo novembro 2026 investimento poços produtores independentes",
-      "ch": "site",
-      "found": 1
-    },
-    {
-      "q": "Sergipe Águas Profundas SEAP FPSO Petrobras novembro 2026",
-      "ch": "site",
+      "name": "PetroReconcavo",
+      "url": "https://ri.petroreconcavo.com.br/",
+      "status": "bloqueado",
       "found": 0
     },
     {
-      "q": "Bahia Recôncavo onshore petróleo gás novembro 2026 campo poço perfuração independente",
-      "ch": "site",
+      "name": "Brava Energia",
+      "url": "https://bravaenergia.com/noticias/",
+      "status": "bloqueado",
       "found": 0
     },
     {
-      "q": "Azevedo & Travassos Energia R$ 67,5 milhões investimentos ampliar produção de petróleo",
-      "ch": "site",
+      "name": "Origem Energia",
+      "url": "https://www.origemenergia.com/en/press/news/",
+      "status": "ok",
       "found": 0
     },
     {
-      "q": "Eneva lucro R$ 323 milhões 3T26 Ebitda gás Parnaíba",
-      "ch": "site",
+      "name": "Mandacaru Energia",
+      "url": "https://mandacaruenergia.com.br/noticias/",
+      "status": "ok",
       "found": 0
     },
     {
-      "q": "Azevedo & Travassos Energia AZTE3 plano de investimento R$ 67,5 milhões poços Potiguar novembro 2026",
-      "ch": "site",
+      "name": "Seacrest Petróleo",
+      "url": "https://seacrestpetroleo.com/news/",
+      "status": "ok",
       "found": 0
     },
     {
-      "q": "Eneva resultado terceiro trimestre 2026 lucro líquido R$ 323 milhões",
-      "ch": "site",
+      "name": "PetroVictory",
+      "url": "https://www.petrovictoryenergy.com/press-releases/",
+      "status": "ok",
       "found": 0
     },
     {
-      "q": "Eneva novembro 2026 poço perfuração Bacia do Parnaíba Amazonas descoberta gás campanha exploratória",
-      "ch": "site",
+      "name": "Alvopetro",
+      "url": "https://alvopetro.com/News-Releases",
+      "status": "ok",
       "found": 0
     },
     {
-      "q": "YPF resultados tercer trimestre 2026 producción shale inversiones noviembre",
-      "ch": "site",
-      "found": 1
-    },
-    {
-      "q": "Vista Energy tercer trimestre 2026 resultados producción pozos Vaca Muerta",
-      "ch": "site",
-      "found": 1
-    },
-    {
-      "q": "Pan American Energy Pluspetrol Vaca Muerta noviembre 2026 inversión pozos anuncio",
-      "ch": "site",
+      "name": "Petroborn",
+      "url": "https://petroborn.com.br/",
+      "status": "bloqueado",
       "found": 0
     },
     {
-      "q": "Vaca Muerta equipos de perforación torres contrato perforadora noviembre 2026",
-      "ch": "site",
-      "found": 1
-    },
-    {
-      "q": "Ecopetrol noviembre 2026 perforación pozos hallazgo inversión anuncio",
-      "ch": "site",
-      "found": 1
-    },
-    {
-      "q": "Guyana ExxonMobil Stabroek November 2026 Uaru Hammerhead production start-up",
-      "ch": "site",
+      "name": "Eneva",
+      "url": "https://ri.eneva.com.br/en/information-to-the-market/material-facts-and-notices-to-the-market/",
+      "status": "bloqueado",
       "found": 0
     },
     {
-      "q": "Suriname Staatsolie TotalEnergies GranMorgu November 2026 drilling Block 58",
-      "ch": "site",
+      "name": "Vipetro",
+      "url": "",
+      "status": "sem_site",
       "found": 0
     },
     {
-      "q": "OilNOW Guyana November 2026 ExxonMobil production Yellowtail Uaru drilling wells",
-      "ch": "site",
+      "name": "Petrobras",
+      "url": "https://agencia.petrobras.com.br/en/home",
+      "status": "ok",
       "found": 0
     },
     {
-      "q": "Staatsolie Suriname november 2026 onshore drilling wells production nearshore",
-      "ch": "site",
+      "name": "Equinor",
+      "url": "https://www.equinor.com.br/noticias",
+      "status": "ok",
       "found": 0
     },
     {
-      "q": "Perupetro Petroperú noviembre 2026 lotes Talara contrato perforación pozos inversión",
-      "ch": "site",
-      "found": 1
-    },
-    {
-      "q": "Petroecuador noviembre 2026 producción perforación pozos taladros campos licitación",
-      "ch": "site",
+      "name": "Perenco",
+      "url": "https://www.perenco.com/news/",
+      "status": "ok",
       "found": 0
     },
     {
-      "q": "YPFB Bolivia noviembre 2026 perforación pozo exploratorio hidrocarburos inversión",
-      "ch": "site",
-      "found": 1
-    },
-    {
-      "q": "PDVSA Venezuela Chevron noviembre 2026 producción taladros perforación empresas mixtas",
-      "ch": "site",
-      "found": 1
-    },
-    {
-      "q": "Ecopetrol Anadarko pozo Komodo ANLA retira exigencias perforación 2027",
-      "ch": "site",
-      "found": 1
-    },
-    {
-      "q": "ExxonMobil third quarter 2026 Guyana production barrels per day Uaru start-up Hess Chevron",
-      "ch": "site",
+      "name": "PRIO",
+      "url": "https://ri.prio3.com.br/servicos-aos-investidores/comunicados-e-fatos-relevantes/",
+      "status": "bloqueado",
       "found": 0
     },
     {
-      "q": "Ecuador petróleo noviembre 2026 Petroecuador pozos producción barriles torres de perforación",
-      "ch": "site",
+      "name": "TotalEnergies",
+      "url": "https://totalenergies.com/brazil",
+      "status": "ok",
       "found": 0
     },
     {
-      "q": "Bolivia YPFB noviembre 2026 hidrocarburos pozo perforación anuncio gobierno Paz ley",
-      "ch": "site",
+      "name": "Transpetro",
+      "url": "https://transpetro.com.br/en_us/transpetro-institucional/noticias/",
+      "status": "ok",
       "found": 0
     },
     {
-      "q": "Campetrol taladros activos Colombia octubre 2026 informe perforación workover",
-      "ch": "site",
+      "name": "ANP",
+      "url": "https://www.gov.br/anp/pt-br/canais_atendimento/imprensa/noticias-comunicados",
+      "status": "ok",
       "found": 0
     },
     {
-      "q": "Pan American Energy noviembre 2026 Vaca Muerta pozos perforación Cerro Dragón inversión",
-      "ch": "site",
+      "name": "SLB",
+      "url": "https://investorcenter.slb.com/news-events/news-releases",
+      "status": "ok",
       "found": 0
     },
     {
-      "q": "Argentina convencional Chubut Santa Cruz Mendoza equipos perforación workover pulling noviembre 2026 reactivación",
-      "ch": "site",
+      "name": "Baker Hughes",
+      "url": "https://www.bakerhughes.com/company/newsroom",
+      "status": "ok",
       "found": 0
     },
     {
-      "q": "Guyana oil news November 2026 ExxonMobil Longtail Hammerhead approval drilling campaign rig",
-      "ch": "site",
-      "found": 1
-    },
-    {
-      "q": "Vaca Muerta producción récord octubre 2026 petróleo Neuquén barriles pozos perforados",
-      "ch": "site",
+      "name": "Weatherford",
+      "url": "https://weatherford.gcs-web.com/news-releases",
+      "status": "ok",
       "found": 0
     },
     {
-      "q": "Perupetro Lote 207 adjudicación SPT Energy Lote 192 Petroperú noviembre 2026",
-      "ch": "site",
+      "name": "Tenaris",
+      "url": "https://tenarissa.gcs-web.com/press-releases",
+      "status": "ok",
       "found": 0
     },
     {
-      "q": "Ecuador ronda petrolera licitación campos Sacha inversión privada noviembre 2026 anuncio ministerio",
-      "ch": "site",
-      "found": 1
-    },
-    {
-      "q": "YPFB pozo perforación resultado gas noviembre 2026 Bolivia descubrimiento inicia",
-      "ch": "site",
+      "name": "Expro",
+      "url": "https://investors.expro.com/news/Press-Releases/default.aspx",
+      "status": "bloqueado",
       "found": 0
     },
     {
-      "q": "Colombia taladros activos Campetrol informe septiembre octubre 2026 perforación producción petróleo",
-      "ch": "site",
+      "name": "Confab",
+      "url": "",
+      "status": "sem_site",
+      "found": 0
+    },
+    {
+      "name": "Apolo Tubulars",
+      "url": "",
+      "status": "sem_site",
+      "found": 0
+    },
+    {
+      "name": "Jereh",
+      "url": "https://www.jereh.com/en/news/press-release",
+      "status": "bloqueado",
+      "found": 0
+    },
+    {
+      "name": "Kerui",
+      "url": "https://www.keruigroup.com/en/h-col-114.html",
+      "status": "ok",
+      "found": 0
+    },
+    {
+      "name": "Inpasa",
+      "url": "https://www.inpasa.com.br/",
+      "status": "sem_itens",
+      "found": 0
+    },
+    {
+      "name": "TAG",
+      "url": "",
+      "status": "sem_site",
       "found": 0
     }
   ]
