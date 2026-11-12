@@ -1,6 +1,23 @@
 {
-  "updated_at": "2026-11-12T10:15:24-03:00",
+  "updated_at": "2026-11-12T12:25:00-03:00",
   "items": [
+    {
+      "id": "2026-11-11-eneva-lucro-3t26",
+      "date": "2026-11-11",
+      "region": "BR",
+      "country": "BR",
+      "operator": "Eneva",
+      "category": "resultados",
+      "environment": "geral",
+      "relevance": 3,
+      "title_pt": "Eneva lucra R$ 322,9 milhões no 3º trimestre, queda de 8,2%",
+      "title_en": "Eneva earns R$ 322.9 mn in Q3, down 8.2%",
+      "summary_pt": "A receita líquida da Eneva caiu 26,9% no 3T26, para R$ 3,235 bilhões, e o EBITDA recuou 22,8%, para R$ 1,407 bilhão. A empresa investiu R$ 277 milhões em exploração e desenvolvimento nas bacias do Parnaíba e do Amazonas no trimestre.",
+      "summary_en": "Eneva's net revenue fell 26.9% in Q3 2026 to R$ 3.235 bn and EBITDA slipped 22.8% to R$ 1.407 bn. The company spent R$ 277 mn on exploration and development in the Parnaíba and Amazonas basins during the quarter.",
+      "source": "O Povo",
+      "url": "https://www.opovo.com.br/noticias/economia/2026/11/11/eneva-registrou-lucro-liquido-rs-3229-milhoes-no-terceiro-trimestre-deste-ano.html",
+      "via": "site"
+    },
     {
       "id": "2026-11-12-petrobras-mais-seis-plataformas-capacidade",
       "date": "2026-11-12",
