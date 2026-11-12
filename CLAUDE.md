@@ -17,6 +17,7 @@ Site estático publicado em https://marketreportnews.hilongbrazil.com (Netlify, 
 Três tarefas agendadas, todos os dias (horário de Brasília). Nada roda das 22h às 6h.
 
 - **6h00, varredura completa:** seções 1 a 5 (pesquisar, selecionar, escrever, gravar e publicar) e o resumo da seção 7, passando por todas as empresas da lista. Não gera PDF nem envia e-mail.
+- **6h40, LinkedIn:** seção 1c, no computador do Marcio (navegador do aplicativo Claude, conta alternativa logada). Só roda com o computador ligado e o aplicativo aberto.
 - **De hora em hora, das 7h às 21h, rodada rápida:** seção 1b, depois as seções 2 a 5. Não gera PDF nem envia e-mail. (Em teste na semana de 12/11/2026.)
 - **7h55, relatório:** só a seção 6 (PDF e e-mail), para o e-mail chegar por volta das 8h. Usa o que as varreduras publicaram até ali.
 
@@ -113,7 +114,7 @@ Se uma página mudar de endereço ou passar a abrir (ou a falhar) de forma está
 
 **Sites de referência:** eixos, Brasil Energia / PetróleoHoje, TN Petróleo, PetroNotícias, Agência Petrobras, sites de RI das companhias, Reuters, BNamericas, OilNOW, Ámbito, Rigzone, Offshore Engineer.
 
-**LinkedIn, Instagram e X:** para cada empresa da lista prioritária, buscar as publicações recentes do perfil oficial (por exemplo, "Carmo Energy LinkedIn", "PetroReconcavo Instagram"). Incluir somente publicação oficial da empresa, com data visível e link público que abre sem login. Marcar `via` como `linkedin`, `instagram` ou `x` e `source` com o nome da empresa. Não tentar fazer login nem contornar bloqueios. Se houver um conector de dados de redes sociais disponível na sessão, usar o conector.
+**LinkedIn, Instagram e X:** para cada empresa da lista prioritária, buscar as publicações recentes do perfil oficial (por exemplo, "Carmo Energy LinkedIn", "PetroReconcavo Instagram"). Incluir somente publicação oficial da empresa, com data visível e link público que abre sem login. Marcar `via` como `linkedin`, `instagram` ou `x` e `source` com o nome da empresa. Não tentar fazer login nem contornar bloqueios. Se houver um conector de dados de redes sociais disponível na sessão, usar o conector. A leitura logada do LinkedIn é feita por uma tarefa separada (seção 1c); a varredura na nuvem não tenta entrar no LinkedIn.
 
 **YouTube:** buscar vídeos publicados desde a última atualização nos canais oficiais das empresas e dos veículos do setor (webcasts de resultados, anúncios de projetos, entrevistas de executivos). Registrar apenas o que o título e a descrição do vídeo afirmam; não atribuir ao vídeo nada que não esteja escrito na página. Marcar `via` como `youtube` e `source` com o nome do canal.
 
@@ -129,6 +130,49 @@ Uma rodada curta, de no máximo 12 buscas, só para pegar o que saiu desde as ú
    Agrupar empresas na mesma busca quando fizer sentido, para caber nas 12 buscas.
 3. Procurar notícias das últimas 48 horas que ainda não estejam em `news.json` (conferir `url` e assunto). Os critérios de seleção, relevância e escrita são os mesmos das seções 2 a 4.
 4. Gravar como na seção 5, com estas diferenças: `terms` pode ter menos de 15 nomes (só o que a rodada pesquisou); se nada novo entrar, não alterar `news.json` e regravar só o `run.json` (com `new_items` 0), para o painel mostrar a rodada; mensagem do commit `Rodada AAAA-MM-DD HHh (N novas)`.
+
+### 1c. LinkedIn (6h40, no computador do Marcio)
+
+Tarefa separada, que roda depois da varredura das 6h e antes do relatório das 7h55. Usa o navegador do aplicativo Claude no computador do Marcio, onde uma conta alternativa do LinkedIn já está logada e segue as páginas abaixo. Se o computador não responder, ou se o LinkedIn pedir login ou verificação, não tentar nada: registrar no resumo final e encerrar sem alterar o repositório.
+
+Para cada página, abrir `https://www.linkedin.com/company/<endereço>/posts/?feedView=all`, esperar carregar, rolar uma vez e ler as publicações (elementos `[data-urn^="urn:li:activity"]`). Só leitura: não curtir, comentar, compartilhar, seguir, deixar de seguir nem enviar mensagem. Abrir uma página por vez, com alguns segundos de intervalo.
+
+| Empresa | Endereço da página |
+|---|---|
+| Carmo Energy | carmoenergy |
+| PetroReconcavo | petroreconcavo |
+| Brava Energia | brava-energia |
+| Origem Energia | origem-energia |
+| Mandacaru Energia | mandacaru-energia |
+| Seacrest Petróleo | seacrest-petroleo |
+| PetroVictory | petro-victory-energy |
+| Alvopetro | alvopetro-s-a-extra%C3%A7%C3%A3o-de-petr%C3%B3leo-e-g%C3%A1s-natural e alvopetro-energy-ltd |
+| Petroborn | petroborn-%C3%B3leo-e-g%C3%A1s |
+| Eneva | eneva |
+| Vipetro | vipetro-petroleo |
+| Petrobras | petrobras |
+| Equinor | equinor |
+| Perenco | perenco |
+| PRIO | prio3 |
+| TotalEnergies | totalenergies |
+| Transpetro | transpetro-petrobras-transporte |
+| ANP | agencia-nacional-do-petroleo |
+| SLB | slbglobal |
+| Baker Hughes | bakerhughes |
+| Weatherford | weatherford |
+| Tenaris | tenaris |
+| Expro | expro |
+| Confab | confab-industrial-s-a |
+| Apolo Tubulars | tubos-apolo |
+| Jereh | jerehgroup |
+| Kerui | shandongkerui e kerui-petroleum-brasil |
+| Inpasa | inpasa |
+| TAG | tag-transportadora-associada-de-gas |
+
+- **Data da publicação:** a página mostra só tempo relativo ("3 d", "2 sem"). A data exata sai do número da publicação: `datetime.fromtimestamp((ID >> 22) / 1000)` em horário de Brasília, onde ID é o número do `urn:li:activity:ID`. Considerar só publicações desde o `updated_at` anterior à varredura das 6h (no máximo 48 horas).
+- **O que entra:** só fato novo que passe nos critérios da seção 2 (contratos, perfuração, workover, produção, investimentos, resultados, leilões, aquisições). Ficam de fora vagas, datas comemorativas, institucional, eventos, treinamentos, saúde e segurança e responsabilidade social. Se o mesmo fato já estiver em `news.json` vindo de outra fonte, não repetir.
+- **Item:** `via` = `linkedin`, `source` = nome da empresa, `url` = `https://www.linkedin.com/feed/update/urn:li:activity:ID/`. Título e resumo com redação própria, só com o que a publicação afirma.
+- **Gravar:** inserir os itens em `data/news.json` e atualizar `updated_at`. No `data/run.json`, não regravar: acrescentar ao que a varredura das 6h deixou uma entrada em `queries` por página lida (`q` = `LinkedIn: <empresa>`, `ch` = `linkedin`, `found` = notícias que saíram dela), somar as páginas em `searches` e as notícias em `new_items`. Validar, commit `LinkedIn AAAA-MM-DD (N novas)`, `git pull --rebase` e push (conflito: item 5 da seção 5).
 
 ### 2. Selecionar
 
