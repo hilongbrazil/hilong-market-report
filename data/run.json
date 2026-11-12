@@ -1,5 +1,5 @@
 {
-  "run_at": "2026-11-12T17:15:00-03:00",
+  "run_at": "2026-11-12T18:20:00-03:00",
   "searches": 12,
   "new_items": 0,
   "schedule": {
@@ -12,79 +12,81 @@
     "PetroNotícias",
     "Agência Petrobras",
     "Click Petróleo e Gás",
-    "SLB",
-    "Baker Hughes",
-    "Weatherford",
-    "Tenaris",
-    "Confab",
-    "Apolo Tubulars",
-    "Expro",
-    "Jereh",
-    "Kerui",
-    "Inpasa",
-    "TAG",
-    "Ecopetrol",
-    "Colômbia",
-    "Sondas"
+    "Carmo Energy",
+    "PetroReconcavo",
+    "Brava Energia",
+    "Origem Energia",
+    "Mandacaru Energia",
+    "Seacrest Petróleo",
+    "PetroVictory",
+    "Alvopetro",
+    "Petroborn",
+    "Eneva",
+    "Vipetro",
+    "Sondas terrestres",
+    "Workover",
+    "Bahia",
+    "Rio Grande do Norte",
+    "Sergipe"
   ],
   "queries": [
     {
-      "q": "eixos petróleo gás 12 novembro 2026",
+      "q": "eixos petróleo gás onshore 12 novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "PetroNotícias sonda contrato novembro 2026",
+      "q": "PetroNotícias 12 de novembro de 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Click Petróleo e Gás 12 novembro 2026 petróleo",
+      "q": "Click Petróleo e Gás onshore sonda novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "SLB OR Baker Hughes OR Weatherford Brazil contract November 2026",
+      "q": "Carmo Energy OR PetroReconcavo novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Tenaris Confab OR Apolo Tubulars novembro 2026",
+      "q": "Origem Energia OR Mandacaru Energia OR Seacrest Petróleo novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Expro OR Jereh OR Kerui Brazil news November 2026",
+      "q": "Eneva OR Alvopetro OR PetroVictory news November 12 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Agência Petrobras mais recentes 12 novembro 2026",
+      "q": "Brava Energia OR Petroborn OR Vipetro notícia 12 novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Ecopetrol resultados tercer trimestre 2026 12 noviembre",
+      "q": "sonda terrestre workover Bahia Rio Grande do Norte Sergipe novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Ecopetrol utilidad neta tercer trimestre 2026 resultados publicados",
+      "q": "Brava Energia campanha intensiva 2027 onshore Bahia Potiguar",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Ecopetrol Brava Energia aquisição",
+      "q": "Agência Petrobras notícia 12 novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Transportadora Associada de Gás OR Inpasa gás novembro 2026",
+      "q": "petróleo campos terrestres poços perfuração 12 de novembro de 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Ecopetrol reporta utilidad tercer trimestre 2026 producción barriles",
+      "q": "\"Carmo Energy\" novembro 2026",
       "ch": "site",
       "found": 0
     }
