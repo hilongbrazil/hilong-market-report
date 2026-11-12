@@ -1,6 +1,40 @@
 {
-  "updated_at": "2026-11-12T06:29:51-03:00",
+  "updated_at": "2026-11-12T10:15:24-03:00",
   "items": [
+    {
+      "id": "2026-11-12-petrobras-mais-seis-plataformas-capacidade",
+      "date": "2026-11-12",
+      "region": "BR",
+      "country": "BR",
+      "operator": "Petrobras",
+      "category": "producao",
+      "environment": "offshore",
+      "relevance": 4,
+      "title_pt": "Petrobras planeja levar mais seis plataformas acima da capacidade nominal, com até 260 mil barris/dia",
+      "title_en": "Petrobras plans to push six more platforms past nameplate capacity, adding up to 260,000 bpd",
+      "summary_pt": "Além das 11 unidades já autorizadas, a Petrobras estuda ampliar a capacidade de outras seis plataformas, o que pode somar até 260 mil barris/dia, segundo o diretor financeiro Fernando Melgarejo. A empresa conectou 49 poços até setembro, acima da meta de 44 para o ano.",
+      "summary_en": "On top of the 11 units already cleared, Petrobras is studying capacity increases at six more platforms that could add up to 260,000 bpd, CFO Fernando Melgarejo said. The company tied in 49 wells through September, above its full-year plan of 44.",
+      "source": "Baird Maritime (Reuters)",
+      "url": "https://www.bairdmaritime.com/offshore/drilling-production/petrobras-plans-another-round-of-oil-platform-capacity-increases-across-six-units",
+      "via": "site"
+    },
+    {
+      "id": "2026-11-12-petrobras-compra-logum",
+      "date": "2026-11-12",
+      "region": "BR",
+      "country": "BR",
+      "operator": "Petrobras",
+      "category": "fusoes",
+      "environment": "geral",
+      "relevance": 3,
+      "title_pt": "Petrobras fecha compra dos 70% restantes da Logum por R$ 620 milhões",
+      "title_en": "Petrobras agrees to buy the remaining 70% of Logum for R$ 620 mn",
+      "summary_pt": "A Petrobras, que já tem 30% da Logum, comprará as fatias de Raízen, Copersucar e Uniduto por R$ 620 milhões, pagos em três parcelas. A Logum opera mais de 1.000 km de dutos de etanol e derivados. O negócio depende de aprovação do Cade.",
+      "summary_en": "Petrobras, which already owns 30% of Logum, will buy the stakes held by Raízen, Copersucar and Uniduto for R$ 620 mn in three instalments. Logum runs more than 1,000 km of ethanol and fuel pipelines. The deal needs CADE approval.",
+      "source": "Safras & Mercado",
+      "url": "https://safras.com.br/petrobras-anuncia-acordo-de-r-620-milhoes-para-assumir-100-da-logum",
+      "via": "site"
+    },
     {
       "id": "2026-11-11-petrobras-11-plataformas-acima-capacidade",
       "date": "2026-11-11",
