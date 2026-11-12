@@ -34,9 +34,10 @@ ROOT = Path(__file__).resolve().parent.parent
 SITE = "https://marketreport.hilongbrazil.com"
 
 ONSHORE = ["Carmo Energy", "PetroReconcavo", "Brava Energia", "Origem Energia", "Mandacaru Energia",
-           "Seacrest Petróleo", "PetroVictory", "Alvopetro", "Enauta", "Vipetro"]
-OFFSHORE = ["Petrobras", "Equinor", "Perenco", "PRIO", "TotalEnergies"]
-SUPPLIERS = ["SLB", "Baker Hughes", "Weatherford", "Tenaris", "Confab", "Apolo Tubulars", "Jereh", "Kerui"]
+           "Seacrest Petróleo", "PetroVictory", "Alvopetro", "Petroborn", "Eneva", "Vipetro"]
+OFFSHORE = ["Petrobras", "Equinor", "Perenco", "PRIO", "TotalEnergies", "Transpetro", "ANP"]
+SUPPLIERS = ["SLB", "Baker Hughes", "Weatherford", "Tenaris", "Expro", "Confab", "Apolo Tubulars", "Jereh", "Kerui",
+             "Inpasa", "TAG"]
 
 CATEGORY = {"resultados": "Results", "producao": "Production", "perfuracao": "Drilling",
             "investimentos": "Investment", "contratos": "Contracts", "regulatorio": "Regulation",
@@ -499,7 +500,7 @@ def build_html(args):
     listed = set(ONSHORE + OFFSHORE + SUPPLIERS)
     brazil_html = (
         group_html("Onshore operators", pick(ONSHORE), new_ids)
-        + group_html("Offshore operators", pick(OFFSHORE), new_ids)
+        + group_html("Offshore operators and ANP", pick(OFFSHORE), new_ids)
         + group_html("Suppliers", pick(SUPPLIERS), new_ids)
         + group_html("Sector, regulation and other companies", [i for i in br if i["operator"] not in listed], new_ids)
     )
@@ -515,11 +516,10 @@ def build_html(args):
             new_counts[i["operator"]] = new_counts.get(i["operator"], 0) + 1
     scale = max([counts.get(n, 0) for n in listed] + [1])
     cov_html = (coverage_html("Onshore operators", ONSHORE, counts, new_counts, scale)
-                + coverage_html("Offshore operators", OFFSHORE, counts, new_counts, scale)
+                + coverage_html("Offshore and ANP", OFFSHORE, counts, new_counts, scale)
                 + coverage_html("Suppliers", SUPPLIERS, counts, new_counts, scale))
     missing = [n for n in ONSHORE + OFFSHORE + SUPPLIERS if not counts.get(n)]
-    extra = (" Enauta is now part of Brava Energia: news on its Atlanta and Papa-Terra fields is counted under Brava."
-             if "Enauta" in missing and counts.get("Brava Energia") else "")
+    extra = ""
     nonews = (f'<div class="nonews"><b>No confirmed news in this window</b>{esc(", ".join(missing))}.{esc(extra)}</div>'
               if missing else "")
 

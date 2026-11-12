@@ -91,6 +91,14 @@ def main() -> int:
             if sched["type"] == "hourly":
                 assert re.fullmatch(r"\d\d:\d\d", sched.get("from", "")) and re.fullmatch(r"\d\d:\d\d", sched.get("to", "")), \
                     "schedule hourly precisa de from e to (HH:MM)"
+            sites = run.get("sites")
+            if sites is not None:
+                assert isinstance(sites, list), "sites deve ser uma lista"
+                for st in sites:
+                    assert isinstance(st.get("name"), str) and st["name"].strip(), "site sem name"
+                    assert isinstance(st.get("url", ""), str), "site com url inválida"
+                    assert st.get("status") in {"ok", "sem_itens", "bloqueado", "sem_site"}, "site com status inválido"
+                    assert isinstance(st.get("found", 0), int), "site com found inválido"
             queries = run.get("queries")
             assert isinstance(queries, list) and queries, "queries ausente"
             for q in queries:

@@ -32,36 +32,82 @@ Usar WebSearch (e WebFetch para confirmar data, números e se o link abre). Faze
 
 **Lista prioritária (Brasil)**
 
+Usar nos itens (`operator`) exatamente os nomes desta lista.
+
 Onshore:
 1. Carmo Energy
 2. PetroReconcavo
-3. Brava Energia
+3. Brava Energia (inclui os ativos da antiga Enauta: Atlanta e Papa-Terra)
 4. Origem Energia
 5. Mandacaru Energia
 6. Seacrest Petróleo
 7. PetroVictory
 8. Alvopetro
-9. Enauta (hoje parte da Brava Energia; pesquisar também pelos ativos Atlanta e Papa-Terra)
-10. Vipetro
+9. Petroborn
+10. Eneva
+11. Vipetro
 
 Offshore:
-11. Petrobras
-12. Equinor
-13. Perenco
-14. PRIO
-15. TotalEnergies
+12. Petrobras
+13. Equinor
+14. Perenco
+15. PRIO
+16. TotalEnergies
+17. Transpetro
+
+Regulador:
+18. ANP (leilões, oferta permanente, regulação, boletins de produção)
 
 Fornecedores:
-16. SLB
-17. Baker Hughes
-18. Weatherford
-19. Tenaris
-20. Confab (Tenaris Confab)
-21. Apolo Tubulars
-22. Jereh
-23. Kerui
+19. SLB
+20. Baker Hughes
+21. Weatherford
+22. Tenaris
+23. Expro
+24. Confab (Tenaris Confab)
+25. Apolo Tubulars
+26. Jereh
+27. Kerui
+28. Inpasa
+29. TAG (Transportadora Associada de Gás)
 
-**Complementos no Brasil:** ANP (leilões, oferta permanente, regulação), Eneva, Petroborn, Shell, onshore do Nordeste (Sergipe, Bahia, Rio Grande do Norte, Alagoas) e contratos de sondas terrestres de perfuração e workover (Braserv, San Antonio Internacional e outras).
+**Sites oficiais: visita obrigatória todo dia.** A varredura das 6h abre, uma a uma, as páginas abaixo (WebFetch) e confere os itens publicados desde a última atualização. Toda notícia nova que passar nos critérios entra, com o link da própria página da empresa (`via` = `site`, `source` = nome da empresa). Quando a página não abre ou não mostra itens, fazer a busca indicada na coluna "Se falhar". Registrar cada visita no `run.json` (campo `sites`, seção 5).
+
+| # | Empresa | Página a abrir | Se falhar ou observação |
+|---|---|---|---|
+| 1 | Carmo Energy | https://carmoenergy.com/noticias/ | Datas em português; links relativos (carmoenergy.com/noticias/<slug>) |
+| 2 | PetroReconcavo | https://ri.petroreconcavo.com.br/ | Não abriu na checagem de 12/11/2026. Buscar "PetroReconcavo fato relevante" e "PetroReconcavo comunicado ao mercado" |
+| 3 | Brava Energia | https://bravaenergia.com/noticias/ | Usar a página em português (a em inglês está desatualizada). Fatos relevantes: buscar "Brava Energia fato relevante" (a página de RI só carrega com JavaScript) |
+| 4 | Origem Energia | https://www.origemenergia.com/en/press/news/ | Datas no formato MM/DD |
+| 5 | Mandacaru Energia | https://mandacaruenergia.com.br/noticias/ | A lista não mostra datas: conferir a data na página da matéria |
+| 6 | Seacrest Petróleo | https://seacrestpetroleo.com/news/ | Empresa em liquidação; publica pouco |
+| 7 | PetroVictory | https://www.petrovictoryenergy.com/press-releases/ | Reserva: https://www.prnewswire.com/news/petro__victory-energy-corp./ |
+| 8 | Alvopetro | https://alvopetro.com/News-Releases | |
+| 9 | Petroborn | https://petroborn.com.br/ | O site bloqueia leitura automática. Buscar "Petroborn" |
+| 10 | Eneva | https://ri.eneva.com.br/en/information-to-the-market/material-facts-and-notices-to-the-market/ | A lista só carrega com JavaScript. Buscar "Eneva fato relevante" e "Eneva comunicado" |
+| 11 | Vipetro | sem site | Buscar "Vipetro" (ANP e imprensa do Espírito Santo) |
+| 12 | Petrobras | https://agencia.petrobras.com.br/mais-recentes | |
+| 13 | Equinor | https://www.equinor.com.br/noticias | Mostra poucos itens; conferir também https://www.equinor.com/news |
+| 14 | Perenco | https://www.perenco.com/news/ | Itens em PDF, com data só dentro do PDF; poucos sobre o Brasil |
+| 15 | PRIO | https://ri.prio3.com.br/servicos-aos-investidores/comunicados-e-fatos-relevantes/ | A lista só carrega com JavaScript. Buscar "PRIO fato relevante" e "PRIO comunicado" |
+| 16 | TotalEnergies | https://totalenergies.com/brazil | Também https://totalenergies.com.br/imprensa (institucional) |
+| 17 | Transpetro | https://transpetro.com.br/en_us/transpetro-institucional/noticias/ | Datas no formato M/D/AA |
+| 18 | ANP | https://www.gov.br/anp/pt-br/canais_atendimento/imprensa/noticias-comunicados | |
+| 19 | SLB | https://investorcenter.slb.com/news-events/news-releases | Comunicados globais: filtrar o que for do Brasil e da América do Sul |
+| 20 | Baker Hughes | https://www.bakerhughes.com/company/newsroom | A página de investidores só mostra "Loading" |
+| 21 | Weatherford | https://weatherford.gcs-web.com/news-releases | A página em weatherford.com está desatualizada |
+| 22 | Tenaris | https://ir.tenaris.com/press-releases | Notícias comerciais (contratos no Brasil): buscar "Tenaris Brasil" |
+| 23 | Expro | https://investors.expro.com/news/Press-Releases/default.aspx | A lista só carrega com JavaScript. Buscar "Expro Brazil" e "Expro press release" |
+| 24 | Confab | sem página própria | Sai nas páginas da Tenaris; buscar "Tenaris Confab" |
+| 25 | Apolo Tubulars | sem site encontrado | Buscar "Apolo Tubulars" e "Dexxos Apolo" |
+| 26 | Jereh | https://www.jereh.com/en/news/press-release | A lista não carrega na leitura automática. Buscar "Jereh Group news" |
+| 27 | Kerui | https://www.keruigroup.com/en/h-col-114.html | |
+| 28 | Inpasa | https://www.inpasa.com.br/ | Sem página de notícias encontrada. Buscar "Inpasa" |
+| 29 | TAG | sem site confirmado | Buscar "TAG Transportadora Associada de Gás" |
+
+Se uma página mudar de endereço ou passar a abrir (ou a falhar) de forma estável, avisar no resumo final; não alterar esta tabela durante a rotina.
+
+**Complementos no Brasil:** Shell, onshore do Nordeste (Sergipe, Bahia, Rio Grande do Norte, Alagoas) e contratos de sondas terrestres de perfuração e workover (Braserv, San Antonio Internacional e outras).
 
 **América do Sul (depois do Brasil):** Argentina (YPF, Vista, Pan American Energy, Pluspetrol, Vaca Muerta), Colômbia (Ecopetrol), Guiana e Suriname (ExxonMobil, Staatsolie, TotalEnergies), Peru (Petroperú, Perupetro), Equador (Petroecuador), Bolívia (YPFB), Venezuela (PDVSA) e demais países quando houver fato relevante. Incluir também os fornecedores da lista quando a notícia for sobre a região.
 
@@ -77,9 +123,9 @@ Uma rodada curta, de no máximo 12 buscas, só para pegar o que saiu desde as ú
 
 1. Sempre: as notícias mais recentes de eixos, PetroNotícias, Agência Petrobras e Click Petróleo e Gás (canal `site`).
 2. Um bloco da lista prioritária, conforme a hora da rodada (resto da divisão da hora por 3):
-   - resto 0 (9h, 12h, 15h, 18h, 21h): onshore, empresas 1 a 10;
-   - resto 1 (7h, 10h, 13h, 16h, 19h): offshore, empresas 11 a 15, e ANP;
-   - resto 2 (8h, 11h, 14h, 17h, 20h): fornecedores, empresas 16 a 23, e uma busca da América do Sul.
+   - resto 0 (9h, 12h, 15h, 18h, 21h): onshore, empresas 1 a 11;
+   - resto 1 (7h, 10h, 13h, 16h, 19h): offshore, empresas 12 a 17, e ANP (18);
+   - resto 2 (8h, 11h, 14h, 17h, 20h): fornecedores, empresas 19 a 29, e uma busca da América do Sul.
    Agrupar empresas na mesma busca quando fizer sentido, para caber nas 12 buscas.
 3. Procurar notícias das últimas 48 horas que ainda não estejam em `news.json` (conferir `url` e assunto). Os critérios de seleção, relevância e escrita são os mesmos das seções 2 a 4.
 4. Gravar como na seção 5, com estas diferenças: `terms` pode ter menos de 15 nomes (só o que a rodada pesquisou); se nada novo entrar, não alterar `news.json` e regravar só o `run.json` (com `new_items` 0), para o painel mostrar a rodada; mensagem do commit `Rodada AAAA-MM-DD HHh (N novas)`.
@@ -140,7 +186,8 @@ Cada item segue este formato:
    - `run_at`: data e hora de Brasília (ISO, `-03:00`);
    - `searches`: número de buscas feitas; `new_items`: notícias novas gravadas;
    - `terms`: nomes das empresas, países e temas efetivamente pesquisados (de 15 a 40 nomes curtos);
-   - `queries`: lista das buscas realmente feitas nesta execução, na ordem (até 60), cada uma com `q` (o texto da busca), `ch` (`site`, `linkedin`, `instagram`, `youtube` ou `x`) e `found` (quantas notícias novas saíram dessa busca; pode ser 0).
+   - `queries`: lista das buscas realmente feitas nesta execução, na ordem (até 60), cada uma com `q` (o texto da busca), `ch` (`site`, `linkedin`, `instagram`, `youtube` ou `x`) e `found` (quantas notícias novas saíram dessa busca; pode ser 0). A visita a um site oficial entra como `q` = `Site oficial: <empresa>`, `ch` = `site`;
+   - `sites` (obrigatório na varredura das 6h): uma entrada por empresa da tabela de sites oficiais, na ordem, com `name` (nome da empresa), `url` (página aberta, ou vazio se não houver site), `status` (`ok`, `sem_itens`, `bloqueado` ou `sem_site`) e `found` (notícias novas que saíram dela). Nas rodadas de hora em hora, manter o `sites` da varredura das 6h como está.
    Registrar só o que foi de fato pesquisado: o painel ao vivo reproduz essa lista para o leitor.
 4. Rodar `python3 scripts/validate.py`. Corrigir até passar.
 5. Commit na `main` com a mensagem `Atualiza notícias AAAA-MM-DD (N novas)` e push. Antes do push, fazer `git pull --rebase`. Se der conflito (outra varredura gravou ao mesmo tempo), desfazer o rebase (`git rebase --abort`), voltar para `origin/main` (`git reset --hard origin/main`), inserir de novo só os itens novos desta varredura que ainda não estiverem no arquivo, regravar o `run.json`, validar e enviar outra vez.
@@ -161,7 +208,7 @@ Feita pela tarefa das 7h55, todos os dias (mesmo que nenhuma notícia tenha entr
 
    - `--base-ref auto` compara com o último envio registrado, para que toda notícia gravada desde então entre no relatório. `--check-scan` põe um aviso no e-mail se a varredura das 6h ainda não tiver terminado; o envio acontece assim mesmo.
 
-   - O PDF traz a capa com os números do dia, as 10 principais, o relatório completo dos últimos 7 dias (Brasil por grupo de empresas, América do Sul por país), a cobertura das 23 empresas da lista prioritária e a assinatura do Li Marcitão com a mensagem positiva do dia.
+   - O PDF traz a capa com os números do dia, as 10 principais, o relatório completo dos últimos 7 dias (Brasil por grupo de empresas, América do Sul por país), a cobertura das empresas da lista prioritária e a assinatura do Li Marcitão com a mensagem positiva do dia.
    - **Notícia nova primeiro:** o relatório do dia prioriza o que ainda não saiu em nenhum relatório anterior (marcado NEW); depois vêm as demais por nota, Brasil antes da América do Sul e a mais recente antes.
    - **No máximo dois relatórios por notícia:** a mesma notícia aparece em no máximo duas edições; na terceira ela sai do PDF e do e-mail (continua na página). O controle é o `data/reports.json`, gravado pelo `--record`. Usar `--record` sempre no envio real; ao gerar de novo no mesmo dia (por exemplo com `--alert`), manter o `--record`: a entrada do dia é substituída, não duplicada. Não editar o `data/reports.json` à mão.
    - `email.html` e `email.txt` trazem as 10 principais na mesma ordem do PDF, cada uma com empresa, país, título e resumo, e a mesma assinatura. O corpo do e-mail não leva links (as fontes estão no PDF). O HTML usa só estilos inline, porque o conector do Gmail remove blocos `<style>`, atributos `class` e a propriedade `background`.
