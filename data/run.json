@@ -1,5 +1,5 @@
 {
-  "run_at": "2026-11-12T18:20:00-03:00",
+  "run_at": "2026-11-12T19:15:00-03:00",
   "searches": 12,
   "new_items": 0,
   "schedule": {
@@ -12,81 +12,78 @@
     "PetroNotícias",
     "Agência Petrobras",
     "Click Petróleo e Gás",
-    "Carmo Energy",
-    "PetroReconcavo",
-    "Brava Energia",
-    "Origem Energia",
-    "Mandacaru Energia",
-    "Seacrest Petróleo",
-    "PetroVictory",
-    "Alvopetro",
-    "Petroborn",
-    "Eneva",
-    "Vipetro",
-    "Sondas terrestres",
-    "Workover",
-    "Bahia",
-    "Rio Grande do Norte",
-    "Sergipe"
+    "Petrobras",
+    "Equinor",
+    "Perenco",
+    "PRIO",
+    "TotalEnergies",
+    "Transpetro",
+    "ANP",
+    "PPSA",
+    "Oferta Permanente",
+    "Búzios",
+    "Bacalhau",
+    "Raia",
+    "Peregrino"
   ],
   "queries": [
     {
-      "q": "eixos petróleo gás onshore 12 novembro 2026",
+      "q": "eixos petróleo e gás notícias 12 novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "PetroNotícias 12 de novembro de 2026",
+      "q": "PetroNotícias novembro 2026 Petrobras contrato",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Click Petróleo e Gás onshore sonda novembro 2026",
+      "q": "Site oficial: Agência Petrobras (mais recentes)",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Carmo Energy OR PetroReconcavo novembro 2026",
+      "q": "Click Petróleo e Gás Petrobras novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Origem Energia OR Mandacaru Energia OR Seacrest Petróleo novembro 2026",
+      "q": "Petrobras Reuters November 12 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Eneva OR Alvopetro OR PetroVictory news November 12 2026",
+      "q": "Equinor Brasil Bacalhau Raia novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Brava Energia OR Petroborn OR Vipetro notícia 12 novembro 2026",
+      "q": "TotalEnergies Perenco Brasil novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "sonda terrestre workover Bahia Rio Grande do Norte Sergipe novembro 2026",
+      "q": "PRIO Peregrino Frade notícia novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Brava Energia campanha intensiva 2027 onshore Bahia Potiguar",
+      "q": "Transpetro notícia novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Agência Petrobras notícia 12 novembro 2026",
+      "q": "ANP oferta permanente leilão novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "petróleo campos terrestres poços perfuração 12 de novembro de 2026",
+      "q": "PPSA leilão Búzios resultado lotes 12 de novembro",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "\"Carmo Energy\" novembro 2026",
+      "q": "PPSA parceria estatal argentina leilão gás 2027",
       "ch": "site",
       "found": 0
     }
