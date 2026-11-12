@@ -2,7 +2,7 @@
 
 Notícias de óleo e gás das operadoras do Brasil e da América do Sul, em português e inglês.
 
-- Site: https://marketreport.hilongbrazil.com
+- Site: https://marketreportnews.hilongbrazil.com
 - Publicação: Netlify, automática a cada push na branch `main`
 - Atualização: rotina diária do Claude (instruções em `CLAUDE.md`)
 

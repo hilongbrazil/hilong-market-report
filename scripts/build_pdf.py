@@ -31,7 +31,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-SITE = "https://marketreport.hilongbrazil.com"
+SITE = "https://marketreportnews.hilongbrazil.com"
 
 ONSHORE = ["Carmo Energy", "PetroReconcavo", "Brava Energia", "Origem Energia", "Mandacaru Energia",
            "Seacrest Petróleo", "PetroVictory", "Alvopetro", "Petroborn", "Eneva", "Vipetro"]
@@ -559,7 +559,7 @@ def build_html(args):
   <div class="avatar">{avatar}</div>
   <div>
     <div class="msg">{esc(message)}</div>
-    <div class="who"><b>Li Marcitão</b> · Market news agent, Hilong Brasil · <a href="{SITE}">marketreport.hilongbrazil.com</a></div>
+    <div class="who"><b>Li Marcitão</b> · Market news agent, Hilong Brasil · <a href="{SITE}">marketreportnews.hilongbrazil.com</a></div>
   </div>
 </section>
 <p class="method">Relevance runs from 5 (direct interest to Hilong in Brazil: land drilling and workover rigs, OCTG, sucker rods, downhole tools and the onshore operators on the priority list) to 1 (general market context). Every story carries a confirmed publication date and a public source link; titles and summaries are written for this report. Stories marked HILONG FOCUS have relevance 5. Stories marked NEW appear in a report for the first time and come first; each story is shown in at most two reports.</p>
@@ -570,7 +570,7 @@ def build_html(args):
         '<div style="width:100%;padding:0 15mm;font-family:Inter,Helvetica,Arial,sans-serif;font-size:7pt;color:#55686E;'
         'display:flex;justify-content:space-between;align-items:center;-webkit-print-color-adjust:exact;">'
         f'<span><b style="color:#13262B">Hilong Brasil</b> · Market Report · {esc(fmt_date(report_date))}</span>'
-        '<span>marketreport.hilongbrazil.com</span>'
+        '<span>marketreportnews.hilongbrazil.com</span>'
         '<span>Page <span class="pageNumber"></span> of <span class="totalPages"></span></span></div>'
     )
     email = email_bodies(report_date, args.days, top, new_ids, br_new, sa_new, len(items), message, args.alert)

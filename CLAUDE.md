@@ -1,6 +1,6 @@
 # Hilong Market Report
 
-Site estático publicado em https://marketreport.hilongbrazil.com (Netlify, deploy automático a cada push na branch `main`).
+Site estático publicado em https://marketreportnews.hilongbrazil.com (Netlify, deploy automático a cada push na branch `main`).
 
 - `index.html`: página de notícias. `live.html`: painel ao vivo (indicadores e atividade do agente).
 - `assets/site.css` e `assets/site.js`: estilo e código das duas páginas.
@@ -225,4 +225,4 @@ Feita pela tarefa das 7h55, todos os dias (mesmo que nenhuma notícia tenha entr
 
 ### 7. Resumo final
 
-Encerrar com um resumo curto **em inglês**: quantidade de notícias novas por região, os títulos (em inglês) das três a cinco mais relevantes, em ordem de relevância e com o Brasil primeiro, e o link https://marketreport.hilongbrazil.com. Dizer também se o e-mail foi enviado e se o PDF foi anexado. Se o push falhar ou nenhuma notícia entrar, dizer isso claramente na primeira linha.
+Encerrar com um resumo curto **em inglês**: quantidade de notícias novas por região, os títulos (em inglês) das três a cinco mais relevantes, em ordem de relevância e com o Brasil primeiro, e o link https://marketreportnews.hilongbrazil.com. Dizer também se o e-mail foi enviado e se o PDF foi anexado. Se o push falhar ou nenhuma notícia entrar, dizer isso claramente na primeira linha.
