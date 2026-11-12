@@ -10,7 +10,7 @@ Site estático publicado em https://marketreportnews.hilongbrazil.com (Netlify, 
 - A rotina diária altera somente `data/news.json`, `data/run.json`, `data/reports.json` e `data/archive/`.
 - `data/archive/AAAA-MM.json`: notícias com mais de 60 dias, movidas para cá.
 - `scripts/validate.py`: valida o `news.json` e o `run.json`. Rodar antes de todo commit.
-- `scripts/build_pdf.py`: gera o relatório completo em PDF e o corpo do e-mail diário, sempre em inglês (seção 6).
+- `scripts/build_pdf.py`: gera o relatório completo em PDF (com a análise do agente no topo) e o corpo do e-mail diário, sempre em inglês (seção 6).
 
 ## Rotina diária de atualização
 
@@ -241,31 +241,56 @@ Cada item segue este formato:
 
 Feita pela tarefa das 7h55, todos os dias (mesmo que nenhuma notícia tenha entrado), depois de `git pull` na `main`. O relatório completo vai sempre em PDF e sempre em inglês.
 
-1. Gerar o PDF e o corpo do e-mail em uma pasta fora do repositório (a pasta de rascunho da sessão):
+1. **Análise do agente (obrigatória, vai no topo do PDF).** Primeiro, gerar a lista das notícias que vão entrar no relatório, na ordem do PDF:
+
+   ```
+   python3 scripts/build_pdf.py --brief <pasta>/brief.md --date today --base-ref auto
+   ```
+
+   Ler o `brief.md` e escrever `<pasta>/analysis.json`, em inglês:
+
+   ```json
+   {
+     "headline": "uma frase com a leitura principal do dia (até 160 caracteres)",
+     "points": ["3 a 5 pontos, cada um com até 360 caracteres"],
+     "hilong": "o que isso significa para a Hilong, em 1 ou 2 frases (até 420 caracteres)"
+   }
+   ```
+
+   - Base: somente as notícias do `brief.md`. Não trazer fatos, números ou nomes que não estejam lá, nem conhecimento de fora.
+   - Começar pelo que é novo e pelo Brasil; ligar as notícias entre si (tendências, contrastes, o que muda), em vez de repetir manchetes.
+   - Ordem de prioridade: onshore e serviços de poço (perfuração, workover, completação, OCTG, hastes), depois operadoras offshore e ANP, fornecedores, e por fim América do Sul.
+   - `hilong`: onde há trabalho ou oportunidade para sondas terrestres, workover, tubulares e ferramentas de poço, citando as empresas. Sem recomendação de investimento e sem prometer contratos.
+   - Tom factual e direto; números iguais aos das notícias. Se nenhuma notícia for nova, dizer isso na `headline` e analisar as que seguem no relatório.
+
+2. Gerar o PDF e o corpo do e-mail em uma pasta fora do repositório (a pasta de rascunho da sessão):
 
    ```
    python3 scripts/build_pdf.py \
      --out <pasta>/Hilong-Market-Report-AAAA-MM-DD.pdf \
      --date today --base-ref auto --check-scan --record \
+     --analysis <pasta>/analysis.json \
      --email-html <pasta>/email.html --email-text <pasta>/email.txt
    ```
 
+   Se o script recusar o `analysis.json` (texto longo demais ou campo faltando), corrigir o arquivo e gerar de novo.
+
    - `--base-ref auto` compara com o último envio registrado, para que toda notícia gravada desde então entre no relatório. `--check-scan` põe um aviso no e-mail se a varredura das 6h ainda não tiver terminado; o envio acontece assim mesmo.
 
-   - O PDF traz a capa com os números do dia, as 10 principais, o relatório completo dos últimos 7 dias (Brasil por grupo de empresas, América do Sul por país), a cobertura das empresas da lista prioritária e a assinatura do Li Marcitão com a mensagem positiva do dia.
+   - O PDF traz, logo abaixo do título, a análise do agente; depois a capa com os números do dia, as 10 principais, o relatório completo dos últimos 7 dias (Brasil por grupo de empresas, América do Sul por país), a cobertura das empresas da lista prioritária e a assinatura do Li Marcitão com a mensagem positiva do dia.
    - **Notícia nova primeiro:** o relatório do dia prioriza o que ainda não saiu em nenhum relatório anterior (marcado NEW); depois vêm as demais por nota, Brasil antes da América do Sul e a mais recente antes.
    - **No máximo dois relatórios por notícia:** a mesma notícia aparece em no máximo duas edições; na terceira ela sai do PDF e do e-mail (continua na página). O controle é o `data/reports.json`, gravado pelo `--record`. Usar `--record` sempre no envio real; ao gerar de novo no mesmo dia (por exemplo com `--alert`), manter o `--record`: a entrada do dia é substituída, não duplicada. Não editar o `data/reports.json` à mão.
    - `email.html` e `email.txt` trazem as 10 principais na mesma ordem do PDF, cada uma com empresa, país, título e resumo, e a mesma assinatura. O corpo do e-mail não leva links (as fontes estão no PDF). O HTML usa só estilos inline, porque o conector do Gmail remove blocos `<style>`, atributos `class` e a propriedade `background`.
    - `--message "..."` troca a mensagem positiva do dia (uma frase curta, em inglês, redação própria). Sem o parâmetro, o script escolhe uma pela data.
    - `--alert "..."` põe um aviso na primeira linha do e-mail. Usar quando o push falhar (por exemplo, `--alert "Push failed: the page was not updated today."`).
    - `--days N` muda a janela do relatório (padrão: 7 dias).
-2. Conferir o resultado: o comando termina com `OK:` e o PDF existe e tem mais de uma página.
-3. Enviar um único e-mail pelo conector do Gmail, aos destinatários definidos na tarefa agendada:
+3. Conferir o resultado: o comando termina com `OK:` e o PDF existe e tem mais de uma página.
+4. Enviar um único e-mail pelo conector do Gmail, aos destinatários definidos na tarefa agendada:
    - assunto: `Hilong Market Report - AAAA-MM-DD`;
    - `htmlBody`: o conteúdo de `email.html`, sem alterações; `body`: o conteúdo de `email.txt`;
    - anexo: o PDF, com `filename` `Hilong-Market-Report-AAAA-MM-DD.pdf`, `mimeType` `application/pdf` e `content` na forma de referência de arquivo `sha256:<sha256 do arquivo>:<caminho absoluto>` (obter o hash com `sha256sum`).
-4. Se o anexo for recusado, gerar de novo com `--alert "The PDF could not be attached today; the full report is on the page."` e enviar o e-mail sem anexo. Se o envio falhar, não tentar outro caminho: registrar no resumo final.
-5. Depois do envio, fazer commit e push do `data/reports.json` (mensagem `Registra relatório AAAA-MM-DD`). Não fazer commit do PDF nem dos arquivos do e-mail. Não alterar o `scripts/build_pdf.py` nesta rotina.
+5. Se o anexo for recusado, gerar de novo (com o mesmo `--analysis`) e com `--alert "The PDF could not be attached today; the full report is on the page."` e enviar o e-mail sem anexo. Se o envio falhar, não tentar outro caminho: registrar no resumo final.
+6. Depois do envio, fazer commit e push do `data/reports.json` (mensagem `Registra relatório AAAA-MM-DD`). Não fazer commit do PDF nem dos arquivos do e-mail. Não alterar o `scripts/build_pdf.py` nesta rotina.
 
 ### 7. Resumo final
 

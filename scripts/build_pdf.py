@@ -18,6 +18,10 @@ primeiro. Uma mesma notícia aparece em no máximo dois relatórios.
       [--email-html arquivo]   grava o corpo do e-mail em HTML (10 principais + assinatura)
       [--email-text arquivo]   grava o mesmo corpo em texto simples
       [--alert "..."]          aviso na primeira linha do e-mail (ex.: falha no push)
+      [--brief arquivo.md]     grava a lista das notícias do relatório (na ordem do PDF) para o agente escrever
+                               a análise; sem --out, só grava o briefing e sai (não gera PDF nem registra)
+      [--analysis arquivo.json] análise do agente, impressa no topo do PDF (logo abaixo do título):
+                               {"headline": "...", "points": ["...", ...], "hilong": "..."}
 
 Requer o Playwright com Chromium (já instalado no ambiente da rotina).
 """
@@ -99,6 +103,20 @@ a { color: inherit; text-decoration: none; }
 .dateline { margin-top: 5.5mm; padding-top: 3mm; border-top: .8pt solid rgba(255,255,255,.22); display: flex;
   justify-content: space-between; font-size: 8.8pt; color: rgba(255,255,255,.86); position: relative; z-index: 1; }
 .dateline b { color: #fff; font-weight: 600; }
+
+/* Agent's analysis (top of page 1) */
+.analysis { margin: 6mm 15mm 0; border: .8pt solid var(--line); border-left: 3pt solid var(--signal); border-radius: 1.6mm;
+  padding: 4.6mm 6mm 4.4mm; background: var(--soft); break-inside: avoid; }
+.analysis .kicker { display: flex; justify-content: space-between; align-items: baseline; font-size: 7.6pt; letter-spacing: .12em;
+  text-transform: uppercase; font-weight: 700; color: var(--petrol-deep); }
+.analysis .kicker span { font-weight: 500; letter-spacing: 0; text-transform: none; color: var(--muted); }
+.analysis h2 { font-family: "Archivo", "Inter Display", "Inter", sans-serif; font-size: 14.6pt; line-height: 1.24; font-weight: 750;
+  letter-spacing: -.012em; margin: 2mm 0 2.4mm; }
+.analysis ul { margin: 0; padding-left: 4.6mm; }
+.analysis li { margin: 0 0 1.5mm; font-size: 9.6pt; line-height: 1.42; color: #22363B; }
+.analysis li::marker { color: var(--petrol); }
+.analysis .hilong { margin-top: 3mm; padding-top: 2.6mm; border-top: .6pt solid var(--line); font-size: 9.6pt; line-height: 1.42; }
+.analysis .hilong b { color: var(--petrol-deep); }
 
 /* KPI row */
 .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin: 0 15mm; border-bottom: .8pt solid var(--line); }
@@ -278,6 +296,45 @@ def record_report(report_date, ids):
     reports.append({"date": report_date, "ids": sorted(ids)})
     reports.sort(key=lambda r: r["date"])
     LOG.write_text(json.dumps({"reports": reports[-60:]}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def load_analysis(path):
+    """Lê a análise do agente (JSON). Devolve None se não houver arquivo; erro claro se o formato estiver errado."""
+    if not path:
+        return None
+    a = json.loads(Path(path).read_text(encoding="utf-8"))
+    head = str(a.get("headline", "")).strip()
+    points = [str(x).strip() for x in a.get("points", []) if str(x).strip()]
+    hilong = str(a.get("hilong", "")).strip()
+    if not head or not points:
+        raise SystemExit("analysis: 'headline' e ao menos um item em 'points' são obrigatórios")
+    if len(points) > 6:
+        raise SystemExit("analysis: no máximo 6 itens em 'points'")
+    if len(head) > 160 or any(len(x) > 360 for x in points) or len(hilong) > 420:
+        raise SystemExit("analysis: texto longo demais (headline até 160, cada ponto até 360, hilong até 420 caracteres)")
+    return {"headline": head, "points": points, "hilong": hilong}
+
+
+def analysis_html(a, n_items, n_new):
+    if not a:
+        return ""
+    pts = "".join(f"<li>{esc(x)}</li>" for x in a["points"])
+    hil = f'<div class="hilong"><b>What it means for Hilong:</b> {esc(a["hilong"])}</div>' if a["hilong"] else ""
+    basis = f"Based on the {n_items} {'story' if n_items == 1 else 'stories'} in this report ({n_new} new)"
+    return (f'<section class="analysis"><div class="kicker">Li Marcitão\'s analysis<span>{esc(basis)}</span></div>'
+            f'<h2>{esc(a["headline"])}</h2><ul>{pts}</ul>{hil}</section>')
+
+
+def brief_md(report_date, items, new_ids):
+    """Lista das notícias do relatório, na ordem do PDF, para o agente escrever a análise."""
+    lines = [f"# Stories in the report of {report_date}", "",
+             f"{len(items)} stories, {len(new_ids)} new. Order: new first, then relevance, Brazil before South America.", ""]
+    for n, i in enumerate(sorted(items, key=rank_key), 1):
+        flags = (" NEW" if i["id"] in new_ids else "") + (" HILONG-FOCUS" if is_focus(i) else "")
+        lines += [f"{n}. [{i['region']}/{i['country']}] {op_name(i)} | {CATEGORY.get(i['category'], i['category'])} | "
+                  f"{ENVIRONMENT.get(i.get('environment'), '')} | relevance {i['relevance']} | {i['date']}{flags}",
+                  f"   {i['title_en']}", f"   {i['summary_en']}", ""]
+    return "\n".join(lines)
 
 
 def rel_html(score, label=True):
@@ -523,6 +580,7 @@ def build_html(args):
     nonews = (f'<div class="nonews"><b>No confirmed news in this window</b>{esc(", ".join(missing))}.{esc(extra)}</div>'
               if missing else "")
 
+    analysis_block = analysis_html(load_analysis(args.analysis), len(items), len(new_items))
     window = f"{fmt_date(start)} to {fmt_date(report_date)}"
     body = f"""
 <header class="mast">
@@ -531,6 +589,7 @@ def build_html(args):
   <p class="sub">Oil and gas news from Brazil and South America, ranked by what matters most to drilling, workover and tubular services.</p>
   <div class="dateline"><span><b>{esc(fmt_date(report_date, long=True))}</b></span><span>Stories from {esc(window)} · updated {updated:%H:%M} Brasília time</span></div>
 </header>
+{analysis_block}
 <section class="kpis">{kpi_html}</section>
 
 <section class="sec first pad">
@@ -575,13 +634,13 @@ def build_html(args):
     )
     email = email_bodies(report_date, args.days, top, new_ids, br_new, sa_new, len(items), message, args.alert)
     stats = {"date": report_date, "stories": len(items), "new_br": br_new, "new_sa": sa_new,
-             "ids": [i["id"] for i in items]}
+             "ids": [i["id"] for i in items], "brief": brief_md(report_date, items, new_ids)}
     return doc, footer, stats, email
 
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--out", required=True)
+    ap.add_argument("--out", help="caminho do PDF (sem --out, use --brief para só gravar o briefing)")
     ap.add_argument("--date")
     ap.add_argument("--days", type=int, default=7)
     ap.add_argument("--base-ref", default="HEAD")
@@ -595,9 +654,18 @@ def main():
                     help="avisa no e-mail se data/run.json não for de hoje (varredura não terminou)")
     ap.add_argument("--record", action="store_true",
                     help="registra esta edição em data/reports.json (usar só no envio real, não em testes)")
+    ap.add_argument("--brief", help="grava a lista das notícias do relatório (markdown) para o agente escrever a análise")
+    ap.add_argument("--analysis", help="análise do agente em JSON (headline, points, hilong), no topo do PDF")
     args = ap.parse_args()
+    if not args.out and not args.brief:
+        ap.error("informe --out (PDF) ou --brief (só o briefing)")
 
     doc, footer, stats, email = build_html(args)
+    if args.brief:
+        Path(args.brief).write_text(stats["brief"], encoding="utf-8")
+        if not args.out:
+            print(f"OK: briefing {args.brief} ({stats['stories']} stories, edition {stats['date']})")
+            return 0
     if args.html:
         Path(args.html).write_text(doc, encoding="utf-8")
     if args.email_html:
