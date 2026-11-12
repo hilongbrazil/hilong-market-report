@@ -1,7 +1,7 @@
 {
-  "run_at": "2026-11-12T13:25:00-03:00",
+  "run_at": "2026-11-12T14:20:00-03:00",
   "searches": 10,
-  "new_items": 2,
+  "new_items": 0,
   "schedule": {
     "type": "hourly",
     "from": "06:00",
@@ -12,66 +12,67 @@
     "PetroNotícias",
     "Agência Petrobras",
     "Click Petróleo e Gás",
-    "Petrobras",
-    "Equinor",
-    "Perenco",
-    "PRIO",
-    "TotalEnergies",
-    "Transpetro",
-    "ANP",
-    "TAG",
-    "BP",
-    "Bumerangue",
-    "Sergipe Águas Profundas"
+    "SLB",
+    "Baker Hughes",
+    "Weatherford",
+    "Tenaris",
+    "Confab",
+    "Expro",
+    "Apolo Tubulars",
+    "Jereh",
+    "Kerui",
+    "Vaca Muerta",
+    "Ecopetrol",
+    "Guiana"
   ],
   "queries": [
     {
-      "q": "petróleo gás notícias 12 novembro 2026 eixos petronotícias",
+      "q": "eixos petróleo gás notícias 12 novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Agência Petrobras notícia 12 de novembro de 2026",
+      "q": "PetroNotícias 12/11/2026 contrato sonda poços",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Click Petróleo e Gás Petrobras Equinor PRIO novembro 2026",
+      "q": "Click Petróleo e Gás 12 novembro 2026 Petrobras onshore",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Equinor Brasil Bacalhau Raia novembro 2026",
+      "q": "SLB OR Baker Hughes OR Weatherford Brazil contract November 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Petrobras sonda contrato poços notícia 11-12/11/2026",
-      "ch": "site",
-      "found": 1
-    },
-    {
-      "q": "ANP notícia novembro 2026 oferta permanente leilão",
+      "q": "Tenaris Confab OR Expro Brazil OR Apolo Tubulars novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "PRIO Peregrino Frade Wahoo notícia novembro 2026",
+      "q": "Jereh OR Kerui oilfield news November 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "TotalEnergies Brasil OR Transpetro OR Perenco Brasil novembro 2026",
+      "q": "Weatherford Constellation managed pressure drilling subsea intervention Brazil",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Petrobras pagará R$ 3,6 bilhões TAG garantia Malha Nordeste",
+      "q": "Vaca Muerta OR Ecopetrol OR Guyana petróleo noticia 12 noviembre 2026",
       "ch": "site",
-      "found": 1
+      "found": 0
     },
     {
-      "q": "Petrobras Sergipe Águas Profundas SEAP FLNG exportação GNL",
+      "q": "Agência Petrobras notícias novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Baker Hughes OR SLB Petrobras award November 2026",
       "ch": "site",
       "found": 0
     }
