@@ -1,5 +1,5 @@
 {
-  "run_at": "2026-11-13T12:15:00-03:00",
+  "run_at": "2026-11-13T13:14:00-03:00",
   "searches": 12,
   "new_items": 0,
   "schedule": {
@@ -12,20 +12,17 @@
     "PetroNotícias",
     "Agência Petrobras",
     "Click Petróleo e Gás",
-    "Carmo Energy",
-    "PetroReconcavo",
-    "Brava Energia",
-    "Origem Energia",
-    "Mandacaru Energia",
-    "Seacrest Petróleo",
-    "PetroVictory",
-    "Alvopetro",
-    "Petroborn",
-    "Eneva",
-    "Vipetro",
-    "Sondas terrestres",
-    "Workover",
-    "Onshore Nordeste"
+    "Petrobras",
+    "Equinor",
+    "Perenco",
+    "PRIO",
+    "TotalEnergies",
+    "Transpetro",
+    "ANP",
+    "Oferta Permanente",
+    "Bacalhau",
+    "Raia",
+    "FPSO"
   ],
   "queries": [
     {
@@ -39,62 +36,67 @@
       "found": 0
     },
     {
-      "q": "eixos petróleo gás notícias 13 novembro 2026",
+      "q": "Site oficial: Agência Petrobras — não abriu",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "PetroReconcavo OR Carmo Energy OR Origem Energia OR Mandacaru Energia novembro 2026",
+      "q": "Petrobras notícia 13 novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "site:clickpetroleoegas.com.br petróleo sonda poço onshore",
+      "q": "site:clickpetroleoegas.com.br offshore petróleo novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Brava Energia OR Eneva OR Alvopetro OR PetroVictory OR Seacrest notícia 12 13 novembro 2026",
+      "q": "PRIO fato relevante comunicado novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "PetroNotícias petróleo 13 novembro 2026",
+      "q": "ANP notícia 13 novembro 2026 petróleo",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Petroborn OR Vipetro OR Origem Energia OR Carmo Energy campo poço Bahia Sergipe RN novembro 2026",
+      "q": "Equinor Brasil Bacalhau Raia novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Brava Energia esclarecimento Eneva tratativas venda E&P",
+      "q": "TotalEnergies OR Perenco OR Transpetro Brasil notícia novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Agência Petrobras notícia 13/11/2026",
+      "q": "PetroNotícias petróleo gás 13 novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "sonda terrestre workover contrato onshore Brasil novembro 2026",
+      "q": "eixos petróleo gás Petrobras plataforma 13/11/2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Origem Energia OR Mandacaru Energia OR PetroReconcavo notícia esta semana",
+      "q": "Petrobras Reuters November 13, 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "clickpetroleoegas.com.br petróleo gás notícia hoje 13 novembro 2026",
+      "q": "site:petronoticias.com.br Petrobras OR PRIO OR Equinor OR ANP novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "eixos.com.br petroleo-e-gas Brava OR Eneva OR PetroReconcavo OR onshore novembro 2026",
+      "q": "ANP oferta permanente OR leilão OR resolução 12 novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Petrobras contrato sonda OR FPSO OR navios Transpetro esta semana novembro 2026",
       "ch": "site",
       "found": 0
     }
