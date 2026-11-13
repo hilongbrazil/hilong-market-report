@@ -1,7 +1,7 @@
 {
-  "run_at": "2026-11-13T08:15:00-03:00",
-  "searches": 11,
-  "new_items": 2,
+  "run_at": "2026-11-13T09:16:00-03:00",
+  "searches": 12,
+  "new_items": 0,
   "schedule": {
     "type": "hourly",
     "from": "06:00",
@@ -12,31 +12,29 @@
     "PetroNotícias",
     "Agência Petrobras",
     "Click Petróleo e Gás",
-    "SLB",
-    "Baker Hughes",
-    "Weatherford",
-    "Tenaris",
-    "Expro",
-    "Confab",
-    "Apolo Tubulars",
-    "Jereh",
-    "Kerui",
-    "Inpasa",
-    "TAG",
-    "Vaca Muerta",
-    "YPF",
-    "Ecopetrol",
-    "Júpiter",
-    "PPSA"
+    "Carmo Energy",
+    "PetroReconcavo",
+    "Brava Energia",
+    "Origem Energia",
+    "Mandacaru Energia",
+    "Seacrest Petróleo",
+    "PetroVictory",
+    "Alvopetro",
+    "Petroborn",
+    "Eneva",
+    "Vipetro",
+    "Sondas terrestres",
+    "Workover",
+    "Onshore Nordeste"
   ],
   "queries": [
     {
-      "q": "eixos petróleo e gás notícias 13 novembro 2026",
+      "q": "petróleo gás notícias 13 novembro 2026 eixos PetroNotícias",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "PetroNotícias petróleo novembro 2026",
+      "q": "Click Petróleo e Gás onshore Bahia Rio Grande do Norte Sergipe novembro 2026",
       "ch": "site",
       "found": 0
     },
@@ -46,42 +44,47 @@
       "found": 0
     },
     {
-      "q": "Click Petróleo e Gás sondas onshore novembro 2026",
+      "q": "PetroReconcavo OR Carmo Energy OR Origem Energia novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "SLB OR Baker Hughes Brazil contract November 2026",
+      "q": "Brava Energia OR Mandacaru Energia OR Seacrest Petróleo notícia novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Weatherford OR Expro Brazil Petrobras contract November 2026",
+      "q": "Eneva OR Alvopetro OR PetroVictory OR Petroborn OR Vipetro November 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Tenaris Confab Brasil novembro 2026",
+      "q": "Eneva fato relevante comunicado novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "TAG Transportadora Associada de Gás OR Inpasa OR Jereh OR Kerui OR Apolo Tubulars novembro 2026",
+      "q": "Origem Energia OR Mandacaru Energia OR Carmo Energy 2026 Alagoas Potiguar campo",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Vaca Muerta YPF Ecopetrol petróleo noticias 13 noviembre 2026",
+      "q": "sonda terrestre workover contrato onshore Nordeste novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Click Petróleo e Gás / PetroNotícias: petróleo gás novembro 2026",
+      "q": "PetroNotícias contrato Petrobras poços 12 novembro 2026",
       "ch": "site",
-      "found": 2
+      "found": 0
     },
     {
-      "q": "Petrobras ANP petróleo notícias 12 de novembro de 2026",
+      "q": "Click Petróleo e Gás onshore poços perfuração ANP novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "PetroReconcavo Brava Potiguar Recôncavo poços notícia 12 13 novembro 2026",
       "ch": "site",
       "found": 0
     }
