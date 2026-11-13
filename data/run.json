@@ -1,6 +1,6 @@
 {
-  "run_at": "2026-11-13T13:14:00-03:00",
-  "searches": 12,
+  "run_at": "2026-11-13T14:25:00-03:00",
+  "searches": 11,
   "new_items": 0,
   "schedule": {
     "type": "hourly",
@@ -8,21 +8,27 @@
     "to": "21:00"
   },
   "terms": [
+    "Click Petróleo e Gás",
     "eixos",
     "PetroNotícias",
     "Agência Petrobras",
-    "Click Petróleo e Gás",
-    "Petrobras",
-    "Equinor",
-    "Perenco",
-    "PRIO",
-    "TotalEnergies",
-    "Transpetro",
-    "ANP",
-    "Oferta Permanente",
-    "Bacalhau",
-    "Raia",
-    "FPSO"
+    "SLB",
+    "Baker Hughes",
+    "Weatherford",
+    "Tenaris",
+    "Expro",
+    "Confab",
+    "Apolo Tubulars",
+    "Jereh",
+    "Kerui",
+    "Inpasa",
+    "TAG",
+    "YPF",
+    "Vista Energy",
+    "Pan American Energy",
+    "Ecopetrol",
+    "Vaca Muerta",
+    "Guiana"
   ],
   "queries": [
     {
@@ -36,67 +42,72 @@
       "found": 0
     },
     {
+      "q": "Site oficial: PetroNotícias — não abriu",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: eixos (Petróleo e Gás) — não abriu",
+      "ch": "site",
+      "found": 0
+    },
+    {
       "q": "Site oficial: Agência Petrobras — não abriu",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Petrobras notícia 13 novembro 2026",
+      "q": "site:clickpetroleoegas.com.br petróleo gás 13 novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "site:clickpetroleoegas.com.br offshore petróleo novembro 2026",
+      "q": "SLB OR Baker Hughes OR Weatherford Brazil contract November 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "PRIO fato relevante comunicado novembro 2026",
+      "q": "Tenaris OR Confab OR Expro Brasil contrato novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "ANP notícia 13 novembro 2026 petróleo",
+      "q": "PetroNotícias 13 novembro 2026 petróleo",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Equinor Brasil Bacalhau Raia novembro 2026",
+      "q": "Weatherford Constellation managed pressure drilling subsea intervention Brazil contracts",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "TotalEnergies OR Perenco OR Transpetro Brasil notícia novembro 2026",
+      "q": "Jereh OR Kerui OR Apolo Tubulars OR Inpasa OR TAG Transportadora notícia novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "PetroNotícias petróleo gás 13 novembro 2026",
+      "q": "Vaca Muerta OR Ecopetrol OR Guyana oil news November 13 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "eixos petróleo gás Petrobras plataforma 13/11/2026",
+      "q": "Petrobras eixos notícia 13 de novembro de 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Petrobras Reuters November 13, 2026",
+      "q": "SLB OR Baker Hughes OR Tenaris Petrobras OR Brasil OR Argentina announcement this week",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "site:petronoticias.com.br Petrobras OR PRIO OR Equinor OR ANP novembro 2026",
+      "q": "YPF OR Vista OR Pan American Energy anuncio 12 noviembre 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "ANP oferta permanente OR leilão OR resolução 12 novembro 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Petrobras contrato sonda OR FPSO OR navios Transpetro esta semana novembro 2026",
+      "q": "clickpetroleoegas setor offshore Petrobras plataforma sonda contrato novembro 2026",
       "ch": "site",
       "found": 0
     }
