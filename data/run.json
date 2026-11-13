@@ -1,5 +1,5 @@
 {
-  "run_at": "2026-11-12T20:15:00-03:00",
+  "run_at": "2026-11-12T21:15:00-03:00",
   "searches": 12,
   "new_items": 0,
   "schedule": {
@@ -12,79 +12,78 @@
     "PetroNotícias",
     "Agência Petrobras",
     "Click Petróleo e Gás",
-    "SLB",
-    "Baker Hughes",
-    "Weatherford",
-    "Tenaris",
-    "Confab",
-    "Apolo Tubulars",
-    "Expro",
-    "Jereh",
-    "Kerui",
-    "Inpasa",
-    "TAG",
-    "Ecopetrol",
-    "Colômbia",
-    "Sondas"
+    "Carmo Energy",
+    "PetroReconcavo",
+    "Origem Energia",
+    "Mandacaru Energia",
+    "Seacrest Petróleo",
+    "PetroVictory",
+    "Alvopetro",
+    "Petroborn",
+    "Vipetro",
+    "Eneva",
+    "Bacia de Pelotas",
+    "Sondas onshore",
+    "Workover"
   ],
   "queries": [
     {
-      "q": "eixos petróleo e gás notícias 12 novembro 2026",
+      "q": "eixos petróleo gás notícias 12 novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "PetroNotícias novembro 2026",
+      "q": "PetroNotícias 12 de novembro de 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Agência Petrobras notícias 12/11/2026",
+      "q": "Agência Petrobras notícia novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Click Petróleo e Gás petróleo onshore novembro 2026",
+      "q": "Click Petróleo e Gás onshore poços novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "SLB Brazil contract November 2026",
+      "q": "Site: eixos (últimas notícias)",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Baker Hughes Weatherford Brazil Petrobras November 2026",
+      "q": "Site: PetroNotícias (últimas notícias)",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Tenaris Confab Apolo Tubulars Brasil novembro 2026",
+      "q": "Carmo Energy PetroReconcavo notícia novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Expro Jereh Kerui Brazil news November 2026",
+      "q": "Origem Energia Mandacaru Energia Alagoas Potiguar novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "TAG Transportadora Associada de Gás Inpasa novembro 2026",
+      "q": "Seacrest PetroVictory Alvopetro Petroborn Vipetro novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Ecopetrol resultados tercer trimestre 2026 12 noviembre",
+      "q": "Eneva Parnaíba poços gás notícia 12 novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Ecopetrol reportó utilidad neta tercer trimestre 2026 billones",
+      "q": "governo cria comitê avaliação ambiental bacia de Pelotas 18 meses",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "\"12 de novembro de 2026\" petróleo sonda poços",
+      "q": "sonda workover onshore Bahia Sergipe Rio Grande do Norte contrato novembro 2026",
       "ch": "site",
       "found": 0
     }
