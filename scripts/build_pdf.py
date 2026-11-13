@@ -93,7 +93,7 @@ ZH_MESSAGES = [
 ]
 TXT = {
     "en": {
-        "center": "← Center", "edition": "Daily edition", "tagline": "Oil &amp; gas intelligence",
+        "edition": "Daily edition", "tagline": "Oil &amp; gas intelligence",
         "sub": "Oil and gas news from Brazil and South America, ranked by what matters most to drilling, workover and tubular services.",
         "window": "Stories from {a} to {b} · updated {t} Brasília time",
         "k_new": "New stories", "k_new_y": "first time in a report", "k_new_n": "no new stories today",
@@ -113,7 +113,7 @@ TXT = {
         "footer": "Market Report", "page": "Page {p} of {t}", "doc_title": "Hilong Market Report {d}",
     },
     "zh": {
-        "center": "← 中心", "edition": "日报", "tagline": "油气市场资讯",
+        "edition": "日报", "tagline": "油气市场资讯",
         "sub": "巴西及南美洲油气新闻，按与钻井、修井和管材服务的相关程度排序。",
         "window": "收录 {a} 至 {b} 的新闻 · 更新于巴西利亚时间 {t}",
         "k_new": "新消息", "k_new_y": "首次出现在报告中", "k_new_n": "今日无新消息",
@@ -200,10 +200,6 @@ a { color: inherit; text-decoration: none; }
   text-transform: uppercase; font-weight: 600; position: relative; z-index: 1; }
 .brandrow .brand b { font-weight: 800; }
 .brandrow .brand span { opacity: .7; font-weight: 500; margin-left: 2.2mm; }
-.centro { font-family: "IBM Plex Mono", ui-monospace, monospace; font-weight: 500; font-size: 7.6pt; letter-spacing: 0;
-  text-transform: none; color: #58cfff; text-decoration: none; border: .6pt solid #58cfff; border-radius: 1mm; padding: 1.1mm 2.8mm;
-  margin-right: 4mm; }
-.brandrow .brand { margin-right: auto; }
 .edition { border: .8pt solid rgba(255,255,255,.45); border-radius: 20mm; padding: 1.1mm 3.6mm; font-size: 7.4pt; }
 .mast h1 { font-family: "Archivo", "Inter Display", "Inter", sans-serif; font-weight: 800; font-stretch: 72%; font-size: 58pt; line-height: .92;
   letter-spacing: -.01em; margin: 8mm 0 3.4mm; position: relative; z-index: 1; }
@@ -333,15 +329,7 @@ def font_css():
         b64 = base64.b64encode(f.read_bytes()).decode("ascii")
     except Exception:  # noqa: BLE001
         return ""
-    css = ""
-    mono = ROOT / "assets" / "fonts" / "ibm-plex-mono-latin-500.woff2"
-    try:
-        m64 = base64.b64encode(mono.read_bytes()).decode("ascii")
-        css = ('@font-face { font-family: "IBM Plex Mono"; font-style: normal; font-weight: 500; '
-               f'src: url(data:font/woff2;base64,{m64}) format("woff2"); }}\n')
-    except Exception:  # noqa: BLE001
-        pass
-    return css + ('@font-face { font-family: "Archivo"; font-style: normal; font-weight: 100 900; font-stretch: 62% 125%; '
+    return ('@font-face { font-family: "Archivo"; font-style: normal; font-weight: 100 900; font-stretch: 62% 125%; '
             f'src: url(data:font/woff2;base64,{b64}) format("woff2"); }}\n')
 
 
@@ -669,7 +657,7 @@ def build_html(args):
                    else f'<p style="margin:4mm 0;color:#55686E">{esc(tr("new_none", d=days))}</p>')
     body = f"""
 <header class="mast">
-  <div class="brandrow"><a class="centro" href="https://hilong.hilongbrazil.com/" target="_self">{tr("center")}</a><span class="brand"><b>Hilong</b> Brasil<span>{tr("tagline")}</span></span><span class="edition">{esc(edition)}</span></div>
+  <div class="brandrow"><span class="brand"><b>Hilong</b> Brasil<span>{tr("tagline")}</span></span><span class="edition">{esc(edition)}</span></div>
   <h1>Market Report<i>.</i></h1>
   <p class="sub">{tr("sub")}</p>
   <div class="dateline"><span><b>{esc(fmt_date(report_date, long=True))}</b></span><span>{esc(tr("window", a=fmt_date(start), b=fmt_date(report_date), t=f"{updated:%H:%M}"))}</span></div>
