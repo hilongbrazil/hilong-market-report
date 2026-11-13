@@ -31,6 +31,9 @@ a { color: inherit; }
 /* Top bar, shared by both pages */
 .top { background: var(--petrol-deep); color: #fff; }
 .top .wrap, .top .wide { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 22px; padding-top: 12px; padding-bottom: 12px; }
+.centro { font-family: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace; font-weight: 500; font-size: 13px; color: #58cfff;
+  text-decoration: none; border: 1px solid #58cfff; border-radius: 4px; padding: 5px 10px; line-height: 1; white-space: nowrap; }
+.centro:hover, .centro:focus-visible { background: rgba(88,207,255,.12); color: #8fdfff; }
 .brand { font-weight: 700; font-size: 16px; text-decoration: none; margin-right: auto; }
 .brand span { font-weight: 400; opacity: .8; margin-left: 8px; }
 .nav { display: inline-flex; gap: 4px; }
