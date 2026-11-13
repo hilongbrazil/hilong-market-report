@@ -1,7 +1,7 @@
 {
   "run_at": "2026-11-13T10:25:00-03:00",
-  "searches": 12,
-  "new_items": 0,
+  "searches": 22,
+  "new_items": 6,
   "schedule": {
     "type": "hourly",
     "from": "06:00",
@@ -83,6 +83,21 @@
       "q": "eixos: ANP gas release e reunião de diretoria",
       "ch": "site",
       "found": 0
+    },
+    {
+      "q": "Site oficial: Click Petróleo e Gás (categoria Petróleo e Gás)",
+      "ch": "site",
+      "found": 4
+    },
+    {
+      "q": "Site oficial: Click Petróleo e Gás (categoria Setor Offshore)",
+      "ch": "site",
+      "found": 1
+    },
+    {
+      "q": "site:clickpetroleoegas.com.br Petrobras Sergipe, Pelotas, Mero, Bahiagás, Eneva, BP",
+      "ch": "site",
+      "found": 1
     }
   ],
   "sites": [

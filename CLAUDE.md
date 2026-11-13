@@ -113,6 +113,12 @@ Se uma página mudar de endereço ou passar a abrir (ou a falhar) de forma está
 
 **América do Sul (depois do Brasil):** Argentina (YPF, Vista, Pan American Energy, Pluspetrol, Vaca Muerta), Colômbia (Ecopetrol), Guiana e Suriname (ExxonMobil, Staatsolie, TotalEnergies), Peru (Petroperú, Perupetro), Equador (Petroecuador), Bolívia (YPFB), Venezuela (PDVSA) e demais países quando houver fato relevante. Incluir também os fornecedores da lista quando a notícia for sobre a região.
 
+**Click Petróleo e Gás: visita obrigatória em toda varredura e rodada.** Abrir (WebFetch) as duas categorias e conferir tudo o que saiu desde a última atualização:
+- Petróleo e Gás: https://clickpetroleoegas.com.br/category/petroleo-oleo-e-gas/
+- Setor Offshore: https://clickpetroleoegas.com.br/category/setor-offshore/
+
+Cada página mostra 12 matérias; na varredura das 6h, se a 12ª ainda for posterior ao `updated_at`, buscar as anteriores com `site:clickpetroleoegas.com.br` e palavras do assunto. O WebFetch costuma recusar o link da matéria copiado da lista: buscar o título exato entre aspas (WebSearch) e abrir o link que a busca devolver. Ficam de fora vagas, concursos, cursos, eventos e matérias de outros setores. Registrar cada categoria no `run.json` como `q` = `Site oficial: Click Petróleo e Gás (categoria ...)`, `ch` = `site`.
+
 **Sites de referência:** eixos, Brasil Energia / PetróleoHoje, TN Petróleo, PetroNotícias, Agência Petrobras, sites de RI das companhias, Reuters, BNamericas, OilNOW, Ámbito, Rigzone, Offshore Engineer.
 
 **LinkedIn, Instagram e X:** para cada empresa da lista prioritária, buscar as publicações recentes do perfil oficial (por exemplo, "Carmo Energy LinkedIn", "PetroReconcavo Instagram"). Incluir somente publicação oficial da empresa, com data visível e link público que abre sem login. Marcar `via` como `linkedin`, `instagram` ou `x` e `source` com o nome da empresa. Não tentar fazer login nem contornar bloqueios. Se houver um conector de dados de redes sociais disponível na sessão, usar o conector. A leitura logada do LinkedIn é feita por uma tarefa separada (seção 1c); a varredura na nuvem não tenta entrar no LinkedIn.
@@ -123,7 +129,7 @@ Se uma página mudar de endereço ou passar a abrir (ou a falhar) de forma está
 
 Uma rodada curta, de no máximo 12 buscas, só para pegar o que saiu desde as últimas horas:
 
-1. Sempre: as notícias mais recentes de eixos, PetroNotícias, Agência Petrobras e Click Petróleo e Gás (canal `site`).
+1. Sempre: as notícias mais recentes de eixos, PetroNotícias, Agência Petrobras e as duas categorias do Click Petróleo e Gás, Petróleo e Gás e Setor Offshore (canal `site`; endereços e cuidados na seção 1).
 2. Um bloco da lista prioritária, conforme a hora da rodada (resto da divisão da hora por 3):
    - resto 0 (9h, 12h, 15h, 18h, 21h): onshore, empresas 1 a 11;
    - resto 1 (7h, 10h, 13h, 16h, 19h): offshore, empresas 12 a 17, e ANP (18);
