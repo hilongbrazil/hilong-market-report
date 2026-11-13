@@ -1,6 +1,40 @@
 {
-  "updated_at": "2026-11-13T06:30:00-03:00",
+  "updated_at": "2026-11-13T08:15:00-03:00",
   "items": [
+    {
+      "id": "2026-11-12-anp-jupiter-prazo-2030",
+      "date": "2026-11-12",
+      "region": "BR",
+      "country": "BR",
+      "operator": "Petrobras",
+      "category": "exploracao",
+      "environment": "offshore",
+      "relevance": 3,
+      "title_pt": "ANP dá à Petrobras até 2030 para avaliar a descoberta de Júpiter, no pré-sal",
+      "title_en": "ANP gives Petrobras until 2030 to evaluate the Júpiter pre-salt discovery",
+      "summary_pt": "A diretoria da ANP analisou em 9/11 o pedido de suspensão do plano de avaliação de Júpiter (BM-S-24, Bacia de Santos; Petrobras 80%, Petrogal 20%), que passa a ir até 2030. O prazo anterior para declarar comercialidade era 28/11/2026; o alto teor de CO₂ é o principal entrave.",
+      "summary_en": "ANP's board reviewed on Nov 9 the request to suspend the Júpiter appraisal plan (BM-S-24, Santos Basin; Petrobras 80%, Petrogal 20%), which now runs to 2030. The previous commerciality deadline was Nov 28, 2026; high CO₂ content is the main hurdle.",
+      "source": "Click Petróleo e Gás",
+      "url": "https://clickpetroleoegas.com.br/petrobras-ganha-tempo-ate-2030-para-avaliar-jupiter-no-pre-sal-e-aposta-em-tecnologia-que-separa-gas-rico-em-co%E2%82%82-do-petroleo-asaf04/",
+      "via": "site"
+    },
+    {
+      "id": "2026-11-12-ppsa-gyp-gas-vaca-muerta",
+      "date": "2026-11-12",
+      "region": "BR",
+      "country": "BR",
+      "operator": "PPSA",
+      "category": "outros",
+      "environment": "geral",
+      "relevance": 3,
+      "title_pt": "PPSA assina memorando com a argentina GyP para estudar gás de Vaca Muerta para a indústria brasileira",
+      "title_en": "PPSA signs MoU with Argentina's GyP to study Vaca Muerta gas supply to Brazilian industry",
+      "summary_pt": "A Pré-Sal Petróleo (PPSA) e a Gas y Petróleo del Neuquén assinaram em 10/11 um memorando para trocar informações e avaliar o fornecimento de gás de Vaca Muerta à indústria brasileira. Não é contrato de compra: não há volumes, preços, rota nem data de início definidos.",
+      "summary_en": "Pré-Sal Petróleo (PPSA) and Gas y Petróleo del Neuquén signed an MoU on Nov 10 to share information and assess supplying Vaca Muerta gas to Brazilian industry. It is not a sales contract: no volumes, prices, route or start date have been set.",
+      "source": "Click Petróleo e Gás",
+      "url": "https://clickpetroleoegas.com.br/brasil-negocia-receber-gas-de-vaca-muerta-e-assina-acordo-com-estatal-argentina-para-estudar-abastecimento-da-industria-nacional-asaf04/",
+      "via": "site"
+    },
     {
       "id": "2026-11-12-anp-retoma-revisao-tarifas-nts",
       "date": "2026-11-12",

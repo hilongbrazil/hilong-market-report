@@ -1,7 +1,7 @@
 {
-  "run_at": "2026-11-13T07:15:00-03:00",
-  "searches": 12,
-  "new_items": 0,
+  "run_at": "2026-11-13T08:15:00-03:00",
+  "searches": 11,
+  "new_items": 2,
   "schedule": {
     "type": "hourly",
     "from": "06:00",
@@ -12,75 +12,76 @@
     "PetroNotícias",
     "Agência Petrobras",
     "Click Petróleo e Gás",
-    "Petrobras",
-    "Equinor",
-    "Perenco",
-    "PRIO",
-    "TotalEnergies",
-    "Transpetro",
-    "ANP",
-    "Oferta Permanente",
-    "Sondas offshore",
-    "Bumerangue"
+    "SLB",
+    "Baker Hughes",
+    "Weatherford",
+    "Tenaris",
+    "Expro",
+    "Confab",
+    "Apolo Tubulars",
+    "Jereh",
+    "Kerui",
+    "Inpasa",
+    "TAG",
+    "Vaca Muerta",
+    "YPF",
+    "Ecopetrol",
+    "Júpiter",
+    "PPSA"
   ],
   "queries": [
     {
-      "q": "eixos petróleo gás notícias 13 novembro 2026",
+      "q": "eixos petróleo e gás notícias 13 novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "PetroNotícias Click Petróleo e Gás notícias hoje Petrobras",
+      "q": "PetroNotícias petróleo novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Agência Petrobras notícia novembro 2026",
+      "q": "Agência Petrobras notícia 12 novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Petrobras sonda contrato poço anuncia 12 novembro 2026",
+      "q": "Click Petróleo e Gás sondas onshore novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Petrobras anuncia 13 de novembro de 2026",
+      "q": "SLB OR Baker Hughes Brazil contract November 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Equinor Brasil Raia Bacalhau Peregrino novembro 2026",
+      "q": "Weatherford OR Expro Brazil Petrobras contract November 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "PRIO Peregrino Wahoo Frade notícia novembro 2026",
+      "q": "Tenaris Confab Brasil novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "ANP oferta permanente produção petróleo novembro 2026 notícia",
+      "q": "TAG Transportadora Associada de Gás OR Inpasa OR Jereh OR Kerui OR Apolo Tubulars novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Transpetro notícia novembro 2026",
+      "q": "Vaca Muerta YPF Ecopetrol petróleo noticias 13 noviembre 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "TotalEnergies Perenco Brazil offshore news November 2026",
+      "q": "Click Petróleo e Gás / PetroNotícias: petróleo gás novembro 2026",
       "ch": "site",
-      "found": 0
+      "found": 2
     },
     {
-      "q": "Petrobras news November 12 2026 offshore Brazil",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "PetroNotícias / Click Petróleo e Gás / Agência Petrobras: Petrobras Equinor PRIO ANP sonda poço novembro 2026",
+      "q": "Petrobras ANP petróleo notícias 12 de novembro de 2026",
       "ch": "site",
       "found": 0
     }
