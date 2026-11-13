@@ -36,6 +36,40 @@
       cats: { resultados: "Resultados", producao: "Produção", perfuracao: "Perfuração", investimentos: "Investimentos", contratos: "Contratos e licitações", regulatorio: "Regulatório", exploracao: "Exploração", mercado: "Mercado", fusoes: "Fusões e aquisições", outros: "Outros" },
       countries: { BR: "Brasil", AR: "Argentina", CO: "Colômbia", GY: "Guiana", SR: "Suriname", PE: "Peru", EC: "Equador", BO: "Bolívia", VE: "Venezuela", CL: "Chile", UY: "Uruguai", PY: "Paraguai", TT: "Trinidad e Tobago" }
     },
+    zh: {
+      mNew: "条新消息", mAll: "期间内", mSearch: "次搜索", focus: "海隆重点", supplier: "供应商", focusHint: "= 与海隆直接相关（钻机、修井、陆上作业者）",
+      meet: "认识李马西涛", aiNote: "李马西涛是由 AI 生成的虚拟人物。", close: "关闭",
+      navNews: "新闻", navLive: "实时面板", openLive: "打开实时面板", topT: "本周要闻",
+      sub: "巴西及南美洲作业者和油气行业公司的新闻。",
+      updated: "更新于",
+      all: "全部", BR: "巴西", SA: "南美洲",
+      operator: "公司", allOps: "全部公司",
+      category: "主题", allCats: "全部主题", allEnvs: "全部作业环境",
+      search: "搜索", searchPh: "按关键词搜索",
+      source: "来源", read: "查看原文", paywall: "需订阅",
+      emptyT: "没有符合筛选条件的新闻", emptyP: "请尝试其他公司、主题或关键词。", clear: "清除筛选",
+      errT: "无法加载新闻", errP: "请检查网络连接并刷新页面。", reload: "刷新",
+      foot: "摘要由海隆巴西根据所列来源撰写。打开每条新闻的链接可查看原文。",
+      sector: "行业",
+      latest: "最新", pause: "暂停", resume: "继续", clockTz: "巴西利亚",
+      spotT: "焦点", prev: "上一条", next: "下一条",
+      kpiT: "指标",
+      kStories: "期间内新闻", kCompanies: "涉及公司", kCountries: "国家", kSources: "参考来源",
+      topics: "最常见主题", companies: "提及最多的公司", countriesT: "国家",
+      envT: "作业环境", perDay: "每日新闻数", channels: "来源渠道",
+      agentT: "研究助手", lastScan: "最近一次扫描", nextScan: "距下次扫描",
+      ago: "{t}前", searchesL: "最近一次扫描的搜索次数", newL: "发现的新消息",
+      feedT: "助手活动", replayOf: "回放 {d} 扫描中的搜索",
+      scanDone: "扫描完成：{n} 次搜索，{m} 条新消息",
+      coverT: "最近一次扫描覆盖的公司和主题",
+      liveFoot: "时钟和倒计时为实时数据。显示的搜索是助手最近一次扫描的回放；新扫描完成后页面数据会自动更新。",
+      noData: "此视图中没有新闻。", story1: "条新闻", storyN: "条新闻", newShort: "条新",
+      envs: { onshore: "陆上", offshore: "海上", geral: "综合" },
+      chs: { site: "网站", linkedin: "LinkedIn", instagram: "Instagram", youtube: "YouTube", x: "X" },
+      chShort: { site: "网站", linkedin: "LinkedIn", instagram: "Instagram", youtube: "YouTube", x: "X" },
+      cats: { resultados: "业绩", producao: "产量", perfuracao: "钻井", investimentos: "投资", contratos: "合同与招标", regulatorio: "监管", exploracao: "勘探", mercado: "市场", fusoes: "并购", outros: "其他" },
+      countries: { BR: "巴西", AR: "阿根廷", CO: "哥伦比亚", GY: "圭亚那", SR: "苏里南", PE: "秘鲁", EC: "厄瓜多尔", BO: "玻利维亚", VE: "委内瑞拉", CL: "智利", UY: "乌拉圭", PY: "巴拉圭", TT: "特立尼达和多巴哥" }
+    },
     en: {
       mNew: "new stories", mAll: "in the period", mSearch: "searches", focus: "Hilong focus", supplier: "Supplier", focusHint: "= direct interest for Hilong (rigs, workover, onshore operators)",
       meet: "Meet Li Marcitão", aiNote: "Li Marcitão is an AI-generated virtual character.", close: "Close",
@@ -86,10 +120,11 @@
   var failed = false;
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  try {
-    var saved = localStorage.getItem("mr_lang_v2");
-    if (saved === "pt" || saved === "en") state.lang = saved;
-  } catch (e) { /* storage unavailable */ }
+  // O site abre sempre em inglês; ?lang=pt ou ?lang=zh abre em outro idioma, que vale só durante a visita.
+  (function () {
+    var q = new URLSearchParams(location.search).get("lang");
+    if (q === "pt" || q === "zh") state.lang = q;
+  })();
 
   function $(id) { return document.getElementById(id); }
   function el(tag, cls, text) {
@@ -99,7 +134,7 @@
     return n;
   }
   function t() { return T[state.lang]; }
-  function locale() { return state.lang === "pt" ? "pt-BR" : "en-GB"; }
+  function locale() { return { pt: "pt-BR", zh: "zh-CN" }[state.lang] || "en-GB"; }
   function parseDay(s) { var p = s.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]); }
   function isoDay(d) { return d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2); }
   function opName(o) { return o === "Setor" ? t().sector : o; }
@@ -119,7 +154,9 @@
     return data.items.filter(function (it) { return it.date >= cut; }).sort(byRank).slice(0, n);
   }
   function ext(a, url) { a.href = safeUrl(url); a.target = "_blank"; a.rel = "noopener noreferrer"; return a; }
-  function newsLink(key, value) { return NEWS_URL + "?" + key + "=" + encodeURIComponent(value); }
+  function newsLink(key, value) {
+    return NEWS_URL + "?" + key + "=" + encodeURIComponent(value) + (state.lang === "en" ? "" : "&lang=" + state.lang);
+  }
   function fmtStamp(iso, opts) {
     var o = opts || { day: "numeric", month: "long", year: "numeric", hour: "2-digit", minute: "2-digit" };
     o.timeZone = "America/Sao_Paulo";
@@ -151,7 +188,13 @@
 
   function renderCommon() {
     var L = t();
-    document.documentElement.lang = state.lang === "pt" ? "pt-BR" : "en";
+    document.documentElement.lang = { pt: "pt-BR", zh: "zh-CN" }[state.lang] || "en";
+    // links entre as páginas levam o idioma escolhido
+    Array.prototype.forEach.call(document.querySelectorAll('a[href^="index.html"], a[href^="live.html"]'), function (a) {
+      var u = new URL(a.getAttribute("href"), location.href);
+      if (state.lang === "en") u.searchParams.delete("lang"); else u.searchParams.set("lang", state.lang);
+      a.setAttribute("href", u.pathname.split("/").pop() + u.search);
+    });
     Array.prototype.forEach.call(document.querySelectorAll("[data-i18n]"), function (n) {
       n.textContent = L[n.getAttribute("data-i18n")];
     });
@@ -162,7 +205,11 @@
   Array.prototype.forEach.call(document.querySelectorAll(".lang button"), function (b) {
     b.addEventListener("click", function () {
       state.lang = b.getAttribute("data-lang");
-      try { localStorage.setItem("mr_lang_v2", state.lang); } catch (e) { /* ignore */ }
+      try {
+        var u = new URL(location.href);
+        if (state.lang === "en") u.searchParams.delete("lang"); else u.searchParams.set("lang", state.lang);
+        history.replaceState(null, "", u.pathname + u.search + u.hash);
+      } catch (e) { /* ignore */ }
       renderAll();
     });
   });
@@ -176,7 +223,7 @@
     if (state.env && envOf(it) !== state.env) return false;
     if (state.sup && SUPPLIERS.indexOf(it.operator) === -1) return false;
     if (state.q) {
-      var hay = norm([it.title_pt, it.title_en, it.summary_pt, it.summary_en, it.operator, it.source].join(" "));
+      var hay = norm([it.title_pt, it.title_en, it.title_zh, it.summary_pt, it.summary_en, it.summary_zh, it.operator, it.source].join(" "));
       if (hay.indexOf(norm(state.q)) === -1) return false;
     }
     return true;

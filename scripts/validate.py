@@ -16,8 +16,9 @@ VIA = {"site", "linkedin", "instagram", "x", "youtube"}
 ENVIRONMENTS = {"onshore", "offshore", "geral"}
 REQUIRED = [
     "id", "date", "region", "country", "operator", "category", "environment",
-    "title_pt", "title_en", "summary_pt", "summary_en", "source", "url", "via",
+    "title_pt", "title_en", "summary_pt", "summary_en", "title_zh", "summary_zh", "source", "url", "via",
 ]
+MAX_SUMMARY_ZH = 200
 MAX_SUMMARY = 320
 
 
@@ -66,6 +67,8 @@ def main() -> int:
         for key in ("summary_pt", "summary_en"):
             if len(it.get(key, "")) > MAX_SUMMARY:
                 errors.append(f"{tag}: {key} passa de {MAX_SUMMARY} caracteres")
+        if len(it.get("summary_zh", "")) > MAX_SUMMARY_ZH:
+            errors.append(f"{tag}: summary_zh passa de {MAX_SUMMARY_ZH} caracteres")
         if it.get("id") in ids:
             errors.append(f"{tag}: id duplicado")
         if it.get("url") in urls:

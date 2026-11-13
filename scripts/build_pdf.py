@@ -1,28 +1,25 @@
 #!/usr/bin/env python3
-"""Gera o PDF do Hilong Market Report (sempre em inglês) a partir de data/news.json.
+"""Gera o PDF do Hilong Market Report a partir de data/news.json, em inglês (padrão) ou em chinês (--lang zh).
 
 Uso:
   python3 scripts/build_pdf.py --out /caminho/Hilong-Market-Report-AAAA-MM-DD.pdf
+      [--lang en|zh]           idioma do PDF (zh usa title_zh/summary_zh e a fonte Noto Sans CJK)
       [--date AAAA-MM-DD|today] data da edição (padrão: data de updated_at; "today" = hoje em Brasília)
-      [--days 7]               janela de notícias incluídas no relatório
+      [--days 15]              janela do relatório, em dias corridos, contando o dia da edição
       [--base-ref HEAD|auto]   ref do git anterior à varredura: garante que as notícias recém-incluídas entrem
                                no relatório mesmo com data de publicação fora da janela. "auto" = último commit
                                que gravou data/reports.json (o envio anterior), usado pela tarefa das 8h
       [--check-scan]           avisa no e-mail se a varredura do dia ainda não tinha terminado
-      [--record]               registra a edição em data/reports.json (só no envio real)
+      [--record]               registra a edição em data/reports.json (só no envio real, uma vez por dia)
+      [--message "..."] [--message-zh "..."]  mensagem positiva do dia (padrão: escolhida pela data)
+      [--email-html arquivo] [--email-text arquivo]  corpo do e-mail: aviso curto, em inglês e chinês,
+                               de que o relatório chegou e qual o período avaliado
+      [--email-langs en,zh]    relatórios anexados citados no corpo do e-mail
+      [--alert "..."]          aviso na primeira linha do e-mail (ex.: falha no push)
+      [--brief arquivo.md] [--analysis arquivo.json]  análise do agente (desligada desde 13/11/2026)
 
 Notícia nova (NEW) é a que ainda não saiu em nenhum relatório registrado em data/reports.json; as novas vêm
-primeiro. Uma mesma notícia aparece em no máximo dois relatórios.
-      [--edition "Daily edition"]
-      [--message "..."]        mensagem positiva do dia (padrão: escolhida pela data)
-      [--email-html arquivo]   grava o corpo do e-mail em HTML (10 principais + assinatura)
-      [--email-text arquivo]   grava o mesmo corpo em texto simples
-      [--alert "..."]          aviso na primeira linha do e-mail (ex.: falha no push)
-      [--brief arquivo.md]     grava a lista das notícias do relatório (na ordem do PDF) para o agente escrever
-                               a análise; sem --out, só grava o briefing e sai (não gera PDF nem registra)
-      [--analysis arquivo.json] análise do agente, impressa no topo do PDF (logo abaixo do título):
-                               {"headline": "...", "points": ["...", ...], "hilong": "..."}
-
+primeiro, na seção do topo. O histórico mostra todas as notícias da janela, sem limite de edições.
 Requer o Playwright com Chromium (já instalado no ambiente da rotina).
 """
 import argparse
@@ -69,6 +66,114 @@ MESSAGES = [
     "Wishing you a day of good meetings, safe work and deals that move forward.",
     "Start strong, stay safe, finish proud. Have a wonderful day.",
 ]
+
+# ---------- Idioma do PDF (--lang en|zh) ----------
+LANG = "en"
+ZH_CATEGORY = {"resultados": "业绩", "producao": "产量", "perfuracao": "钻井", "investimentos": "投资", "contratos": "合同",
+               "regulatorio": "监管", "exploracao": "勘探", "mercado": "市场", "fusoes": "并购", "outros": "其他"}
+ZH_ENVIRONMENT = {"onshore": "陆上", "offshore": "海上", "geral": "综合"}
+ZH_COUNTRY = {"BR": "巴西", "AR": "阿根廷", "CO": "哥伦比亚", "GY": "圭亚那", "SR": "苏里南", "PE": "秘鲁", "EC": "厄瓜多尔",
+              "BO": "玻利维亚", "VE": "委内瑞拉", "CL": "智利", "UY": "乌拉圭", "PY": "巴拉圭", "TT": "特立尼达和多巴哥"}
+ZH_RELEVANCE = {5: "直接相关", 4: "高", 3: "中", 2: "区域", 1: "背景"}
+ZH_MESSAGES = [
+    "祝您今天安全、高效。好的决策源于好的信息。",
+    "祝您今天稳步前行：一口井、一份合同、一次愉快的交流。",
+    "愿今天数据清晰、井场天气晴好、订单饱满。",
+    "祝您和整个团队今天顺利。安全第一，成果随后。",
+    "祝您今天愉快。市场总是青睐有准备的人。",
+    "愿您今天精力充沛，收获好消息。",
+    "祝今天作业顺利，井下没有意外。",
+    "祝您今天顺利。报告中的每一个机会，都始于一条新闻。",
+    "祝您今天充满信心：钻机在转，市场也在动。",
+    "祝您和团队今天平静、专注、成功。",
+    "愿您的一天像一台运转良好的钻机一样可靠。",
+    "祝您今天顺心。在这个行业，耐心和准备依然胜过运气。",
+    "祝您今天会谈顺利、作业安全、项目推进。",
+    "开局有力，安全第一，圆满收官。祝您今天愉快。",
+]
+TXT = {
+    "en": {
+        "edition": "Daily edition", "tagline": "Oil &amp; gas intelligence",
+        "sub": "Oil and gas news from Brazil and South America, ranked by what matters most to drilling, workover and tubular services.",
+        "window": "Stories from {a} to {b} · updated {t} Brasília time",
+        "k_new": "New stories", "k_new_y": "first time in a report", "k_new_n": "no new stories today",
+        "k_br": "Brazil", "k_sa": "South America", "k_n_new": "{n} new", "k_in": "stories in the report",
+        "k_search": "Searches run", "k_search_n": "sites, social networks and YouTube",
+        "new_h": "New in this report", "new_hint": "Highest relevance first · Brazil before South America",
+        "new_none": "No new stories since the last report. The full {d}-day history follows.",
+        "br_h": "Brazil", "sa_h": "South America", "hist_hint": "{n} stories · last {d} days · new first",
+        "g_on": "Onshore operators", "g_off": "Offshore operators and ANP", "g_sup": "Suppliers",
+        "g_other": "Sector, regulation and other companies",
+        "cov_h": "Coverage by company", "cov_hint": "Priority list · stories in the last {d} days",
+        "cov_off": "Offshore and ANP", "nonews": "No confirmed news in this window",
+        "story1": "story", "storyN": "stories", "new": "NEW", "focus": "Hilong focus", "supplier": "Supplier",
+        "source": "Source:", "pay": "(subscription required)", "n_new": "{n} new", "sector": "Sector",
+        "who": "Market news agent, Hilong Brasil",
+        "method": "Relevance runs from 5 (direct interest to Hilong in Brazil: land drilling and workover rigs, OCTG, sucker rods, downhole tools and the onshore operators on the priority list) to 1 (general market context). Every story carries a confirmed publication date and a public source link; titles and summaries are written for this report. Stories marked HILONG FOCUS have relevance 5. Stories marked NEW appear in a report for the first time and are listed first; the report covers the last {d} days.",
+        "footer": "Market Report", "page": "Page {p} of {t}", "doc_title": "Hilong Market Report {d}",
+    },
+    "zh": {
+        "edition": "日报", "tagline": "油气市场资讯",
+        "sub": "巴西及南美洲油气新闻，按与钻井、修井和管材服务的相关程度排序。",
+        "window": "收录 {a} 至 {b} 的新闻 · 更新于巴西利亚时间 {t}",
+        "k_new": "新消息", "k_new_y": "首次出现在报告中", "k_new_n": "今日无新消息",
+        "k_br": "巴西", "k_sa": "南美洲", "k_n_new": "新增 {n} 条", "k_in": "报告中的新闻",
+        "k_search": "搜索次数", "k_search_n": "网站、社交媒体和 YouTube",
+        "new_h": "本期新消息", "new_hint": "相关度高者在前 · 巴西在南美洲之前",
+        "new_none": "自上期报告以来没有新消息。以下为近 {d} 天的完整记录。",
+        "br_h": "巴西", "sa_h": "南美洲", "hist_hint": "{n} 条新闻 · 近 {d} 天 · 新消息在前",
+        "g_on": "陆上作业者", "g_off": "海上作业者和 ANP", "g_sup": "供应商",
+        "g_other": "行业、监管及其他公司",
+        "cov_h": "按公司统计", "cov_hint": "重点名单 · 近 {d} 天的新闻",
+        "cov_off": "海上和 ANP", "nonews": "本期间内没有已确认的新闻",
+        "story1": "条", "storyN": "条", "new": "新", "focus": "海隆重点", "supplier": "供应商",
+        "source": "来源：", "pay": "（需订阅）", "n_new": "新增 {n}", "sector": "行业",
+        "who": "市场新闻助手，海隆巴西",
+        "method": "相关度从 5（与海隆在巴西的业务直接相关：陆上钻井和修井钻机、OCTG、抽油杆、井下工具以及重点名单中的陆上作业者）到 1（一般市场背景）。每条新闻均有确认的发布日期和公开的来源链接；标题和摘要为本报告撰写。标有“海隆重点”的新闻相关度为 5。标有“新”的新闻首次出现在报告中并排在最前；本报告涵盖近 {d} 天的新闻。",
+        "footer": "市场报告", "page": "第 {p} 页，共 {t} 页", "doc_title": "海隆市场报告 {d}",
+    },
+}
+
+
+def tr(key, **kw):
+    text = TXT[LANG][key]
+    return text.format(**kw) if kw else text
+
+
+def cat_name(k):
+    return (ZH_CATEGORY if LANG == "zh" else CATEGORY).get(k, k)
+
+
+def env_name(k):
+    return (ZH_ENVIRONMENT if LANG == "zh" else ENVIRONMENT).get(k, k)
+
+
+def country_name(k):
+    return (ZH_COUNTRY if LANG == "zh" else COUNTRY).get(k, k)
+
+
+def rel_name(n):
+    return (ZH_RELEVANCE if LANG == "zh" else RELEVANCE)[n]
+
+
+def ttl(it):
+    return (it.get("title_zh") if LANG == "zh" else None) or it["title_en"]
+
+
+def smr(it):
+    return (it.get("summary_zh") if LANG == "zh" else None) or it["summary_en"]
+
+
+def n_stories(n):
+    return f"{n} {tr('story1') if n == 1 else tr('storyN')}"
+
+
+CSS_ZH = """
+body, .mast h1, .sec-h h2, .kpi .value, .top .n, .avatar, .sign .msg, .analysis h2 {
+  font-family: "Archivo", "Noto Sans CJK SC", "Noto Sans SC", "Source Han Sans SC", "PingFang SC", sans-serif; }
+.story h3, .top .t { line-height: 1.38; }
+.tag, .group-h, .kpi .label, .cov h4 { letter-spacing: .02em; }
+"""
 
 CSS = r"""
 @page { size: A4; margin: 15mm 0 17mm 0; }
@@ -262,17 +367,19 @@ def esc(text):
 
 def fmt_date(iso, long=False):
     d = dt.date.fromisoformat(iso)
+    if LANG == "zh":
+        base = f"{d.year}年{d.month}月{d.day}日"
+        return base + " " + "星期" + "一二三四五六日"[d.weekday()] if long else base
     if long:
         return f"{d:%A}, {d.day} {d:%B %Y}"
     return f"{d.day} {d:%b %Y}"
 
 
 def op_name(item):
-    return "Sector" if item["operator"] == "Setor" else item["operator"]
+    return tr("sector") if item["operator"] == "Setor" else item["operator"]
 
 
 NEW_IDS = set()      # notícias que ainda não saíram em nenhum relatório; preenchido em build_html
-MAX_REPORTS = 2      # uma mesma notícia aparece em no máximo dois relatórios
 LOG = ROOT / "data" / "reports.json"
 
 
@@ -347,25 +454,26 @@ def is_focus(item):
     return item.get("relevance") == 5
 
 
-FOCUS_TAG = '<span class="focus-tag">Hilong focus</span>'
+def focus_tag():
+    return f'<span class="focus-tag">{tr("focus")}</span>'
 
 
 def env_tags(item):
     """Etiquetas coloridas: fornecedor e ambiente (onshore/offshore); "geral" não leva etiqueta."""
     out = ""
     if item["operator"] in SUPPLIERS:
-        out += '<span class="tag supplier">Supplier</span>'
+        out += f'<span class="tag supplier">{tr("supplier")}</span>'
     env = item.get("environment")
     if env in ("onshore", "offshore"):
-        out += f'<span class="tag {env}">{esc(ENVIRONMENT[env])}</span>'
+        out += f'<span class="tag {env}">{esc(env_name(env))}</span>'
     return out
 
 
 def story_html(item, new_ids):
-    new = '<span class="new">NEW</span>' if item["id"] in new_ids else ""
-    focus = FOCUS_TAG if is_focus(item) else ""
-    place = COUNTRY.get(item["country"], item["country"])
-    pay = ' <span class="pay">(subscription required)</span>' if item.get("access") == "paywall" else ""
+    new = f'<span class="new">{tr("new")}</span>' if item["id"] in new_ids else ""
+    focus = focus_tag() if is_focus(item) else ""
+    place = country_name(item["country"])
+    pay = f' <span class="pay">{tr("pay")}</span>' if item.get("access") == "paywall" else ""
     return f"""
 <article class="story{" focus" if focus else ""}">
   <div class="rail">
@@ -374,13 +482,13 @@ def story_html(item, new_ids):
     {rel_html(item["relevance"])}
   </div>
   <div>
-    <h3>{esc(item["title_en"])}{new}{focus}</h3>
-    <p>{esc(item["summary_en"])}</p>
+    <h3>{esc(ttl(item))}{new}{focus}</h3>
+    <p>{esc(smr(item))}</p>
     <div class="tags">
       <span><span class="dot {item["region"]}"></span>{esc(place)}</span>
       {env_tags(item)}
-      <span class="tag">{esc(CATEGORY.get(item["category"], item["category"]))}</span>
-      <span class="src-wrap" style="margin-left:auto">Source: <a class="src" href="{esc(item["url"])}">{esc(item["source"])}</a>{pay}</span>
+      <span class="tag">{esc(cat_name(item["category"]))}</span>
+      <span class="src-wrap" style="margin-left:auto">{tr("source")} <a class="src" href="{esc(item["url"])}">{esc(item["source"])}</a>{pay}</span>
     </div>
   </div>
 </article>"""
@@ -392,7 +500,7 @@ def group_html(title, items, new_ids):
     items = sorted(items, key=rank_key)
     n = len(items)
     body = "".join(story_html(i, new_ids) for i in items)
-    return f'<div class="group-h">{esc(title)}<span class="count">{n} {"story" if n == 1 else "stories"}</span></div>{body}'
+    return f'<div class="group-h">{esc(title)}<span class="count">{n_stories(n)}</span></div>{body}'
 
 
 def coverage_html(title, names, counts, new_counts, scale):
@@ -401,73 +509,33 @@ def coverage_html(title, names, counts, new_counts, scale):
         c = counts.get(name, 0)
         nn = new_counts.get(name, 0)
         width = f"{100 * c / scale:.0f}%" if c else "0"
-        note = f"{nn} new" if nn else ""
+        note = tr("n_new", n=nn) if nn else ""
         bar = f'<span class="bar" style="width:{width}"></span>' if c else ""
         rows.append(f'<tr class="{"" if c else "zero"}"><td>{esc(name)}</td><td class="b">{bar}</td>'
                     f'<td class="c">{c if c else "–"}</td><td class="nn">{note}</td></tr>')
     return f"<div><h4>{esc(title)}</h4><table>{''.join(rows)}</table></div>"
 
 
-def email_bodies(report_date, days, top, new_ids, br_new, sa_new, n_items, message, alert):
-    """Corpo do e-mail diário: as principais notícias na mesma ordem do PDF, sem links, e a assinatura do Li Marcitão.
+def email_bodies(start, report_date, alert, attached=("en", "zh")):
+    """Corpo do e-mail diário: só avisa que o relatório chegou e o período avaliado (inglês e chinês).
 
-    Usa só estilos inline e atributos de tabela: o conector do Gmail remove blocos <style> e atributos class.
+    Usa só estilos inline e atributos de tabela (o conector do Gmail, usado como reserva, remove <style> e class).
     """
-    n_new = br_new + sa_new
-    if new_ids:
-        lead = f"{n_new} new {'story' if n_new == 1 else 'stories'} today: {br_new} in Brazil and {sa_new} in South America."
-        intro = (f"Here {'is the top story' if len(top) == 1 else f'are the top {len(top)}'}, new stories first. "
-                 f"The full report ({n_items} {'story' if n_items == 1 else 'stories'}) is attached as a PDF.")
-    elif top:
-        lead = "No new stories today."
-        intro = (f"The {len(top)} below {'is' if len(top) == 1 else 'are'} carried over from the previous report for the last time. "
-                 "The full report is attached as a PDF.")
-    else:
-        lead = "No stories for today's report."
-        intro = ("Nothing new was found, and earlier stories have already appeared in two reports. "
-                 "The coverage summary is attached as a PDF.")
-    long_date = fmt_date(report_date, long=True)
-    ff = "font-family:Arial,Helvetica,sans-serif"
-    rows, text_rows = "", []
-    for n, i in enumerate(top, 1):
-        place = COUNTRY.get(i["country"], i["country"])
-        is_new = i["id"] in new_ids
-        # o conector remove a propriedade background; o selo NEW vai só com cor de texto
-        chip = ' &nbsp;<span style="color:#B45F00;font-size:11px;font-weight:bold">&#9679; NEW</span>' if is_new else ""
-        if is_focus(i):
-            chip += ' &nbsp;<span style="color:#0C4650;font-size:11px;font-weight:bold">&#9679; HILONG FOCUS</span>'
-        rows += (
-            f'<tr><td width="46" valign="top" style="{ff};padding:18px 0;border-bottom:1px solid #DDE5E6;font-size:24px;'
-            f'font-weight:bold;color:#0C4650">{n:02d}</td>'
-            f'<td valign="top" style="{ff};padding:18px 0;border-bottom:1px solid #DDE5E6">'
-            f'<div style="font-size:11px;font-weight:bold;letter-spacing:1px;color:#0C4650">{esc(op_name(i).upper())}'
-            f' &nbsp;&middot;&nbsp; {esc(place.upper())}{chip}</div>'
-            f'<div style="font-size:17px;line-height:23px;font-weight:bold;color:#13262B;padding-top:5px">{esc(i["title_en"])}</div>'
-            f'<div style="font-size:14px;line-height:21px;color:#44575C;padding-top:5px">{esc(i["summary_en"])}</div></td></tr>\n')
-        text_rows.append(f'{n}. {op_name(i).upper()} - {place}{" - NEW" if is_new else ""}{" - HILONG FOCUS" if is_focus(i) else ""}\n{i["title_en"]}\n{i["summary_en"]}')
-    alert_html = (f'<tr><td bgcolor="#FFF4CC" style="{ff};padding:12px 16px;font-size:14px;color:#13262B;'
-                  f'border-left:4px solid #F2B705">{esc(alert)}</td></tr><tr><td height="16"></td></tr>\n') if alert else ""
-    top_block = (f'<tr><td style="padding:8px 32px 0"><table width="100%" cellpadding="0" cellspacing="0">\n{rows}</table></td></tr>\n'
-                 if top else "")
-    html_body = f"""<table width="100%" cellpadding="0" cellspacing="0" bgcolor="#EDF1F1"><tr><td align="center" style="padding:24px 10px">
-<table width="620" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" style="max-width:620px;width:100%">
-<tr><td bgcolor="#082F36" style="{ff};padding:30px 32px 28px">
-<div style="font-size:11px;font-weight:bold;letter-spacing:2px;color:#9FB4B7">HILONG BRASIL</div>
-<div style="font-size:36px;line-height:40px;font-weight:bold;color:#FFFFFF;padding-top:10px">Market Report<span style="color:#F2B705">.</span></div>
-<div style="font-size:14px;color:#D5DFE0;padding-top:8px">{esc(long_date)}</div></td></tr>
-<tr><td style="padding:26px 32px 6px"><table width="100%" cellpadding="0" cellspacing="0">
-{alert_html}<tr><td style="{ff};font-size:18px;line-height:26px;font-weight:bold;color:#13262B">{esc(lead)}</td></tr>
-<tr><td style="{ff};font-size:14px;line-height:21px;color:#55686E;padding-top:6px">{esc(intro)}</td></tr></table></td></tr>
-{top_block}<tr><td style="padding:26px 32px 30px"><table width="100%" cellpadding="0" cellspacing="0"><tr><td bgcolor="#082F36" style="{ff};padding:22px 24px">
-<div style="font-size:17px;line-height:25px;font-weight:bold;color:#FFFFFF">{esc(message)}</div>
-<div style="font-size:13px;color:#D5DFE0;padding-top:10px"><b style="color:#FFFFFF">Li Marcit&atilde;o</b> &nbsp;&middot;&nbsp; Hilong Brasil</div>
-</td></tr></table></td></tr>
-</table></td></tr></table>"""
-    text_body = "\n".join(
-        ([alert, ""] if alert else [])
-        + [f"HILONG MARKET REPORT - {long_date}", "", lead, intro, ""]
-        + (["\n\n".join(text_rows), ""] if top else [])
-        + [message, "", "Li Marcitão", "Hilong Brasil"])
+    d = lambda iso: dt.date.fromisoformat(iso)
+    a, b = d(start), d(report_date)
+    en_period = f"{a.day} {a:%B %Y} to {b.day} {b:%B %Y}"
+    zh_period = f"{a.year}年{a.month}月{a.day}日至{b.year}年{b.month}月{b.day}日"
+    en = (f"Your daily Hilong Market Report has arrived. Period covered: {en_period}. "
+          + ("The report is attached in English and in Chinese." if "zh" in attached else "The report is attached."))
+    zh = (f"您的海隆市场日报已送达。报告期间：{zh_period}。"
+          + ("附件为英文版和中文版报告。" if "zh" in attached else "附件为报告。"))
+    ff = "font-family:Arial,Helvetica,'PingFang SC','Microsoft YaHei',sans-serif"
+    alert_html = (f'<p style="{ff};margin:0 0 14px;padding:10px 14px;font-size:14px;color:#13262B;border-left:4px solid #F2B705">'
+                  f'{esc(alert)}</p>') if alert else ""
+    html_body = (f'<div style="{ff};font-size:15px;line-height:23px;color:#13262B">{alert_html}'
+                 f'<p style="margin:0 0 10px">{esc(en)}</p><p style="margin:0 0 18px">{esc(zh)}</p>'
+                 f'<p style="margin:0;color:#55686E;font-size:13px">Li Marcit&atilde;o &middot; Hilong Brasil</p></div>')
+    text_body = "\n".join(([alert, ""] if alert else []) + [en, "", zh, "", "Li Marcitão · Hilong Brasil"])
     return html_body, text_body
 
 
@@ -485,7 +553,8 @@ def build_html(args):
         res = subprocess.run(["git", "-C", str(ROOT), "log", "-1", "--format=%H", "--", "data/reports.json"],
                              capture_output=True, text=True)
         args.base_ref = res.stdout.strip() or "HEAD"
-    start = (dt.date.fromisoformat(report_date) - dt.timedelta(days=args.days)).isoformat()
+    # janela de --days dias corridos, contando o dia do relatório (15 dias: de D-14 a D)
+    start = (dt.date.fromisoformat(report_date) - dt.timedelta(days=args.days - 1)).isoformat()
     new_ids = set()
     if args.base_ref:
         res = subprocess.run(["git", "-C", str(ROOT), "show", f"{args.base_ref}:data/news.json"],
@@ -495,18 +564,16 @@ def build_html(args):
             new_ids = {i["id"] for i in news["items"] if i["id"] not in old}
     # candidatas: as notícias da janela e todas as que entraram nesta edição, mesmo com data de publicação anterior
     candidates = [i for i in news["items"] if start <= i["date"] <= report_date or i["id"] in new_ids]
-    # quantas edições anteriores já trouxeram cada notícia (edições com data anterior à deste relatório)
-    seen = {}
+    # nova = nunca saiu em um relatório anterior (edições com data anterior à deste relatório)
+    seen = set()
     for rep in load_log():
         if rep["date"] < report_date:
-            for sid in set(rep["ids"]):
-                seen[sid] = seen.get(sid, 0) + 1
-    # nova = nunca saiu em relatório; cada notícia sai em no máximo MAX_REPORTS relatórios
-    items = [i for i in candidates if seen.get(i["id"], 0) < MAX_REPORTS]
-    new_ids = {i["id"] for i in items if seen.get(i["id"], 0) == 0}
+            seen.update(rep["ids"])
+    items = candidates
+    new_ids = {i["id"] for i in items if i["id"] not in seen}
     NEW_IDS.clear()
     NEW_IDS.update(new_ids)
-    new_items = [i for i in items if i["id"] in new_ids]
+    new_items = sorted([i for i in items if i["id"] in new_ids], key=rank_key)
 
     br = [i for i in items if i["region"] == "BR"]
     sa = [i for i in items if i["region"] == "SA"]
@@ -522,33 +589,35 @@ def build_html(args):
             avatar = f'<img src="{uri}" alt="">'
     except Exception:  # noqa: BLE001
         pass
-    message = args.message or MESSAGES[dt.date.fromisoformat(report_date).toordinal() % len(MESSAGES)]
+    idx = dt.date.fromisoformat(report_date).toordinal()
+    if LANG == "zh":
+        message = args.message_zh or ZH_MESSAGES[idx % len(ZH_MESSAGES)]
+    else:
+        message = args.message or MESSAGES[idx % len(MESSAGES)]
 
     kpis = [
-        ("New stories", len(new_items), "first time in a report" if new_ids else "no new stories today"),
-        ("Brazil", len(br), f"{br_new} new" if new_ids else "stories in the report"),
-        ("South America", len(sa), f"{sa_new} new" if new_ids else "stories in the report"),
-        ("Searches run", run.get("searches", 0), "sites, social networks and YouTube"),
+        (tr("k_new"), len(new_items), tr("k_new_y") if new_ids else tr("k_new_n")),
+        (tr("k_br"), len(br), tr("k_n_new", n=br_new) if new_ids else tr("k_in")),
+        (tr("k_sa"), len(sa), tr("k_n_new", n=sa_new) if new_ids else tr("k_in")),
+        (tr("k_search"), run.get("searches", 0), tr("k_search_n")),
     ]
     kpi_html = "".join(f'<div class="kpi"><div class="label">{esc(a)}</div><div class="value">{b}</div>'
                        f'<div class="note">{esc(c)}</div></div>' for a, b, c in kpis)
 
-    # Top 10
-    top = sorted(items, key=rank_key)[:10]
+    # New in this report (all new stories, at the top)
     top_html = ""
-    for n, i in enumerate(top, 1):
-        new = '<span class="new">NEW</span>' if i["id"] in new_ids else ""
-        pay = " (subscription required)" if i.get("access") == "paywall" else ""
-        focus = FOCUS_TAG if is_focus(i) else ""
+    for n, i in enumerate(new_items, 1):
+        pay = " " + tr("pay") if i.get("access") == "paywall" else ""
+        focus = focus_tag() if is_focus(i) else ""
         top_html += f"""
 <li class="{'focus' if focus else ''}">
   <div class="n">{n:02d}</div>
   <div>
-    <div class="t">{esc(i["title_en"])}{new}{focus}</div>
-    <div class="m"><span class="dot {i["region"]}"></span><b>{esc(op_name(i))}</b> · {esc(COUNTRY.get(i["country"], i["country"]))} ·
-      {esc(fmt_date(i["date"]))} · {esc(CATEGORY.get(i["category"], ""))} · <a class="src" href="{esc(i["url"])}">{esc(i["source"])}</a>{pay}</div>
+    <div class="t">{esc(ttl(i))}{focus}</div>
+    <div class="m"><span class="dot {i["region"]}"></span><b>{esc(op_name(i))}</b> · {esc(country_name(i["country"]))} ·
+      {esc(fmt_date(i["date"]))} · {esc(cat_name(i["category"]))} · <a class="src" href="{esc(i["url"])}">{esc(i["source"])}</a>{pay}</div>
   </div>
-  <div class="r">{rel_html(i["relevance"], label=False)}<span class="lvl">{esc(RELEVANCE[i["relevance"]])}</span></div>
+  <div class="r">{rel_html(i["relevance"], label=False)}<span class="lvl">{esc(rel_name(i["relevance"]))}</span></div>
 </li>"""
 
     # Full report: Brazil
@@ -556,14 +625,14 @@ def build_html(args):
         return [i for i in br if i["operator"] in names]
     listed = set(ONSHORE + OFFSHORE + SUPPLIERS)
     brazil_html = (
-        group_html("Onshore operators", pick(ONSHORE), new_ids)
-        + group_html("Offshore operators and ANP", pick(OFFSHORE), new_ids)
-        + group_html("Suppliers", pick(SUPPLIERS), new_ids)
-        + group_html("Sector, regulation and other companies", [i for i in br if i["operator"] not in listed], new_ids)
+        group_html(tr("g_on"), pick(ONSHORE), new_ids)
+        + group_html(tr("g_off"), pick(OFFSHORE), new_ids)
+        + group_html(tr("g_sup"), pick(SUPPLIERS), new_ids)
+        + group_html(tr("g_other"), [i for i in br if i["operator"] not in listed], new_ids)
     )
     # Full report: South America
     codes = COUNTRY_ORDER + sorted({i["country"] for i in sa} - set(COUNTRY_ORDER))
-    sa_html = "".join(group_html(COUNTRY.get(c, c), [i for i in sa if i["country"] == c], new_ids) for c in codes)
+    sa_html = "".join(group_html(country_name(c), [i for i in sa if i["country"] == c], new_ids) for c in codes)
 
     # Coverage
     counts, new_counts = {}, {}
@@ -572,44 +641,47 @@ def build_html(args):
         if i["id"] in new_ids:
             new_counts[i["operator"]] = new_counts.get(i["operator"], 0) + 1
     scale = max([counts.get(n, 0) for n in listed] + [1])
-    cov_html = (coverage_html("Onshore operators", ONSHORE, counts, new_counts, scale)
-                + coverage_html("Offshore and ANP", OFFSHORE, counts, new_counts, scale)
-                + coverage_html("Suppliers", SUPPLIERS, counts, new_counts, scale))
+    cov_html = (coverage_html(tr("g_on"), ONSHORE, counts, new_counts, scale)
+                + coverage_html(tr("cov_off"), OFFSHORE, counts, new_counts, scale)
+                + coverage_html(tr("g_sup"), SUPPLIERS, counts, new_counts, scale))
     missing = [n for n in ONSHORE + OFFSHORE + SUPPLIERS if not counts.get(n)]
-    extra = ""
-    nonews = (f'<div class="nonews"><b>No confirmed news in this window</b>{esc(", ".join(missing))}.{esc(extra)}</div>'
+    sep = "、" if LANG == "zh" else ", "
+    nonews = (f'<div class="nonews"><b>{tr("nonews")}</b>{esc(sep.join(missing))}{"。" if LANG == "zh" else "."}</div>'
               if missing else "")
 
+    # A análise do agente só entra se --analysis for passado (desligada desde 13/11/2026).
     analysis_block = analysis_html(load_analysis(args.analysis), len(items), len(new_items))
-    window = f"{fmt_date(start)} to {fmt_date(report_date)}"
+    edition = args.edition or tr("edition")
+    days = args.days
+    new_section = (f'<ol class="top">{top_html}</ol>' if new_items
+                   else f'<p style="margin:4mm 0;color:#55686E">{esc(tr("new_none", d=days))}</p>')
     body = f"""
 <header class="mast">
-  <div class="brandrow"><span class="brand"><b>Hilong</b> Brasil<span>Oil &amp; gas intelligence</span></span><span class="edition">{esc(args.edition)}</span></div>
+  <div class="brandrow"><span class="brand"><b>Hilong</b> Brasil<span>{tr("tagline")}</span></span><span class="edition">{esc(edition)}</span></div>
   <h1>Market Report<i>.</i></h1>
-  <p class="sub">Oil and gas news from Brazil and South America, ranked by what matters most to drilling, workover and tubular services.</p>
-  <div class="dateline"><span><b>{esc(fmt_date(report_date, long=True))}</b></span><span>Stories from {esc(window)} · updated {updated:%H:%M} Brasília time</span></div>
+  <p class="sub">{tr("sub")}</p>
+  <div class="dateline"><span><b>{esc(fmt_date(report_date, long=True))}</b></span><span>{esc(tr("window", a=fmt_date(start), b=fmt_date(report_date), t=f"{updated:%H:%M}"))}</span></div>
 </header>
 {analysis_block}
 <section class="kpis">{kpi_html}</section>
 
 <section class="sec first pad">
-  <div class="sec-h"><h2>Top stories</h2><span class="hint">New stories first · then highest relevance · Brazil before South America</span></div>
-  <ol class="top">{top_html}</ol>
-  {'' if top else '<p style="margin:4mm 0;color:#55686E">No stories qualify for today&#39;s report: nothing new was found and earlier stories have already appeared in two reports.</p>'}
+  <div class="sec-h"><h2>{tr("new_h")}</h2><span class="hint">{tr("new_hint")}</span></div>
+  {new_section}
 </section>
 
 <section class="sec pad page-break">
-  <div class="sec-h"><h2>Brazil</h2><span class="hint">{len(br)} stories · full report</span></div>
+  <div class="sec-h"><h2>{tr("br_h")}</h2><span class="hint">{esc(tr("hist_hint", n=len(br), d=days))}</span></div>
   {brazil_html}
 </section>
 
 <section class="sec pad page-break">
-  <div class="sec-h"><h2>South America</h2><span class="hint">{len(sa)} stories · full report</span></div>
+  <div class="sec-h"><h2>{tr("sa_h")}</h2><span class="hint">{esc(tr("hist_hint", n=len(sa), d=days))}</span></div>
   {sa_html}
 </section>
 
 <section class="sec pad" style="break-inside: avoid">
-  <div class="sec-h"><h2>Coverage by company</h2><span class="hint">Priority list · stories in this report</span></div>
+  <div class="sec-h"><h2>{tr("cov_h")}</h2><span class="hint">{esc(tr("cov_hint", d=days))}</span></div>
   <div class="cov">{cov_html}</div>
   {nonews}
 </section>
@@ -618,22 +690,25 @@ def build_html(args):
   <div class="avatar">{avatar}</div>
   <div>
     <div class="msg">{esc(message)}</div>
-    <div class="who"><b>Li Marcitão</b> · Market news agent, Hilong Brasil · <a href="{SITE}">marketreportnews.hilongbrazil.com</a></div>
+    <div class="who"><b>{"李马西涛" if LANG == "zh" else "Li Marcitão"}</b> · {tr("who")} · <a href="{SITE}">marketreportnews.hilongbrazil.com</a></div>
   </div>
 </section>
-<p class="method">Relevance runs from 5 (direct interest to Hilong in Brazil: land drilling and workover rigs, OCTG, sucker rods, downhole tools and the onshore operators on the priority list) to 1 (general market context). Every story carries a confirmed publication date and a public source link; titles and summaries are written for this report. Stories marked HILONG FOCUS have relevance 5. Stories marked NEW appear in a report for the first time and come first; each story is shown in at most two reports.</p>
+<p class="method">{esc(tr("method", d=days))}</p>
 """
-    doc = (f'<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Hilong Market Report {report_date}</title>'
-           f"<style>{font_css()}{CSS}</style></head><body>{body}</body></html>")
+    html_lang = "zh-CN" if LANG == "zh" else "en"
+    css = font_css() + CSS + (CSS_ZH if LANG == "zh" else "")
+    doc = (f'<!DOCTYPE html><html lang="{html_lang}"><head><meta charset="utf-8"><title>{esc(tr("doc_title", d=report_date))}</title>'
+           f"<style>{css}</style></head><body>{body}</body></html>")
+    page = tr("page", p='<span class="pageNumber"></span>', t='<span class="totalPages"></span>')
     footer = (
-        '<div style="width:100%;padding:0 15mm;font-family:Inter,Helvetica,Arial,sans-serif;font-size:7pt;color:#55686E;'
+        '<div style="width:100%;padding:0 15mm;font-family:Inter,Helvetica,Arial,\'Noto Sans CJK SC\',sans-serif;font-size:7pt;color:#55686E;'
         'display:flex;justify-content:space-between;align-items:center;-webkit-print-color-adjust:exact;">'
-        f'<span><b style="color:#13262B">Hilong Brasil</b> · Market Report · {esc(fmt_date(report_date))}</span>'
+        f'<span><b style="color:#13262B">Hilong Brasil</b> · {tr("footer")} · {esc(fmt_date(report_date))}</span>'
         '<span>marketreportnews.hilongbrazil.com</span>'
-        '<span>Page <span class="pageNumber"></span> of <span class="totalPages"></span></span></div>'
+        f'<span>{page}</span></div>'
     )
-    email = email_bodies(report_date, args.days, top, new_ids, br_new, sa_new, len(items), message, args.alert)
-    stats = {"date": report_date, "stories": len(items), "new_br": br_new, "new_sa": sa_new,
+    email = email_bodies(start, report_date, args.alert, attached=tuple(args.email_langs.split(",")))
+    stats = {"date": report_date, "start": start, "stories": len(items), "new_br": br_new, "new_sa": sa_new,
              "ids": [i["id"] for i in items], "brief": brief_md(report_date, items, new_ids)}
     return doc, footer, stats, email
 
@@ -642,10 +717,13 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", help="caminho do PDF (sem --out, use --brief para só gravar o briefing)")
     ap.add_argument("--date")
-    ap.add_argument("--days", type=int, default=7)
+    ap.add_argument("--days", type=int, default=15)
     ap.add_argument("--base-ref", default="HEAD")
-    ap.add_argument("--edition", default="Daily edition")
+    ap.add_argument("--edition")
     ap.add_argument("--message")
+    ap.add_argument("--message-zh", help="mensagem positiva em chinês (com --lang zh)")
+    ap.add_argument("--lang", choices=["en", "zh"], default="en", help="idioma do PDF")
+    ap.add_argument("--email-langs", default="en,zh", help="relatórios citados no corpo do e-mail")
     ap.add_argument("--html", help="também grava o HTML intermediário neste caminho")
     ap.add_argument("--email-html", help="grava o corpo do e-mail em HTML")
     ap.add_argument("--email-text", help="grava o corpo do e-mail em texto simples")
@@ -660,6 +738,8 @@ def main():
     if not args.out and not args.brief:
         ap.error("informe --out (PDF) ou --brief (só o briefing)")
 
+    global LANG
+    LANG = args.lang
     doc, footer, stats, email = build_html(args)
     if args.brief:
         Path(args.brief).write_text(stats["brief"], encoding="utf-8")

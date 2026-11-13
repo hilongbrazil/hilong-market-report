@@ -11,7 +11,7 @@ Site estático publicado em https://marketreportnews.hilongbrazil.com (Netlify, 
 - `data/archive/AAAA-MM.json`: notícias com mais de 60 dias, movidas para cá.
 - `scripts/validate.py`: valida o `news.json` e o `run.json`. Rodar antes de todo commit.
 - `reports/AAAA-MM-DD/`: PDFs dos últimos 3 dias, publicados no site para o Resend anexar ao e-mail (`scripts/publish_reports.py`).
-- `scripts/build_pdf.py`: gera o relatório completo em PDF (com a análise do agente no topo) e o corpo do e-mail diário, sempre em inglês (seção 6).
+- `scripts/build_pdf.py`: gera os relatórios em PDF, em inglês e em chinês (`--lang zh`), e o corpo do e-mail diário (seção 6).
 
 ## Rotina diária de atualização
 
@@ -20,7 +20,7 @@ Três tarefas agendadas, todos os dias (horário de Brasília). Nada roda das 22
 - **6h00, varredura completa:** seções 1 a 5 (pesquisar, selecionar, escrever, gravar e publicar) e o resumo da seção 7, passando por todas as empresas da lista. Não gera PDF nem envia e-mail.
 - **6h40, LinkedIn:** seção 1c, no computador do Marcio (navegador do aplicativo Claude, conta alternativa logada). Só roda com o computador ligado e o aplicativo aberto.
 - **De hora em hora, das 7h às 21h, rodada rápida:** seção 1b, depois as seções 2 a 5. Não gera PDF nem envia e-mail. (Em teste na semana de 12/11/2026.)
-- **7h55, relatório:** só a seção 6 (PDF e e-mail), para o e-mail chegar por volta das 8h. Usa o que as varreduras publicaram até ali.
+- **7h55, relatório:** só a seção 6 (dois PDFs, em inglês e em chinês, num único e-mail), para o e-mail chegar por volta das 8h. Usa o que as varreduras publicaram até ali.
 
 Cada varredura (a completa e cada rodada) regrava o `data/run.json`; o painel ao vivo mostra sempre a última que terminou.
 
@@ -208,8 +208,8 @@ Cada item segue este formato:
   "category": "resultados | producao | perfuracao | investimentos | contratos | regulatorio | exploracao | mercado | fusoes | outros",
   "environment": "onshore | offshore | geral",
   "relevance": 4,
-  "title_pt": "...", "title_en": "...",
-  "summary_pt": "...", "summary_en": "...",
+  "title_pt": "...", "title_en": "...", "title_zh": "...",
+  "summary_pt": "...", "summary_en": "...", "summary_zh": "...",
   "source": "Nome do veículo",
   "url": "https://...",
   "via": "site | linkedin | instagram | x | youtube",
@@ -220,7 +220,12 @@ Cada item segue este formato:
 - `date` é a data de publicação da matéria.
 - `environment`: `onshore` quando a notícia trata de ativos ou operações em terra (inclui não convencional, como Vaca Muerta), `offshore` quando trata de ativos no mar, `geral` quando cobre os dois ou é corporativa (resultados, mercado, regulação ampla).
 - Título e resumo são redação própria, nunca cópia do texto da fonte. Resumo com uma ou duas frases (até 320 caracteres), só com fatos e números que constam na fonte.
-- Inglês e português do Brasil com o mesmo conteúdo. O inglês é o idioma padrão da página: `title_en` e `summary_en` nunca podem ficar vazios.
+- Inglês, português do Brasil e chinês simplificado com o mesmo conteúdo. O inglês é o idioma padrão da página: `title_en` e `summary_en` nunca podem ficar vazios. `title_zh` e `summary_zh` são obrigatórios (o validador recusa sem eles) e vão para o relatório em PDF enviado à China, então a tradução precisa ser a melhor possível:
+  - chinês simplificado, registro de imprensa de negócios, frases naturais (não tradução palavra por palavra);
+  - nomes de empresas, campos, blocos, plataformas e poços em letras latinas, como na fonte (Petrobras, Búzios, BM-S-24, P-78); siglas de órgãos também (ANP, Ibama, CADE);
+  - termos do setor: 修井 (workover), 钻机 (sonda/rig), 钻井 (perfuração), 完井 (completação), 油管/套管 (OCTG), 抽油杆 (haste de bombeio), 井下工具 (ferramentas de fundo), 盐下 (pré-sal), 陆上/海上 (onshore/offshore), 最终投资决定 (FID), 桶/日 (bpd), 桶油当量/日 (boe/d);
+  - números iguais aos da fonte, com as unidades chinesas usuais (万、亿): 26 万桶/日, 36 亿雷亚尔, 79 亿美元;
+  - `summary_zh` com até 200 caracteres.
 - Usar sempre o mesmo nome para a mesma empresa (conferir os já usados no arquivo e os nomes da lista prioritária).
 
 ### 5. Gravar e publicar
@@ -240,72 +245,57 @@ Cada item segue este formato:
 
 ### 6. PDF e e-mail diário
 
-Feita pela tarefa das 7h55, todos os dias (mesmo que nenhuma notícia tenha entrado), depois de `git pull` na `main`. O relatório completo vai sempre em PDF e sempre em inglês.
+Feita pela tarefa das 7h55, todos os dias (mesmo que nenhuma notícia tenha entrado), depois de `git pull` na `main`. São dois relatórios em PDF, com as mesmas notícias: um em inglês e outro em chinês simplificado (para a China). Os dois vão no mesmo e-mail.
 
-1. **Análise do agente (obrigatória, vai no topo do PDF).** Primeiro, gerar a lista das notícias que vão entrar no relatório, na ordem do PDF:
+1. Conferir que todas as notícias da janela têm `title_zh` e `summary_zh` (`python3 scripts/validate.py`). Se faltar alguma, escrever a tradução seguindo as regras da seção 4 e fazer commit antes de gerar os PDFs.
 
-   ```
-   python3 scripts/build_pdf.py --brief <pasta>/brief.md --date today --base-ref auto
-   ```
-
-   Ler o `brief.md` e escrever `<pasta>/analysis.json`, em inglês:
-
-   ```json
-   {
-     "headline": "uma frase com a leitura principal do dia (até 160 caracteres)",
-     "points": ["3 a 5 pontos, cada um com até 360 caracteres"],
-     "hilong": "o que isso significa para a Hilong, em 1 ou 2 frases (até 420 caracteres)"
-   }
-   ```
-
-   - Base: somente as notícias do `brief.md`. Não trazer fatos, números ou nomes que não estejam lá, nem conhecimento de fora.
-   - Começar pelo que é novo e pelo Brasil; ligar as notícias entre si (tendências, contrastes, o que muda), em vez de repetir manchetes.
-   - Ordem de prioridade: onshore e serviços de poço (perfuração, workover, completação, OCTG, hastes), depois operadoras offshore e ANP, fornecedores, e por fim América do Sul.
-   - `hilong`: onde há trabalho ou oportunidade para sondas terrestres, workover, tubulares e ferramentas de poço, citando as empresas. Sem recomendação de investimento e sem prometer contratos.
-   - Tom factual e direto; números iguais aos das notícias. Se nenhuma notícia for nova, dizer isso na `headline` e analisar as que seguem no relatório.
-
-2. Gerar o PDF e o corpo do e-mail em uma pasta fora do repositório (a pasta de rascunho da sessão):
+2. Gerar os dois PDFs e o corpo do e-mail em uma pasta fora do repositório (a pasta de rascunho da sessão). Primeiro o inglês, que registra a edição:
 
    ```
    python3 scripts/build_pdf.py \
      --out <pasta>/Hilong-Market-Report-AAAA-MM-DD.pdf \
      --date today --base-ref auto --check-scan --record \
-     --analysis <pasta>/analysis.json \
      --email-html <pasta>/email.html --email-text <pasta>/email.txt
    ```
 
-   Se o script recusar o `analysis.json` (texto longo demais ou campo faltando), corrigir o arquivo e gerar de novo.
-
-   - `--base-ref auto` compara com o último envio registrado, para que toda notícia gravada desde então entre no relatório. `--check-scan` põe um aviso no e-mail se a varredura das 6h ainda não tiver terminado; o envio acontece assim mesmo.
-
-   - O PDF traz, logo abaixo do título, a análise do agente; depois a capa com os números do dia, as 10 principais, o relatório completo dos últimos 7 dias (Brasil por grupo de empresas, América do Sul por país), a cobertura das empresas da lista prioritária e a assinatura do Li Marcitão com a mensagem positiva do dia.
-   - **Notícia nova primeiro:** o relatório do dia prioriza o que ainda não saiu em nenhum relatório anterior (marcado NEW); depois vêm as demais por nota, Brasil antes da América do Sul e a mais recente antes.
-   - **No máximo dois relatórios por notícia:** a mesma notícia aparece em no máximo duas edições; na terceira ela sai do PDF e do e-mail (continua na página). O controle é o `data/reports.json`, gravado pelo `--record`. Usar `--record` sempre no envio real; ao gerar de novo no mesmo dia (por exemplo com `--alert`), manter o `--record`: a entrada do dia é substituída, não duplicada. Não editar o `data/reports.json` à mão.
-   - `email.html` e `email.txt` trazem as 10 principais na mesma ordem do PDF, cada uma com empresa, país, título e resumo, e a mesma assinatura. O corpo do e-mail não leva links (as fontes estão no PDF). O HTML usa só estilos inline, porque o conector do Gmail remove blocos `<style>`, atributos `class` e a propriedade `background`.
-   - `--message "..."` troca a mensagem positiva do dia (uma frase curta, em inglês, redação própria). Sem o parâmetro, o script escolhe uma pela data.
-   - `--alert "..."` põe um aviso na primeira linha do e-mail. Usar quando o push falhar (por exemplo, `--alert "Push failed: the page was not updated today."`).
-   - `--days N` muda a janela do relatório (padrão: 7 dias).
-3. Conferir o resultado: o comando termina com `OK:` e o PDF existe e tem mais de uma página.
-4. **Publicar o PDF no site** (o Resend busca o arquivo por endereço para anexar):
+   Depois o chinês, sem `--record` e antes de qualquer commit (para as mesmas notícias saírem como novas nos dois):
 
    ```
-   python3 scripts/publish_reports.py --date AAAA-MM-DD <pasta>/Hilong-Market-Report-AAAA-MM-DD.pdf
+   python3 scripts/build_pdf.py --lang zh \
+     --out <pasta>/Hilong-Market-Report-AAAA-MM-DD-ZH.pdf \
+     --date today --base-ref auto
    ```
 
-   O script copia o PDF para `reports/AAAA-MM-DD/`, apaga as pastas com mais de 3 dias e imprime o endereço (`URL: https://marketreportnews.netlify.app/reports/...`). Fazer commit de `reports/` junto com o `data/reports.json` (mensagem `Registra relatório AAAA-MM-DD`), `git pull --rebase` e push. Esperar cerca de 90 segundos para o Netlify publicar.
+   - **Janela de 15 dias:** os relatórios trazem todas as notícias dos últimos 15 dias corridos, contando o dia da edição (`--days 15` é o padrão), sem limite de quantas edições a mesma notícia aparece.
+   - **Notícias novas no topo:** a primeira seção, "New in this report" / "本期新消息", lista todas as notícias que ainda não saíram em nenhum relatório anterior (marcadas NEW / 新), por relevância, Brasil antes da América do Sul. Depois vem o histórico completo dos 15 dias (Brasil por grupo de empresas, América do Sul por país, novas primeiro em cada grupo), a cobertura das empresas da lista prioritária e a assinatura do Li Marcitão com a mensagem positiva do dia (em chinês no PDF chinês).
+   - O controle do que é novo é o `data/reports.json`, gravado pelo `--record` só no PDF em inglês. Não editar o `data/reports.json` à mão. Ao gerar de novo no mesmo dia, manter o `--record`: a entrada do dia é substituída, não duplicada.
+   - **Corpo do e-mail:** só o aviso de que o relatório diário chegou e o período avaliado, em inglês e em chinês, e a assinatura do Li Marcitão. Sem lista de notícias e sem links. O HTML usa só estilos inline.
+   - `--message "..."` / `--message-zh "..."` trocam a mensagem positiva do dia; sem o parâmetro, o script escolhe uma pela data.
+   - `--alert "..."` põe um aviso na primeira linha do e-mail (por exemplo, quando o push falhar). `--check-scan` põe o aviso automaticamente se a varredura das 6h ainda não tiver terminado; o envio acontece assim mesmo.
+   - A análise do agente no topo do PDF foi desligada em 13/11/2026: não usar `--brief` nem `--analysis`.
+
+3. Conferir o resultado: os dois comandos terminam com `OK:` e os dois PDFs existem e têm mais de uma página.
+
+4. **Publicar os PDFs no site** (o Resend busca os arquivos por endereço para anexar):
+
+   ```
+   python3 scripts/publish_reports.py --date AAAA-MM-DD <pasta>/Hilong-Market-Report-AAAA-MM-DD.pdf <pasta>/Hilong-Market-Report-AAAA-MM-DD-ZH.pdf
+   ```
+
+   O script copia os PDFs para `reports/AAAA-MM-DD/`, apaga as pastas com mais de 3 dias e imprime os endereços (`URL: https://marketreportnews.netlify.app/reports/...`). Fazer commit de `reports/` junto com o `data/reports.json` (mensagem `Registra relatório AAAA-MM-DD`), `git pull --rebase` e push. Esperar cerca de 90 segundos para o Netlify publicar.
 
 5. **Enviar um único e-mail pelo Resend** (ferramenta `send-email` do conector Resend), aos destinatários definidos na tarefa agendada:
    - `from`: `noreply@hilongbrazil.com`;
    - assunto: `Hilong Market Report - AAAA-MM-DD`;
    - `html`: o conteúdo de `email.html`, sem alterações; `text`: o conteúdo de `email.txt`;
-   - anexo por endereço: `{"filename": "Hilong-Market-Report-AAAA-MM-DD.pdf", "url": "<URL impressa no passo 4>", "contentType": "application/pdf"}`;
+   - dois anexos por endereço: `{"filename": "Hilong-Market-Report-AAAA-MM-DD.pdf", "url": "<URL do PDF em inglês>", "contentType": "application/pdf"}` e `{"filename": "Hilong-Market-Report-AAAA-MM-DD-ZH.pdf", "url": "<URL do PDF em chinês>", "contentType": "application/pdf"}`;
    - `idempotencyKey`: `hilong-report-AAAA-MM-DD` (evita e-mail duplicado se precisar repetir a chamada).
-   Se o Resend falhar (conector indisponível, erro ou o anexo não puder ser buscado), esperar 60 segundos e tentar uma vez com a mesma `idempotencyKey`.
+   Se o Resend falhar (conector indisponível, erro ou os anexos não puderem ser buscados), esperar 60 segundos e tentar uma vez com a mesma `idempotencyKey`.
 
-6. **Reserva: Gmail.** Só se o Resend falhar duas vezes, enviar pelo conector do Gmail (remetente: o Gmail hilongbrazil), com o mesmo assunto, `htmlBody` = `email.html`, `body` = `email.txt` e o PDF anexado como referência de arquivo `sha256:<sha256 do arquivo>:<caminho absoluto>` (`filename` `Hilong-Market-Report-AAAA-MM-DD.pdf`, `mimeType` `application/pdf`; hash com `sha256sum`). Se o anexo for recusado, gerar de novo (com o mesmo `--analysis`) e com `--alert "The PDF could not be attached today; the full report is on the page."` e enviar sem anexo. Nunca enviar pelos dois caminhos no mesmo dia. Se o Gmail também falhar, não tentar outro caminho: registrar no resumo final.
+6. **Reserva: Gmail.** Só se o Resend falhar duas vezes, enviar pelo conector do Gmail (remetente: o Gmail hilongbrazil), com o mesmo assunto, `htmlBody` = `email.html`, `body` = `email.txt` e os dois PDFs anexados como referência de arquivo `sha256:<sha256 do arquivo>:<caminho absoluto>` (`mimeType` `application/pdf`, com os mesmos nomes de arquivo; hash com `sha256sum`). Se os anexos forem recusados, gerar de novo o PDF em inglês (com `--record`) e o corpo do e-mail com `--alert "The PDFs could not be attached today; the reports are on the page."` e enviar sem anexo. Nunca enviar pelos dois caminhos no mesmo dia. Se o Gmail também falhar, não tentar outro caminho: registrar no resumo final.
 
-7. Não fazer commit do PDF fora de `reports/`, nem dos arquivos do e-mail, do `brief.md` ou do `analysis.json`. Não alterar o `scripts/build_pdf.py` nem o `scripts/publish_reports.py` nesta rotina.
+7. Não fazer commit dos PDFs fora de `reports/` nem dos arquivos do e-mail. Não alterar o `scripts/build_pdf.py` nem o `scripts/publish_reports.py` nesta rotina.
 
 ### 7. Resumo final
 
-Encerrar com um resumo curto **em inglês**: quantidade de notícias novas por região, os títulos (em inglês) das três a cinco mais relevantes, em ordem de relevância e com o Brasil primeiro, e o link https://marketreportnews.hilongbrazil.com. Dizer também se o e-mail foi enviado, por qual caminho (Resend ou Gmail de reserva) e se o PDF foi anexado. Se o push falhar ou nenhuma notícia entrar, dizer isso claramente na primeira linha.
+Encerrar com um resumo curto **em inglês**: quantidade de notícias novas por região, os títulos (em inglês) das três a cinco mais relevantes, em ordem de relevância e com o Brasil primeiro, e o link https://marketreportnews.hilongbrazil.com. Dizer também se o e-mail foi enviado, por qual caminho (Resend ou Gmail de reserva) e se os dois PDFs (inglês e chinês) foram anexados. Se o push falhar ou nenhuma notícia entrar, dizer isso claramente na primeira linha.
