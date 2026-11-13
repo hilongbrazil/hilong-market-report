@@ -1,6 +1,25 @@
 {
-  "updated_at": "2026-11-13T11:10:00-03:00",
+  "updated_at": "2026-11-13T15:25:00-03:00",
   "items": [
+    {
+      "id": "2026-11-12-petrobras-campos-12-blocos-1-milhao",
+      "date": "2026-11-12",
+      "region": "BR",
+      "country": "BR",
+      "operator": "Petrobras",
+      "category": "exploracao",
+      "environment": "offshore",
+      "relevance": 3,
+      "title_pt": "Petrobras diz que 12 novos blocos na Bacia de Campos podem ajudar a bacia a voltar a 1 milhão de barris/dia",
+      "title_en": "Petrobras says 12 new Campos Basin blocks could help the basin return to 1 million bpd",
+      "title_zh": "Petrobras 称 Campos 盆地 12 个新区块有望助力该盆地产量重回 100 万桶/日",
+      "summary_pt": "A Petrobras, que arrematou com 100% 12 blocos em águas ultraprofundas da Bacia de Campos, fora do polígono do pré-sal, no último leilão da ANP, vê nas áreas um caminho para a bacia voltar a produzir 1 milhão de barris/dia. A diretora Sylvia Anjos disse que só a perfuração confirmará o potencial.",
+      "summary_en": "Petrobras, which took 100% of 12 ultra-deepwater Campos Basin blocks outside the pre-salt polygon in the latest ANP round, sees them helping the basin return to 1 million bpd. E&P director Sylvia Anjos said only drilling will confirm the potential.",
+      "summary_zh": "Petrobras 在 ANP 最近一轮招标中以 100% 权益获得 Campos 盆地盐下多边形以外的 12 个超深水区块，认为这些区块有助于该盆地产量重回 100 万桶/日。勘探与生产董事 Sylvia Anjos 表示，潜力须经钻井才能确认。",
+      "source": "PetroNotícias",
+      "url": "https://petronoticias.com.br/apos-adquirir-novos-blocos-petrobras-reforca-aposta-em-voltar-a-produzir-1-milhao-de-barris-por-dia-na-bacia-de-campos/",
+      "via": "site"
+    },
     {
       "id": "2026-11-12-petrobras-seap-flng-estudo",
       "date": "2026-11-12",
