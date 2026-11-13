@@ -1,89 +1,325 @@
 {
-  "run_at": "2026-11-12T21:15:00-03:00",
-  "searches": 12,
-  "new_items": 0,
+  "run_at": "2026-11-13T06:30:00-03:00",
+  "searches": 60,
+  "new_items": 3,
   "schedule": {
     "type": "hourly",
     "from": "06:00",
     "to": "21:00"
   },
   "terms": [
-    "eixos",
-    "PetroNotícias",
-    "Agência Petrobras",
-    "Click Petróleo e Gás",
     "Carmo Energy",
     "PetroReconcavo",
+    "Brava Energia",
     "Origem Energia",
     "Mandacaru Energia",
     "Seacrest Petróleo",
     "PetroVictory",
     "Alvopetro",
     "Petroborn",
-    "Vipetro",
     "Eneva",
-    "Bacia de Pelotas",
-    "Sondas onshore",
-    "Workover"
+    "Vipetro",
+    "Petrobras",
+    "Equinor",
+    "Perenco",
+    "PRIO",
+    "TotalEnergies",
+    "Transpetro",
+    "ANP",
+    "SLB",
+    "Baker Hughes",
+    "Weatherford",
+    "Tenaris",
+    "Expro",
+    "Confab",
+    "Apolo Tubulars",
+    "Jereh",
+    "Kerui",
+    "Inpasa",
+    "TAG",
+    "Shell",
+    "Onshore Nordeste",
+    "NTS",
+    "Ecopetrol",
+    "YPF",
+    "Vista Energy",
+    "Vaca Muerta",
+    "Guiana",
+    "Venezuela"
   ],
   "queries": [
     {
-      "q": "eixos petróleo gás notícias 12 novembro 2026",
+      "q": "Site oficial: Carmo Energy",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "PetroNotícias 12 de novembro de 2026",
+      "q": "Site oficial: PetroReconcavo",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Agência Petrobras notícia novembro 2026",
+      "q": "Site oficial: Brava Energia",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Click Petróleo e Gás onshore poços novembro 2026",
+      "q": "Site oficial: Origem Energia",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Site: eixos (últimas notícias)",
+      "q": "Site oficial: Mandacaru Energia",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Site: PetroNotícias (últimas notícias)",
+      "q": "Site oficial: Seacrest Petróleo",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Carmo Energy PetroReconcavo notícia novembro 2026",
+      "q": "Site oficial: PetroVictory",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Origem Energia Mandacaru Energia Alagoas Potiguar novembro 2026",
+      "q": "Site oficial: Alvopetro",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Seacrest PetroVictory Alvopetro Petroborn Vipetro novembro 2026",
+      "q": "Site oficial: Petroborn",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Eneva Parnaíba poços gás notícia 12 novembro 2026",
+      "q": "Site oficial: Eneva",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "governo cria comitê avaliação ambiental bacia de Pelotas 18 meses",
+      "q": "Site oficial: Vipetro",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "sonda workover onshore Bahia Sergipe Rio Grande do Norte contrato novembro 2026",
+      "q": "Site oficial: Petrobras",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: Equinor",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: Perenco",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: PRIO",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: TotalEnergies",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: Transpetro",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: ANP",
+      "ch": "site",
+      "found": 1
+    },
+    {
+      "q": "Site oficial: SLB",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: Baker Hughes",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: Weatherford",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: Tenaris",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: Expro",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: Confab",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: Apolo Tubulars",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: Jereh",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: Kerui",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: Inpasa",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: TAG",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "PetroReconcavo fato relevante novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Brava Energia notícias novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Eneva fato relevante comunicado novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Vipetro petróleo Espírito Santo",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "PRIO fato relevante comunicado novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Petroborn",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Expro press release November 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Jereh Group news November 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Inpasa notícias novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "TAG Transportadora Associada de Gás novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Tenaris Confab Brasil 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Apolo Tubulars Dexxos 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "ANP retoma revisão tarifária transportadoras após fim das negociações Petrobras-NTS",
+      "ch": "site",
+      "found": 1
+    },
+    {
+      "q": "Petróleo e gás Brasil notícias 12 de novembro de 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Petrobras anuncia 12 novembro 2026 contrato plataforma poços",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Onshore Sergipe, Bahia e RN: poços, sondas e workover (novembro 2026)",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Origem Energia royalties menores campos maduros",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Brava, PetroReconcavo, PRIO e Eneva: notícias de 12/11/2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Shell, Equinor e TotalEnergies no Brasil (novembro 2026)",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Click Petróleo e Gás e PetroNotícias: perfuração onshore",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "eixos: últimas notícias",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Ecopetrol resultados tercer trimestre 2026",
+      "ch": "site",
+      "found": 1
+    },
+    {
+      "q": "YPF, Vista e Pluspetrol: Vaca Muerta, perfuração (novembro 2026)",
+      "ch": "site",
+      "found": 1
+    },
+    {
+      "q": "Guyana ExxonMobil November 2026 oil production",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Guiana, Suriname, Peru, Bolívia e Venezuela: notícias de 12/11/2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "YouTube: webcasts de resultados 3T26 (PetroReconcavo, Brava, PRIO)",
       "ch": "site",
       "found": 0
     }
@@ -91,13 +327,13 @@
   "sites": [
     {
       "name": "Carmo Energy",
-      "url": "https://carmoenergy.com/noticias",
+      "url": "https://carmoenergy.com/noticias/",
       "status": "ok",
       "found": 0
     },
     {
       "name": "PetroReconcavo",
-      "url": "https://ri.petroreconcavo.com.br/",
+      "url": "https://ri.petroreconcavo.com.br/fatos-relevantes-comunicados-e-avisos",
       "status": "bloqueado",
       "found": 0
     },
@@ -116,7 +352,7 @@
     {
       "name": "Mandacaru Energia",
       "url": "https://mandacaruenergia.com.br/noticias/",
-      "status": "ok",
+      "status": "bloqueado",
       "found": 0
     },
     {
@@ -163,7 +399,7 @@
     },
     {
       "name": "Equinor",
-      "url": "https://www.equinor.com.br/noticias",
+      "url": "https://www.equinor.com.br/todas-as-noticias",
       "status": "ok",
       "found": 0
     },
@@ -193,9 +429,9 @@
     },
     {
       "name": "ANP",
-      "url": "https://www.gov.br/anp/pt-br/canais_atendimento/imprensa/noticias-comunicados",
+      "url": "https://www.gov.br/anp/pt-br",
       "status": "ok",
-      "found": 0
+      "found": 1
     },
     {
       "name": "SLB",
@@ -211,13 +447,13 @@
     },
     {
       "name": "Weatherford",
-      "url": "https://weatherford.gcs-web.com/news-releases",
+      "url": "https://www.weatherford.com/investor-relations/investor-news-and-events/news/",
       "status": "ok",
       "found": 0
     },
     {
       "name": "Tenaris",
-      "url": "https://tenarissa.gcs-web.com/press-releases",
+      "url": "https://ir.tenaris.com/press-releases",
       "status": "ok",
       "found": 0
     },
@@ -254,7 +490,7 @@
     {
       "name": "Inpasa",
       "url": "https://www.inpasa.com.br/",
-      "status": "sem_itens",
+      "status": "bloqueado",
       "found": 0
     },
     {

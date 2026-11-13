@@ -1,6 +1,23 @@
 {
-  "updated_at": "2026-11-12T16:15:00-03:00",
+  "updated_at": "2026-11-13T06:30:00-03:00",
   "items": [
+    {
+      "id": "2026-11-12-anp-retoma-revisao-tarifas-nts",
+      "date": "2026-11-12",
+      "region": "BR",
+      "country": "BR",
+      "operator": "ANP",
+      "category": "regulatorio",
+      "environment": "geral",
+      "relevance": 3,
+      "title_pt": "ANP vai retomar revisão das tarifas da NTS após Petrobras desistir de negociar prorrogação",
+      "title_en": "ANP to resume NTS tariff review after Petrobras drops its contract-extension talks",
+      "summary_pt": "A Petrobras retirou o pedido de prazo para negociar com a NTS a prorrogação dos contratos legados de transporte de gás, o que anula a suspensão de 15 dias. A ANP vai antecipar a decisão de retomar a revisão, que propõe cortar as tarifas da NTS em 32,3% a 35% entre 2027 e 2030.",
+      "summary_en": "Petrobras withdrew its request for time to negotiate an extension of its legacy gas transport contracts with NTS, voiding the 15-day suspension. ANP will bring forward the decision to resume the review, which proposes cutting NTS tariffs by 32.3% to 35% over 2027–2030.",
+      "source": "eixos",
+      "url": "https://eixos.com.br/gas-natural/mercado-de-gas/petrobras-recua-e-anp-vai-retomar-revisao-das-tarifas-da-nts/",
+      "via": "site"
+    },
     {
       "id": "2026-11-12-sbm-offshore-q3-p87-hull",
       "date": "2026-11-12",
@@ -527,6 +544,40 @@
       "summary_en": "The company cites added volumes from Bacalhau in Brazil and Adura in the UK. Total equity production was 2,166 kboe/d, up 2% year on year, adjusted operating income was US$ 12.35 bn and the 2026 production growth guidance went from 3% to around 4%.",
       "source": "Stock Titan",
       "url": "https://www.stocktitan.net/news/EQNR/equinor-third-quarter-2026-kvwg3fvzq0z5.html",
+      "via": "site"
+    },
+    {
+      "id": "2026-11-12-ecopetrol-lucro-3t26",
+      "date": "2026-11-12",
+      "region": "SA",
+      "country": "CO",
+      "operator": "Ecopetrol",
+      "category": "resultados",
+      "environment": "geral",
+      "relevance": 2,
+      "title_pt": "Lucro da Ecopetrol sobe 85,6% no 3º trimestre, para COP 4,8 trilhões, e produção chega a 747 mil boe/d",
+      "title_en": "Ecopetrol's Q3 profit jumps 85.6% to COP 4.8 tn as output reaches 747 kboe/d",
+      "summary_pt": "A Ecopetrol lucrou COP 4,8 trilhões no 3º trimestre de 2026, alta de 85,6% em um ano, com receita de COP 35,1 trilhões (+17,5%). A produção chegou a 747 mil boe/d, com o primeiro mês de consolidação dos ativos da Brava Energía, que somaram COP 600 bilhões ao EBITDA. No ano, o lucro soma COP 13,7 trilhões.",
+      "summary_en": "Ecopetrol earned COP 4.8 trillion in Q3 2026, up 85.6% year on year, on revenue of COP 35.1 trillion (+17.5%). Output reached 747,000 boe/d, helped by the first month of consolidating the Brava Energía assets, which added COP 600 bn to EBITDA. Nine-month profit totals COP 13.7 trillion.",
+      "source": "Infobae",
+      "url": "https://www.infobae.com/colombia/2026/11/12/el-precio-del-petroleo-elevo-las-ganancias-de-ecopetrol-en-el-tercer-trimestre-de-2026-la-empresa-revelo-los-resultados/",
+      "via": "site"
+    },
+    {
+      "id": "2026-11-11-argentina-61-sondas-contratos-vaca-muerta",
+      "date": "2026-11-11",
+      "region": "SA",
+      "country": "AR",
+      "operator": "Setor",
+      "category": "contratos",
+      "environment": "onshore",
+      "relevance": 2,
+      "title_pt": "Argentina chega a 61 sondas ativas e operadoras de Vaca Muerta fecham contratos de perfuração de dois a cinco anos",
+      "title_en": "Argentina's active rig count rises to 61 as Vaca Muerta operators lock in two- to five-year drilling contracts",
+      "summary_pt": "A Argentina tinha 61 sondas ativas em outubro, 17 a mais que um ano antes, 47 delas no não convencional. As operadoras fecham contratos firmes de dois a cinco anos: YPF com a DLS Archer, Vista para a sonda DLS-156 e GeoPark com a H&P, para uma FlexRig que começa em dezembro.",
+      "summary_en": "Argentina had 61 active rigs in October, 17 more than a year earlier, 47 of them in shale. Operators are signing two- to five-year firm contracts: YPF with DLS Archer, Vista for the DLS-156 rig and GeoPark with H&P for a FlexRig due to start in December.",
+      "source": "Examedia",
+      "url": "https://examedia.com.ar/portada/post/88219640",
       "via": "site"
     },
     {
