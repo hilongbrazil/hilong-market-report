@@ -1,6 +1,12 @@
 [build]
   publish = "."
 
+# Porteiro: só abre com o login do Centro (ver netlify/edge-functions/guard.ts). /reports/ fica aberto para o Resend.
+[[edge_functions]]
+  path = "/*"
+  excludedPath = ["/reports/*"]
+  function = "guard"
+
 [[headers]]
   for = "/data/*"
   [headers.values]
