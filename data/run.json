@@ -1,7 +1,7 @@
 {
-  "run_at": "2026-11-13T10:25:00-03:00",
-  "searches": 22,
-  "new_items": 6,
+  "run_at": "2026-11-13T11:30:00-03:00",
+  "searches": 15,
+  "new_items": 0,
   "schedule": {
     "type": "hourly",
     "from": "06:00",
@@ -12,92 +12,97 @@
     "PetroNotícias",
     "Agência Petrobras",
     "Click Petróleo e Gás",
-    "Petrobras",
-    "Equinor",
-    "Perenco",
-    "PRIO",
-    "TotalEnergies",
-    "Transpetro",
-    "ANP",
-    "Sondas offshore",
-    "Peregrino",
-    "Gas release"
+    "SLB",
+    "Baker Hughes",
+    "Weatherford",
+    "Tenaris",
+    "Expro",
+    "Confab",
+    "Apolo Tubulars",
+    "Jereh",
+    "Kerui",
+    "Inpasa",
+    "TAG",
+    "Halliburton",
+    "YPF",
+    "Vaca Muerta",
+    "Ecopetrol"
   ],
   "queries": [
     {
-      "q": "eixos petróleo e gás notícias 13 novembro 2026",
+      "q": "Site oficial: Click Petróleo e Gás (categoria Petróleo e Gás) — não abriu",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "PetroNotícias petróleo novembro 2026",
+      "q": "Site oficial: Click Petróleo e Gás (categoria Setor Offshore) — não abriu",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Site oficial: Agência Petrobras",
+      "q": "Site oficial: Agência Petrobras — não abriu",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Click Petróleo e Gás Petrobras novembro 2026",
+      "q": "eixos petróleo gás 13 novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Petrobras anuncia 13 novembro 2026",
+      "q": "PetroNotícias 13 novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Petrobras contrato sonda plataforma licitação novembro 2026",
+      "q": "site:clickpetroleoegas.com.br Petrobras petróleo novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Equinor Brasil Raia Bacalhau novembro 2026",
+      "q": "SLB Baker Hughes Weatherford Brazil contract November 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "TotalEnergies Perenco Transpetro Brasil novembro 2026",
+      "q": "Tenaris Confab Expro Brasil contrato novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "PRIO Peregrino Frade notícia novembro 2026",
+      "q": "Jereh Kerui Apolo Tubulars Inpasa TAG gás notícia novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "PRIO conclui aquisição 20% Peregrino Equinor",
+      "q": "Vaca Muerta YPF Ecopetrol noticia 12 13 noviembre 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "ANP petróleo 12 novembro 2026",
+      "q": "site:petronoticias.com.br novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "eixos: ANP gas release e reunião de diretoria",
+      "q": "site:clickpetroleoegas.com.br offshore sonda plataforma FPSO",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Site oficial: Click Petróleo e Gás (categoria Petróleo e Gás)",
+      "q": "SLB OR Baker Hughes OR Halliburton Petrobras contrato novembro 2026",
       "ch": "site",
-      "found": 4
+      "found": 0
     },
     {
-      "q": "Site oficial: Click Petróleo e Gás (categoria Setor Offshore)",
+      "q": "Agência Petrobras 13 de novembro de 2026",
       "ch": "site",
-      "found": 1
+      "found": 0
     },
     {
-      "q": "site:clickpetroleoegas.com.br Petrobras Sergipe, Pelotas, Mero, Bahiagás, Eneva, BP",
+      "q": "Tenaris OR Weatherford OR Expro OR SLB announces November 12 2026",
       "ch": "site",
-      "found": 1
+      "found": 0
     }
   ],
   "sites": [
