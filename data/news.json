@@ -1,6 +1,25 @@
 {
-  "updated_at": "2026-11-13T17:25:00-03:00",
+  "updated_at": "2026-11-13T20:25:00-03:00",
   "items": [
+    {
+      "id": "2026-11-12-exxonmobil-longtail-fid",
+      "date": "2026-11-12",
+      "region": "SA",
+      "country": "GY",
+      "operator": "ExxonMobil",
+      "category": "investimentos",
+      "environment": "offshore",
+      "relevance": 2,
+      "title_pt": "ExxonMobil aprova Longtail, oitavo projeto na Guiana, com investimento de US$ 12,5 bi",
+      "title_en": "ExxonMobil approves Longtail, its eighth Guyana project, with US$ 12.5 bn investment",
+      "title_zh": "埃克森美孚批准圭亚那第八个项目 Longtail，投资 125 亿美元",
+      "summary_pt": "O FPSO do projeto, no bloco Stabroek, processará 1,2 bilhão de pés cúbicos de gás por dia e até 250 mil barris/dia de condensado. Serão cerca de 45 poços submarinos de produção e injeção, com partida prevista para 2030.",
+      "summary_en": "The project's FPSO in the Stabroek block will process 1.2 billion cubic feet of gas per day and up to 250,000 bpd of condensate. About 45 subsea production and injection wells are planned, with start-up expected in 2030.",
+      "summary_zh": "该项目位于 Stabroek 区块，其 FPSO 设计日处理天然气 12 亿立方英尺、凝析油最高 25 万桶/日。项目计划部署约 45 口海底生产井和注入井，预计 2030 年投产。",
+      "source": "ExxonMobil",
+      "url": "https://corporate.exxonmobil.com/news/news-releases/2026/1112-exxonmobil-advances-next-phase-of-guyana-development-with-longtail",
+      "via": "site"
+    },
     {
       "id": "2026-11-13-foresea-odn-i-manutencao",
       "date": "2026-11-13",
