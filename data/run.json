@@ -1,6 +1,6 @@
 {
-  "run_at": "2026-11-13T11:30:00-03:00",
-  "searches": 15,
+  "run_at": "2026-11-13T12:15:00-03:00",
+  "searches": 12,
   "new_items": 0,
   "schedule": {
     "type": "hourly",
@@ -12,21 +12,20 @@
     "PetroNotícias",
     "Agência Petrobras",
     "Click Petróleo e Gás",
-    "SLB",
-    "Baker Hughes",
-    "Weatherford",
-    "Tenaris",
-    "Expro",
-    "Confab",
-    "Apolo Tubulars",
-    "Jereh",
-    "Kerui",
-    "Inpasa",
-    "TAG",
-    "Halliburton",
-    "YPF",
-    "Vaca Muerta",
-    "Ecopetrol"
+    "Carmo Energy",
+    "PetroReconcavo",
+    "Brava Energia",
+    "Origem Energia",
+    "Mandacaru Energia",
+    "Seacrest Petróleo",
+    "PetroVictory",
+    "Alvopetro",
+    "Petroborn",
+    "Eneva",
+    "Vipetro",
+    "Sondas terrestres",
+    "Workover",
+    "Onshore Nordeste"
   ],
   "queries": [
     {
@@ -40,67 +39,62 @@
       "found": 0
     },
     {
-      "q": "Site oficial: Agência Petrobras — não abriu",
+      "q": "eixos petróleo gás notícias 13 novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "eixos petróleo gás 13 novembro 2026",
+      "q": "PetroReconcavo OR Carmo Energy OR Origem Energia OR Mandacaru Energia novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "PetroNotícias 13 novembro 2026",
+      "q": "site:clickpetroleoegas.com.br petróleo sonda poço onshore",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "site:clickpetroleoegas.com.br Petrobras petróleo novembro 2026",
+      "q": "Brava Energia OR Eneva OR Alvopetro OR PetroVictory OR Seacrest notícia 12 13 novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "SLB Baker Hughes Weatherford Brazil contract November 2026",
+      "q": "PetroNotícias petróleo 13 novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Tenaris Confab Expro Brasil contrato novembro 2026",
+      "q": "Petroborn OR Vipetro OR Origem Energia OR Carmo Energy campo poço Bahia Sergipe RN novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Jereh Kerui Apolo Tubulars Inpasa TAG gás notícia novembro 2026",
+      "q": "Brava Energia esclarecimento Eneva tratativas venda E&P",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Vaca Muerta YPF Ecopetrol noticia 12 13 noviembre 2026",
+      "q": "Agência Petrobras notícia 13/11/2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "site:petronoticias.com.br novembro 2026",
+      "q": "sonda terrestre workover contrato onshore Brasil novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "site:clickpetroleoegas.com.br offshore sonda plataforma FPSO",
+      "q": "Origem Energia OR Mandacaru Energia OR PetroReconcavo notícia esta semana",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "SLB OR Baker Hughes OR Halliburton Petrobras contrato novembro 2026",
+      "q": "clickpetroleoegas.com.br petróleo gás notícia hoje 13 novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Agência Petrobras 13 de novembro de 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Tenaris OR Weatherford OR Expro OR SLB announces November 12 2026",
+      "q": "eixos.com.br petroleo-e-gas Brava OR Eneva OR PetroReconcavo OR onshore novembro 2026",
       "ch": "site",
       "found": 0
     }
