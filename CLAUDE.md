@@ -7,9 +7,10 @@ Site estático publicado em https://marketreportnews.hilongbrazil.com (Netlify, 
 - `data/news.json`: as notícias.
 - `data/run.json`: registro da última varredura (alimenta o painel ao vivo).
 - `data/reports.json`: registro das edições do relatório em PDF (quais notícias saíram em cada uma). Gravado pelo `scripts/build_pdf.py --record`.
-- A rotina diária altera somente `data/news.json`, `data/run.json`, `data/reports.json` e `data/archive/`.
+- A rotina diária altera somente `data/news.json`, `data/run.json`, `data/reports.json`, `data/archive/` e `reports/`.
 - `data/archive/AAAA-MM.json`: notícias com mais de 60 dias, movidas para cá.
 - `scripts/validate.py`: valida o `news.json` e o `run.json`. Rodar antes de todo commit.
+- `reports/AAAA-MM-DD/`: PDFs dos últimos 3 dias, publicados no site para o Resend anexar ao e-mail (`scripts/publish_reports.py`).
 - `scripts/build_pdf.py`: gera o relatório completo em PDF (com a análise do agente no topo) e o corpo do e-mail diário, sempre em inglês (seção 6).
 
 ## Rotina diária de atualização
@@ -285,13 +286,26 @@ Feita pela tarefa das 7h55, todos os dias (mesmo que nenhuma notícia tenha entr
    - `--alert "..."` põe um aviso na primeira linha do e-mail. Usar quando o push falhar (por exemplo, `--alert "Push failed: the page was not updated today."`).
    - `--days N` muda a janela do relatório (padrão: 7 dias).
 3. Conferir o resultado: o comando termina com `OK:` e o PDF existe e tem mais de uma página.
-4. Enviar um único e-mail pelo conector do Gmail, aos destinatários definidos na tarefa agendada:
+4. **Publicar o PDF no site** (o Resend busca o arquivo por endereço para anexar):
+
+   ```
+   python3 scripts/publish_reports.py --date AAAA-MM-DD <pasta>/Hilong-Market-Report-AAAA-MM-DD.pdf
+   ```
+
+   O script copia o PDF para `reports/AAAA-MM-DD/`, apaga as pastas com mais de 3 dias e imprime o endereço (`URL: https://marketreportnews.netlify.app/reports/...`). Fazer commit de `reports/` junto com o `data/reports.json` (mensagem `Registra relatório AAAA-MM-DD`), `git pull --rebase` e push. Esperar cerca de 90 segundos para o Netlify publicar.
+
+5. **Enviar um único e-mail pelo Resend** (ferramenta `send-email` do conector Resend), aos destinatários definidos na tarefa agendada:
+   - `from`: `noreply@hilongbrazil.com`;
    - assunto: `Hilong Market Report - AAAA-MM-DD`;
-   - `htmlBody`: o conteúdo de `email.html`, sem alterações; `body`: o conteúdo de `email.txt`;
-   - anexo: o PDF, com `filename` `Hilong-Market-Report-AAAA-MM-DD.pdf`, `mimeType` `application/pdf` e `content` na forma de referência de arquivo `sha256:<sha256 do arquivo>:<caminho absoluto>` (obter o hash com `sha256sum`).
-5. Se o anexo for recusado, gerar de novo (com o mesmo `--analysis`) e com `--alert "The PDF could not be attached today; the full report is on the page."` e enviar o e-mail sem anexo. Se o envio falhar, não tentar outro caminho: registrar no resumo final.
-6. Depois do envio, fazer commit e push do `data/reports.json` (mensagem `Registra relatório AAAA-MM-DD`). Não fazer commit do PDF nem dos arquivos do e-mail. Não alterar o `scripts/build_pdf.py` nesta rotina.
+   - `html`: o conteúdo de `email.html`, sem alterações; `text`: o conteúdo de `email.txt`;
+   - anexo por endereço: `{"filename": "Hilong-Market-Report-AAAA-MM-DD.pdf", "url": "<URL impressa no passo 4>", "contentType": "application/pdf"}`;
+   - `idempotencyKey`: `hilong-report-AAAA-MM-DD` (evita e-mail duplicado se precisar repetir a chamada).
+   Se o Resend falhar (conector indisponível, erro ou o anexo não puder ser buscado), esperar 60 segundos e tentar uma vez com a mesma `idempotencyKey`.
+
+6. **Reserva: Gmail.** Só se o Resend falhar duas vezes, enviar pelo conector do Gmail (remetente: o Gmail hilongbrazil), com o mesmo assunto, `htmlBody` = `email.html`, `body` = `email.txt` e o PDF anexado como referência de arquivo `sha256:<sha256 do arquivo>:<caminho absoluto>` (`filename` `Hilong-Market-Report-AAAA-MM-DD.pdf`, `mimeType` `application/pdf`; hash com `sha256sum`). Se o anexo for recusado, gerar de novo (com o mesmo `--analysis`) e com `--alert "The PDF could not be attached today; the full report is on the page."` e enviar sem anexo. Nunca enviar pelos dois caminhos no mesmo dia. Se o Gmail também falhar, não tentar outro caminho: registrar no resumo final.
+
+7. Não fazer commit do PDF fora de `reports/`, nem dos arquivos do e-mail, do `brief.md` ou do `analysis.json`. Não alterar o `scripts/build_pdf.py` nem o `scripts/publish_reports.py` nesta rotina.
 
 ### 7. Resumo final
 
-Encerrar com um resumo curto **em inglês**: quantidade de notícias novas por região, os títulos (em inglês) das três a cinco mais relevantes, em ordem de relevância e com o Brasil primeiro, e o link https://marketreportnews.hilongbrazil.com. Dizer também se o e-mail foi enviado e se o PDF foi anexado. Se o push falhar ou nenhuma notícia entrar, dizer isso claramente na primeira linha.
+Encerrar com um resumo curto **em inglês**: quantidade de notícias novas por região, os títulos (em inglês) das três a cinco mais relevantes, em ordem de relevância e com o Brasil primeiro, e o link https://marketreportnews.hilongbrazil.com. Dizer também se o e-mail foi enviado, por qual caminho (Resend ou Gmail de reserva) e se o PDF foi anexado. Se o push falhar ou nenhuma notícia entrar, dizer isso claramente na primeira linha.
