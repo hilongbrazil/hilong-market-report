@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-14T06:18:56-03:00",
+  "updated_at": "2026-11-14T07:12:00-03:00",
   "items": [
     {
       "id": "2026-11-13-petrobras-buzios-electric-completion",
@@ -76,6 +76,25 @@
       "source": "Agroempresario",
       "url": "https://agroempresario.com/publicacion/123758/julian-escuder-anuncio-una-inversion-record-de-pluspetrol-para-2027/",
       "via": "site"
+    },
+    {
+      "id": "2026-11-12-anp-consulta-pdi-clause",
+      "date": "2026-11-12",
+      "region": "BR",
+      "country": "BR",
+      "operator": "ANP",
+      "category": "regulatorio",
+      "environment": "geral",
+      "relevance": 3,
+      "title_pt": "ANP abre consulta pública para revisar as regras da cláusula de PD&I dos contratos de E&P",
+      "title_en": "ANP opens public consultation to revise the R&D clause rules in E&P contracts",
+      "title_zh": "ANP 就勘探开发合同研发条款规则修订启动公开征求意见",
+      "summary_pt": "A proposta revisa a aplicação dos recursos de PD&I que os campos de grande produção devem destinar a pesquisa, buscando regras mais claras e melhor rastreio dos investimentos. A consulta vai até 28/12 e a audiência pública está prevista para 26/01/2027.",
+      "summary_en": "The proposal revises how the R&D funds that large producing fields must allocate to research are applied, aiming for clearer rules and better tracking of the investments. The consultation runs until December 28, with a public hearing scheduled for January 26, 2027.",
+      "summary_zh": "该提案修订高产油气田须投入研发的资金使用规则，旨在使规则更清晰、投资更可追溯。征求意见截至 12 月 28 日，公开听证会定于 2027 年 1 月 26 日举行。",
+      "source": "ANP",
+      "url": "https://www.linkedin.com/feed/update/urn:li:activity:7526749284751294464/",
+      "via": "linkedin"
     },
     {
       "id": "2026-11-12-exxonmobil-longtail-fid",
