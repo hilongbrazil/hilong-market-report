@@ -1,24 +1,17 @@
 {
-  "run_at": "2026-11-14T06:19:37-03:00",
-  "searches": 79,
-  "new_items": 5,
+  "run_at": "2026-11-14T07:22:00-03:00",
+  "searches": 11,
+  "new_items": 0,
   "schedule": {
     "type": "hourly",
     "from": "06:00",
     "to": "21:00"
   },
   "terms": [
-    "Carmo Energy",
-    "PetroReconcavo",
-    "Brava Energia",
-    "Origem Energia",
-    "Mandacaru Energia",
-    "Seacrest Petróleo",
-    "PetroVictory",
-    "Alvopetro",
-    "Petroborn",
-    "Eneva",
-    "Vipetro",
+    "Click Petróleo e Gás",
+    "eixos",
+    "PetroNotícias",
+    "Agência Petrobras",
     "Petrobras",
     "Equinor",
     "Perenco",
@@ -26,413 +19,66 @@
     "TotalEnergies",
     "Transpetro",
     "ANP",
-    "SLB",
-    "Baker Hughes",
-    "Weatherford",
-    "Tenaris",
-    "Confab",
-    "Expro",
-    "Apolo Tubulars",
-    "Jereh",
-    "Kerui",
-    "Inpasa",
-    "TAG",
-    "Shell",
-    "Click Petróleo e Gás",
-    "eixos",
-    "PetroNotícias",
-    "Onshore Nordeste",
-    "Vaca Muerta",
-    "Colômbia",
-    "Guiana",
-    "Equador",
-    "Peru",
-    "Workover"
+    "Bacalhau",
+    "Raia",
+    "Peregrino",
+    "sondas offshore",
+    "oferta permanente"
   ],
   "queries": [
     {
-      "q": "Site oficial: Carmo Energy",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "PetroReconcavo fato relevante novembro 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Brava Energia notícias novembro 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Origem Energia news November 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Mandacaru Energia notícias",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Seacrest Petróleo news",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "PetroVictory Energy press release November 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Alvopetro news release November 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Alvopetro Q3 2026 financial results",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Petroborn óleo e gás",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Eneva fato relevante comunicado novembro 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Vipetro petróleo Espírito Santo",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Site oficial: Petrobras (Agência Petrobras, mais recentes)",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Equinor Brasil notícia novembro 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Perenco Brasil 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "PRIO fato relevante comunicado novembro 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "TotalEnergies Brazil news November 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Site oficial: Transpetro (notícias)",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Transpetro notícias novembro 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Site oficial: ANP (notícias e comunicados)",
-      "ch": "site",
-      "found": 1
-    },
-    {
-      "q": "SLB Brazil contract November 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Baker Hughes Brazil Petrobras November 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Site oficial: Weatherford (news releases)",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Site oficial: Tenaris (newsroom)",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Tenaris Confab Brasil novembro 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Expro Brazil press release 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Apolo Tubulars Dexxos 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Jereh Group news November 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Kerui Petroleum news 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Inpasa notícia novembro 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "TAG Transportadora Associada de Gás novembro 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
       "q": "Site oficial: Click Petróleo e Gás (categoria Petróleo e Gás) — busca site:clickpetroleoegas.com.br",
       "ch": "site",
-      "found": 1
+      "found": 0
     },
     {
       "q": "Site oficial: Click Petróleo e Gás (categoria Setor Offshore) — busca site:clickpetroleoegas.com.br",
       "ch": "site",
-      "found": 1
+      "found": 0
     },
     {
-      "q": "clickpetroleoegas Petrobras poço sonda novembro 2026",
+      "q": "eixos petróleo gás offshore 14 novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "clickpetroleoegas onshore campo terrestre poços Bahia Potiguar",
+      "q": "PetroNotícias Petrobras plataforma contrato novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Site oficial: eixos (Petróleo e Gás e Mercado Offshore)",
+      "q": "Petrobras anuncia 13 novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Site oficial: PetroNotícias",
+      "q": "Equinor OR Perenco Brasil Bacalhau Raia Peregrino novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Shell Brasil notícia novembro 2026",
+      "q": "PRIO Peregrino Frade Wahoo Albacora Leste notícia novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "onshore Bahia Rio Grande do Norte Sergipe sonda workover contrato novembro 2026",
+      "q": "ANP notícia 13 novembro 2026 oferta permanente produção",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Petrobras sonda contrato licitação 13 novembro 2026",
+      "q": "Transpetro OR TotalEnergies Brasil notícia 13 novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "YPF Vaca Muerta noticias 13 noviembre 2026",
+      "q": "Petrobras sonda poço perfuração contrato licitação novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Vaca Muerta petroleras inversión perforación 13 de noviembre",
+      "q": "site:petronoticias.com.br Petrobras novembro 2026 (Agência Petrobras e PetroNotícias, mais recentes)",
       "ch": "site",
-      "found": 1
-    },
-    {
-      "q": "Ecopetrol noticia 13 de noviembre 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "OilNOW Guyana Exxon Stabroek latest",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Guyana Suriname oil news November 13 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Petroecuador OR Perupetro OR YPFB OR PDVSA noticias 13 noviembre 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Petrobras YouTube novembro 2026 resultados webcast",
-      "ch": "youtube",
-      "found": 0
-    },
-    {
-      "q": "PetroReconcavo OR Brava OR Origem OR Eneva Instagram novembro 2026",
-      "ch": "instagram",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: Carmo Energy",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: PetroReconcavo",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: Brava Energia",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: Origem Energia",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: Mandacaru Energia",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: Seacrest Petróleo",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: PetroVictory",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: Alvopetro",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: Petroborn",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: Eneva",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: Vipetro",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: Petrobras",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: Equinor",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: Perenco",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: PRIO",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: TotalEnergies",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: Transpetro",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: ANP",
-      "ch": "linkedin",
-      "found": 1
-    },
-    {
-      "q": "LinkedIn: SLB",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: Baker Hughes",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: Weatherford",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: Tenaris",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: Expro",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: Confab",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: Apolo Tubulars",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: Jereh",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: Kerui",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: Inpasa",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: TAG",
-      "ch": "linkedin",
       "found": 0
     }
   ],
