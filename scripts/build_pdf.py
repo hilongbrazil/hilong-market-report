@@ -116,7 +116,7 @@ TXT = {
         "w_week": "News this week", "w_prev": "{n} the week before", "w_msg": "Message of the week",
         "w_tl": "Week timeline", "w_tl_hint": "Highest-relevance story of each day", "w_none": "No stories recorded",
         "w_theme": "By theme", "w_co": "By company", "w_co_hint": "Companies with the most stories this week",
-        "w_period": "Week of {a} to {b}", "seg_on": "Onshore", "seg_off": "Offshore", "seg_sup": "Suppliers", "seg_anp": "ANP", "seg_sa": "South America",
+        "w_next": "Next week", "w_next_hint": "Dates confirmed in this week's stories", "w_period": "Week of {a} to {b}", "seg_on": "Onshore", "seg_off": "Offshore", "seg_sup": "Suppliers", "seg_anp": "ANP", "seg_sa": "South America",
         "doc_title_w": "Hilong Market Report, weekly {d}",
         "method": "Relevance runs from 5 (direct interest to Hilong in Brazil: land drilling and workover rigs, OCTG, sucker rods, downhole tools and the onshore operators on the priority list) to 1 (general market context). Every story carries a confirmed publication date and a public source link; titles and summaries are written for this report. Stories marked HILONG WATCH have relevance 5. Stories marked NEW appear in a report for the first time and are listed first; the report covers the last {d} days.",
         "footer": "Market Report", "page": "Page {p} of {t}", "doc_title": "Hilong Market Report {d}",
@@ -144,7 +144,7 @@ TXT = {
         "w_week": "本周新闻", "w_prev": "上周 {n} 条", "w_msg": "本周寄语",
         "w_tl": "本周时间线", "w_tl_hint": "每日相关度最高的一条", "w_none": "当日无记录",
         "w_theme": "按主题", "w_co": "按公司", "w_co_hint": "本周新闻最多的公司",
-        "w_period": "{a} 至 {b} 当周", "seg_on": "陆上", "seg_off": "海上", "seg_sup": "供应商", "seg_anp": "ANP", "seg_sa": "南美洲",
+        "w_next": "下周看点", "w_next_hint": "本周新闻中已确认的日期", "w_period": "{a} 至 {b} 当周", "seg_on": "陆上", "seg_off": "海上", "seg_sup": "供应商", "seg_anp": "ANP", "seg_sa": "南美洲",
         "doc_title_w": "海隆市场周报 {d}",
         "method": "相关度从 5（与海隆在巴西的业务直接相关：陆上钻井和修井钻机、OCTG、抽油杆、井下工具以及重点名单中的陆上作业者）到 1（一般市场背景）。每条新闻均有确认的发布日期和公开的来源链接；标题和摘要为本报告撰写。标有“海隆关注”的新闻相关度为 5。标有“新”的新闻首次出现在报告中并排在最前；本报告涵盖近 {d} 天的新闻。",
         "footer": "市场报告", "page": "第 {p} 页，共 {t} 页", "doc_title": "海隆市场报告 {d}",
@@ -636,7 +636,35 @@ def cocite_html(items, limit=8):
     return sep.join(f"<b>{esc(n)}</b> {k}" for n, k in top)
 
 
-def weekly_sections(items, start, report_date):
+def load_next_week(path, report_date):
+    """Lê o JSON de datas confirmadas para a semana seguinte: [{"date","company","text_en","text_zh"}].
+    Só entram datas de D+1 a D+7; devolve [] se não houver arquivo ou itens válidos."""
+    if not path:
+        return []
+    raw = json.loads(Path(path).read_text(encoding="utf-8"))
+    d0 = dt.date.fromisoformat(report_date)
+    out = []
+    for e in raw if isinstance(raw, list) else []:
+        try:
+            d = dt.date.fromisoformat(e["date"])
+        except (KeyError, ValueError):
+            continue
+        if d0 < d <= d0 + dt.timedelta(days=7) and str(e.get("text_en", "")).strip() and str(e.get("text_zh", "")).strip():
+            out.append({"date": d, "company": str(e.get("company", "")).strip(),
+                        "text": str(e["text_zh" if LANG == "zh" else "text_en"]).strip()})
+    return sorted(out, key=lambda e: e["date"])
+
+
+def next_week_html(events):
+    if not events:
+        return ""
+    names = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"] if LANG == "en" else ["周一", "周二", "周三", "周四", "周五", "周六", "周日"]
+    rows = "".join(f'<div class="tl"><div class="d">{names[e["date"].weekday()]} {e["date"].day}</div>'
+                   f'<div class="o">{esc(e["company"])}</div><div class="h">{esc(e["text"])}</div></div>' for e in events)
+    return (f'<section class="sec pad"><div class="sec-h"><h2>{tr("w_next")}</h2><span class="hint">{tr("w_next_hint")}</span></div>{rows}</section>')
+
+
+def weekly_sections(items, start, report_date, co_limit=8):
     d0 = dt.date.fromisoformat(start)
     tl = ""
     names = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"] if LANG == "en" else ["周一", "周二", "周三", "周四", "周五", "周六", "周日"]
@@ -661,7 +689,7 @@ def weekly_sections(items, start, report_date):
             continue
         by_co.setdefault(op_name(i), []).append(i)
     rows = ""
-    for name, lst in sorted(by_co.items(), key=lambda kv: (-len(kv[1]), kv[0]))[:8]:
+    for name, lst in sorted(by_co.items(), key=lambda kv: (-len(kv[1]), kv[0]))[:co_limit]:
         best = sorted(lst, key=rank_key)[0]
         rows += (f'<tr><td class="cn">{esc(name)}</td><td class="cc">{len(lst)}</td><td>{esc(ttl(best))}</td></tr>')
     return tl, tiles, rows
@@ -824,7 +852,9 @@ def build_html(args):
                    else f'<p style="margin:4mm 0;color:#55686E">{esc(tr("new_none", d=days))}</p>')
     analysis_block = ""
     if weekly:
-        tl, tiles, rows = weekly_sections(items, start, report_date)
+        events = load_next_week(args.next_week, report_date)[:4]
+        tl, tiles, rows = weekly_sections(items, start, report_date, co_limit=max(3, 8 - 2 * len(events)))
+        next_html = next_week_html(events)
         body = f"""{masthead}
 <section class="sec first pad"><div class="sec-h"><h2>{tr("top_h")}</h2><span class="hint">{tr("new_hint")}</span></div>
   {top_rows_html(items, new_ids)}</section>
@@ -834,6 +864,7 @@ def build_html(args):
 <section class="sec pad"><div class="sec-h"><h2>{tr("w_theme")}</h2></div><div class="tiles">{tiles}</div></section>
 <section class="sec pad"><div class="sec-h"><h2>{tr("w_co")}</h2><span class="hint">{tr("w_co_hint")}</span></div>
   <table class="cotable">{rows}</table></section>
+{next_html}
 {sign}
 """
     else:
@@ -908,6 +939,7 @@ def main():
     ap.add_argument("--record", action="store_true",
                     help="registra esta edição em data/reports.json (usar só no envio real, não em testes)")
     ap.add_argument("--brief", help="grava a lista das notícias do relatório (markdown) para o agente escrever a análise")
+    ap.add_argument("--next-week", help="JSON com datas confirmadas da semana seguinte (só no semanal; seção omitida se vazio)")
     ap.add_argument("--analysis", help="análise do agente em JSON (headline, points, hilong), no topo do PDF")
     args = ap.parse_args()
     if not args.out and not args.brief:

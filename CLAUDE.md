@@ -309,15 +309,16 @@ Feita pela tarefa das 7h55, todos os dias (mesmo que nenhuma notícia tenha entr
 
 Feita pela tarefa de domingo, depois de `git pull` na `main`. Dois PDFs (inglês e chinês simplificado), com as notícias da semana (segunda a domingo, 7 dias contando o domingo), enviados num único e-mail separado do diário. Capa na cor verde (o diário é ciano), título "Market Report" + "Weekly Edition" (chinês: 周报), "Prepared by Li Marcitao". Sem análise de IA.
 
+0. **Próxima semana (opcional):** ler as notícias da semana e anotar só datas futuras (de amanhã a 7 dias) que estejam escritas nelas ou nas páginas das fontes: leilão, audiência pública, divulgação de resultados, entrega ou início de campanha. Não deduzir nem inventar datas. Gravar em `<pasta>/next_week.json`, uma lista de até 4 itens: `{"date": "AAAA-MM-DD", "company": "...", "text_en": "...", "text_zh": "..."}` (texto curto, chinês seguindo a seção 4). Sem datas confirmadas, não criar o arquivo: a seção "Next week" / "下周看点" simplesmente não aparece.
 1. Gerar os dois PDFs e o corpo do e-mail em pasta fora do repositório (não usar `--record`: o semanal não mexe no `data/reports.json`):
 
    ```
    python3 scripts/build_pdf.py --kind weekly --out <pasta>/Hilong-Weekly-Market-Report-AAAA-MM-DD.pdf \
-     --date today --email-html <pasta>/email.html --email-text <pasta>/email.txt
-   python3 scripts/build_pdf.py --kind weekly --lang zh --out <pasta>/Hilong-Weekly-Market-Report-AAAA-MM-DD-ZH.pdf --date today
+     --date today --email-html <pasta>/email.html --email-text <pasta>/email.txt [--next-week <pasta>/next_week.json]
+   python3 scripts/build_pdf.py --kind weekly --lang zh --out <pasta>/Hilong-Weekly-Market-Report-AAAA-MM-DD-ZH.pdf --date today [--next-week <pasta>/next_week.json]
    ```
 
-   O PDF tem 2 páginas: capa (período, indicadores, cinco principais notícias da semana, barra por segmento, empresas mais citadas) e página 2 (linha do tempo da semana, temas, tabela por empresa e mensagem do Li Marcitao).
+   O PDF tem 2 páginas: capa (período, indicadores, cinco principais notícias da semana, barra por segmento, empresas mais citadas) e página 2 (linha do tempo da semana, temas, tabela por empresa, "próxima semana" quando houver datas confirmadas e mensagem do Li Marcitao).
 2. Publicar: `python3 scripts/publish_reports.py --date AAAA-MM-DD <os dois PDFs>`, commit de `reports/` (mensagem `Registra relatório semanal AAAA-MM-DD`), `git pull --rebase`, push e espera de 90 segundos.
 3. Enviar um único e-mail pelo Resend: `from` = `Weekly Market Report <noreply@hilongbrazil.com>`; assunto `Hilong Weekly Market Report - AAAA-MM-DD`; `html`/`text` = `email.html`/`email.txt`; os dois PDFs como anexos por URL; `idempotencyKey` `hilong-weekly-AAAA-MM-DD`; destinatários marcio.vianna@hilonggroup.com e likewei@hilonggroup.com. Se falhar, esperar 60 segundos e tentar uma vez; só então usar o Gmail de reserva (mesmas regras da seção 6, item 6). Nunca enviar pelos dois caminhos.
 4. Resumo final em inglês: se o e-mail foi enviado, por qual caminho, e se os dois PDFs foram anexados.
