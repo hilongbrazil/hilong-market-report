@@ -2,7 +2,7 @@
 
 Site estático publicado em https://marketreportnews.hilongbrazil.com (Netlify, deploy automático a cada push na branch `main`).
 
-**Acesso só com login** (o mesmo do Centro, hilong.hilongbrazil.com): `netlify/edge-functions/guard.ts` + `netlify.toml`. A única exceção é `/reports/` (o Resend busca os PDFs por endereço). Não remover nem alterar o porteiro sem combinar com o Marcio.
+**Acesso só com login e só para quem tem o Market News no perfil do Centro** (hilong.hilongbrazil.com; perfis em `hl_perfis.reports` com `mkt`, ou admin; sem o perfil, volta para o Centro): `netlify/edge-functions/guard.ts` + `netlify.toml`. A única exceção é `/reports/` (o Resend busca os PDFs por endereço). Não remover nem alterar o porteiro sem combinar com o Marcio.
 
 - `index.html`: página de notícias. `live.html`: painel ao vivo (indicadores e atividade do agente).
 - `assets/site.css` e `assets/site.js`: estilo e código das duas páginas.

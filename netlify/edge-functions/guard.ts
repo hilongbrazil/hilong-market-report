@@ -43,6 +43,11 @@ function expOf(token: string): number {
   }
 }
 
+// Só entra quem tem o Market News no perfil do Centro (hl_perfis.reports contém "mkt") ou é admin.
+// Com login mas sem o Market News no perfil: volta para o Centro de Operações.
+const CENTRO = "https://hilong.hilongbrazil.com/";
+const denied = new Map<string, number>();
+
 export default async (req: Request, context: Context) => {
   if (new URL(req.url).pathname.startsWith("/reports/")) return context.next();
   const token = readSession(req);
@@ -50,18 +55,34 @@ export default async (req: Request, context: Context) => {
     const now = Date.now();
     const cached = ok.get(token);
     if (cached && cached > now) return context.next();
+    const no = denied.get(token);
+    if (no && no > now) return Response.redirect(CENTRO, 302);
     const exp = expOf(token);
     if (exp > now) {
-      const r = await fetch(`${SUPABASE_URL}/auth/v1/user`, {
-        headers: { apikey: ANON_KEY, Authorization: `Bearer ${token}` },
-      });
-      if (r.ok) {
-        ok.set(token, Math.min(exp, now + 5 * 60 * 1000));
-        if (ok.size > 500) ok.clear();
-        return context.next();
+      let r: Response | null = null;
+      try {
+        r = await fetch(`${SUPABASE_URL}/rest/v1/rpc/hl_meu_acesso`, {
+          method: "POST",
+          headers: { apikey: ANON_KEY, Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
+          body: "{}",
+        });
+      } catch {
+        r = null;
+      }
+      if (r && r.ok) {
+        let a: { perfil?: string; reports?: string[] } | null = null;
+        try { a = await r.json(); } catch { a = null; }
+        const until = Math.min(exp, now + 5 * 60 * 1000);
+        if (a && (a.perfil === "admin" || (Array.isArray(a.reports) && a.reports.includes("mkt")))) {
+          ok.set(token, until);
+          if (ok.size > 500) ok.clear();
+          return context.next();
+        }
+        denied.set(token, until);
+        if (denied.size > 500) denied.clear();
+        return Response.redirect(CENTRO, 302);
       }
     }
   }
   return Response.redirect(LOGIN, 302);
 };
-
