@@ -3,7 +3,7 @@
 
   var T = {
     pt: {
-      mNew: "notícias novas", mAll: "no período", mSearch: "buscas", focus: "Foco Hilong", supplier: "Fornecedor", focusHint: "= interesse direto da Hilong (sondas, workover, operadoras onshore)",
+      mNew: "notícias novas", mAll: "no período", mSearch: "buscas", focus: "Hilong Atenção", supplier: "Fornecedor", focusHint: "= interesse direto da Hilong (sondas, workover, operadoras onshore)",
       meet: "Conheça o Li Marcitão", aiNote: "Li Marcitão é um personagem virtual gerado por IA.", close: "Fechar",
       center: "← Centro", navNews: "Notícias", navLive: "Painel ao vivo", openLive: "Abrir o painel ao vivo", topT: "Destaques da semana",
       sub: "Notícias de óleo e gás das operadoras e empresas do setor no Brasil e na América do Sul.",
@@ -37,7 +37,7 @@
       countries: { BR: "Brasil", AR: "Argentina", CO: "Colômbia", GY: "Guiana", SR: "Suriname", PE: "Peru", EC: "Equador", BO: "Bolívia", VE: "Venezuela", CL: "Chile", UY: "Uruguai", PY: "Paraguai", TT: "Trinidad e Tobago" }
     },
     zh: {
-      mNew: "条新消息", mAll: "期间内", mSearch: "次搜索", focus: "海隆重点", supplier: "供应商", focusHint: "= 与海隆直接相关（钻机、修井、陆上作业者）",
+      mNew: "条新消息", mAll: "期间内", mSearch: "次搜索", focus: "海隆关注", supplier: "供应商", focusHint: "= 与海隆直接相关（钻机、修井、陆上作业者）",
       meet: "认识李马西涛", aiNote: "李马西涛是由 AI 生成的虚拟人物。", close: "关闭",
       center: "← 中心", navNews: "新闻", navLive: "实时面板", openLive: "打开实时面板", topT: "本周要闻",
       sub: "巴西及南美洲作业者和油气行业公司的新闻。",
@@ -71,7 +71,7 @@
       countries: { BR: "巴西", AR: "阿根廷", CO: "哥伦比亚", GY: "圭亚那", SR: "苏里南", PE: "秘鲁", EC: "厄瓜多尔", BO: "玻利维亚", VE: "委内瑞拉", CL: "智利", UY: "乌拉圭", PY: "巴拉圭", TT: "特立尼达和多巴哥" }
     },
     en: {
-      mNew: "new stories", mAll: "in the period", mSearch: "searches", focus: "Hilong focus", supplier: "Supplier", focusHint: "= direct interest for Hilong (rigs, workover, onshore operators)",
+      mNew: "new stories", mAll: "in the period", mSearch: "searches", focus: "Hilong Watch", supplier: "Supplier", focusHint: "= direct interest for Hilong (rigs, workover, onshore operators)",
       meet: "Meet Li Marcitão", aiNote: "Li Marcitão is an AI-generated virtual character.", close: "Close",
       center: "← Center", navNews: "News", navLive: "Live panel", openLive: "Open the live panel", topT: "Top stories this week",
       sub: "Oil and gas news from operators and industry companies in Brazil and South America.",
