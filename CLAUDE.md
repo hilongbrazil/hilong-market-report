@@ -292,7 +292,7 @@ Feita pela tarefa das 7h55, todos os dias (mesmo que nenhuma notícia tenha entr
    O script copia os PDFs para `reports/AAAA-MM-DD/`, apaga as pastas com mais de 3 dias e imprime os endereços (`URL: https://marketreportnews.netlify.app/reports/...`). Fazer commit de `reports/` junto com o `data/reports.json` (mensagem `Registra relatório AAAA-MM-DD`), `git pull --rebase` e push. Esperar cerca de 90 segundos para o Netlify publicar.
 
 5. **Enviar um único e-mail pelo Resend** (ferramenta `send-email` do conector Resend), aos destinatários definidos na tarefa agendada:
-   - `from`: `noreply@hilongbrazil.com`;
+   - `from`: `Daily Market Report <noreply@hilongbrazil.com>` (nome exibido "Daily Market Report"; o futuro e-mail semanal usará `Weekly Market Report <noreply@hilongbrazil.com>`);
    - assunto: `Hilong Market Report - AAAA-MM-DD`;
    - `html`: o conteúdo de `email.html`, sem alterações; `text`: o conteúdo de `email.txt`;
    - dois anexos por endereço: `{"filename": "Hilong-Market-Report-AAAA-MM-DD.pdf", "url": "<URL do PDF em inglês>", "contentType": "application/pdf"}` e `{"filename": "Hilong-Market-Report-AAAA-MM-DD-ZH.pdf", "url": "<URL do PDF em chinês>", "contentType": "application/pdf"}`;
