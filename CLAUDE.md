@@ -13,7 +13,8 @@ Site estático publicado em https://marketreportnews.hilongbrazil.com (Netlify, 
 - `data/archive/AAAA-MM.json`: notícias com mais de 60 dias, movidas para cá.
 - `scripts/validate.py`: valida o `news.json` e o `run.json`. Rodar antes de todo commit.
 - `reports/AAAA-MM-DD/`: PDFs dos últimos 3 dias, publicados no site para o Resend anexar ao e-mail (`scripts/publish_reports.py`).
-- `scripts/build_pdf.py`: gera os relatórios em PDF, em inglês e em chinês (`--lang zh`), e o corpo do e-mail diário (seção 6).
+- `scripts/build_pdf.py`: gera os relatórios em PDF, em inglês e em chinês (`--lang zh`), diário e semanal (`--kind weekly`), e o corpo do e-mail (seções 6 e 6b).
+- `assets/li-marcitao.jpg`: foto do Li Marcitao usada nas capas e na assinatura dos PDFs.
 
 ## Rotina diária de atualização
 
@@ -22,7 +23,8 @@ Tarefas agendadas, todos os dias (horário de Brasília). Nada roda depois da ro
 - **6h00, varredura completa:** seções 1 a 5 (pesquisar, selecionar, escrever, gravar e publicar) e o resumo da seção 7, passando por todas as empresas da lista. Não gera PDF nem envia e-mail.
 - **6h40, LinkedIn:** seção 1c, no computador do Marcio (navegador do aplicativo Claude, conta alternativa logada). Só roda com o computador ligado e o aplicativo aberto.
 - **12h e 22h, rodada rápida:** seção 1b, depois as seções 2 a 5. Não gera PDF nem envia e-mail. (Até 14/11/2026 eram de hora em hora, das 7h às 21h; reduzidas a pedido do Marcio.)
-- **7h55, relatório:** só a seção 6 (dois PDFs, em inglês e em chinês, num único e-mail), para o e-mail chegar por volta das 8h. Usa o que as varreduras publicaram até ali.
+- **7h55, relatório diário:** só a seção 6 (dois PDFs, em inglês e em chinês, num único e-mail), para o e-mail chegar por volta das 8h. Usa o que as varreduras publicaram até ali.
+- **Domingo, 21h55, relatório semanal:** só a seção 6b (dois PDFs, em inglês e em chinês, num único e-mail), para chegar por volta das 22h.
 
 Cada varredura (a completa e cada rodada) regrava o `data/run.json`; o painel ao vivo mostra sempre a última que terminou.
 
@@ -291,8 +293,8 @@ Feita pela tarefa das 7h55, todos os dias (mesmo que nenhuma notícia tenha entr
 
    O script copia os PDFs para `reports/AAAA-MM-DD/`, apaga as pastas com mais de 3 dias e imprime os endereços (`URL: https://marketreportnews.netlify.app/reports/...`). Fazer commit de `reports/` junto com o `data/reports.json` (mensagem `Registra relatório AAAA-MM-DD`), `git pull --rebase` e push. Esperar cerca de 90 segundos para o Netlify publicar.
 
-5. **Enviar um único e-mail pelo Resend** (ferramenta `send-email` do conector Resend), aos destinatários definidos na tarefa agendada:
-   - `from`: `noreply@hilongbrazil.com`;
+5. **Enviar um único e-mail pelo Resend** (ferramenta `send-email` do conector Resend), aos destinatários definidos na tarefa agendada (marcio.vianna@hilonggroup.com e likewei@hilonggroup.com):
+   - `from`: `Daily Market Report <noreply@hilongbrazil.com>` (o nome que aparece como remetente é "Daily Market Report");
    - assunto: `Hilong Market Report - AAAA-MM-DD`;
    - `html`: o conteúdo de `email.html`, sem alterações; `text`: o conteúdo de `email.txt`;
    - dois anexos por endereço: `{"filename": "Hilong-Market-Report-AAAA-MM-DD.pdf", "url": "<URL do PDF em inglês>", "contentType": "application/pdf"}` e `{"filename": "Hilong-Market-Report-AAAA-MM-DD-ZH.pdf", "url": "<URL do PDF em chinês>", "contentType": "application/pdf"}`;
@@ -302,6 +304,23 @@ Feita pela tarefa das 7h55, todos os dias (mesmo que nenhuma notícia tenha entr
 6. **Reserva: Gmail.** Só se o Resend falhar duas vezes, enviar pelo conector do Gmail (remetente: o Gmail hilongbrazil), com o mesmo assunto, `htmlBody` = `email.html`, `body` = `email.txt` e os dois PDFs anexados como referência de arquivo `sha256:<sha256 do arquivo>:<caminho absoluto>` (`mimeType` `application/pdf`, com os mesmos nomes de arquivo; hash com `sha256sum`). Se os anexos forem recusados, gerar de novo o PDF em inglês (com `--record`) e o corpo do e-mail com `--alert "The PDFs could not be attached today; the reports are on the page."` e enviar sem anexo. Nunca enviar pelos dois caminhos no mesmo dia. Se o Gmail também falhar, não tentar outro caminho: registrar no resumo final.
 
 7. Não fazer commit dos PDFs fora de `reports/` nem dos arquivos do e-mail. Não alterar o `scripts/build_pdf.py` nem o `scripts/publish_reports.py` nesta rotina.
+
+### 6b. Relatório semanal (domingo, 21h55)
+
+Feita pela tarefa de domingo, depois de `git pull` na `main`. Dois PDFs (inglês e chinês simplificado), com as notícias da semana (segunda a domingo, 7 dias contando o domingo), enviados num único e-mail separado do diário. Capa na cor verde (o diário é ciano), título "Market Report" + "Weekly Edition" (chinês: 周报), "Prepared by Li Marcitao". Sem análise de IA.
+
+1. Gerar os dois PDFs e o corpo do e-mail em pasta fora do repositório (não usar `--record`: o semanal não mexe no `data/reports.json`):
+
+   ```
+   python3 scripts/build_pdf.py --kind weekly --out <pasta>/Hilong-Weekly-Market-Report-AAAA-MM-DD.pdf \
+     --date today --email-html <pasta>/email.html --email-text <pasta>/email.txt
+   python3 scripts/build_pdf.py --kind weekly --lang zh --out <pasta>/Hilong-Weekly-Market-Report-AAAA-MM-DD-ZH.pdf --date today
+   ```
+
+   O PDF tem 2 páginas: capa (período, indicadores, cinco principais notícias da semana, barra por segmento, empresas mais citadas) e página 2 (linha do tempo da semana, temas, tabela por empresa e mensagem do Li Marcitao).
+2. Publicar: `python3 scripts/publish_reports.py --date AAAA-MM-DD <os dois PDFs>`, commit de `reports/` (mensagem `Registra relatório semanal AAAA-MM-DD`), `git pull --rebase`, push e espera de 90 segundos.
+3. Enviar um único e-mail pelo Resend: `from` = `Weekly Market Report <noreply@hilongbrazil.com>`; assunto `Hilong Weekly Market Report - AAAA-MM-DD`; `html`/`text` = `email.html`/`email.txt`; os dois PDFs como anexos por URL; `idempotencyKey` `hilong-weekly-AAAA-MM-DD`; destinatários marcio.vianna@hilonggroup.com e likewei@hilonggroup.com. Se falhar, esperar 60 segundos e tentar uma vez; só então usar o Gmail de reserva (mesmas regras da seção 6, item 6). Nunca enviar pelos dois caminhos.
+4. Resumo final em inglês: se o e-mail foi enviado, por qual caminho, e se os dois PDFs foram anexados.
 
 ### 7. Resumo final
 
