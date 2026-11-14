@@ -17,11 +17,11 @@ Site estático publicado em https://marketreportnews.hilongbrazil.com (Netlify, 
 
 ## Rotina diária de atualização
 
-Três tarefas agendadas, todos os dias (horário de Brasília). Nada roda das 22h às 6h.
+Tarefas agendadas, todos os dias (horário de Brasília). Nada roda depois da rodada das 22h nem antes das 6h.
 
 - **6h00, varredura completa:** seções 1 a 5 (pesquisar, selecionar, escrever, gravar e publicar) e o resumo da seção 7, passando por todas as empresas da lista. Não gera PDF nem envia e-mail.
 - **6h40, LinkedIn:** seção 1c, no computador do Marcio (navegador do aplicativo Claude, conta alternativa logada). Só roda com o computador ligado e o aplicativo aberto.
-- **De hora em hora, das 7h às 21h, rodada rápida:** seção 1b, depois as seções 2 a 5. Não gera PDF nem envia e-mail. (Em teste na semana de 12/11/2026.)
+- **12h e 22h, rodada rápida:** seção 1b, depois as seções 2 a 5. Não gera PDF nem envia e-mail. (Até 14/11/2026 eram de hora em hora, das 7h às 21h; reduzidas a pedido do Marcio.)
 - **7h55, relatório:** só a seção 6 (dois PDFs, em inglês e em chinês, num único e-mail), para o e-mail chegar por volta das 8h. Usa o que as varreduras publicaram até ali.
 
 Cada varredura (a completa e cada rodada) regrava o `data/run.json`; o painel ao vivo mostra sempre a última que terminou.
@@ -127,15 +127,14 @@ Cada página mostra 12 matérias; na varredura das 6h, se a 12ª ainda for poste
 
 **YouTube:** buscar vídeos publicados desde a última atualização nos canais oficiais das empresas e dos veículos do setor (webcasts de resultados, anúncios de projetos, entrevistas de executivos). Registrar apenas o que o título e a descrição do vídeo afirmam; não atribuir ao vídeo nada que não esteja escrito na página. Marcar `via` como `youtube` e `source` com o nome do canal.
 
-### 1b. Rodada rápida (de hora em hora, das 7h às 21h)
+### 1b. Rodada rápida (12h e 22h)
 
-Uma rodada curta, de no máximo 12 buscas, só para pegar o que saiu desde as últimas horas:
+Uma rodada curta, de no máximo 12 buscas, só para pegar o que saiu desde a última varredura ou rodada:
 
 1. Sempre: as notícias mais recentes de eixos, PetroNotícias, Agência Petrobras e as duas categorias do Click Petróleo e Gás, Petróleo e Gás e Setor Offshore (canal `site`; endereços e cuidados na seção 1).
-2. Um bloco da lista prioritária, conforme a hora da rodada (resto da divisão da hora por 3):
-   - resto 0 (9h, 12h, 15h, 18h, 21h): onshore, empresas 1 a 11;
-   - resto 1 (7h, 10h, 13h, 16h, 19h): offshore, empresas 12 a 17, e ANP (18);
-   - resto 2 (8h, 11h, 14h, 17h, 20h): fornecedores, empresas 19 a 29, e uma busca da América do Sul.
+2. Um bloco da lista prioritária, conforme a hora da rodada:
+   - 12h: onshore (empresas 1 a 11), offshore (12 a 17) e ANP (18);
+   - 22h: fornecedores (19 a 29) e uma busca da América do Sul.
    Agrupar empresas na mesma busca quando fizer sentido, para caber nas 12 buscas.
 3. Procurar notícias das últimas 48 horas que ainda não estejam em `news.json` (conferir `url` e assunto). Os critérios de seleção, relevância e escrita são os mesmos das seções 2 a 4.
 4. Gravar como na seção 5, com estas diferenças: `terms` pode ter menos de 15 nomes (só o que a rodada pesquisou); se nada novo entrar, não alterar `news.json` e regravar só o `run.json` (com `new_items` 0), para o painel mostrar a rodada; mensagem do commit `Rodada AAAA-MM-DD HHh (N novas)`.
@@ -245,7 +244,7 @@ Cada item segue este formato:
    - `searches`: número de buscas feitas; `new_items`: notícias novas gravadas;
    - `terms`: nomes das empresas, países e temas efetivamente pesquisados (de 15 a 40 nomes curtos);
    - `queries`: lista das buscas realmente feitas nesta execução, na ordem (até 60), cada uma com `q` (o texto da busca), `ch` (`site`, `linkedin`, `instagram`, `youtube` ou `x`) e `found` (quantas notícias novas saíram dessa busca; pode ser 0). A visita a um site oficial entra como `q` = `Site oficial: <empresa>`, `ch` = `site`;
-   - `sites` (obrigatório na varredura das 6h): uma entrada por empresa da tabela de sites oficiais, na ordem, com `name` (nome da empresa), `url` (página aberta, ou vazio se não houver site), `status` (`ok`, `sem_itens`, `bloqueado` ou `sem_site`) e `found` (notícias novas que saíram dela). Nas rodadas de hora em hora, manter o `sites` da varredura das 6h como está.
+   - `sites` (obrigatório na varredura das 6h): uma entrada por empresa da tabela de sites oficiais, na ordem, com `name` (nome da empresa), `url` (página aberta, ou vazio se não houver site), `status` (`ok`, `sem_itens`, `bloqueado` ou `sem_site`) e `found` (notícias novas que saíram dela). Nas rodadas das 12h e 22h, manter o `sites` da varredura das 6h como está.
    Registrar só o que foi de fato pesquisado: o painel ao vivo reproduz essa lista para o leitor.
 4. Rodar `python3 scripts/validate.py`. Corrigir até passar.
 5. Commit na `main` com a mensagem `Atualiza notícias AAAA-MM-DD (N novas)` e push. Antes do push, fazer `git pull --rebase`. Se der conflito (outra varredura gravou ao mesmo tempo), desfazer o rebase (`git rebase --abort`), voltar para `origin/main` (`git reset --hard origin/main`), inserir de novo só os itens novos desta varredura que ainda não estiverem no arquivo, regravar o `run.json`, validar e enviar outra vez.

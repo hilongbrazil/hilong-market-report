@@ -571,6 +571,18 @@
         }
       }
     }
+    if (run.schedule && run.schedule.type === "times" && run.schedule.times && run.schedule.times.length) {
+      /* fixed daily times (Brasília), e.g. ["06:00", "12:00", "22:00"] */
+      var tp = new Date(now - 3 * 3600000);
+      for (var td = 0; td < 2; td++) {
+        for (var ti = 0; ti < run.schedule.times.length; ti++) {
+          var tt = run.schedule.times[ti];
+          if (!/^\d\d:\d\d$/.test(tt)) continue;
+          var c3 = Date.UTC(tp.getUTCFullYear(), tp.getUTCMonth(), tp.getUTCDate() + td, +tt.slice(0, 2) + 3, +tt.slice(3, 5));
+          if (c3 > now) return c3;
+        }
+      }
+    }
     if (run.schedule && (run.schedule.type === "weekdays" || run.schedule.type === "daily") && /^\d\d:\d\d$/.test(run.schedule.time || "")) {
       var everyDay = run.schedule.type === "daily";
       var hh = +run.schedule.time.slice(0, 2), mm = +run.schedule.time.slice(3, 5);
