@@ -1,6 +1,6 @@
 {
-  "run_at": "2026-11-14T09:25:00-03:00",
-  "searches": 11,
+  "run_at": "2026-11-14T10:15:00-03:00",
+  "searches": 12,
   "new_items": 0,
   "schedule": {
     "type": "hourly",
@@ -12,75 +12,76 @@
     "eixos",
     "PetroNotícias",
     "Agência Petrobras",
-    "Carmo Energy",
-    "PetroReconcavo",
-    "Brava Energia",
-    "Origem Energia",
-    "Mandacaru Energia",
-    "Seacrest Petróleo",
-    "PetroVictory",
-    "Alvopetro",
-    "Petroborn",
-    "Eneva",
-    "Vipetro",
+    "Petrobras",
+    "Equinor",
+    "Perenco",
+    "PRIO",
+    "TotalEnergies",
+    "Transpetro",
     "ANP",
-    "onshore Nordeste",
-    "sondas terrestres",
-    "workover"
+    "Búzios",
+    "Peregrino",
+    "sondas offshore",
+    "navios-sonda"
   ],
   "queries": [
     {
-      "q": "Site oficial: Click Petróleo e Gás (categoria Petróleo e Gás) — busca site:clickpetroleoegas.com.br",
+      "q": "Site oficial: Click Petróleo e Gás (categorias Petróleo e Gás e Setor Offshore) — página não abriu; busca clickpetroleoegas.com.br petróleo offshore novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Site oficial: Click Petróleo e Gás (categoria Setor Offshore) — busca site:clickpetroleoegas.com.br Petrobras plataforma sonda",
+      "q": "Petrobras notícia 13 novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "eixos PetroNotícias petróleo gás 14 novembro 2026",
+      "q": "PRIO Equinor TotalEnergies Brasil novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Agência Petrobras notícia novembro 2026",
+      "q": "ANP petróleo gás notícia 13 de novembro de 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "PetroReconcavo / Carmo Energy / Origem Energia novembro 2026",
+      "q": "PetroNotícias: Petrobras sonda contrato",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Alvopetro / PetroVictory / Mandacaru Energia / Seacrest Petróleo novembro 2026",
+      "q": "Petrobras Transpetro Perenco news November 13 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Eneva / Petroborn / Vipetro / Brava Energia onshore poços novembro 2026",
+      "q": "Agência Petrobras: plataforma Búzios novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "petróleo gás Brasil 13 novembro 2026 Petrobras ANP",
+      "q": "eixos comece seu dia petróleo gás 13 novembro",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "PetroNotícias sonda onshore workover contrato novembro 2026",
+      "q": "Equinor Bacalhau Raia TotalEnergies Brazil offshore",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Origem Energia / Carmo Energy / Mandacaru Energia poços gás",
+      "q": "PRIO fato relevante novembro 2026 Peregrino Wahoo",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "onshore Bahia Sergipe Rio Grande do Norte sonda perfuração",
+      "q": "Transpetro ANP anuncia 13/11/2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Brazil offshore drillship contract Petrobras November 2026",
       "ch": "site",
       "found": 0
     }
