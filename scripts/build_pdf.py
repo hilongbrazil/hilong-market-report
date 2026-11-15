@@ -102,7 +102,7 @@ TXT = {
         "k_search": "Searches run", "k_search_n": "sites, social networks and YouTube",
         "new_h": "New in this report", "new_hint": "Highest relevance first · Brazil before South America",
         "new_none": "No new stories since the last report. The full {d}-day history follows.",
-        "br_h": "Brazil", "sa_h": "South America", "hist_hint": "{n} stories · last {d} days · new first",
+        "br_h": "Brazil", "sa_h": "South America", "hist_hint": "{n} stories · last {d} days · newest first",
         "g_on": "Onshore operators", "g_off": "Offshore operators and ANP", "g_sup": "Suppliers",
         "g_other": "Sector, regulation and other companies",
         "cov_h": "Coverage by company", "cov_hint": "Priority list · stories in the last {d} days",
@@ -118,7 +118,7 @@ TXT = {
         "w_theme": "By theme", "w_co": "By company", "w_co_hint": "Companies with the most stories this week",
         "w_next": "Next week", "w_next_hint": "Dates confirmed in this week's stories", "w_period": "Week of {a} to {b}", "seg_on": "Onshore", "seg_off": "Offshore", "seg_sup": "Suppliers", "seg_anp": "ANP", "seg_sa": "South America",
         "doc_title_w": "Hilong Market Report, weekly {d}",
-        "method": "Relevance runs from 5 (direct interest to Hilong in Brazil: land drilling and workover rigs, OCTG, sucker rods, downhole tools and the onshore operators on the priority list) to 1 (general market context). Every story carries a confirmed publication date and a public source link; titles and summaries are written for this report. Stories marked HILONG WATCH have relevance 5. Stories marked NEW appear in a report for the first time and are listed first; the report covers the last {d} days.",
+        "method": "Relevance runs from 5 (direct interest to Hilong in Brazil: land drilling and workover rigs, OCTG, sucker rods, downhole tools and the onshore operators on the priority list) to 1 (general market context). Every story carries a confirmed publication date and a public source link; titles and summaries are written for this report. Stories marked HILONG WATCH have relevance 5. Stories marked NEW appear in a report for the first time and are listed together at the top; in each section below, stories run from newest to oldest. The report covers the last {d} days.",
         "footer": "Market Report", "page": "Page {p} of {t}", "doc_title": "Hilong Market Report {d}",
     },
     "zh": {
@@ -130,7 +130,7 @@ TXT = {
         "k_search": "搜索次数", "k_search_n": "网站、社交媒体和 YouTube",
         "new_h": "本期新消息", "new_hint": "相关度高者在前 · 巴西在南美洲之前",
         "new_none": "自上期报告以来没有新消息。以下为近 {d} 天的完整记录。",
-        "br_h": "巴西", "sa_h": "南美洲", "hist_hint": "{n} 条新闻 · 近 {d} 天 · 新消息在前",
+        "br_h": "巴西", "sa_h": "南美洲", "hist_hint": "{n} 条新闻 · 近 {d} 天 · 按日期由近及远",
         "g_on": "陆上作业者", "g_off": "海上作业者和 ANP", "g_sup": "供应商",
         "g_other": "行业、监管及其他公司",
         "cov_h": "按公司统计", "cov_hint": "重点名单 · 近 {d} 天的新闻",
@@ -146,7 +146,7 @@ TXT = {
         "w_theme": "按主题", "w_co": "按公司", "w_co_hint": "本周新闻最多的公司",
         "w_next": "下周看点", "w_next_hint": "本周新闻中已确认的日期", "w_period": "{a} 至 {b} 当周", "seg_on": "陆上", "seg_off": "海上", "seg_sup": "供应商", "seg_anp": "ANP", "seg_sa": "南美洲",
         "doc_title_w": "海隆市场周报 {d}",
-        "method": "相关度从 5（与海隆在巴西的业务直接相关：陆上钻井和修井钻机、OCTG、抽油杆、井下工具以及重点名单中的陆上作业者）到 1（一般市场背景）。每条新闻均有确认的发布日期和公开的来源链接；标题和摘要为本报告撰写。标有“海隆关注”的新闻相关度为 5。标有“新”的新闻首次出现在报告中并排在最前；本报告涵盖近 {d} 天的新闻。",
+        "method": "相关度从 5（与海隆在巴西的业务直接相关：陆上钻井和修井钻机、OCTG、抽油杆、井下工具以及重点名单中的陆上作业者）到 1（一般市场背景）。每条新闻均有确认的发布日期和公开的来源链接；标题和摘要为本报告撰写。标有“海隆关注”的新闻相关度为 5。标有“新”的新闻首次出现在报告中，集中列于报告开头；以下各部分按日期由近及远排列。本报告涵盖近 {d} 天的新闻。",
         "footer": "市场报告", "page": "第 {p} 页，共 {t} 页", "doc_title": "海隆市场报告 {d}",
     },
 }
@@ -544,10 +544,15 @@ def story_html(item, new_ids):
 </article>"""
 
 
+def date_key(item):
+    # blocos do histórico: a mais recente primeiro; no mesmo dia, maior relevância e Brasil antes
+    return (-dt.date.fromisoformat(item["date"]).toordinal(), -item["relevance"], item["region"] != "BR")
+
+
 def group_html(title, items, new_ids):
     if not items:
         return ""
-    items = sorted(items, key=rank_key)
+    items = sorted(items, key=date_key)
     n = len(items)
     body = "".join(story_html(i, new_ids) for i in items)
     return f'<div class="group-h">{esc(title)}<span class="count">{n_stories(n)}</span></div>{body}'
