@@ -1,6 +1,25 @@
 {
-  "updated_at": "2026-11-14T06:54:00-03:00",
+  "updated_at": "2026-11-14T22:25:00-03:00",
   "items": [
+    {
+      "id": "2026-11-13-argentina-exportacoes-recorde-vaca-muerta",
+      "date": "2026-11-13",
+      "region": "SA",
+      "country": "AR",
+      "operator": "Setor",
+      "category": "mercado",
+      "environment": "geral",
+      "relevance": 1,
+      "title_pt": "Exportação de petróleo da Argentina bate recorde de 421 mil bpd em setembro, puxada pelo óleo leve de Vaca Muerta",
+      "title_en": "Argentina's crude exports hit a record 421,000 bpd in September, led by Vaca Muerta light oil",
+      "title_zh": "阿根廷9月原油出口创42.1万桶/日新高，Vaca Muerta轻质油成主力",
+      "summary_pt": "YPF, Pan American Energy e Vista respondem por 52,8% do valor exportado em petróleo e derivados desde 2016. Em setembro, a exportação chegou ao recorde de 421 mil bpd (43% da produção); a Faufena projeta cerca de 520 mil bpd em 2027, com produção que pode passar de 1,1 milhão de bpd.",
+      "summary_en": "YPF, Pan American Energy and Vista account for 52.8% of Argentina's oil and derivatives export value since 2016. Exports reached a record 421,000 bpd in September (43% of output); Faufena projects about 520,000 bpd in 2027, with production possibly topping 1.1 million bpd.",
+      "summary_zh": "自2016年以来，YPF、Pan American Energy和Vista合计占阿根廷石油及成品油出口额的52.8%。9月原油出口创下42.1万桶/日的纪录，占全国产量的43%；Faufena预计2027年出口约52万桶/日，产量或突破110万桶/日。",
+      "source": "El Economista",
+      "url": "https://eleconomista.com.ar/energia/vaca-muerta-reconfigura-mapa-exportador-ypf-pae-vista-dominan-negocio-crudo-n99656",
+      "via": "site"
+    },
     {
       "id": "2026-11-13-petrobras-buzios-electric-completion",
       "date": "2026-11-13",
