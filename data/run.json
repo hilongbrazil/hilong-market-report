@@ -1,5 +1,5 @@
 {
-  "run_at": "2026-11-15T12:25:00-03:00",
+  "run_at": "2026-11-15T22:25:00-03:00",
   "searches": 12,
   "new_items": 0,
   "schedule": {
@@ -15,84 +15,88 @@
     "eixos",
     "PetroNotícias",
     "Agência Petrobras",
-    "Carmo Energy",
-    "PetroReconcavo",
-    "Brava Energia",
-    "Origem Energia",
-    "Mandacaru Energia",
-    "Seacrest Petróleo",
-    "PetroVictory",
-    "Alvopetro",
-    "Petroborn",
-    "Eneva",
-    "Vipetro",
+    "SLB",
+    "Baker Hughes",
+    "Weatherford",
+    "Expro",
+    "Tenaris",
+    "Confab",
+    "Apolo Tubulars",
+    "Jereh",
+    "Kerui",
     "Petrobras",
-    "PRIO",
-    "Equinor",
-    "TotalEnergies",
-    "Transpetro",
     "ANP",
-    "sondas terrestres",
-    "workover"
+    "YPF",
+    "Vista",
+    "Vaca Muerta",
+    "Ecopetrol",
+    "Petroperú",
+    "Petroecuador",
+    "YPFB",
+    "Staatsolie",
+    "ExxonMobil",
+    "Guiana",
+    "Argentina",
+    "Colômbia"
   ],
   "queries": [
     {
-      "q": "Site oficial: Click Petróleo e Gás (categoria Petróleo e Gás) — página não abriu na leitura automática; busca clickpetroleoegas petróleo e gás notícias",
+      "q": "Site oficial: Click Petróleo e Gás (categoria Petróleo e Gás) — página não abriu na leitura automática; busca clickpetroleoegas petróleo gás Petrobras sonda poço",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Site oficial: Click Petróleo e Gás (categoria Setor Offshore) — página não abriu na leitura automática; busca clickpetroleoegas setor offshore sonda plataforma",
+      "q": "Site oficial: Click Petróleo e Gás (categoria Setor Offshore) — página não abriu na leitura automática; busca site:clickpetroleoegas.com.br petróleo offshore plataforma",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "eixos petróleo gás notícias 14 novembro 2026",
+      "q": "PetroNotícias e eixos: notícias 15 de novembro de 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Site oficial: PetroNotícias (página inicial)",
+      "q": "Site oficial: Agência Petrobras — página não abriu; busca Agência Petrobras notícias 14 e 15 de novembro",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "PetroReconcavo, Brava Energia, Origem Energia, Alvopetro, Eneva: onshore poços novembro 2026",
+      "q": "Petrobras: contratos de sondas, plataformas e FPSO (PetroNotícias), novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Carmo Energy, Mandacaru, PetroVictory, Seacrest, Petroborn, Vipetro: notícias novembro 2026",
+      "q": "Click Petróleo e Gás: Petrobras, Bacia de Santos e produção, novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Petrobras, PRIO, Equinor, TotalEnergies, Transpetro: notícias 14 novembro 2026",
+      "q": "SLB, Baker Hughes, Weatherford, Expro: contratos no Brasil, novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "ANP: oferta permanente e produção, novembro 2026",
+      "q": "Tenaris Confab, Apolo Tubulars, Jereh, Kerui: Brasil, novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Seacrest e Carmo Energy: prorrogação de concessão na ANP",
+      "q": "Halliburton, SLB, Baker Hughes, Weatherford: contratos na Argentina, Guiana e Colômbia",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "site:clickpetroleoegas.com.br Petrobras poços sonda",
+      "q": "Vaca Muerta, YPF e Vista: notícias 15 de novembro de 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Agência Petrobras: notícias novembro 2026",
+      "q": "Ecopetrol, Petroperú, YPFB, Petroecuador, Staatsolie: notícias 15 de novembro de 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Sondas terrestres e workover: contratos Bahia, Sergipe, Rio Grande do Norte",
+      "q": "ExxonMobil Guiana: partida de Uaru (FPSO Errea Wittu)",
       "ch": "site",
       "found": 0
     }
