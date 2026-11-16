@@ -134,6 +134,15 @@ def main(src, out):
         lx.text(0.12, y - 0.042, " · ".join(names), fontsize=min(20, 20 * 24 / max(len(" · ".join(names)), 1)), color=MUTED, va="center", family="DejaVu Sans")
         y -= step
     fig.savefig(out, dpi=100, facecolor="white", bbox_inches="tight", pad_inches=0.25)
+    try:  # corta a sobra branca em volta
+        from PIL import Image, ImageChops
+        im = Image.open(out).convert("RGB")
+        box = ImageChops.difference(im, Image.new("RGB", im.size, "white")).getbbox()
+        if box:
+            pad = 24
+            im.crop((max(box[0] - pad, 0), max(box[1] - pad, 0), min(box[2] + pad, im.width), min(box[3] + pad, im.height))).save(out)
+    except ImportError:
+        pass
     print("ok", out)
 
 
