@@ -1,6 +1,6 @@
 {
   "run_at": "2026-11-16T06:35:00-03:00",
-  "searches": 47,
+  "searches": 78,
   "new_items": 3,
   "schedule": {
     "type": "times",
@@ -286,6 +286,161 @@
     {
       "q": "Peru, Equador e Bolívia: Petroperú, Perupetro, Petroecuador, YPFB",
       "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "LinkedIn: Carmo Energy",
+      "ch": "linkedin",
+      "found": 0
+    },
+    {
+      "q": "LinkedIn: PetroReconcavo",
+      "ch": "linkedin",
+      "found": 0
+    },
+    {
+      "q": "LinkedIn: Brava Energia",
+      "ch": "linkedin",
+      "found": 0
+    },
+    {
+      "q": "LinkedIn: Origem Energia",
+      "ch": "linkedin",
+      "found": 0
+    },
+    {
+      "q": "LinkedIn: Mandacaru Energia",
+      "ch": "linkedin",
+      "found": 0
+    },
+    {
+      "q": "LinkedIn: Seacrest Petróleo",
+      "ch": "linkedin",
+      "found": 0
+    },
+    {
+      "q": "LinkedIn: PetroVictory",
+      "ch": "linkedin",
+      "found": 0
+    },
+    {
+      "q": "LinkedIn: Alvopetro (Alvopetro S/A)",
+      "ch": "linkedin",
+      "found": 0
+    },
+    {
+      "q": "LinkedIn: Alvopetro (Alvopetro Energy Ltd)",
+      "ch": "linkedin",
+      "found": 0
+    },
+    {
+      "q": "LinkedIn: Petroborn",
+      "ch": "linkedin",
+      "found": 0
+    },
+    {
+      "q": "LinkedIn: Eneva",
+      "ch": "linkedin",
+      "found": 0
+    },
+    {
+      "q": "LinkedIn: Vipetro",
+      "ch": "linkedin",
+      "found": 0
+    },
+    {
+      "q": "LinkedIn: Petrobras",
+      "ch": "linkedin",
+      "found": 0
+    },
+    {
+      "q": "LinkedIn: Equinor",
+      "ch": "linkedin",
+      "found": 0
+    },
+    {
+      "q": "LinkedIn: Perenco",
+      "ch": "linkedin",
+      "found": 0
+    },
+    {
+      "q": "LinkedIn: PRIO",
+      "ch": "linkedin",
+      "found": 0
+    },
+    {
+      "q": "LinkedIn: TotalEnergies",
+      "ch": "linkedin",
+      "found": 0
+    },
+    {
+      "q": "LinkedIn: Transpetro",
+      "ch": "linkedin",
+      "found": 0
+    },
+    {
+      "q": "LinkedIn: ANP",
+      "ch": "linkedin",
+      "found": 0
+    },
+    {
+      "q": "LinkedIn: SLB",
+      "ch": "linkedin",
+      "found": 0
+    },
+    {
+      "q": "LinkedIn: Baker Hughes",
+      "ch": "linkedin",
+      "found": 0
+    },
+    {
+      "q": "LinkedIn: Weatherford",
+      "ch": "linkedin",
+      "found": 0
+    },
+    {
+      "q": "LinkedIn: Tenaris",
+      "ch": "linkedin",
+      "found": 0
+    },
+    {
+      "q": "LinkedIn: Expro",
+      "ch": "linkedin",
+      "found": 0
+    },
+    {
+      "q": "LinkedIn: Confab",
+      "ch": "linkedin",
+      "found": 0
+    },
+    {
+      "q": "LinkedIn: Apolo Tubulars",
+      "ch": "linkedin",
+      "found": 0
+    },
+    {
+      "q": "LinkedIn: Jereh",
+      "ch": "linkedin",
+      "found": 0
+    },
+    {
+      "q": "LinkedIn: Kerui (KERUI PETROLEUM)",
+      "ch": "linkedin",
+      "found": 0
+    },
+    {
+      "q": "LinkedIn: Kerui (KERUI PETROLEUM BRASIL)",
+      "ch": "linkedin",
+      "found": 0
+    },
+    {
+      "q": "LinkedIn: Inpasa",
+      "ch": "linkedin",
+      "found": 0
+    },
+    {
+      "q": "LinkedIn: TAG",
+      "ch": "linkedin",
       "found": 0
     }
   ],
