@@ -121,7 +121,7 @@ def main(src, out):
     ax.set_aspect("equal"); ax.axis("off")
 
     lx = fig.add_axes([0.51, 0.0, 0.49, 1.0]); lx.axis("off"); lx.set_xlim(0, 1); lx.set_ylim(0, 1)
-    lx.text(0.0, 0.92, d.get("title", "Locais de entrega"), fontsize=27, fontweight="bold", color=NAVY, family="DejaVu Sans")
+    lx.text(0.0, 0.92, d.get("title", "Delivery locations"), fontsize=27, fontweight="bold", color=NAVY, family="DejaVu Sans")
     n = len(d["opps"])
     step = min(0.14, 0.80 / max(n, 1))
     y = 0.82
