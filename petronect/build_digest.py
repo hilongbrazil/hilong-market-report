@@ -7,12 +7,28 @@ e = html.escape
 FIT = {"alta": ("#E7F6EC", "#1E7B3C", "ADERÊNCIA ALTA"), "média": ("#FFF4E8", "#B45309", "ADERÊNCIA MÉDIA")}
 
 
+def badge(o):
+    if not o.get("n"):
+        return ""
+    col = ORANGE if o.get("fit") == "alta" else "#F2B263"
+    return (f'<span style="display:inline-block;background:{col};color:#FFFFFF;border-radius:10px;min-width:18px;'
+            f'padding:2px 6px;text-align:center;font-size:11px;font-weight:700;margin-right:8px;">{e(str(o["n"]))}</span>')
+
+
+def map_block(d):
+    if not d.get("map_url"):
+        return ""
+    return (f'<tr><td style="padding:20px 32px 0 32px;"><img src="{e(d["map_url"])}" width="536" '
+            f'alt="{e(d.get("map_alt", "Mapa dos locais de entrega"))}" '
+            f'style="display:block;width:100%;max-width:536px;height:auto;border:1px solid {LINE};border-radius:8px;"></td></tr>')
+
+
 def card(o):
     bg, fg, lbl = FIT.get(o["fit"], FIT["média"])
     return f'''<tr><td style="padding:0 0 12px 0;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border:1px solid {LINE};border-radius:8px;">
 <tr><td style="padding:14px 16px;">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
-    <td style="font-family:{FONT};font-size:11px;font-weight:700;letter-spacing:.6px;color:{MUTED};">{e(o["num"])} &nbsp;&middot;&nbsp; {e(o["line"])}</td>
+    <td style="font-family:{FONT};font-size:11px;font-weight:700;letter-spacing:.6px;color:{MUTED};">{badge(o)}{e(o["num"])} &nbsp;&middot;&nbsp; {e(o["line"])}</td>
     <td align="right"><span style="background:{bg};color:{fg};border-radius:12px;padding:3px 9px;font-family:{FONT};font-size:9.5px;font-weight:700;letter-spacing:.5px;">{lbl}</span></td>
   </tr></table>
   <div style="font-family:{FONT};font-size:15px;line-height:21px;font-weight:700;color:{NAVY};padding-top:6px;">{e(o["title"])}</div>
@@ -47,6 +63,7 @@ def build(d):
     <td align="right" valign="middle" style="padding-left:12px;white-space:nowrap;"><a href="{url}" style="display:inline-block;background:{NAVY};color:#FFFFFF;text-decoration:none;font-family:{FONT};font-size:12px;font-weight:700;padding:11px 18px;border-radius:6px;">Aprovar ou recusar &rarr;</a></td>
   </tr></table>
 </td></tr>
+{map_block(d)}
 <tr><td style="padding:22px 32px 12px 32px;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">{cards}</table></td></tr>
 <tr><td style="padding:0 32px 24px 32px;font-family:{FONT};font-size:11.5px;line-height:17px;color:{MUTED};">{e(d['note'])}</td></tr>
 <tr><td style="background:{BG};padding:20px 32px;">
@@ -58,8 +75,10 @@ def build(d):
 
 def text(d):
     out = [d["headline"], d["tagline"], "", "Aprovar ou recusar: " + d["approval_url"], ""]
+    if d.get("map_url"):
+        out += ["Mapa dos locais de entrega: " + d["map_url"], ""]
     for o in d["opps"]:
-        out += [f'{o["num"]} · {o["line"]} · aderência {o["fit"]}', o["title"], o["summary"],
+        out += [(f'[{o["n"]}] ' if o.get("n") else "") + f'{o["num"]} · {o["line"]} · aderência {o["fit"]}', o["title"], o["summary"],
                 "Visão Hilong: " + o["view"], "Prazo da proposta: " + o["deadline"], ""]
     out += [d["note"], "", "Li Marcitão — Hilong Brazil"]
     return "\n".join(out)
