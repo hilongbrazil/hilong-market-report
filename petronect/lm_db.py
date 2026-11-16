@@ -2,10 +2,14 @@
 Uso:
   LM_KEY=<chave> python3 lm_db.py fila                 -> imprime a fila (JSON) de hl_bd_oportunidades
   LM_KEY=<chave> python3 lm_db.py salvar dados.json    -> grava/atualiza uma oportunidade (ou uma lista delas)
+  LM_KEY=<chave> python3 lm_db.py decidir <num> aprovar|recusar  -> registra a decisão do Marcio vinda por resposta de e-mail
+                                                       (só muda oportunidades pendentes; imprime o status final)
 Campos aceitos em salvar: num (obrigatório), objeto (obrigatório se for nova), cliente, resumo (nome curto em inglês),
 linha, sumario, visao, aderencia (alta|média), prazo ("DD/MM/AAAA HH:MM"), end_date (AAAA-MM-DD), end_hour,
 locais ([{"nome","uf","lat","lon"}]), email_enviado, email_enviado_em, resend_id, drive_url, encerrada,
-mudanca_prazo ({"from","to","detected_at"}), obs_pipeline (observação no pipeline do Corporate and Strategic).
+mudanca_prazo ({"from","to","detected_at"}), obs_pipeline (observação no pipeline do Corporate and Strategic),
+ref_resumo ("AAAA-MM-DD#n": número da oportunidade no e-mail-resumo do dia), i18n ({"en": {"objeto","sumario","visao"},
+"zh": {...}}) e i18n_pipeline ({"en": {"n": ...}, "zh": {"n": ...}}: tradução da observação no pipeline).
 O status (pending/approved/rejected) só muda pelo Centro."""
 import json, os, subprocess, sys
 
@@ -36,6 +40,8 @@ def main():
         data = json.load(open(sys.argv[2], encoding="utf-8"))
         for item in (data if isinstance(data, list) else [data]):
             print("ok", call("hl_lm_salvar", {"p_chave": key, "p": item}))
+    elif cmd == "decidir" and len(sys.argv) == 4 and sys.argv[3] in ("aprovar", "recusar"):
+        print(sys.argv[2], call("hl_lm_decidir", {"p_chave": key, "p_num": sys.argv[2], "p_aprovar": sys.argv[3] == "aprovar"}))
     else:
         sys.exit(__doc__)
 

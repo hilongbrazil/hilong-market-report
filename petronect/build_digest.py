@@ -59,7 +59,7 @@ def build(d):
 </td></tr>
 <tr><td style="background:{AMBER};border-bottom:1px solid #F6D9B8;padding:16px 32px;">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
-    <td valign="middle" style="font-family:{FONT};font-size:12.5px;line-height:18px;color:{INK};">Marque uma ou várias. As aprovadas entram no Corporate &amp; Strategic como <b>Nova</b> e recebem o e-mail completo em inglês.</td>
+    <td valign="middle" style="font-family:{FONT};font-size:12.5px;line-height:18px;color:{INK};">Aprove no Centro ou <b>responda este e-mail</b>, por exemplo: <i>aprovo 1 e 3, recuso 2</i> (ou <i>aprovo todas</i>). As aprovadas entram no Corporate &amp; Strategic como <b>Nova</b> e recebem o e-mail completo em inglês em até 1 hora.</td>
     <td align="right" valign="middle" style="padding-left:12px;white-space:nowrap;"><a href="{url}" style="display:inline-block;background:{NAVY};color:#FFFFFF;text-decoration:none;font-family:{FONT};font-size:12px;font-weight:700;padding:11px 18px;border-radius:6px;">Aprovar ou recusar &rarr;</a></td>
   </tr></table>
 </td></tr>
@@ -74,7 +74,8 @@ def build(d):
 
 
 def text(d):
-    out = [d["headline"], d["tagline"], "", "Aprovar ou recusar: " + d["approval_url"], ""]
+    out = [d["headline"], d["tagline"], "", "Aprovar ou recusar no Centro: " + d["approval_url"],
+           "Ou responda este e-mail, por exemplo: aprovo 1 e 3, recuso 2 (ou: aprovo todas).", ""]
     if d.get("map_url"):
         out += ["Mapa dos locais de entrega: " + d["map_url"], ""]
     for o in d["opps"]:
