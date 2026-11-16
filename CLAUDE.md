@@ -1,18 +1,20 @@
 # Hilong Market Report
 
-Site estático publicado em https://marketreportnews.hilongbrazil.com (Netlify, deploy automático a cada push na branch `main`).
+Site estático publicado em https://marketreportnews.hilongbrazil.com (Netlify, branch `main`).
 
-**Acesso só com login e só para quem tem o Market News no perfil do Centro** (hilong.hilongbrazil.com; perfis em `hl_perfis.reports` com `mkt`, ou admin; sem o perfil, volta para o Centro): `netlify/edge-functions/guard.ts` + `netlify.toml`. A única exceção é `/reports/` (o Resend busca os PDFs por endereço). Não remover nem alterar o porteiro sem combinar com o Marcio.
+**Publicação: uma vez por dia.** Desde 16/11/2026, o Netlify só publica o envio cuja mensagem de commit contém `[publicar]` (regra `ignore` no `netlify.toml`). Cada publicação custa créditos do plano; em novembro de 2026 os sites da Hilong saíram do ar por excesso de publicações. As varreduras e rodadas gravam no GitHub sem publicar; quem publica é a tarefa das 7h55 (seção 6), no commit `Registra relatório AAAA-MM-DD [publicar]`. Não usar `[publicar]` em nenhuma outra rotina. Mudança de layout ou de código só leva `[publicar]` quando precisar ir ao ar, de preferência num único envio.
+
+**Acesso só com login e só para quem tem o Market News no perfil do Centro** (hilong.hilongbrazil.com; perfis em `hl_perfis.reports` com `mkt`, ou admin; sem o perfil, volta para o Centro): `netlify/edge-functions/guard.ts` + `netlify.toml`. A rota `/reports/` ficou aberta de quando o Resend buscava os PDFs por endereço; hoje os PDFs vão anexados direto. Não remover nem alterar o porteiro sem combinar com o Marcio.
 
 - `index.html`: página de notícias. `live.html`: painel ao vivo (indicadores e atividade do agente).
 - `assets/site.css` e `assets/site.js`: estilo e código das duas páginas.
 - `data/news.json`: as notícias.
 - `data/run.json`: registro da última varredura (alimenta o painel ao vivo).
 - `data/reports.json`: registro das edições do relatório em PDF (quais notícias saíram em cada uma). Gravado pelo `scripts/build_pdf.py --record`.
-- A rotina diária altera somente `data/news.json`, `data/run.json`, `data/reports.json`, `data/archive/` e `reports/`.
+- A rotina diária altera somente `data/news.json`, `data/run.json`, `data/reports.json` e `data/archive/`.
 - `data/archive/AAAA-MM.json`: notícias com mais de 60 dias, movidas para cá.
 - `scripts/validate.py`: valida o `news.json` e o `run.json`. Rodar antes de todo commit.
-- `reports/AAAA-MM-DD/`: PDFs dos últimos 3 dias, publicados no site para o Resend anexar ao e-mail (`scripts/publish_reports.py`).
+- `scripts/s3post.py`: envia um arquivo para o endereço de upload do Resend (`create-file-upload`), para anexar os PDFs ao e-mail. Os PDFs não vão mais para o site.
 - `scripts/build_pdf.py`: gera os relatórios em PDF, em inglês e em chinês (`--lang zh`), diário e semanal (`--kind weekly`), e o corpo do e-mail (seções 6 e 6b).
 - `assets/li-marcitao.jpg`: foto do Li Marcitao usada nas capas e na assinatura dos PDFs.
 
@@ -23,10 +25,10 @@ Tarefas agendadas, todos os dias (horário de Brasília). Nada roda depois da ro
 - **6h00, varredura completa:** seções 1 a 5 (pesquisar, selecionar, escrever, gravar e publicar) e o resumo da seção 7, passando por todas as empresas da lista. Não gera PDF nem envia e-mail.
 - **6h40, LinkedIn:** seção 1c, no computador do Marcio (navegador do aplicativo Claude, conta alternativa logada). Só roda com o computador ligado e o aplicativo aberto.
 - **12h e 22h, rodada rápida:** seção 1b, depois as seções 2 a 5. Não gera PDF nem envia e-mail. (Até 14/11/2026 eram de hora em hora, das 7h às 21h; reduzidas a pedido do Marcio.)
-- **7h55, relatório diário:** só a seção 6 (dois PDFs, em inglês e em chinês, num único e-mail), para o e-mail chegar por volta das 8h. Usa o que as varreduras publicaram até ali.
+- **7h55, relatório diário:** só a seção 6 (dois PDFs, em inglês e em chinês, num único e-mail), para o e-mail chegar por volta das 8h. Usa o que as varreduras gravaram até ali e faz a única publicação do site no dia.
 - **Domingo, 21h55, relatório semanal:** só a seção 6b (dois PDFs, em inglês e em chinês, num único e-mail), para chegar por volta das 22h.
 
-Cada varredura (a completa e cada rodada) regrava o `data/run.json`; o painel ao vivo mostra sempre a última que terminou.
+Cada varredura (a completa e cada rodada) regrava o `data/run.json`; o painel ao vivo mostra a última que terminou até a publicação das 7h55. As notícias das rodadas das 12h e 22h entram no site na publicação da manhã seguinte.
 
 Objetivo: registrar as principais notícias do mercado de óleo e gás no Brasil e na América do Sul publicadas desde a última atualização (`updated_at`), com foco no que interessa a uma empresa de serviços e equipamentos de petróleo (sondas de perfuração e workover, OCTG, hastes de bombeio, ferramentas de fundo de poço).
 
@@ -249,7 +251,7 @@ Cada item segue este formato:
    - `sites` (obrigatório na varredura das 6h): uma entrada por empresa da tabela de sites oficiais, na ordem, com `name` (nome da empresa), `url` (página aberta, ou vazio se não houver site), `status` (`ok`, `sem_itens`, `bloqueado` ou `sem_site`) e `found` (notícias novas que saíram dela). Nas rodadas das 12h e 22h, manter o `sites` da varredura das 6h como está.
    Registrar só o que foi de fato pesquisado: o painel ao vivo reproduz essa lista para o leitor.
 4. Rodar `python3 scripts/validate.py`. Corrigir até passar.
-5. Commit na `main` com a mensagem `Atualiza notícias AAAA-MM-DD (N novas)` e push. Antes do push, fazer `git pull --rebase`. Se der conflito (outra varredura gravou ao mesmo tempo), desfazer o rebase (`git rebase --abort`), voltar para `origin/main` (`git reset --hard origin/main`), inserir de novo só os itens novos desta varredura que ainda não estiverem no arquivo, regravar o `run.json`, validar e enviar outra vez.
+5. Commit na `main` com a mensagem `Atualiza notícias AAAA-MM-DD (N novas)` (sem `[publicar]`: o site só é publicado às 7h55) e push. Antes do push, fazer `git pull --rebase`. Se der conflito (outra varredura gravou ao mesmo tempo), desfazer o rebase (`git rebase --abort`), voltar para `origin/main` (`git reset --hard origin/main`), inserir de novo só os itens novos desta varredura que ainda não estiverem no arquivo, regravar o `run.json`, validar e enviar outra vez.
 6. Não alterar `index.html`, `live.html`, `assets/` nem outros arquivos nesta rotina.
 
 ### 6. PDF e e-mail diário
@@ -285,25 +287,21 @@ Feita pela tarefa das 7h55, todos os dias (mesmo que nenhuma notícia tenha entr
 
 3. Conferir o resultado: os dois comandos terminam com `OK:` e os dois PDFs existem e têm mais de uma página.
 
-4. **Publicar os PDFs no site** (o Resend busca os arquivos por endereço para anexar):
+4. **Publicar o site (a única publicação do dia):** rodar `python3 scripts/validate.py`, fazer commit do `data/reports.json` (e das traduções, se houver) com a mensagem `Registra relatório AAAA-MM-DD [publicar]`, `git pull --rebase` e push. Se o push falhar, tentar de novo após 30 segundos (até 3 vezes). Não é preciso esperar o Netlify: os PDFs vão anexados direto.
 
-   ```
-   python3 scripts/publish_reports.py --date AAAA-MM-DD <pasta>/Hilong-Market-Report-AAAA-MM-DD.pdf <pasta>/Hilong-Market-Report-AAAA-MM-DD-ZH.pdf
-   ```
-
-   O script copia os PDFs para `reports/AAAA-MM-DD/`, apaga as pastas com mais de 3 dias e imprime os endereços (`URL: https://marketreportnews.netlify.app/reports/...`). Fazer commit de `reports/` junto com o `data/reports.json` (mensagem `Registra relatório AAAA-MM-DD`), `git pull --rebase` e push. Esperar cerca de 90 segundos para o Netlify publicar.
+   **Anexar os PDFs no Resend:** para cada PDF, chamar `create-file-upload` (filename = nome do arquivo, contentType `application/pdf`), gravar `<pasta>/upload.json` = `{"url": uploadUrl, "file": "<caminho absoluto do PDF>", "fields": uploadFields copiados sem nenhuma alteração}` e rodar `python3 scripts/s3post.py <pasta>/upload.json`. A primeira coisa impressa deve ser 204; se não for, pedir um novo `create-file-upload` e tentar mais uma vez. Guardar o `fileId` de cada um.
 
 5. **Enviar um único e-mail pelo Resend** (ferramenta `send-email` do conector Resend), aos destinatários definidos na tarefa agendada (marcio.vianna@hilonggroup.com e likewei@hilonggroup.com):
    - `from`: `Daily Market Report <noreply@hilongbrazil.com>` (o nome que aparece como remetente é "Daily Market Report");
    - assunto: `Hilong Market Report - AAAA-MM-DD`;
    - `html`: o conteúdo de `email.html`, sem alterações; `text`: o conteúdo de `email.txt`;
-   - dois anexos por endereço: `{"filename": "Hilong-Market-Report-AAAA-MM-DD.pdf", "url": "<URL do PDF em inglês>", "contentType": "application/pdf"}` e `{"filename": "Hilong-Market-Report-AAAA-MM-DD-ZH.pdf", "url": "<URL do PDF em chinês>", "contentType": "application/pdf"}`;
+   - dois anexos: `[{"fileId": "<fileId do PDF em inglês>"}, {"fileId": "<fileId do PDF em chinês>"}]`;
    - `idempotencyKey`: `hilong-report-AAAA-MM-DD` (evita e-mail duplicado se precisar repetir a chamada).
-   Se o Resend falhar (conector indisponível, erro ou os anexos não puderem ser buscados), esperar 60 segundos e tentar uma vez com a mesma `idempotencyKey`.
+   Se o Resend falhar (conector indisponível, erro ou anexos recusados), esperar 60 segundos e tentar uma vez com a mesma `idempotencyKey`.
 
 6. **Reserva: Gmail.** Só se o Resend falhar duas vezes, enviar pelo conector do Gmail (remetente: o Gmail hilongbrazil), com o mesmo assunto, `htmlBody` = `email.html`, `body` = `email.txt` e os dois PDFs anexados como referência de arquivo `sha256:<sha256 do arquivo>:<caminho absoluto>` (`mimeType` `application/pdf`, com os mesmos nomes de arquivo; hash com `sha256sum`). Se os anexos forem recusados, gerar de novo o PDF em inglês (com `--record`) e o corpo do e-mail com `--alert "The PDFs could not be attached today; the reports are on the page."` e enviar sem anexo. Nunca enviar pelos dois caminhos no mesmo dia. Se o Gmail também falhar, não tentar outro caminho: registrar no resumo final.
 
-7. Não fazer commit dos PDFs fora de `reports/` nem dos arquivos do e-mail. Não alterar o `scripts/build_pdf.py` nem o `scripts/publish_reports.py` nesta rotina.
+7. Não fazer commit dos PDFs nem dos arquivos do e-mail. Não alterar o `scripts/build_pdf.py` nem o `scripts/s3post.py` nesta rotina.
 
 ### 6b. Relatório semanal (domingo, 21h55)
 
@@ -319,8 +317,8 @@ Feita pela tarefa de domingo, depois de `git pull` na `main`. Dois PDFs (inglês
    ```
 
    O PDF tem 2 páginas: capa (período, indicadores, cinco principais notícias da semana, barra por segmento, empresas mais citadas) e página 2 (linha do tempo da semana, temas, tabela por empresa, "próxima semana" quando houver datas confirmadas e mensagem do Li Marcitao).
-2. Publicar: `python3 scripts/publish_reports.py --date AAAA-MM-DD <os dois PDFs>`, commit de `reports/` (mensagem `Registra relatório semanal AAAA-MM-DD`), `git pull --rebase`, push e espera de 90 segundos.
-3. Enviar um único e-mail pelo Resend: `from` = `Weekly Market Report <noreply@hilongbrazil.com>`; assunto `Hilong Weekly Market Report - AAAA-MM-DD`; `html`/`text` = `email.html`/`email.txt`; os dois PDFs como anexos por URL; `idempotencyKey` `hilong-weekly-AAAA-MM-DD`; destinatários marcio.vianna@hilonggroup.com e likewei@hilonggroup.com. Se falhar, esperar 60 segundos e tentar uma vez; só então usar o Gmail de reserva (mesmas regras da seção 6, item 6). Nunca enviar pelos dois caminhos.
+2. Anexos: subir os dois PDFs para o Resend como na seção 6, item 4 (`create-file-upload` + `scripts/s3post.py`, resposta 204). O semanal não faz commit nem publica o site.
+3. Enviar um único e-mail pelo Resend: `from` = `Weekly Market Report <noreply@hilongbrazil.com>`; assunto `Hilong Weekly Market Report - AAAA-MM-DD`; `html`/`text` = `email.html`/`email.txt`; os dois PDFs como anexos por `fileId`; `idempotencyKey` `hilong-weekly-AAAA-MM-DD`; destinatários marcio.vianna@hilonggroup.com e likewei@hilonggroup.com. Se falhar, esperar 60 segundos e tentar uma vez; só então usar o Gmail de reserva (mesmas regras da seção 6, item 6). Nunca enviar pelos dois caminhos.
 4. Resumo final em inglês: se o e-mail foi enviado, por qual caminho, e se os dois PDFs foram anexados.
 
 ### 7. Resumo final
