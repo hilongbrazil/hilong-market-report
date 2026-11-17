@@ -26,7 +26,7 @@ Tarefas agendadas, todos os dias (horário de Brasília). Nada roda depois da ro
 - **6h40, LinkedIn:** seção 1c, no computador do Marcio (navegador do aplicativo Claude, conta alternativa logada). Só roda com o computador ligado e o aplicativo aberto.
 - **12h e 22h, rodada rápida:** seção 1b, depois as seções 2 a 5. Não gera PDF nem envia e-mail. (Até 14/11/2026 eram de hora em hora, das 7h às 21h; reduzidas a pedido do Marcio.)
 - **7h55, relatório diário:** só a seção 6 (dois PDFs, em inglês e em chinês, num único e-mail), para o e-mail chegar por volta das 8h, todos os dias. Usa o que as varreduras gravaram até ali; em dias alternados, também publica o site.
-- **Domingo, 21h55, relatório semanal:** só a seção 6b (dois PDFs, em inglês e em chinês, num único e-mail), para chegar por volta das 22h.
+- **Domingo, 21h55, relatório semanal:** só a seção 6b (dois PDFs, em inglês e em chinês, num único e-mail), para chegar por volta das 22h. **Suspenso desde 17/11/2026** a pedido do Marcio (tarefa desativada, não apagada).
 
 Cada varredura (a completa e cada rodada) regrava o `data/run.json`; o site mostra o que estava gravado na última publicação (a cada 2 dias, às 7h55). Tudo o que as varreduras gravam entra no e-mail diário e no site na publicação seguinte.
 
