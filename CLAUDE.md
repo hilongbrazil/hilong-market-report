@@ -2,7 +2,7 @@
 
 Site estático publicado em https://marketreportnews.hilongbrazil.com (Netlify, branch `main`).
 
-**Publicação: uma vez por dia.** Desde 16/11/2026, o Netlify só publica o envio cuja mensagem de commit contém `[publicar]` (regra `ignore` no `netlify.toml`). Cada publicação custa créditos do plano; em novembro de 2026 os sites da Hilong saíram do ar por excesso de publicações. As varreduras e rodadas gravam no GitHub sem publicar; quem publica é a tarefa das 7h55 (seção 6), no commit `Registra relatório AAAA-MM-DD [publicar]`. Não usar `[publicar]` em nenhuma outra rotina. Mudança de layout ou de código só leva `[publicar]` quando precisar ir ao ar, de preferência num único envio.
+**Publicação: a cada 2 dias.** O Netlify só publica o envio cuja mensagem de commit contém `[publicar]` (regra `ignore` no `netlify.toml`, desde 16/11/2026). Cada publicação custa créditos do plano; em novembro de 2026 os sites da Hilong saíram do ar por excesso de publicações. Desde 18/11/2026, a pedido do Marcio, o site é publicado em dias alternados: dias de publicação são aqueles em que `python3 -c "import datetime as d,zoneinfo; print(d.datetime.now(zoneinfo.ZoneInfo('America/Sao_Paulo')).date().toordinal() % 2)"` imprime `1` (17/11, 19/11, 21/11...). As varreduras e rodadas gravam no GitHub sem publicar; quem publica é a tarefa das 7h55 (seção 6), só nos dias de publicação, no commit `Registra relatório AAAA-MM-DD [publicar]`; nos outros dias o commit dela é `Registra relatório AAAA-MM-DD`, sem publicar. O e-mail diário não depende da publicação (os PDFs vão anexados). Não usar `[publicar]` em nenhuma outra rotina. Mudança de layout ou de código só leva `[publicar]` quando precisar ir ao ar, de preferência num único envio.
 
 **Acesso só com login e só para quem tem o Market News no perfil do Centro** (hilong.hilongbrazil.com; perfis em `hl_perfis.reports` com `mkt`, ou admin; sem o perfil, volta para o Centro): `netlify/edge-functions/guard.ts` + `netlify.toml`. A rota `/reports/` ficou aberta de quando o Resend buscava os PDFs por endereço; hoje os PDFs vão anexados direto. Não remover nem alterar o porteiro sem combinar com o Marcio.
 
@@ -25,10 +25,10 @@ Tarefas agendadas, todos os dias (horário de Brasília). Nada roda depois da ro
 - **6h00, varredura completa:** seções 1 a 5 (pesquisar, selecionar, escrever, gravar e publicar) e o resumo da seção 7, passando por todas as empresas da lista. Não gera PDF nem envia e-mail.
 - **6h40, LinkedIn:** seção 1c, no computador do Marcio (navegador do aplicativo Claude, conta alternativa logada). Só roda com o computador ligado e o aplicativo aberto.
 - **12h e 22h, rodada rápida:** seção 1b, depois as seções 2 a 5. Não gera PDF nem envia e-mail. (Até 14/11/2026 eram de hora em hora, das 7h às 21h; reduzidas a pedido do Marcio.)
-- **7h55, relatório diário:** só a seção 6 (dois PDFs, em inglês e em chinês, num único e-mail), para o e-mail chegar por volta das 8h. Usa o que as varreduras gravaram até ali e faz a única publicação do site no dia.
+- **7h55, relatório diário:** só a seção 6 (dois PDFs, em inglês e em chinês, num único e-mail), para o e-mail chegar por volta das 8h, todos os dias. Usa o que as varreduras gravaram até ali; em dias alternados, também publica o site.
 - **Domingo, 21h55, relatório semanal:** só a seção 6b (dois PDFs, em inglês e em chinês, num único e-mail), para chegar por volta das 22h.
 
-Cada varredura (a completa e cada rodada) regrava o `data/run.json`; o painel ao vivo mostra a última que terminou até a publicação das 7h55. As notícias das rodadas das 12h e 22h entram no site na publicação da manhã seguinte.
+Cada varredura (a completa e cada rodada) regrava o `data/run.json`; o site mostra o que estava gravado na última publicação (a cada 2 dias, às 7h55). Tudo o que as varreduras gravam entra no e-mail diário e no site na publicação seguinte.
 
 Objetivo: registrar as principais notícias do mercado de óleo e gás no Brasil e na América do Sul publicadas desde a última atualização (`updated_at`), com foco no que interessa a uma empresa de serviços e equipamentos de petróleo (sondas de perfuração e workover, OCTG, hastes de bombeio, ferramentas de fundo de poço).
 
@@ -251,7 +251,7 @@ Cada item segue este formato:
    - `sites` (obrigatório na varredura das 6h): uma entrada por empresa da tabela de sites oficiais, na ordem, com `name` (nome da empresa), `url` (página aberta, ou vazio se não houver site), `status` (`ok`, `sem_itens`, `bloqueado` ou `sem_site`) e `found` (notícias novas que saíram dela). Nas rodadas das 12h e 22h, manter o `sites` da varredura das 6h como está.
    Registrar só o que foi de fato pesquisado: o painel ao vivo reproduz essa lista para o leitor.
 4. Rodar `python3 scripts/validate.py`. Corrigir até passar.
-5. Commit na `main` com a mensagem `Atualiza notícias AAAA-MM-DD (N novas)` (sem `[publicar]`: o site só é publicado às 7h55) e push. Antes do push, fazer `git pull --rebase`. Se der conflito (outra varredura gravou ao mesmo tempo), desfazer o rebase (`git rebase --abort`), voltar para `origin/main` (`git reset --hard origin/main`), inserir de novo só os itens novos desta varredura que ainda não estiverem no arquivo, regravar o `run.json`, validar e enviar outra vez.
+5. Commit na `main` com a mensagem `Atualiza notícias AAAA-MM-DD (N novas)` (sem `[publicar]`: o site só é publicado pela tarefa das 7h55, a cada 2 dias) e push. Antes do push, fazer `git pull --rebase`. Se der conflito (outra varredura gravou ao mesmo tempo), desfazer o rebase (`git rebase --abort`), voltar para `origin/main` (`git reset --hard origin/main`), inserir de novo só os itens novos desta varredura que ainda não estiverem no arquivo, regravar o `run.json`, validar e enviar outra vez.
 6. Não alterar `index.html`, `live.html`, `assets/` nem outros arquivos nesta rotina.
 
 ### 6. PDF e e-mail diário
@@ -287,7 +287,7 @@ Feita pela tarefa das 7h55, todos os dias (mesmo que nenhuma notícia tenha entr
 
 3. Conferir o resultado: os dois comandos terminam com `OK:` e os dois PDFs existem e têm mais de uma página.
 
-4. **Publicar o site (a única publicação do dia):** rodar `python3 scripts/validate.py`, fazer commit do `data/reports.json` (e das traduções, se houver) com a mensagem `Registra relatório AAAA-MM-DD [publicar]`, `git pull --rebase` e push. Se o push falhar, tentar de novo após 30 segundos (até 3 vezes). Não é preciso esperar o Netlify: os PDFs vão anexados direto.
+4. **Gravar e, em dias de publicação, publicar o site:** rodar `python3 scripts/validate.py`, fazer commit do `data/reports.json` (e das traduções, se houver) com a mensagem `Registra relatório AAAA-MM-DD [publicar]` nos dias de publicação (ver o início deste arquivo) e `Registra relatório AAAA-MM-DD` nos outros, `git pull --rebase` e push. Se o push falhar, tentar de novo após 30 segundos (até 3 vezes). Não é preciso esperar o Netlify: os PDFs vão anexados direto.
 
    **Anexar os PDFs no Resend:** para cada PDF, chamar `create-file-upload` (filename = nome do arquivo, contentType `application/pdf`), gravar `<pasta>/upload.json` = `{"url": uploadUrl, "file": "<caminho absoluto do PDF>", "fields": uploadFields copiados sem nenhuma alteração}` e rodar `python3 scripts/s3post.py <pasta>/upload.json`. A primeira coisa impressa deve ser 204; se não for, pedir um novo `create-file-upload` e tentar mais uma vez. Guardar o `fileId` de cada um.
 
