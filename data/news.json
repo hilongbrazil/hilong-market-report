@@ -1,6 +1,25 @@
 {
-  "updated_at": "2026-11-17T06:40:00-03:00",
+  "updated_at": "2026-11-17T12:25:00-03:00",
   "items": [
+    {
+      "id": "2026-11-17-petrobras-nega-acordo-bumerangue",
+      "date": "2026-11-17",
+      "region": "BR",
+      "country": "BR",
+      "operator": "Petrobras",
+      "category": "fusoes",
+      "environment": "offshore",
+      "relevance": 3,
+      "title_pt": "Petrobras diz à CVM que não assinou acordo vinculante por fatia da BP em Bumerangue",
+      "title_en": "Petrobras tells CVM it has signed no binding deal for a stake in BP's Bumerangue block",
+      "title_zh": "Petrobras 向 CVM 表示未就收购 BP 旗下 Bumerangue 区块权益签署任何具约束力协议",
+      "summary_pt": "Em resposta à CVM, a Petrobras afirmou que não assinou instrumento vinculante para comprar participação no bloco Bumerangue, operado pela BP; o tema está entre as oportunidades exploratórias estudadas no plano de negócios. A estatal também recebeu R$ 1,9 bi em novas parcelas da subvenção ao diesel.",
+      "summary_en": "Replying to Brazil's securities regulator CVM, Petrobras said it has not signed any binding instrument to buy a stake in BP's Bumerangue block; the matter is among exploration opportunities studied in its business plan. It also received R$ 1.9 bn in new diesel subsidy installments.",
+      "summary_zh": "Petrobras 回复巴西证券监管机构 CVM 称，尚未就收购 BP 运营的 Bumerangue 区块权益签署任何具约束力文件，该事项属于其业务计划中研究的勘探机会之一。公司另收到 19 亿雷亚尔柴油补贴新款项。",
+      "source": "TradeMap",
+      "url": "https://trademap.com.br/noticias/news-8608991",
+      "via": "site"
+    },
     {
       "id": "2026-11-17-ppsa-spot-auction-prio-exxonmobil-buzios",
       "date": "2026-11-17",
