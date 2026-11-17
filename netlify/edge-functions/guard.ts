@@ -73,7 +73,7 @@ export default async (req: Request, context: Context) => {
         let a: { perfil?: string; reports?: string[] } | null = null;
         try { a = await r.json(); } catch { a = null; }
         const until = Math.min(exp, now + 5 * 60 * 1000);
-        if (a && (a.perfil === "admin" || (Array.isArray(a.reports) && a.reports.includes("mkt")))) {
+        if (a && (a.perfil === "admin" || (Array.isArray(a.reports) && (a.reports.includes("mkt") || a.reports.includes("*"))))) {
           ok.set(token, until);
           if (ok.size > 500) ok.clear();
           return context.next();
