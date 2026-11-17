@@ -873,20 +873,15 @@ def build_html(args):
 {sign}
 """
     else:
-        cover_top = top_rows_html(new_items, new_ids) if new_items else new_section
+        # Diário: começa direto pelas notícias novas (a seção "Top stories" repetia a mesma lista; removida em 17/11/2026)
         body = f"""{masthead}
 <section class="sec first pad">
-  <div class="sec-h"><h2>{tr("top_h")}</h2><span class="hint">{tr("new_hint")}</span></div>
-  {cover_top}
+  <div class="sec-h"><h2>{tr("new_h")}</h2><span class="hint">{tr("new_hint")}</span></div>
+  {new_section}
 </section>
 {catbar_html(items)}
 <section class="sec pad" style="margin-top:4mm"><div class="sec-h"><h2>{tr("cocite_h")}</h2></div><p style="font-size:9.6pt;margin:2mm 0 0">{cocite_html(items)}</p></section>
 {sign}
-
-<section class="sec pad page-break first">
-  <div class="sec-h"><h2>{tr("new_h")}</h2><span class="hint">{tr("new_hint")}</span></div>
-  {new_section}
-</section>
 
 <section class="sec pad page-break">
   <div class="sec-h"><h2>{tr("br_h")}</h2><span class="hint">{esc(tr("hist_hint", n=len(br), d=days))}</span></div>
