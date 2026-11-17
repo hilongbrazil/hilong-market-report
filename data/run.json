@@ -1,7 +1,7 @@
 {
-  "run_at": "2026-11-16T12:30:00-03:00",
+  "run_at": "2026-11-16T22:30:00-03:00",
   "searches": 12,
-  "new_items": 0,
+  "new_items": 1,
   "schedule": {
     "type": "times",
     "times": [
@@ -11,44 +11,32 @@
     ]
   },
   "terms": [
-    "Petrobras",
-    "Brava Energia",
-    "PetroReconcavo",
-    "Eneva",
-    "Origem Energia",
-    "Alvopetro",
-    "Carmo Energy",
-    "Mandacaru Energia",
-    "PetroVictory",
-    "Petroborn",
-    "Vipetro",
-    "Seacrest Petróleo",
-    "PRIO",
-    "Equinor",
-    "TotalEnergies",
-    "Transpetro",
-    "Perenco",
-    "ANP",
+    "SLB",
+    "Baker Hughes",
+    "Weatherford",
+    "Tenaris",
+    "Expro",
+    "Confab",
+    "Apolo Tubulars",
+    "Jereh",
+    "Kerui",
     "Inpasa",
+    "TAG",
+    "Petrobras",
+    "ANP",
+    "Argentina",
+    "Vaca Muerta",
+    "YPF",
+    "Vista Energy",
+    "Nordeste onshore",
     "Click Petróleo e Gás",
     "eixos",
     "PetroNotícias",
-    "Agência Petrobras",
-    "Nordeste onshore"
+    "Agência Petrobras"
   ],
   "queries": [
     {
       "q": "Site oficial: Click Petróleo e Gás (categoria Petróleo e Gás) — busca site:clickpetroleoegas.com.br",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "PetroReconcavo, Brava Energia, Eneva, Origem Energia, Alvopetro — notícias novembro 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Petrobras — notícias 16 novembro 2026",
       "ch": "site",
       "found": 0
     },
@@ -63,37 +51,47 @@
       "found": 0
     },
     {
-      "q": "ANP — leilão, oferta permanente, boletim de produção; onshore do Nordeste",
+      "q": "SLB, Baker Hughes, Weatherford — contratos no Brasil, novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "PRIO, Equinor, TotalEnergies, Transpetro, Perenco — notícias 15 e 16/11/2026",
+      "q": "Tenaris, Confab, Expro — Brasil, novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Carmo Energy, Mandacaru Energia, PetroVictory, Petroborn, Vipetro, Seacrest Petróleo — novembro 2026",
+      "q": "Jereh, Kerui, Inpasa, TAG Transportadora Associada de Gás — novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Mandacaru Energia — aquisição de campos da Nova Petróleo (conferência de data)",
+      "q": "América do Sul: Vaca Muerta, YPF, Vista — 16/11/2026",
+      "ch": "site",
+      "found": 1
+    },
+    {
+      "q": "Petrobras — sondas, contratos e poços, 16/11/2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Site oficial: PetroNotícias — sondas, contratos e poços",
+      "q": "Site oficial: PetroNotícias — sondas e contratos da Petrobras",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Site oficial: Agência Petrobras — notícias mais recentes",
+      "q": "Site oficial: eixos — newsletter comece seu dia, 16/11/2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Brasil petróleo: Petrobras, PRIO, Brava — notícias de 15 e 16/11/2026",
+      "q": "Click Petróleo e Gás — onshore do Nordeste, sondas e workover",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Expro, Weatherford, Baker Hughes, SLB — contratos com a Petrobras nesta semana",
       "ch": "site",
       "found": 0
     }

@@ -1,6 +1,25 @@
 {
-  "updated_at": "2026-11-16T06:35:00-03:00",
+  "updated_at": "2026-11-16T22:30:00-03:00",
   "items": [
+    {
+      "id": "2026-11-16-vaca-muerta-ypf-vista-pampa-ebitda-9m26",
+      "date": "2026-11-16",
+      "region": "SA",
+      "country": "AR",
+      "operator": "Setor",
+      "category": "resultados",
+      "environment": "onshore",
+      "relevance": 1,
+      "title_pt": "YPF, Vista e Pampa somam Ebitda acima de US$ 7 bi em nove meses, alta de 72% puxada por Vaca Muerta",
+      "title_en": "YPF, Vista and Pampa post combined nine-month EBITDA above US$ 7 bn, up 72% on Vaca Muerta",
+      "title_zh": "YPF、Vista 与 Pampa 前九个月 EBITDA 合计超 70 亿美元，受 Vaca Muerta 带动增长 72%",
+      "summary_pt": "Segundo relatório da RICSA, as três investiram US$ 4,73 bi de janeiro a setembro (+10%). O Ebitda da YPF subiu 70%, a US$ 4,45 bi, e o da Vista 82%, a US$ 2,1 bi, com produção de 153,3 mil boe/d (+41%). O custo de extração da YPF caiu 31%, a US$ 8,4/boe.",
+      "summary_en": "Per a RICSA report, the three invested US$ 4.73 bn in January–September (+10%). YPF's EBITDA rose 70% to US$ 4.45 bn and Vista's 82% to US$ 2.1 bn, with output of 153,300 boe/d (+41%). YPF's lifting cost fell 31% to US$ 8.4/boe.",
+      "summary_zh": "据 RICSA 报告，三家公司 1 至 9 月投资合计 47.3 亿美元（增长 10%）。YPF EBITDA 增长 70% 至 44.5 亿美元；Vista 增长 82% 至 21 亿美元，产量 15.33 万桶油当量/日（增长 41%）。YPF 开采成本下降 31% 至 8.4 美元/桶油当量。",
+      "source": "Diario Neuquino",
+      "url": "https://diarioneuquino.com.ar/vaca-muerta-ypf-vista-y-pampa-aumentaron-72-sus-ganancias-operativas-y-superaron-los-us7-000-millones/",
+      "via": "site"
+    },
     {
       "id": "2026-11-16-petrobras-plano-negocios-23-novembro",
       "date": "2026-11-16",
