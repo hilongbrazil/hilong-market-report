@@ -64,9 +64,14 @@ def main(num, out):
                     fn = m.filename
                     if not (m.flag_bits & 0x800):  # nomes em CP437 dentro de zips do Windows
                         try:
-                            fn = fn.encode("cp437").decode("utf-8")
-                        except Exception:
-                            fn = fn.encode("cp437").decode("latin-1", "ignore")
+                            raw = fn.encode("cp437")
+                        except UnicodeEncodeError:
+                            raw = None  # nome já decodificado (campo Unicode do zip): usar como está
+                        if raw is not None:
+                            try:
+                                fn = raw.decode("utf-8")
+                            except UnicodeDecodeError:
+                                fn = raw.decode("cp850", "replace")
                     parts = [safe(p) for p in fn.split("/") if p not in ("", ".", "..")]
                     if not parts:
                         continue
