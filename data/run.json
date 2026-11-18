@@ -1,7 +1,7 @@
 {
-  "run_at": "2026-11-17T12:25:00-03:00",
+  "run_at": "2026-11-17T22:35:00-03:00",
   "searches": 12,
-  "new_items": 1,
+  "new_items": 2,
   "schedule": {
     "type": "times",
     "times": [
@@ -15,84 +15,93 @@
     "PetroNotícias",
     "Agência Petrobras",
     "Click Petróleo e Gás",
-    "Carmo Energy",
-    "PetroReconcavo",
-    "Brava Energia",
-    "Origem Energia",
-    "Mandacaru Energia",
-    "Seacrest Petróleo",
-    "PetroVictory",
-    "Alvopetro",
-    "Petroborn",
-    "Eneva",
-    "Vipetro",
-    "Petrobras",
-    "Equinor",
-    "Perenco",
-    "PRIO",
-    "TotalEnergies",
-    "Transpetro",
-    "ANP",
-    "ABPIP"
+    "SLB",
+    "Baker Hughes",
+    "Weatherford",
+    "Tenaris",
+    "Expro",
+    "Confab",
+    "Apolo Tubulars",
+    "Jereh",
+    "Kerui",
+    "Inpasa",
+    "TAG",
+    "PPSA",
+    "PDE 2036",
+    "Argentina",
+    "Vaca Muerta",
+    "Colômbia",
+    "Guiana",
+    "sondas terrestres"
   ],
   "queries": [
     {
-      "q": "eixos petróleo gás notícias 17 novembro 2026",
+      "q": "Site oficial: Click Petróleo e Gás (categoria Petróleo e Gás) — a página não abriu; busca no site",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "PetroNotícias petróleo novembro 2026",
+      "q": "Site oficial: Click Petróleo e Gás (categoria Setor Offshore) — a página não abriu; busca site:clickpetroleoegas.com.br petrobras sonda poço",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Click Petróleo e Gás, categoria Petróleo e Gás (busca site:clickpetroleoegas.com.br; a página não abriu)",
+      "q": "PetroNotícias eixos petróleo gás notícias 17 de novembro de 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Click Petróleo e Gás, categoria Setor Offshore (busca; a página não abriu)",
+      "q": "Site oficial: PetroNotícias (página inicial)",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "PetroReconcavo, Brava Energia, Origem Energia, Carmo Energy, Mandacaru Energia",
+      "q": "Site oficial: eixos (newsletter comece seu dia)",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Eneva, Alvopetro, PetroVictory, Seacrest, Petroborn, Vipetro",
+      "q": "notícias petróleo gás Brasil hoje 17/11/2026 Petrobras ANP sonda contrato",
+      "ch": "site",
+      "found": 2
+    },
+    {
+      "q": "SLB OR Baker Hughes OR Weatherford Brazil contract November 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Petrobras anuncia 17 novembro 2026",
-      "ch": "site",
-      "found": 1
-    },
-    {
-      "q": "PRIO, Equinor, TotalEnergies, Perenco no Brasil",
+      "q": "SLB Baker Hughes Weatherford Expro Tenaris news November 17 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "ANP petróleo gás 16 e 17 novembro 2026",
+      "q": "Tenaris OR Confab OR Expro Brasil novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "ABPIP PLP 299/2026 produtores de petróleo e gás",
+      "q": "Jereh OR Kerui OR Apolo Tubulars OR Inpasa OR TAG Transportadora novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Transpetro e Agência Petrobras novembro 2026",
+      "q": "petronoticias OR tnpetroleo sonda terrestre workover onshore novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Petrobras Brazil oil news November 16 2026",
+      "q": "Vaca Muerta YPF Ecopetrol petróleo noticias 17 noviembre 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "petróleo Argentina Colombia Guyana noticias 17 de noviembre 2026 perforación equipos contrato",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Vaca Muerta 17 de noviembre 2026 YPF Vista Tecpetrol inversión pozos",
       "ch": "site",
       "found": 0
     }
