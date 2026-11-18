@@ -1,6 +1,25 @@
 {
-  "updated_at": "2026-11-18T06:25:00-03:00",
+  "updated_at": "2026-11-18T09:05:00-03:00",
   "items": [
+    {
+      "id": "2026-11-16-transpetro-incorpora-transbel-terminal-belem",
+      "date": "2026-11-16",
+      "region": "BR",
+      "country": "BR",
+      "operator": "Transpetro",
+      "category": "fusoes",
+      "environment": "geral",
+      "relevance": 3,
+      "title_pt": "Transpetro incorpora a Transbel, operadora da área BEL-09 no Terminal de Belém",
+      "title_en": "Transpetro absorbs Transbel, operator of the BEL-09 area at the Belém terminal",
+      "title_zh": "Transpetro 吸收合并 Transbel，后者运营贝伦码头 BEL-09 区域",
+      "summary_pt": "A Transpetro incorporou a subsidiária Transbel, que operava a área BEL-09 no Terminal de Belém (PA); a Transbel deixa de existir como empresa independente. O terminal movimenta cerca de 250 mil m³ de derivados por mês e abastece o Pará, o Amapá e parte do Maranhão.",
+      "summary_en": "Transpetro has merged its subsidiary Transbel, which ran the BEL-09 area at the Belém terminal in Pará, into its own structure; Transbel ceases to exist as a separate company. The terminal handles about 250,000 m³ of oil products a month, supplying Pará, Amapá and part of Maranhão.",
+      "summary_zh": "Transpetro 已将负责运营贝伦码头（帕拉州）BEL-09 区域的子公司 Transbel 并入自身架构，Transbel 不再作为独立法人存在。该码头每月成品油吞吐量约 25 万立方米，供应帕拉州、阿马帕州及马拉尼昂州部分地区。",
+      "source": "Transpetro",
+      "url": "https://www.linkedin.com/feed/update/urn:li:activity:7528200907868565505/",
+      "via": "linkedin"
+    },
     {
       "id": "2026-11-16-weatherford-mpd-constellation-amaralina-star",
       "date": "2026-11-16",
