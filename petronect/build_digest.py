@@ -7,6 +7,23 @@ e = html.escape
 FIT = {"alta": ("#E7F6EC", "#1E7B3C", "ADERÊNCIA ALTA"), "média": ("#FFF4E8", "#B45309", "ADERÊNCIA MÉDIA")}
 
 
+TIPO = {"servico": "Serviço", "produto": "Produto", "ambos": "Serviço + Produto"}
+AMB = {"onshore": "Onshore", "offshore": "Offshore", "ambos": "Onshore + Offshore"}
+
+
+def tags(o):
+    """Etiquetas: tipo, ambiente e PPU (PPU obrigatória; sem PPU, preço direto na Petronect)."""
+    v = [TIPO.get(o.get("tipo")), AMB.get(o.get("ambiente"))]
+    if "ppu" in o:
+        v.append("PPU: sim (obrigatória)" if o["ppu"] else "Sem PPU: preço direto na Petronect")
+    v = [x for x in v if x]
+    if not v:
+        return ""
+    return (f'<div style="padding-top:6px;">' + "".join(
+        f'<span style="display:inline-block;border:1px solid {LINE};border-radius:12px;padding:2px 9px;margin:0 6px 4px 0;font-family:{FONT};font-size:11px;font-weight:600;color:{NAVY};">{e(x)}</span>'
+        for x in v) + '</div>')
+
+
 def badge(o):
     if not o.get("n"):
         return ""
@@ -31,7 +48,7 @@ def card(o):
     <td style="font-family:{FONT};font-size:11px;font-weight:700;letter-spacing:.6px;color:{MUTED};">{badge(o)}{e(o["num"])} &nbsp;&middot;&nbsp; {e(o["line"])}</td>
     <td align="right"><span style="background:{bg};color:{fg};border-radius:12px;padding:3px 9px;font-family:{FONT};font-size:9.5px;font-weight:700;letter-spacing:.5px;">{lbl}</span></td>
   </tr></table>
-  <div style="font-family:{FONT};font-size:15px;line-height:21px;font-weight:700;color:{NAVY};padding-top:6px;">{e(o["title"])}</div>
+  <div style="font-family:{FONT};font-size:15px;line-height:21px;font-weight:700;color:{NAVY};padding-top:6px;">{e(o["title"])}</div>{tags(o)}
   <div style="font-family:{FONT};font-size:13px;line-height:20px;color:{INK};padding-top:6px;">{e(o["summary"])}</div>
   <div style="font-family:{FONT};font-size:12.5px;line-height:19px;color:{INK};padding-top:8px;"><span style="color:{ORANGE};font-weight:700;">Visão Hilong:</span> {e(o["view"])}</div>
   <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin-top:10px;"><tr>
@@ -79,7 +96,9 @@ def text(d):
     if d.get("map_url"):
         out += ["Mapa dos locais de entrega: " + d["map_url"], ""]
     for o in d["opps"]:
-        out += [(f'[{o["n"]}] ' if o.get("n") else "") + f'{o["num"]} · {o["line"]} · aderência {o["fit"]}', o["title"], o["summary"],
+        tg = [x for x in (TIPO.get(o.get("tipo")), AMB.get(o.get("ambiente")),
+                          ("PPU: sim (obrigatória)" if o.get("ppu") else "Sem PPU: preço direto na Petronect") if "ppu" in o else None) if x]
+        out += [(f'[{o["n"]}] ' if o.get("n") else "") + f'{o["num"]} · {o["line"]} · aderência {o["fit"]}', o["title"]] + ([" · ".join(tg)] if tg else []) + [o["summary"],
                 "Visão Hilong: " + o["view"], "Prazo da proposta: " + o["deadline"], ""]
     out += [d["note"], "", "Li Marcitão — Hilong Brazil"]
     return "\n".join(out)
