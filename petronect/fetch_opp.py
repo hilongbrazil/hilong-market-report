@@ -1,4 +1,4 @@
-"""Li Marcitão — baixa uma oportunidade da Petronect e separa as especificações técnicas.
+"""Li Marcitao — baixa uma oportunidade da Petronect e separa as especificações técnicas.
 Uso: python3 -I fetch_opp.py <numero> <pasta_saida>
 Gera em <pasta_saida>: opp.json (registro da Petronect), raw/ (anexos originais), extracted/ (zips abertos),
 specs/ (somente especificações técnicas a anexar), ppu/ (a planilha de preços, PPU, quando houver) e manifest.json

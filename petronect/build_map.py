@@ -1,4 +1,4 @@
-"""Li Marcitão — mapa do Brasil com os locais de entrega das oportunidades do resumo diário.
+"""Li Marcitao — mapa do Brasil com os locais de entrega das oportunidades do resumo diário.
 Uso: python3 build_map.py map.json saida.png
 map.json = {"title": "...", "opps": [{"n": 1, "short": "Válvulas API 6A", "fit": "alta"|"média",
             "places": ["Taquipe", "AM", {"name": "Outro lugar", "lat": -10.1, "lon": -37.2}]}]}

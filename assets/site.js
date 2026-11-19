@@ -4,7 +4,7 @@
   var T = {
     pt: {
       mNew: "notícias novas", mAll: "no período", mSearch: "buscas", focus: "Hilong Atenção", supplier: "Fornecedor", focusHint: "= interesse direto da Hilong (sondas, workover, operadoras onshore)",
-      meet: "Conheça o Li Marcitão", aiNote: "Li Marcitão é um personagem virtual gerado por IA.", close: "Fechar",
+      meet: "Conheça o Li Marcitao", aiNote: "Li Marcitao é um personagem virtual gerado por IA.", close: "Fechar",
       center: "← Centro", navNews: "Notícias", navLive: "Painel ao vivo", openLive: "Abrir o painel ao vivo", topT: "Destaques da semana",
       sub: "Notícias de óleo e gás das operadoras e empresas do setor no Brasil e na América do Sul.",
       updated: "Atualizado em",
@@ -72,7 +72,7 @@
     },
     en: {
       mNew: "new stories", mAll: "in the period", mSearch: "searches", focus: "Hilong Watch", supplier: "Supplier", focusHint: "= direct interest for Hilong (rigs, workover, onshore operators)",
-      meet: "Meet Li Marcitão", aiNote: "Li Marcitão is an AI-generated virtual character.", close: "Close",
+      meet: "Meet Li Marcitao", aiNote: "Li Marcitao is an AI-generated virtual character.", close: "Close",
       center: "← Center", navNews: "News", navLive: "Live panel", openLive: "Open the live panel", topT: "Top stories this week",
       sub: "Oil and gas news from operators and industry companies in Brazil and South America.",
       updated: "Updated on",
@@ -721,7 +721,7 @@
     }, 300000);
   }
 
-  /* ---------- Li Marcitão, the presenter ---------- */
+  /* ---------- Li Marcitao, the presenter ---------- */
 
   var avatar = null, avLang = "en";
   function avatarText() {
@@ -752,7 +752,7 @@
     btn.appendChild(img); btn.appendChild(el("span", null)).id = "liLabel";
     var dlg = el("dialog", "li-dlg"); dlg.id = "liDlg"; dlg.setAttribute("aria-labelledby", "liName");
     var head = el("div", "li-head");
-    head.appendChild(el("h2", null, "Li Marcitão")).id = "liName";
+    head.appendChild(el("h2", null, "Li Marcitao")).id = "liName";
     var close = el("button", "li-close"); close.type = "button"; close.id = "liClose"; head.appendChild(close);
     dlg.appendChild(head);
     var v = el("video"); v.id = "liVideo"; v.controls = true; v.playsInline = true; v.preload = "none"; v.poster = cfg.image;

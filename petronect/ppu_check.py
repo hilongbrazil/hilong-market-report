@@ -1,4 +1,4 @@
-"""Li Marcitão — diz se cada oportunidade tem PPU (planilha de preços) nos anexos, sem baixar o pacote inteiro.
+"""Li Marcitao — diz se cada oportunidade tem PPU (planilha de preços) nos anexos, sem baixar o pacote inteiro.
 Uso: python3 -I ppu_check.py <lista.json da Petronect> <numero> [<numero> ...]
 Olha os nomes dos anexos; quando não acha PPU e há .zip, baixa só os .zip e lê os nomes de dentro.
 Imprime um JSON {numero: {"tem_ppu": true/false, "arquivos": [...]}}."""

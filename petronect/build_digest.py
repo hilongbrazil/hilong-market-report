@@ -1,4 +1,4 @@
-"""E-mail-resumo diário de aprovação (PT) — Li Marcitão. Uso: python3 build_digest.py data.json out.html out.txt"""
+"""E-mail-resumo diário de aprovação (PT) — Li Marcitao. Uso: python3 build_digest.py data.json out.html out.txt"""
 import json, html, sys
 
 NAVY, ORANGE, INK, MUTED, LINE, TILE, BG, AMBER = "#0B2545", "#E8711A", "#1F2A37", "#5A6B7F", "#E2E8F0", "#EEF2F7", "#F3F5F8", "#FFF4E8"
@@ -84,7 +84,7 @@ def build(d):
 <tr><td style="padding:22px 32px 12px 32px;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">{cards}</table></td></tr>
 <tr><td style="padding:0 32px 24px 32px;font-family:{FONT};font-size:11.5px;line-height:17px;color:{MUTED};">{e(d['note'])}</td></tr>
 <tr><td style="background:{BG};padding:20px 32px;">
-  <div style="font-family:{FONT};font-size:14px;font-weight:700;color:{NAVY};">Li Marcit&atilde;o</div>
+  <div style="font-family:{FONT};font-size:14px;font-weight:700;color:{NAVY};">Li Marcitao</div>
   <div style="font-family:{FONT};font-size:11.5px;line-height:16px;color:{MUTED};padding-top:4px;">Inteligência de mercado e licitações &middot; trabalha para Li Kewei e Marcio Vianna &middot; Hilong Brazil</div>
 </td></tr>
 </table></td></tr></table></body></html>"""
@@ -100,7 +100,7 @@ def text(d):
                           ("PPU: sim (obrigatória)" if o.get("ppu") else "Sem PPU: preço direto na Petronect") if "ppu" in o else None) if x]
         out += [(f'[{o["n"]}] ' if o.get("n") else "") + f'{o["num"]} · {o["line"]} · aderência {o["fit"]}', o["title"]] + ([" · ".join(tg)] if tg else []) + [o["summary"],
                 "Visão Hilong: " + o["view"], "Prazo da proposta: " + o["deadline"], ""]
-    out += [d["note"], "", "Li Marcitão — Hilong Brazil"]
+    out += [d["note"], "", "Li Marcitao — Hilong Brazil"]
     return "\n".join(out)
 
 

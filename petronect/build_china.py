@@ -1,4 +1,4 @@
-"""Li Marcitão — lista diária de oportunidades Petrobras para a China (inglês e chinês).
+"""Li Marcitao — lista diária de oportunidades Petrobras para a China (inglês e chinês).
 Uso: python3 build_china.py china.json email.html email.txt lista.xlsx
 china.json = {"date_en": "20 Nov 2026", "date_zh": "2026年11月20日", "link": "https://hilongbrazil.com/interesse/?t=",
               "items": [{num, novo (true nas novas do dia), objeto_en, objeto_zh, resumo_en, resumo_zh, linha (nome em PT),
@@ -156,7 +156,7 @@ tr.z td{{background:{TILE}}} .m{{color:{MUTED};font-size:11px;font-weight:400}} 
   <div style="font-family:{FONT};font-size:19px;line-height:27px;font-weight:700;color:#FFFFFF;">巴西国家石油公司商机 · {e(d["date_zh"])}</div>
   <div style="font-family:{FONT};font-size:13px;line-height:19px;color:#D1DEED;padding-top:6px;">{len(new)} new today · {len(items)} open in total<br>今日新增 {len(new)} 项 · 共 {len(items)} 项在招</div>
   </td>
-  <td width="168" valign="middle" align="right" style="padding-left:12px;"><img src="{HERO}" width="160" height="160" alt="Li Marcit&atilde;o" style="display:block;width:160px;height:160px;border-radius:10px;border:2px solid #58CFFF;"></td>
+  <td width="168" valign="middle" align="right" style="padding-left:12px;"><img src="{HERO}" width="160" height="160" alt="Li Marcitao" style="display:block;width:160px;height:160px;border-radius:10px;border:2px solid #58CFFF;"></td>
 </tr></table></td></tr>
 <tr><td style="background:{AMBER};padding:16px 30px;font-family:{FONT};font-size:12px;line-height:18px;color:{INK};">
   <div style="font-size:11px;font-weight:700;letter-spacing:.8px;color:{ORANGE};">HOW THIS LIST WORKS · 使用说明</div>
@@ -173,9 +173,9 @@ tr.z td{{background:{TILE}}} .m{{color:{MUTED};font-size:11px;font-weight:400}} 
   </table></td></tr>
 </table></td></tr>
 <tr><td style="background:{BG};padding:20px 30px;"><table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
-  <td width="64" valign="middle"><img src="{AVATAR}" width="56" height="56" alt="Li Marcit&atilde;o" style="display:block;width:56px;height:56px;border-radius:28px;border:2px solid {ORANGE};"></td>
+  <td width="64" valign="middle"><img src="{AVATAR}" width="56" height="56" alt="Li Marcitao" style="display:block;width:56px;height:56px;border-radius:28px;border:2px solid {ORANGE};"></td>
   <td valign="middle" style="padding-left:12px;">
-  <div style="font-family:{FONT};font-size:14px;font-weight:700;color:{NAVY};">Li Marcit&atilde;o</div>
+  <div style="font-family:{FONT};font-size:14px;font-weight:700;color:{NAVY};">Li Marcitao</div>
   <div style="font-family:{FONT};font-size:11.5px;line-height:16px;color:{MUTED};padding-top:4px;">Market &amp; Tender Intelligence · works for Li Kewei and Marcio Vianna · Hilong Brazil</div>
   </td></tr></table>
 </td></tr>
@@ -196,7 +196,7 @@ def text(d):
     out.append("ALL OPEN · 全部在招")
     for o in sorted(items, key=lambda o: (o.get("end_date") or "9999", (o.get("prazo") or "")[-5:], o["num"])):
         out.append(f"- {o['num']} · {o.get('objeto_en','')} / {o.get('objeto_zh','')} · {o.get('prazo','')} · {ST.get(o.get('status'),('',''))[0]}")
-    out += ["", "Li Marcitão · Hilong Brazil"]
+    out += ["", "Li Marcitao · Hilong Brazil"]
     return "\n".join(out)
 
 

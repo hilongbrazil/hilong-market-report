@@ -163,7 +163,7 @@ def build(d):
 {zh_part}
 <!-- Footer -->
 <tr><td style="background:{BG};padding:22px 32px;">
-  <div style="font-family:{FONT};font-size:14px;line-height:18px;font-weight:700;color:{NAVY};">Li Marcit&atilde;o</div>
+  <div style="font-family:{FONT};font-size:14px;line-height:18px;font-weight:700;color:{NAVY};">Li Marcitao</div>
   <div style="font-family:{FONT};font-size:11.5px;line-height:16px;color:{MUTED};padding-top:4px;">Market &amp; Tender Intelligence &middot; works for Li Kewei and Marcio Vianna &middot; Hilong Brazil</div>
   <div style="border-top:1px solid {LINE};margin-top:10px;padding-top:8px;font-family:{FONT};font-size:10.5px;line-height:15px;color:{MUTED};">{e(d['footer_note'])}</div>
   {foot_zh}
@@ -200,7 +200,7 @@ def text_version(d):
     if d.get("zh"):
         z = d["zh"]
         out += ["", "=" * 40, f"中文版 · 机会 {d['number']}", z["tagline"], z.get("deadline_pill", ""), ""] + text_part(z, d, "zh")
-    out += ["", "Li Marcitão", "Market & Tender Intelligence · works for Li Kewei and Marcio Vianna · Hilong Brazil", d["footer_note"]]
+    out += ["", "Li Marcitao", "Market & Tender Intelligence · works for Li Kewei and Marcio Vianna · Hilong Brazil", d["footer_note"]]
     if d.get("zh"): out.append(d["zh"]["footer_note"])
     return "\n".join(out)
 

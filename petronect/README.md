@@ -1,6 +1,6 @@
-# Li Marcitão — oportunidades Petronect
+# Li Marcitao — oportunidades Petronect
 
-Scripts usados pelas tarefas agendadas do Li Marcitão (não fazem parte do site do Market Report).
+Scripts usados pelas tarefas agendadas do Li Marcitao (não fazem parte do site do Market Report).
 
 - `fetch_opp.py <numero> <pasta>` — baixa a oportunidade da Petronect (lista pública `getXMLSet('01')`), todos os anexos, abre os .zip e copia para `<pasta>/specs/` só as especificações técnicas (sem duplicatas). Sai com código 2 se a oportunidade não está mais na lista.
 - `build_email.py data.json out.html out.txt` — e-mail final da oportunidade, sempre em inglês, no template Hilong (Figma jtgMaB26vle6i51mMs7JHP).

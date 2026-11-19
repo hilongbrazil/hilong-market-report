@@ -1,4 +1,4 @@
-"""Li Marcitão — acesso ao banco do Centro de Operações (Supabase Hilong Operation) pelas funções do agente.
+"""Li Marcitao — acesso ao banco do Centro de Operações (Supabase Hilong Operation) pelas funções do agente.
 Uso:
   LM_KEY=<chave> python3 lm_db.py fila                 -> imprime a fila (JSON) de hl_bd_oportunidades
   LM_KEY=<chave> python3 lm_db.py salvar dados.json    -> grava/atualiza uma oportunidade (ou uma lista delas)
