@@ -1,7 +1,7 @@
 {
-  "run_at": "2026-11-18T12:35:00-03:00",
-  "searches": 11,
-  "new_items": 2,
+  "run_at": "2026-11-18T22:30:00-03:00",
+  "searches": 12,
+  "new_items": 1,
   "schedule": {
     "type": "times",
     "times": [
@@ -15,81 +15,86 @@
     "eixos",
     "PetroNotícias",
     "Agência Petrobras",
-    "Carmo Energy",
-    "PetroReconcavo",
-    "Brava Energia",
-    "Origem Energia",
-    "Mandacaru Energia",
-    "Seacrest Petróleo",
-    "PetroVictory",
-    "Alvopetro",
-    "Petroborn",
-    "Eneva",
-    "Vipetro",
+    "SLB",
+    "Baker Hughes",
+    "Weatherford",
+    "Tenaris",
+    "Expro",
+    "Confab",
+    "Apolo Tubulars",
+    "Jereh",
+    "Kerui",
+    "Inpasa",
+    "TAG",
     "Petrobras",
-    "Equinor",
-    "Perenco",
-    "PRIO",
-    "TotalEnergies",
-    "Transpetro",
-    "ANP",
-    "Oferta Permanente",
-    "sondas terrestres",
-    "workover Nordeste"
+    "Argentina",
+    "Vaca Muerta",
+    "YPF",
+    "Ecopetrol",
+    "Guiana",
+    "Staatsolie",
+    "Petroperú",
+    "YPFB",
+    "Petroecuador"
   ],
   "queries": [
     {
-      "q": "Site oficial: Click Petróleo e Gás (categoria Petróleo e Gás) — página não abriu; busca 'clickpetroleoegas petróleo gás Petrobras novembro 2026'",
+      "q": "Site oficial: Click Petróleo e Gás (categorias Petróleo e Gás e Setor Offshore) — páginas não abriram; busca 'site:clickpetroleoegas.com.br petróleo 18 novembro 2026'",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "eixos petróleo gás notícias 18 novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "PetroNotícias novembro 2026 sonda contrato",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: PetroNotícias (página inicial, via busca 'petronoticias.com.br novembro 2026')",
       "ch": "site",
       "found": 1
     },
     {
-      "q": "Site oficial: Click Petróleo e Gás (categoria Setor Offshore) — página não abriu; busca 'clickpetroleoegas setor offshore plataforma sonda novembro 2026'",
+      "q": "Agência Petrobras (mais recentes) — página não abriu; busca 'Petrobras contrato novembro 2026 sondas OR poços OR workover'",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "PetroNotícias, eixos e Agência Petrobras: notícias de 18/11/2026",
+      "q": "SLB OR Baker Hughes OR Weatherford OR Expro Brazil contract November 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "PetroReconcavo, Brava Energia, Origem Energia, Carmo Energy novembro 2026",
+      "q": "Tenaris Confab OR Apolo Tubulars OR Jereh OR Kerui OR Inpasa OR TAG novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Alvopetro, Eneva, Mandacaru, PetroVictory, Petroborn, Seacrest, Vipetro novembro 2026",
+      "q": "Baker Hughes OR SLB OR Expro Petrobras OR Equinor Brazil award November 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Petrobras anuncia 18 de novembro 2026",
+      "q": "Vaca Muerta OR Ecopetrol OR YPF OR Guyana oil news November 18 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "ANP leilão oferta permanente resolução novembro 2026",
-      "ch": "site",
-      "found": 1
-    },
-    {
-      "q": "Equinor, PRIO, Perenco, Transpetro, TotalEnergies Brasil 17/11/2026",
+      "q": "Argentina Vaca Muerta 18 de noviembre 2026 petróleo perforación",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Sondas terrestres e workover onshore Bahia, RN e Sergipe novembro 2026",
+      "q": "Ecopetrol OR Staatsolie OR Petroperú OR YPFB OR Petroecuador 18 noviembre 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "PetroNotícias contrato Petrobras sonda novembro 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Brazil oil Petrobras news November 18, 2026",
+      "q": "exportações de petróleo recorde 2026 MDIC (checagem de matéria do Click)",
       "ch": "site",
       "found": 0
     }

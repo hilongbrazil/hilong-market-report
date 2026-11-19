@@ -1,6 +1,25 @@
 {
-  "updated_at": "2026-11-18T12:35:00-03:00",
+  "updated_at": "2026-11-18T22:30:00-03:00",
   "items": [
+    {
+      "id": "2026-11-17-oil-states-petrobras-manutencao",
+      "date": "2026-11-17",
+      "region": "BR",
+      "country": "BR",
+      "operator": "Petrobras",
+      "category": "contratos",
+      "environment": "geral",
+      "relevance": 4,
+      "title_pt": "Oil States Brasil fecha contrato com a Petrobras para manutenção de BOPs e equipamentos de perfuração até 2029",
+      "title_en": "Oil States Brasil wins Petrobras contract to maintain BOPs and drilling equipment through 2029",
+      "title_zh": "Oil States Brasil 获得 Petrobras 防喷器及钻井设备维修合同，期限至 2029 年",
+      "summary_pt": "O contrato, de 2026 a 2029, cobre manutenção e reparo de equipamentos de içamento, perfuração e segurança de poço, como BOPs anulares e de gaveta, conectores H4, mesas rotativas, swivels e válvulas de alta pressão. Os serviços serão feitos na unidade da Oil States em Macaé (RJ). O valor não foi divulgado.",
+      "summary_en": "The 2026–2029 contract covers maintenance and repair of lifting, drilling and well-control equipment, including annular and ram BOPs, H4 connectors, rotary tables, swivels and high-pressure valves. Work will be done at Oil States' facility in Macaé (RJ). The value was not disclosed.",
+      "summary_zh": "该合同期限为 2026 至 2029 年，涵盖起升、钻井及井控设备的维护与修理，包括环形及闸板防喷器、H4 连接器、转盘、水龙头和高压阀门等。服务将在 Oil States 位于 Macaé（RJ）的工厂完成，合同金额未披露。",
+      "source": "Petronotícias",
+      "url": "https://petronoticias.com.br/oil-states-brasil-fecha-novo-contrato-com-a-petrobras-para-manutencao-de-equipamentos/",
+      "via": "site"
+    },
     {
       "id": "2026-11-18-anp-homologa-opc6-opp4",
       "date": "2026-11-18",
