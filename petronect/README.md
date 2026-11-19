@@ -20,3 +20,14 @@ Fila de aprovação, pipeline e mapa: hilong.hilongbrazil.com → Corporate and 
 - A tarefa de hora em hora lê no Gmail hilongbrazil as respostas novas (só de `marcio.vianna@hilonggroup.com`, assunto com "Petronect"), registra cada decisão com `lm_db.py decidir <num> aprovar|recusar`, marca a conversa com o marcador `LM-processado` e confirma por e-mail o que aplicou. Resposta ambígua não é aplicada: ele recebe um aviso.
 - `decidir` só muda oportunidades pendentes. A aprovação pelo Centro continua valendo; o Centro mostra "por resposta de e-mail" nas decididas assim.
 - Banco: `supabase/07_aprovacao_email.sql` (repositório hilong-center): `hl_lm_decidir`, colunas `ref_resumo` e `decidido_via`.
+
+## Classificação, PPU e lista da China (19/11/2026)
+
+- Cada oportunidade selecionada leva `tipo` (servico|produto|ambos), `ambiente` (onshore|offshore|ambos) e `tem_ppu` / `ppu_arquivos`.
+- `python3 -I ppu_check.py lista.json <num> [<num> ...]` → `{num: {tem_ppu, arquivos}}`: confere os nomes dos anexos e, se preciso, o conteúdo dos zips. `fetch_opp.py` separa a PPU em `ppu/` (`manifest.json`: `has_ppu`, `ppu`).
+- Regra da Petrobras: com PPU, a PPU é obrigatória na proposta; sem PPU, o preço vai direto no sistema Petronect. `build_email.py` escreve essa frase a partir de `ppu` (true/false).
+- `build_email.py`: e-mail final em inglês e, se houver o objeto `zh`, em chinês no mesmo e-mail; campos comuns `tipo`, `ambiente`, `ppu`.
+- `build_digest.py`: o resumo do Marcio mostra tipo, ambiente e PPU (`tipo`, `ambiente`, `ppu` em cada opp).
+- Lista da China: `lm_db.py links pedidos.json` cria os tokens dos botões (`[{num, email, pessoa, acao}]`; `email` `"*"` = botão geral, registrado como "China"); `python3 build_china.py china.json email.html email.txt lista.xlsx` monta o e-mail (imprime o assunto) e o Excel. Página dos botões: https://hilongbrazil.com/interesse/?t=<token> (pede confirmação; não pede nome).
+- Cliques: `lm_db.py interesses` (ainda não avisados) e `lm_db.py avisados <id> ...`. Só cliques "interesse" da China geram aviso (Marcio e Li Kewei); "sem_interesse" não avisa, só tira a oportunidade da lista.
+- Banco: `supabase/08_classificacao_china.sql` (hilong-center).
