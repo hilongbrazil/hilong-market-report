@@ -91,7 +91,8 @@ def row(o, n, link):
             f'<td class="c3">{e(pz[:10])}<br><span class="m">{e(pz[11:16])}</span></td></tr>')
 
 
-AVATAR = "https://hilongbrazil.com/assets/img/li-marcitao.jpg"
+AVATAR = "https://hilongbrazil.com/assets/img/li-marcitao-petronect-face.jpg"
+HERO = "https://hilongbrazil.com/assets/img/li-marcitao-petronect.jpg"
 
 HOW = [
     ("Daily list of Petrobras (Petronect) opportunities within Hilong's scope. It is sent only on days with new opportunities.",
@@ -142,12 +143,15 @@ tr.z td{{background:{TILE}}} .m{{color:{MUTED};font-size:11px;font-weight:400}} 
 <div style="display:none;max-height:0;overflow:hidden;">{len(new)} new Petrobras opportunities · 新增 {len(new)} 项巴西国家石油公司商机</div>
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:{BG};"><tr><td align="center" style="padding:24px 12px;">
 <table role="presentation" width="640" cellpadding="0" cellspacing="0" border="0" style="width:640px;max-width:640px;background:#FFFFFF;border:1px solid {LINE};border-radius:10px;overflow:hidden;">
-<tr><td style="background:{NAVY};padding:26px 30px;">
+<tr><td style="background:{NAVY};padding:22px 24px 22px 30px;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+  <td valign="middle">
   <div style="font-family:{FONT};font-size:10.5px;font-weight:600;letter-spacing:1px;color:#B8C9DE;">HILONG BRAZIL · PETRONECT · EN / 中文</div>
-  <div style="font-family:{FONT};font-size:24px;line-height:30px;font-weight:700;color:#FFFFFF;padding-top:10px;">Petrobras opportunities · {e(d["date_en"])}</div>
-  <div style="font-family:{FONT};font-size:20px;line-height:28px;font-weight:700;color:#FFFFFF;">巴西国家石油公司商机 · {e(d["date_zh"])}</div>
-  <div style="font-family:{FONT};font-size:13px;line-height:19px;color:#D1DEED;padding-top:6px;">{len(new)} new today · {len(items)} open in total &nbsp;|&nbsp; 今日新增 {len(new)} 项 · 共 {len(items)} 项在招</div>
-</td></tr>
+  <div style="font-family:{FONT};font-size:23px;line-height:29px;font-weight:700;color:#FFFFFF;padding-top:10px;">Petrobras opportunities · {e(d["date_en"])}</div>
+  <div style="font-family:{FONT};font-size:19px;line-height:27px;font-weight:700;color:#FFFFFF;">巴西国家石油公司商机 · {e(d["date_zh"])}</div>
+  <div style="font-family:{FONT};font-size:13px;line-height:19px;color:#D1DEED;padding-top:6px;">{len(new)} new today · {len(items)} open in total<br>今日新增 {len(new)} 项 · 共 {len(items)} 项在招</div>
+  </td>
+  <td width="168" valign="middle" align="right" style="padding-left:12px;"><img src="{HERO}" width="160" height="160" alt="Li Marcit&atilde;o" style="display:block;width:160px;height:160px;border-radius:10px;border:2px solid #58CFFF;"></td>
+</tr></table></td></tr>
 <tr><td style="background:{AMBER};padding:16px 30px;font-family:{FONT};font-size:12px;line-height:18px;color:{INK};">
   <div style="font-size:11px;font-weight:700;letter-spacing:.8px;color:{ORANGE};">HOW THIS LIST WORKS · 使用说明</div>
   {how_rows_html}
