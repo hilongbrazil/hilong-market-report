@@ -122,7 +122,13 @@ def build(d):
     rest = sorted(items, key=lambda o: (o.get("end_date") or "9999", (o.get("prazo") or "")[-5:], o["num"]))
     link = d["link"]
     cards = "".join(card(o, link) for o in sorted(new, key=lambda o: (o.get("aderencia") != "alta", o.get("end_date") or "")))
-    rows = "".join(row(o, n, link) for n, o in enumerate(rest))
+    cap = d.get("max_rows")
+    shown = rest if not cap or cap >= len(rest) else rest[:cap]
+    rows = "".join(row(o, n, link) for n, o in enumerate(shown))
+    if len(shown) < len(rest):
+        rows += (f'<tr><td colspan="3" style="padding:10px;font-family:{FONT};font-size:11.5px;color:{MUTED};">'
+                 f'Showing the {len(shown)} nearest deadlines of {len(rest)} open opportunities – full list in the attached Excel. · '
+                 f'仅显示截止时间最近的 {len(shown)} 项（共 {len(rest)} 项），完整清单见 Excel 附件。</td></tr>')
     sec = lambda en, zh: (f'<tr><td style="padding:22px 0 10px 0;"><table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>'
                           f'<td width="4" style="background:{ORANGE};border-radius:2px;font-size:0;">&nbsp;</td>'
                           f'<td style="padding-left:10px;font-family:{FONT};font-size:12px;font-weight:700;letter-spacing:1px;color:{NAVY};">{e(en)} · {e(zh)}</td></tr></table></td></tr>')
@@ -224,11 +230,20 @@ if __name__ == "__main__":
     d = json.load(open(sys.argv[1], encoding="utf-8"))
     n = sum(1 for o in d["items"] if o.get("novo"))
     d.setdefault("subject", f"Petrobras opportunities · {d['date_en']} · {n} new / 巴西国家石油公司商机 · 新增 {n} 项")
-    h = build(d)
-    # tamanho: a fonte vai uma vez no <body> e no <style>, não em cada célula
-    h = h.replace(f"font-family:{FONT};", "").replace(f"{{font-family:{FONT};", "{")
-    h = h.replace('<body style="margin:0;padding:0;', f'<body style="margin:0;padding:0;font-family:{FONT};', 1)
-    h = h.replace("<style>", f"<style>\ntable,td,div,span,a{{font-family:{FONT}}}", 1)
+    def render():
+        h = build(d)
+        # tamanho: a fonte vai uma vez no <body> e no <style>, não em cada célula
+        h = h.replace(f"font-family:{FONT};", "").replace(f"{{font-family:{FONT};", "{")
+        h = h.replace('<body style="margin:0;padding:0;', f'<body style="margin:0;padding:0;font-family:{FONT};', 1)
+        return h.replace("<style>", f"<style>\ntable,td,div,span,a{{font-family:{FONT}}}", 1)
+    # o Gmail corta e-mails acima de ~102 KB: se passar de 95 KB, a tabela mostra só os prazos mais próximos (a lista inteira vai no Excel)
+    h = render()
+    while len(h.encode("utf-8")) > 95000:
+        total = len(d["items"])
+        d["max_rows"] = max(5, (d.get("max_rows") or total) - 5)
+        h = render()
+        if d["max_rows"] == 5:
+            break
     open(sys.argv[2], "w", encoding="utf-8").write(h)
     open(sys.argv[3], "w", encoding="utf-8").write(text(d))
     xlsx(d, sys.argv[4])
