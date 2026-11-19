@@ -91,21 +91,19 @@ def row(o, n, link):
             f'<td class="c3">{e(pz[:10])}<br><span class="m">{e(pz[11:16])}</span></td></tr>')
 
 
+AVATAR = "https://hilongbrazil.com/assets/img/li-marcitao.jpg"
+
 HOW = [
     ("Daily list of Petrobras (Petronect) opportunities within Hilong's scope. It is sent only on days with new opportunities.",
      "本清单每日汇总海隆业务范围内的巴西国家石油公司（Petronect）招标商机，仅在有新商机的日子发送。"),
     ("New opportunities are at the top, marked NEW / 新. Below them, every opportunity still open, ordered by proposal deadline.",
      "新商机列于顶部并标注 NEW / 新；其下为所有仍在招标中的商机，按投标截止时间排序。"),
-    ("For each opportunity, click Interested or Not interested and confirm your name. Marcio Vianna and Li Kewei are notified.",
-     "请对每个商机点击“有兴趣”或“无兴趣”，并确认您的姓名；系统将通知 Marcio Vianna 和 Li Kewei。"),
+    ("For each opportunity, click Interested or Not interested and press Confirm on the page that opens. Marcio Vianna and Li Kewei are notified.",
+     "请对每个商机点击“有兴趣”或“无兴趣”，并在打开的页面上点击“确认”；系统将通知 Marcio Vianna 和 Li Kewei。"),
     ("Not interested: the opportunity leaves the list. No click: it stays on the list until the deadline. You can change your answer by clicking the other button.",
      "点击“无兴趣”后，该商机将从清单中移除；未点击的商机将保留至截止日期。点击另一个按钮即可更改选择。"),
-    ("Tags: type (service / product), environment (onshore / offshore) and PPU. When the tender includes a PPU (Petrobras unit price sheet), it is mandatory; without a PPU, prices are entered directly in the Petronect system.",
-     "标签：类型（服务/产品）、作业环境（陆上/海上）及 PPU。招标附 PPU（Petrobras 单价表）时必须填写；无 PPU 时，价格直接在 Petronect 系统中填报。"),
     ("Status: Under review, Hilong pursuing or Hilong not pursuing. When Hilong Brazil approves an opportunity, you receive the full email with the technical specifications and the PPU.",
      "状态：审核中、海隆参与或海隆不参与。海隆巴西批准后，您将收到包含技术规格和 PPU 的完整邮件。"),
-    ("The full list is in the attached Excel file. Deadlines are in Brasília time (BRT). For questions, reply to this email.",
-     "完整清单见 Excel 附件；截止时间为巴西利亚时间。如有疑问，请直接回复本邮件。"),
 ]
 
 
@@ -120,7 +118,7 @@ def how_rows():
 def build(d):
     items = d["items"]
     new = [o for o in items if o.get("novo")]
-    rest = sorted(items, key=lambda o: (o.get("end_date") or "9999", o["num"]))
+    rest = sorted(items, key=lambda o: (o.get("end_date") or "9999", (o.get("prazo") or "")[-5:], o["num"]))
     link = d["link"]
     cards = "".join(card(o, link) for o in sorted(new, key=lambda o: (o.get("aderencia") != "alta", o.get("end_date") or "")))
     rows = "".join(row(o, n, link) for n, o in enumerate(rest))
@@ -163,11 +161,13 @@ tr.z td{{background:{TILE}}} .m{{color:{MUTED};font-size:11px;font-weight:400}} 
     <td style="padding:8px 10px 8px 8px;font-family:{FONT};font-size:10px;font-weight:700;color:#fff;">DEADLINE · 截止</td></tr>
     {rows}
   </table></td></tr>
-  <tr><td style="font-family:{FONT};font-size:11px;line-height:16px;color:{MUTED};padding-top:10px;">PPU = Petrobras unit price sheet. When the tender includes a PPU it is mandatory; without a PPU, prices are entered directly in the Petronect system. Deadlines in Brasília time (BRT). Full list attached in Excel.<br>PPU 为 Petrobras 单价表。招标附 PPU 时必须填写；无 PPU 时价格直接在 Petronect 系统填报。截止时间为巴西利亚时间。完整清单见 Excel 附件。</td></tr>
 </table></td></tr>
-<tr><td style="background:{BG};padding:20px 30px;">
+<tr><td style="background:{BG};padding:20px 30px;"><table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
+  <td width="64" valign="middle"><img src="{AVATAR}" width="56" height="56" alt="Li Marcit&atilde;o" style="display:block;width:56px;height:56px;border-radius:28px;border:2px solid {ORANGE};"></td>
+  <td valign="middle" style="padding-left:12px;">
   <div style="font-family:{FONT};font-size:14px;font-weight:700;color:{NAVY};">Li Marcit&atilde;o</div>
   <div style="font-family:{FONT};font-size:11.5px;line-height:16px;color:{MUTED};padding-top:4px;">Market &amp; Tender Intelligence · works for Li Kewei and Marcio Vianna · Hilong Brazil</div>
+  </td></tr></table>
 </td></tr>
 </table></td></tr></table></body></html>"""
 
@@ -184,7 +184,7 @@ def text(d):
                     f"  {pair(TIPO, o.get('tipo'), 0)} · {pair(AMB, o.get('ambiente'), 0)} · {ppu_txt(o, 0)} · deadline {o.get('prazo','')} BRT",
                     f"  Interested / 有兴趣: {d['link']}{o.get('tok_int','')}", f"  Not interested / 无兴趣: {d['link']}{o.get('tok_no','')}", ""]
     out.append("ALL OPEN · 全部在招")
-    for o in sorted(items, key=lambda o: (o.get("end_date") or "9999", o["num"])):
+    for o in sorted(items, key=lambda o: (o.get("end_date") or "9999", (o.get("prazo") or "")[-5:], o["num"])):
         out.append(f"- {o['num']} · {o.get('objeto_en','')} / {o.get('objeto_zh','')} · {o.get('prazo','')} · {ST.get(o.get('status'),('',''))[0]}")
     out += ["", "Li Marcitão · Hilong Brazil"]
     return "\n".join(out)
@@ -197,7 +197,7 @@ def xlsx(d, path):
     ws.append(hdr)
     for c in ws[1]:
         c.font = Font(bold=True, color="FFFFFF"); c.fill = PatternFill("solid", fgColor="0B2545"); c.alignment = Alignment(wrap_text=True, vertical="center")
-    items = sorted(d["items"], key=lambda o: (not o.get("novo"), o.get("end_date") or "9999", o["num"]))
+    items = sorted(d["items"], key=lambda o: (not o.get("novo"), o.get("end_date") or "9999", (o.get("prazo") or "")[-5:], o["num"]))
     for o in items:
         ln = LINES.get(o.get("linha", ""), (o.get("linha", ""), ""))
         ws.append(["NEW 新" if o.get("novo") else "", o["num"], o.get("objeto_en", ""), o.get("objeto_zh", ""), f"{ln[0]} {ln[1]}".strip(),
