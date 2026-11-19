@@ -91,6 +91,32 @@ def row(o, n, link):
             f'<td class="c3">{e(pz[:10])}<br><span class="m">{e(pz[11:16])}</span></td></tr>')
 
 
+HOW = [
+    ("Daily list of Petrobras (Petronect) opportunities within Hilong's scope. It is sent only on days with new opportunities.",
+     "本清单每日汇总海隆业务范围内的巴西国家石油公司（Petronect）招标商机，仅在有新商机的日子发送。"),
+    ("New opportunities are at the top, marked NEW / 新. Below them, every opportunity still open, ordered by proposal deadline.",
+     "新商机列于顶部并标注 NEW / 新；其下为所有仍在招标中的商机，按投标截止时间排序。"),
+    ("For each opportunity, click Interested or Not interested and confirm your name. Marcio Vianna and Li Kewei are notified.",
+     "请对每个商机点击“有兴趣”或“无兴趣”，并确认您的姓名；系统将通知 Marcio Vianna 和 Li Kewei。"),
+    ("Not interested: the opportunity leaves the list. No click: it stays on the list until the deadline. You can change your answer by clicking the other button.",
+     "点击“无兴趣”后，该商机将从清单中移除；未点击的商机将保留至截止日期。点击另一个按钮即可更改选择。"),
+    ("Tags: type (service / product), environment (onshore / offshore) and PPU. When the tender includes a PPU (Petrobras unit price sheet), it is mandatory; without a PPU, prices are entered directly in the Petronect system.",
+     "标签：类型（服务/产品）、作业环境（陆上/海上）及 PPU。招标附 PPU（Petrobras 单价表）时必须填写；无 PPU 时，价格直接在 Petronect 系统中填报。"),
+    ("Status: Under review, Hilong pursuing or Hilong not pursuing. When Hilong Brazil approves an opportunity, you receive the full email with the technical specifications and the PPU.",
+     "状态：审核中、海隆参与或海隆不参与。海隆巴西批准后，您将收到包含技术规格和 PPU 的完整邮件。"),
+    ("The full list is in the attached Excel file. Deadlines are in Brasília time (BRT). For questions, reply to this email.",
+     "完整清单见 Excel 附件；截止时间为巴西利亚时间。如有疑问，请直接回复本邮件。"),
+]
+
+
+def how_rows():
+    return "".join(
+        f'<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top:7px;"><tr>'
+        f'<td valign="top" width="20" style="font-family:{FONT};font-size:12px;font-weight:700;color:{ORANGE};">{i}.</td>'
+        f'<td style="font-family:{FONT};font-size:12px;line-height:18px;color:{INK};">{e(en)}<br><span style="color:{MUTED};">{e(zh)}</span></td></tr></table>'
+        for i, (en, zh) in enumerate(HOW, 1))
+
+
 def build(d):
     items = d["items"]
     new = [o for o in items if o.get("novo")]
@@ -101,6 +127,7 @@ def build(d):
     sec = lambda en, zh: (f'<tr><td style="padding:22px 0 10px 0;"><table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>'
                           f'<td width="4" style="background:{ORANGE};border-radius:2px;font-size:0;">&nbsp;</td>'
                           f'<td style="padding-left:10px;font-family:{FONT};font-size:12px;font-weight:700;letter-spacing:1px;color:{NAVY};">{e(en)} · {e(zh)}</td></tr></table></td></tr>')
+    how_rows_html = how_rows()
     return f"""<!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{e(d.get("subject", ""))}</title>
 <style>
@@ -123,9 +150,9 @@ tr.z td{{background:{TILE}}} .m{{color:{MUTED};font-size:11px;font-weight:400}} 
   <div style="font-family:{FONT};font-size:20px;line-height:28px;font-weight:700;color:#FFFFFF;">巴西国家石油公司商机 · {e(d["date_zh"])}</div>
   <div style="font-family:{FONT};font-size:13px;line-height:19px;color:#D1DEED;padding-top:6px;">{len(new)} new today · {len(items)} open in total &nbsp;|&nbsp; 今日新增 {len(new)} 项 · 共 {len(items)} 项在招</div>
 </td></tr>
-<tr><td style="background:{AMBER};padding:12px 30px;font-family:{FONT};font-size:12px;line-height:18px;color:{INK};">
-  Click <b>Interested</b> or <b>Not interested</b> on each opportunity; Marcio Vianna is notified. Opportunities marked not interested leave the list. Full tender package and specifications follow after Hilong Brazil approval.<br>
-  请对每个商机点击“有兴趣”或“无兴趣”，系统将通知 Marcio Vianna。标记为无兴趣的商机将从清单中移除。海隆巴西批准后将发送完整招标文件及技术规格。
+<tr><td style="background:{AMBER};padding:16px 30px;font-family:{FONT};font-size:12px;line-height:18px;color:{INK};">
+  <div style="font-size:11px;font-weight:700;letter-spacing:.8px;color:{ORANGE};">HOW THIS LIST WORKS · 使用说明</div>
+  {how_rows_html}
 </td></tr>
 <tr><td style="padding:6px 30px 26px 30px;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
   {sec("NEW TODAY", "今日新增") + cards if new else ""}
@@ -148,7 +175,8 @@ tr.z td{{background:{TILE}}} .m{{color:{MUTED};font-size:11px;font-weight:400}} 
 def text(d):
     items = d["items"]; new = [o for o in items if o.get("novo")]
     out = [f"Petrobras opportunities · {d['date_en']} / 巴西国家石油公司商机 · {d['date_zh']}",
-           f"{len(new)} new today · {len(items)} open / 今日新增 {len(new)} 项 · 共 {len(items)} 项", ""]
+           f"{len(new)} new today · {len(items)} open / 今日新增 {len(new)} 项 · 共 {len(items)} 项", "", "HOW THIS LIST WORKS · 使用说明"]
+    out += [f"{i}. {en}\n   {zh}" for i, (en, zh) in enumerate(HOW, 1)] + [""]
     if new:
         out.append("NEW TODAY · 今日新增")
         for o in new:
@@ -192,7 +220,12 @@ if __name__ == "__main__":
     d = json.load(open(sys.argv[1], encoding="utf-8"))
     n = sum(1 for o in d["items"] if o.get("novo"))
     d.setdefault("subject", f"Petrobras opportunities · {d['date_en']} · {n} new / 巴西国家石油公司商机 · 新增 {n} 项")
-    open(sys.argv[2], "w", encoding="utf-8").write(build(d))
+    h = build(d)
+    # tamanho: a fonte vai uma vez no <body> e no <style>, não em cada célula
+    h = h.replace(f"font-family:{FONT};", "").replace(f"{{font-family:{FONT};", "{")
+    h = h.replace('<body style="margin:0;padding:0;', f'<body style="margin:0;padding:0;font-family:{FONT};', 1)
+    h = h.replace("<style>", f"<style>\ntable,td,div,span,a{{font-family:{FONT}}}", 1)
+    open(sys.argv[2], "w", encoding="utf-8").write(h)
     open(sys.argv[3], "w", encoding="utf-8").write(text(d))
     xlsx(d, sys.argv[4])
     print("ok", d["subject"])
