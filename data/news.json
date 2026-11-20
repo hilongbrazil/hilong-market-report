@@ -1,6 +1,25 @@
 {
-  "updated_at": "2026-11-20T06:18:00-03:00",
+  "updated_at": "2026-11-20T12:35:00-03:00",
   "items": [
+    {
+      "id": "2026-11-19-anp-gas-release-braskem",
+      "date": "2026-11-19",
+      "region": "BR",
+      "country": "BR",
+      "operator": "ANP",
+      "category": "regulatorio",
+      "environment": "geral",
+      "relevance": 3,
+      "title_pt": "ANP propõe abrir leilões do Gas Release a empresas do grupo vendedor, o que inclui a Braskem",
+      "title_en": "ANP proposes opening Gas Release auctions to seller-group companies, letting Braskem bid",
+      "title_zh": "ANP拟允许卖方集团企业参与Gas Release拍卖，Braskem或可入场",
+      "summary_pt": "Na audiência pública 16/2026, em 19/11, a ANP apresentou minuta que permite a empresas do grupo do vendedor comprar gás para consumo próprio ou uso industrial, abrindo os leilões do Gas Release à Braskem. A meta é HHI abaixo de 2.500 (3.750 em 2025) a partir de 2027; a Petrobras pediu 2031. Falta aval da diretoria.",
+      "summary_en": "At public hearing 16/2026 on Nov 19, ANP presented a draft letting the seller's group companies buy gas for own or industrial use, opening Gas Release auctions to Braskem. ANP targets an HHI below 2,500 (3,750 in 2025) from 2027; Petrobras asked for 2031. The board must still approve it.",
+      "summary_zh": "ANP于11月19日第16/2026号公开听证会上提出草案，允许卖方集团企业为自用或工业用途购气，使Braskem可参与Gas Release拍卖。ANP目标是自2027年起将HHI指数降至2,500以下（2025年为3,750），Petrobras则要求推迟至2031年。草案仍需ANP董事会批准。",
+      "source": "Click Petróleo e Gás",
+      "url": "https://clickpetroleoegas.com.br/petrobras-pressiona-por-mudancas-no-mercado-de-gas-natural-anp-propoe-abrir-leiloes-a-braskem-e-novas-regras-podem-alterar-a-disputa-pelo-combustivel-usado-pelas-industrias-brasileiras-fpsv/",
+      "via": "site"
+    },
     {
       "id": "2026-11-19-venezuela-84-acordos-petroleo-gas",
       "date": "2026-11-19",
