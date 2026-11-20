@@ -1,7 +1,7 @@
 {
-  "run_at": "2026-11-19T12:40:00-03:00",
-  "searches": 12,
-  "new_items": 2,
+  "run_at": "2026-11-19T22:45:00-03:00",
+  "searches": 13,
+  "new_items": 3,
   "schedule": {
     "type": "times",
     "times": [
@@ -12,97 +12,94 @@
   },
   "terms": [
     "Click Petróleo e Gás",
-    "eixos",
-    "PetroNotícias",
     "Agência Petrobras",
-    "Carmo Energy",
-    "PetroReconcavo",
-    "Brava Energia",
-    "Origem Energia",
-    "Mandacaru Energia",
-    "Seacrest Petróleo",
-    "PetroVictory",
-    "Alvopetro",
-    "Petroborn",
-    "Eneva",
-    "Vipetro",
-    "Petrobras",
-    "Equinor",
-    "Perenco",
-    "PRIO",
-    "TotalEnergies",
-    "Transpetro",
-    "ANP",
+    "PetroNotícias",
+    "eixos",
+    "SLB",
+    "Baker Hughes",
+    "Weatherford",
+    "Tenaris",
+    "Confab",
+    "Expro",
+    "Jereh",
+    "Kerui",
+    "Inpasa",
     "TAG",
-    "Sondas terrestres",
-    "Workover",
-    "Margem Equatorial"
+    "Petrobras",
+    "ANP",
+    "Vaca Muerta",
+    "YPF",
+    "Ecopetrol",
+    "Capex",
+    "Argentina",
+    "Gas release",
+    "Repetro"
   ],
   "queries": [
     {
-      "q": "clickpetroleoegas.com.br petróleo e gás offshore notícias 19 novembro 2026",
+      "q": "Site oficial: Click Petróleo e Gás (categoria Petróleo e Gás) — página não abriu nesta rodada",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "petronoticias Petrobras contrato novembro 2026",
+      "q": "Site oficial: Click Petróleo e Gás (categoria Setor Offshore) — página não abriu nesta rodada",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: Agência Petrobras — página não abriu nesta rodada",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: PetroNotícias — página não abriu nesta rodada",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: eixos (Petróleo e Gás)",
+      "ch": "site",
+      "found": 2
+    },
+    {
+      "q": "SLB Baker Hughes Weatherford Brazil contract November 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Tenaris Confab Expro Brasil novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Jereh Kerui Inpasa TAG Transportadora Associada de Gás novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Baker Hughes OR SLB OR Expro Brazil Petrobras award November 19 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "site:clickpetroleoegas.com.br petróleo Petrobras 19 novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "petronoticias eixos Petrobras ANP notícia 19/11/2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Vaca Muerta YPF Ecopetrol noticias 19 noviembre 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Vaca Muerta petrolera anuncio 19 de noviembre 2026 perforación",
       "ch": "site",
       "found": 1
-    },
-    {
-      "q": "Agência Petrobras notícia 18 novembro 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Site oficial: Agência Petrobras (mais recentes)",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "PetroReconcavo OR Brava Energia OR Origem Energia OR Carmo Energy notícia novembro 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Eneva OR Alvopetro OR PetroVictory OR Mandacaru OR Seacrest OR Petroborn OR Vipetro petróleo",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "PRIO OR Equinor OR TotalEnergies OR Perenco OR Transpetro Brasil petróleo notícia",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "ANP agência nacional do petróleo notícia 18 19 novembro 2026",
-      "ch": "site",
-      "found": 1
-    },
-    {
-      "q": "site:clickpetroleoegas.com.br Petrobras plataforma poço campo novembro 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "sonda terrestre workover onshore Bahia Sergipe Rio Grande do Norte contrato novembro 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "eixos petróleo e gás Petrobras sonda perfuração 18 novembro 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Petrobras nova etapa exploração Rio Grande do Norte chegada de sonda poço",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Petrobras OR Equinor OR PRIO contrato OR poço OR produção 19 de novembro de 2026",
-      "ch": "site",
-      "found": 0
     }
   ],
   "sites": [
