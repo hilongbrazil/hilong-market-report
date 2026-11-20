@@ -1,6 +1,25 @@
 {
-  "updated_at": "2026-11-19T22:45:00-03:00",
+  "updated_at": "2026-11-20T06:18:00-03:00",
   "items": [
+    {
+      "id": "2026-11-19-venezuela-84-acordos-petroleo-gas",
+      "date": "2026-11-19",
+      "region": "SA",
+      "country": "VE",
+      "operator": "PDVSA",
+      "category": "contratos",
+      "environment": "geral",
+      "relevance": 2,
+      "title_pt": "Venezuela soma 84 acordos de petróleo e gás assinados em 2026, após a reforma da lei de hidrocarbonetos",
+      "title_en": "Venezuela has signed 84 oil and gas agreements in 2026 following its hydrocarbons law reform",
+      "title_zh": "委内瑞拉油气法改革后，2026 年已签署 84 项油气协议",
+      "summary_pt": "Segundo o governo venezuelano, em informações detalhadas por Delcy Rodríguez, o país assinou 84 acordos na área de petróleo e gás até agora em 2026, depois da reforma da legislação de hidrocarbonetos. O governo informou produção de 1,269 milhão de barris por dia.",
+      "summary_en": "According to the Venezuelan government, with details given by Delcy Rodríguez, the country has signed 84 oil and gas agreements so far in 2026, after reforming its hydrocarbons legislation. The government put oil output at 1.269 million barrels per day.",
+      "summary_zh": "据委内瑞拉政府（Delcy Rodríguez 介绍详情），该国在油气法改革后，2026 年迄今已签署 84 项油气领域协议。政府公布的原油产量为 126.9 万桶/日。",
+      "source": "Infobae",
+      "url": "https://www.infobae.com/america/agencias/2026/11/19/venezuela-ha-suscrito-84-acuerdos-en-materia-de-petroleo-y-gas-en-lo-que-va-de-ano/",
+      "via": "site"
+    },
     {
       "id": "2026-11-19-anp-gas-release-sergipe",
       "date": "2026-11-19",

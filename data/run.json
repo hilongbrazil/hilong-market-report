@@ -1,7 +1,7 @@
 {
-  "run_at": "2026-11-19T22:45:00-03:00",
-  "searches": 13,
-  "new_items": 3,
+  "run_at": "2026-11-20T06:18:00-03:00",
+  "searches": 80,
+  "new_items": 1,
   "schedule": {
     "type": "times",
     "times": [
@@ -11,95 +11,347 @@
     ]
   },
   "terms": [
-    "Click Petróleo e Gás",
-    "Agência Petrobras",
-    "PetroNotícias",
-    "eixos",
+    "Carmo Energy",
+    "PetroReconcavo",
+    "Brava Energia",
+    "Origem Energia",
+    "Mandacaru Energia",
+    "Seacrest Petróleo",
+    "PetroVictory",
+    "Alvopetro",
+    "Petroborn",
+    "Eneva",
+    "Vipetro",
+    "Petrobras",
+    "Equinor",
+    "Perenco",
+    "PRIO",
+    "TotalEnergies",
+    "Transpetro",
+    "ANP",
     "SLB",
     "Baker Hughes",
     "Weatherford",
     "Tenaris",
-    "Confab",
     "Expro",
+    "Confab",
+    "Apolo Tubulars",
     "Jereh",
     "Kerui",
     "Inpasa",
     "TAG",
-    "Petrobras",
-    "ANP",
+    "Shell",
+    "Click Petróleo e Gás",
+    "Gas release",
     "Vaca Muerta",
     "YPF",
     "Ecopetrol",
-    "Capex",
-    "Argentina",
-    "Gas release",
-    "Repetro"
+    "Guyana",
+    "Venezuela",
+    "Peru",
+    "Ecuador",
+    "Onshore Nordeste"
   ],
   "queries": [
     {
-      "q": "Site oficial: Click Petróleo e Gás (categoria Petróleo e Gás) — página não abriu nesta rodada",
+      "q": "Site oficial: Carmo Energy — página não abriu (leitura automática bloqueada)",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Site oficial: Click Petróleo e Gás (categoria Setor Offshore) — página não abriu nesta rodada",
+      "q": "Site oficial: PetroReconcavo — página não abriu (leitura automática bloqueada)",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Site oficial: Agência Petrobras — página não abriu nesta rodada",
+      "q": "Site oficial: Brava Energia — página não abriu (leitura automática bloqueada)",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Site oficial: PetroNotícias — página não abriu nesta rodada",
+      "q": "Site oficial: Origem Energia — página não abriu (leitura automática bloqueada)",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Site oficial: eixos (Petróleo e Gás)",
-      "ch": "site",
-      "found": 2
-    },
-    {
-      "q": "SLB Baker Hughes Weatherford Brazil contract November 2026",
+      "q": "Site oficial: Mandacaru Energia — página não abriu (leitura automática bloqueada)",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Tenaris Confab Expro Brasil novembro 2026",
+      "q": "Site oficial: Seacrest Petróleo — página não abriu (leitura automática bloqueada)",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Jereh Kerui Inpasa TAG Transportadora Associada de Gás novembro 2026",
+      "q": "Site oficial: PetroVictory — página não abriu (leitura automática bloqueada)",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Baker Hughes OR SLB OR Expro Brazil Petrobras award November 19 2026",
+      "q": "Site oficial: Alvopetro — página não abriu (leitura automática bloqueada)",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "site:clickpetroleoegas.com.br petróleo Petrobras 19 novembro 2026",
+      "q": "Site oficial: Petroborn — página não abriu (leitura automática bloqueada)",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "petronoticias eixos Petrobras ANP notícia 19/11/2026",
+      "q": "Site oficial: Eneva — página não abriu (leitura automática bloqueada)",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Vaca Muerta YPF Ecopetrol noticias 19 noviembre 2026",
+      "q": "Site oficial: Petrobras — página não abriu (leitura automática bloqueada)",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Vaca Muerta petrolera anuncio 19 de noviembre 2026 perforación",
+      "q": "Site oficial: Equinor — página não abriu (leitura automática bloqueada)",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: Perenco — página não abriu (leitura automática bloqueada)",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: PRIO — página não abriu (leitura automática bloqueada)",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: TotalEnergies — página não abriu (leitura automática bloqueada)",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: Transpetro — página não abriu (leitura automática bloqueada)",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: ANP — página não abriu (leitura automática bloqueada)",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: SLB — página não abriu (leitura automática bloqueada)",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: Baker Hughes — página não abriu (leitura automática bloqueada)",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: Weatherford — página não abriu (leitura automática bloqueada)",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: Tenaris — página não abriu (leitura automática bloqueada)",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: Expro — página não abriu (leitura automática bloqueada)",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: Jereh — página não abriu (leitura automática bloqueada)",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: Kerui — página não abriu (leitura automática bloqueada)",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: Inpasa — página não abriu (leitura automática bloqueada)",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: Click Petróleo e Gás (categoria Petróleo e Gás) — página não abriu nesta varredura",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: Click Petróleo e Gás (categoria Setor Offshore) — página não abriu nesta varredura",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: PetroNotícias — página não abriu nesta varredura",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: eixos (Petróleo e Gás) — página não abriu nesta varredura",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "PetroReconcavo fato relevante novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Brava Energia notícia 19 novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Carmo Energy OR Origem Energia OR Mandacaru Energia novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Alvopetro OR PetroVictory OR Seacrest Petróleo news November 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Eneva fato relevante comunicado novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Petroborn OR Vipetro petróleo 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Petrobras anuncia 20 de novembro de 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Petrobras sonda poço contrato 19 novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "PRIO fato relevante Peregrino Wahoo novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Equinor Brasil Raia Bacalhau novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "TotalEnergies OR Perenco OR Transpetro Brasil notícia novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "ANP notícia 19 novembro 2026 petróleo gás",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "gas release diretor ANP propõe mudanças Braskem leilões",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "clickpetroleoegas Petrobras petróleo offshore 20 novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "petronoticias 20 novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Pietro Mendes gas release minuta Braskem novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Petrobras amplia frota offshore com três navios aliviadores",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "cenarioenergia.com.br 2026/11/19 petróleo",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "gas release ANP proposta diretor Pietro Mendes 19 novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Vaca Muerta YPF Vista noticias 20 de noviembre 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "SLB OR Baker Hughes OR Weatherford OR Expro Brazil Petrobras contract November 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "ANP propõe abrir leilões do gas release à Braskem",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Brazil oil news November 20 2026 Petrobras Reuters",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "sonda terrestre workover Bahia Sergipe Rio Grande do Norte onshore novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Ecopetrol noticia 19 de noviembre de 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Guyana Suriname oil news November 19 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Petrobras 19 de novembro de 2026 petróleo plataforma produção",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Petroecuador OR Petroperú OR YPFB OR PDVSA noticia 19 noviembre 2026 petróleo",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Venezuela 84 acuerdos petróleo y gas 2026",
       "ch": "site",
       "found": 1
+    },
+    {
+      "q": "Petroperú EBITDA ajustado tercer trimestre 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Tenaris Confab Brasil novembro 2026",
+      "ch": "site",
+      "found": 0
     }
   ],
   "sites": [
@@ -171,14 +423,14 @@
     },
     {
       "name": "Petrobras",
-      "url": "https://agencia.petrobras.com.br/en/listar-editoria?delta=20",
-      "status": "sem_itens",
+      "url": "https://agencia.petrobras.com.br/mais-recentes",
+      "status": "bloqueado",
       "found": 0
     },
     {
       "name": "Equinor",
-      "url": "https://www.equinor.com/en/where-we-are/brazil",
-      "status": "sem_itens",
+      "url": "https://www.equinor.com.br/noticias",
+      "status": "bloqueado",
       "found": 0
     },
     {
@@ -231,8 +483,8 @@
     },
     {
       "name": "Tenaris",
-      "url": "https://www.tenaris.com/en/newsroom?page=0",
-      "status": "sem_itens",
+      "url": "https://ir.tenaris.com/press-releases",
+      "status": "bloqueado",
       "found": 0
     },
     {
