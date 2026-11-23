@@ -1,7 +1,7 @@
 {
-  "run_at": "2026-11-23T06:16:03-03:00",
-  "searches": 74,
-  "new_items": 0,
+  "run_at": "2026-11-23T12:40:00-03:00",
+  "searches": 10,
+  "new_items": 2,
   "schedule": {
     "type": "times",
     "times": [
@@ -12,44 +12,29 @@
   },
   "terms": [
     "Petrobras",
+    "Plano de Negócios 2027-2031",
+    "eixos",
+    "PetroNotícias",
+    "Agência Petrobras",
+    "Click Petróleo e Gás",
     "PetroReconcavo",
     "Brava Energia",
     "Carmo Energy",
     "Origem Energia",
+    "Eneva",
+    "Alvopetro",
+    "PetroVictory",
     "Mandacaru Energia",
     "Seacrest Petróleo",
-    "PetroVictory",
-    "Alvopetro",
     "Petroborn",
-    "Eneva",
     "Vipetro",
-    "Equinor",
-    "Perenco",
     "PRIO",
+    "Equinor",
     "TotalEnergies",
+    "Perenco",
     "Transpetro",
     "ANP",
-    "SLB",
-    "Baker Hughes",
-    "Weatherford",
-    "Tenaris",
-    "Expro",
-    "Confab",
-    "Apolo Tubulars",
-    "Jereh",
-    "Kerui",
-    "Inpasa",
-    "TAG",
-    "Onshore Nordeste",
-    "Sondas workover",
-    "Vaca Muerta",
-    "YPF",
-    "Vista",
-    "Ecopetrol",
-    "Guiana",
-    "Petroperú",
-    "YPFB",
-    "Click Petróleo e Gás"
+    "Gas Release"
   ],
   "queries": [
     {
@@ -63,363 +48,58 @@
       "found": 0
     },
     {
-      "q": "Site oficial: Carmo Energy — página não abriu (WebFetch sem permissão nesta execução)",
+      "q": "Site oficial: Agência Petrobras (mais recentes) — página não abriu (WebFetch sem permissão nesta execução)",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Site oficial: PetroReconcavo — página não abriu (WebFetch sem permissão nesta execução)",
+      "q": "Petrobras Plano de Negócios 2027-2031 investimentos",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Site oficial: Brava Energia — página não abriu (WebFetch sem permissão nesta execução)",
+      "q": "eixos.com.br petróleo e gás notícias 22 novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Site oficial: Origem Energia — página não abriu (WebFetch sem permissão nesta execução)",
+      "q": "petronoticias.com.br contrato Petrobras novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Site oficial: Mandacaru Energia — página não abriu (WebFetch sem permissão nesta execução)",
+      "q": "PetroReconcavo OR Brava Energia OR Carmo Energy OR Origem Energia notícia novembro 2026",
+      "ch": "site",
+      "found": 1
+    },
+    {
+      "q": "Eneva OR Alvopetro OR PetroVictory OR Mandacaru OR Seacrest OR Petroborn OR Vipetro November 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Site oficial: Seacrest Petróleo — página não abriu (WebFetch sem permissão nesta execução)",
+      "q": "PRIO OR Equinor OR TotalEnergies OR Perenco OR Transpetro Brasil notícia 21-23 novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Site oficial: PetroVictory — página não abriu (WebFetch sem permissão nesta execução)",
+      "q": "ANP petróleo gás notícia 21-23 novembro 2026",
+      "ch": "site",
+      "found": 1
+    },
+    {
+      "q": "site:clickpetroleoegas.com.br petróleo poços sonda campo novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Site oficial: Alvopetro — página não abriu (WebFetch sem permissão nesta execução)",
+      "q": "site:clickpetroleoegas.com.br offshore plataforma FPSO Petrobras contrato",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Site oficial: Petroborn — página não abriu (WebFetch sem permissão nesta execução)",
+      "q": "Agência Petrobras comunicado 21-23 novembro 2026",
       "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Site oficial: Eneva — página não abriu (WebFetch sem permissão nesta execução)",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Site oficial: Petrobras — página não abriu (WebFetch sem permissão nesta execução)",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Site oficial: Equinor — página não abriu (WebFetch sem permissão nesta execução)",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Site oficial: Perenco — página não abriu (WebFetch sem permissão nesta execução)",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Site oficial: PRIO — página não abriu (WebFetch sem permissão nesta execução)",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Site oficial: TotalEnergies — página não abriu (WebFetch sem permissão nesta execução)",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Site oficial: Transpetro — página não abriu (WebFetch sem permissão nesta execução)",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Site oficial: ANP — página não abriu (WebFetch sem permissão nesta execução)",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Site oficial: SLB — página não abriu (WebFetch sem permissão nesta execução)",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Site oficial: Baker Hughes — página não abriu (WebFetch sem permissão nesta execução)",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Site oficial: Weatherford — página não abriu (WebFetch sem permissão nesta execução)",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Site oficial: Tenaris — página não abriu (WebFetch sem permissão nesta execução)",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Site oficial: Expro — página não abriu (WebFetch sem permissão nesta execução)",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Site oficial: Jereh — página não abriu (WebFetch sem permissão nesta execução)",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Site oficial: Kerui — página não abriu (WebFetch sem permissão nesta execução)",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Site oficial: Inpasa — página não abriu (WebFetch sem permissão nesta execução)",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Petrobras plano de negócios 2027-2031",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "PetroReconcavo fato relevante novembro 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Brava Energia fato relevante novembro 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Petrobras anuncia plano estratégico 2027-2031 investimentos US$ bilhões",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Carmo Energy OR \"Origem Energia\" OR \"Mandacaru Energia\" novembro 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Eneva OR Alvopetro OR PetroVictory OR Seacrest notícia 21 22 novembro 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "PRIO OR Equinor OR TotalEnergies Brasil petróleo 22 novembro 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "ANP notícia 21 novembro 2026 OR 22 novembro 2026 petróleo",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "site:clickpetroleoegas.com.br petrobras novembro 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "sonda workover onshore Bahia Sergipe Rio Grande do Norte contrato novembro 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Vaca Muerta YPF Vista noticias 22 noviembre 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "SLB OR \"Baker Hughes\" OR Weatherford OR Tenaris OR Expro Brazil contract November 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Jereh OR Kerui OR Inpasa OR \"Apolo Tubulars\" OR \"TAG Transportadora Associada de Gás\" novembro 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Ecopetrol OR Petroperú OR Petroecuador OR YPFB OR Guyana oil news November 22 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "petronoticias OR eixos petróleo gás 22 novembro 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Petroborn OR Vipetro OR Transpetro OR Perenco Brasil novembro 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: Carmo Energy",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: PetroReconcavo",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: Brava Energia",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: Origem Energia",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: Mandacaru Energia",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: Seacrest Petróleo",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: PetroVictory",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: Alvopetro (S/A)",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: Alvopetro (Energy Ltd)",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: Petroborn",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: Eneva",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: Vipetro",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: Petrobras",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: Equinor",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: Perenco",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: PRIO",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: TotalEnergies",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: Transpetro",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: ANP",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: SLB",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: Baker Hughes",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: Weatherford",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: Tenaris",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: Expro",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: Confab",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: Apolo Tubulars",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: Jereh",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: Kerui (Shandong)",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: Kerui (Brasil)",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: Inpasa",
-      "ch": "linkedin",
-      "found": 0
-    },
-    {
-      "q": "LinkedIn: TAG",
-      "ch": "linkedin",
       "found": 0
     }
   ],
