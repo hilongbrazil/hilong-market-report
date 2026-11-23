@@ -1,6 +1,6 @@
 {
-  "run_at": "2026-11-22T22:20:00-03:00",
-  "searches": 12,
+  "run_at": "2026-11-23T06:16:03-03:00",
+  "searches": 43,
   "new_items": 0,
   "schedule": {
     "type": "times",
@@ -11,10 +11,24 @@
     ]
   },
   "terms": [
-    "Click Petróleo e Gás",
-    "eixos",
-    "PetroNotícias",
-    "Agência Petrobras",
+    "Petrobras",
+    "PetroReconcavo",
+    "Brava Energia",
+    "Carmo Energy",
+    "Origem Energia",
+    "Mandacaru Energia",
+    "Seacrest Petróleo",
+    "PetroVictory",
+    "Alvopetro",
+    "Petroborn",
+    "Eneva",
+    "Vipetro",
+    "Equinor",
+    "Perenco",
+    "PRIO",
+    "TotalEnergies",
+    "Transpetro",
+    "ANP",
     "SLB",
     "Baker Hughes",
     "Weatherford",
@@ -26,74 +40,230 @@
     "Kerui",
     "Inpasa",
     "TAG",
+    "Onshore Nordeste",
+    "Sondas workover",
     "Vaca Muerta",
     "YPF",
     "Vista",
-    "Pluspetrol",
     "Ecopetrol",
+    "Guiana",
     "Petroperú",
     "YPFB",
-    "Guiana",
-    "Argentina"
+    "Click Petróleo e Gás"
   ],
   "queries": [
     {
-      "q": "Site oficial: Click Petróleo e Gás (categoria Petróleo e Gás) — página não abriu nesta rodada (WebFetch sem permissão)",
+      "q": "Site oficial: Click Petróleo e Gás (categoria Petróleo e Gás) — página não abriu (WebFetch sem permissão nesta execução)",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Site oficial: Click Petróleo e Gás (categoria Setor Offshore) — página não abriu nesta rodada (WebFetch sem permissão)",
+      "q": "Site oficial: Click Petróleo e Gás (categoria Setor Offshore) — página não abriu (WebFetch sem permissão nesta execução)",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Site oficial: eixos (página inicial)",
+      "q": "Site oficial: Carmo Energy — página não abriu (WebFetch sem permissão nesta execução)",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Site oficial: PetroNotícias — página não abriu nesta rodada (WebFetch sem permissão)",
+      "q": "Site oficial: PetroReconcavo — página não abriu (WebFetch sem permissão nesta execução)",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Site oficial: Agência Petrobras (mais recentes) — página não abriu nesta rodada (WebFetch sem permissão)",
+      "q": "Site oficial: Brava Energia — página não abriu (WebFetch sem permissão nesta execução)",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "SLB OR \"Baker Hughes\" OR Weatherford Brazil contract November 2026",
+      "q": "Site oficial: Origem Energia — página não abriu (WebFetch sem permissão nesta execução)",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Tenaris Confab OR \"Apolo Tubulars\" OR Expro Brasil novembro 2026",
+      "q": "Site oficial: Mandacaru Energia — página não abriu (WebFetch sem permissão nesta execução)",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Jereh OR Kerui OR Inpasa OR \"TAG Transportadora Associada de Gás\" notícia novembro 2026",
+      "q": "Site oficial: Seacrest Petróleo — página não abriu (WebFetch sem permissão nesta execução)",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Vaca Muerta YPF Vista Pluspetrol noticias 22 noviembre 2026",
+      "q": "Site oficial: PetroVictory — página não abriu (WebFetch sem permissão nesta execução)",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "\"Vaca Muerta vuelve a batir récord\" noviembre 575.400 barriles",
+      "q": "Site oficial: Alvopetro — página não abriu (WebFetch sem permissão nesta execução)",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "site:clickpetroleoegas.com.br petróleo 21 novembro 2026",
+      "q": "Site oficial: Petroborn — página não abriu (WebFetch sem permissão nesta execução)",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Ecopetrol OR Petroperú OR YPFB OR Guyana oil news November 21 2026",
+      "q": "Site oficial: Eneva — página não abriu (WebFetch sem permissão nesta execução)",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: Petrobras — página não abriu (WebFetch sem permissão nesta execução)",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: Equinor — página não abriu (WebFetch sem permissão nesta execução)",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: Perenco — página não abriu (WebFetch sem permissão nesta execução)",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: PRIO — página não abriu (WebFetch sem permissão nesta execução)",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: TotalEnergies — página não abriu (WebFetch sem permissão nesta execução)",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: Transpetro — página não abriu (WebFetch sem permissão nesta execução)",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: ANP — página não abriu (WebFetch sem permissão nesta execução)",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: SLB — página não abriu (WebFetch sem permissão nesta execução)",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: Baker Hughes — página não abriu (WebFetch sem permissão nesta execução)",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: Weatherford — página não abriu (WebFetch sem permissão nesta execução)",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: Tenaris — página não abriu (WebFetch sem permissão nesta execução)",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: Expro — página não abriu (WebFetch sem permissão nesta execução)",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: Jereh — página não abriu (WebFetch sem permissão nesta execução)",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: Kerui — página não abriu (WebFetch sem permissão nesta execução)",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Site oficial: Inpasa — página não abriu (WebFetch sem permissão nesta execução)",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Petrobras plano de negócios 2027-2031",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "PetroReconcavo fato relevante novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Brava Energia fato relevante novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Petrobras anuncia plano estratégico 2027-2031 investimentos US$ bilhões",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Carmo Energy OR \"Origem Energia\" OR \"Mandacaru Energia\" novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Eneva OR Alvopetro OR PetroVictory OR Seacrest notícia 21 22 novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "PRIO OR Equinor OR TotalEnergies Brasil petróleo 22 novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "ANP notícia 21 novembro 2026 OR 22 novembro 2026 petróleo",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "site:clickpetroleoegas.com.br petrobras novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "sonda workover onshore Bahia Sergipe Rio Grande do Norte contrato novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Vaca Muerta YPF Vista noticias 22 noviembre 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "SLB OR \"Baker Hughes\" OR Weatherford OR Tenaris OR Expro Brazil contract November 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Jereh OR Kerui OR Inpasa OR \"Apolo Tubulars\" OR \"TAG Transportadora Associada de Gás\" novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Ecopetrol OR Petroperú OR Petroecuador OR YPFB OR Guyana oil news November 22 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "petronoticias OR eixos petróleo gás 22 novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Petroborn OR Vipetro OR Transpetro OR Perenco Brasil novembro 2026",
       "ch": "site",
       "found": 0
     }
