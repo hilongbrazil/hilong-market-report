@@ -1,6 +1,6 @@
 {
-  "run_at": "2026-11-22T12:25:00-03:00",
-  "searches": 14,
+  "run_at": "2026-11-22T22:20:00-03:00",
+  "searches": 12,
   "new_items": 0,
   "schedule": {
     "type": "times",
@@ -15,22 +15,26 @@
     "eixos",
     "PetroNotícias",
     "Agência Petrobras",
-    "Carmo Energy",
-    "PetroReconcavo",
-    "Brava Energia",
-    "Origem Energia",
-    "Mandacaru Energia",
-    "Seacrest Petróleo",
-    "PetroVictory",
-    "Alvopetro",
-    "Eneva",
-    "Petrobras",
-    "Equinor",
-    "Perenco",
-    "PRIO",
-    "TotalEnergies",
-    "Transpetro",
-    "ANP"
+    "SLB",
+    "Baker Hughes",
+    "Weatherford",
+    "Tenaris",
+    "Expro",
+    "Confab",
+    "Apolo Tubulars",
+    "Jereh",
+    "Kerui",
+    "Inpasa",
+    "TAG",
+    "Vaca Muerta",
+    "YPF",
+    "Vista",
+    "Pluspetrol",
+    "Ecopetrol",
+    "Petroperú",
+    "YPFB",
+    "Guiana",
+    "Argentina"
   ],
   "queries": [
     {
@@ -44,7 +48,7 @@
       "found": 0
     },
     {
-      "q": "Site oficial: eixos (Petróleo e Gás) — página não abriu nesta rodada (WebFetch sem permissão)",
+      "q": "Site oficial: eixos (página inicial)",
       "ch": "site",
       "found": 0
     },
@@ -59,47 +63,37 @@
       "found": 0
     },
     {
-      "q": "PetroReconcavo OR Brava Energia OR Origem Energia OR Carmo Energy novembro 2026",
+      "q": "SLB OR \"Baker Hughes\" OR Weatherford Brazil contract November 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Eneva OR Alvopetro OR PetroVictory OR Mandacaru Energia OR Seacrest news November 2026",
+      "q": "Tenaris Confab OR \"Apolo Tubulars\" OR Expro Brasil novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Petrobras notícia 21 novembro 2026",
+      "q": "Jereh OR Kerui OR Inpasa OR \"TAG Transportadora Associada de Gás\" notícia novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "PRIO OR Equinor OR TotalEnergies OR Perenco Brasil petróleo novembro 2026",
+      "q": "Vaca Muerta YPF Vista Pluspetrol noticias 22 noviembre 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "ANP petróleo gás notícia 21 de novembro 2026",
+      "q": "\"Vaca Muerta vuelve a batir récord\" noviembre 575.400 barriles",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "site:clickpetroleoegas.com.br petróleo Petrobras",
+      "q": "site:clickpetroleoegas.com.br petróleo 21 novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "site:eixos.com.br petróleo gás onshore",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "site:petronoticias.com.br Petrobras contrato",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Transpetro OR Agência Petrobras novembro 2026 notícia",
+      "q": "Ecopetrol OR Petroperú OR YPFB OR Guyana oil news November 21 2026",
       "ch": "site",
       "found": 0
     }
