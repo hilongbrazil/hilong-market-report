@@ -9,11 +9,13 @@ FIT = {"alta": ("#E7F6EC", "#1E7B3C", "ADERÊNCIA ALTA"), "média": ("#FFF4E8", 
 
 TIPO = {"servico": "Serviço", "produto": "Produto", "ambos": "Serviço + Produto"}
 AMB = {"onshore": "Onshore", "offshore": "Offshore", "ambos": "Onshore + Offshore"}
+CADEIA = {"upstream": "Upstream", "midstream": "Midstream", "downstream": "Downstream"}
+TIME = {"servico": "Lista: Marketing", "produto": "Lista: Trade", "ambos": "Lista: Marketing + Trade"}
 
 
 def tags(o):
     """Etiquetas: tipo, ambiente e PPU (PPU obrigatória; sem PPU, preço direto na Petronect)."""
-    v = [TIPO.get(o.get("tipo")), AMB.get(o.get("ambiente"))]
+    v = [CADEIA.get(o.get("cadeia")), TIPO.get(o.get("tipo")), AMB.get(o.get("ambiente")), TIME.get(o.get("tipo"))]
     if "ppu" in o:
         v.append("PPU: sim (obrigatória)" if o["ppu"] else "Sem PPU: preço direto na Petronect")
     v = [x for x in v if x]
@@ -76,7 +78,7 @@ def build(d):
 </td></tr>
 <tr><td style="background:{AMBER};border-bottom:1px solid #F6D9B8;padding:16px 32px;">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
-    <td valign="middle" style="font-family:{FONT};font-size:12.5px;line-height:18px;color:{INK};">Aprove no Centro ou <b>responda este e-mail</b>, por exemplo: <i>aprovo 1 e 3, recuso 2</i> (ou <i>aprovo todas</i>). As aprovadas entram no Corporate &amp; Strategic como <b>Nova</b> e recebem o e-mail completo em inglês em até 1 hora.</td>
+    <td valign="middle" style="font-family:{FONT};font-size:12.5px;line-height:18px;color:{INK};">Aprove no Centro ou <b>responda este e-mail</b>, por exemplo: <i>aprovo 1 e 3, recuso 2</i> (ou <i>aprovo todas</i>). As aprovadas entram no pipeline de Contratos e Oportunidades de Negócios como <b>Nova</b>. As listas diárias vão para o Marketing (serviços) e o Trade (produtos); quem clicar <b>Interested</b> recebe os documentos técnicos e a PPU.</td>
     <td align="right" valign="middle" style="padding-left:12px;white-space:nowrap;"><a href="{url}" style="display:inline-block;background:{NAVY};color:#FFFFFF;text-decoration:none;font-family:{FONT};font-size:12px;font-weight:700;padding:11px 18px;border-radius:6px;">Aprovar ou recusar &rarr;</a></td>
   </tr></table>
 </td></tr>
@@ -96,7 +98,7 @@ def text(d):
     if d.get("map_url"):
         out += ["Mapa dos locais de entrega: " + d["map_url"], ""]
     for o in d["opps"]:
-        tg = [x for x in (TIPO.get(o.get("tipo")), AMB.get(o.get("ambiente")),
+        tg = [x for x in (CADEIA.get(o.get("cadeia")), TIPO.get(o.get("tipo")), AMB.get(o.get("ambiente")), TIME.get(o.get("tipo")),
                           ("PPU: sim (obrigatória)" if o.get("ppu") else "Sem PPU: preço direto na Petronect") if "ppu" in o else None) if x]
         out += [(f'[{o["n"]}] ' if o.get("n") else "") + f'{o["num"]} · {o["line"]} · aderência {o["fit"]}', o["title"]] + ([" · ".join(tg)] if tg else []) + [o["summary"],
                 "Visão Hilong: " + o["view"], "Prazo da proposta: " + o["deadline"], ""]

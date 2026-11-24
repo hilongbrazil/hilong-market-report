@@ -4,9 +4,10 @@ Uso:
   LM_KEY=<chave> python3 lm_db.py salvar dados.json    -> grava/atualiza uma oportunidade (ou uma lista delas)
   LM_KEY=<chave> python3 lm_db.py decidir <num> aprovar|recusar  -> registra a decisão do Marcio vinda por resposta de e-mail
                                                        (só muda oportunidades pendentes; imprime o status final)
-  LM_KEY=<chave> python3 lm_db.py links pedidos.json    -> links individuais dos botões do e-mail da China
-                                                       (lista [{num, email, pessoa, acao: interesse|info}] -> mesma lista com "token")
-  LM_KEY=<chave> python3 lm_db.py interesses           -> cliques da China ainda não avisados ao Marcio (JSON)
+  LM_KEY=<chave> python3 lm_db.py links pedidos.json    -> links dos botões das listas diárias
+                                                       (lista [{num, email: "marketing"|"trade", pessoa: "Marketing"|"Trade",
+                                                        acao: interesse|sem_interesse}] -> mesma lista com "token")
+  LM_KEY=<chave> python3 lm_db.py interesses           -> cliques dos times ainda não tratados (JSON, com "time": marketing|trade)
   LM_KEY=<chave> python3 lm_db.py avisados <id> [<id> ...]  -> marca esses cliques como avisados
 Campos aceitos em salvar: num (obrigatório), objeto (obrigatório se for nova), cliente, resumo (nome curto em inglês),
 linha, sumario, visao, aderencia (alta|média), prazo ("DD/MM/AAAA HH:MM"), end_date (AAAA-MM-DD), end_hour,
@@ -14,7 +15,9 @@ locais ([{"nome","uf","lat","lon"}]), email_enviado, email_enviado_em, resend_id
 mudanca_prazo ({"from","to","detected_at"}), obs_pipeline (observação no pipeline do Corporate and Strategic),
 ref_resumo ("AAAA-MM-DD#n": número da oportunidade no e-mail-resumo do dia), i18n ({"en": {"objeto","sumario","visao"},
 "zh": {...}}), tipo (servico|produto|ambos), ambiente (onshore|offshore|ambos), tem_ppu (true|false),
-ppu_arquivos (lista de nomes), china_enviado_em (data do primeiro envio na lista da China) e i18n_pipeline ({"en": {"n": ...}, "zh": {"n": ...}}: tradução da observação no pipeline).
+cadeia (upstream|midstream|downstream), ppu_arquivos (lista de nomes), lista_mkt_em / lista_trade_em (data do primeiro envio
+na lista diária do Marketing / do Trade), docs_mkt_em / docs_trade_em (data do envio dos documentos técnicos e da PPU ao time
+que clicou "Interested"), china_enviado_em (antigo: primeiro envio na lista única da China) e i18n_pipeline ({"en": {"n": ...}, "zh": {"n": ...}}: tradução da observação no pipeline).
 O status (pending/approved/rejected) só muda pelo Centro."""
 import json, os, subprocess, sys
 

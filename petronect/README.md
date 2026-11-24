@@ -31,3 +31,11 @@ Fila de aprovação, pipeline e mapa: hilong.hilongbrazil.com → Corporate and 
 - Lista da China: `lm_db.py links pedidos.json` cria os tokens dos botões (`[{num, email, pessoa, acao}]`; `email` `"*"` = botão geral, registrado como "China"); `python3 build_china.py china.json email.html email.txt lista.xlsx` monta o e-mail (imprime o assunto) e o Excel. Página dos botões: https://hilongbrazil.com/interesse/?t=<token> (pede confirmação; não pede nome).
 - Cliques: `lm_db.py interesses` (ainda não avisados) e `lm_db.py avisados <id> ...`. Só cliques "interesse" da China geram aviso (Marcio e Li Kewei); "sem_interesse" não avisa, só tira a oportunidade da lista.
 - Banco: `supabase/08_classificacao_china.sql` (hilong-center).
+
+## Cadeia e times (desde 24/11/2026)
+
+- Cada oportunidade tem `cadeia`: `upstream` (até a cabeça do poço e a plataforma, com submarino, sísmica, embarcações de apoio e facilities de produção), `midstream` (dutos e integridade, processamento de gás, compressão, terminais, píeres e tancagem) ou `downstream` (refino, termelétricas, fertilizantes, catalisadores e químicos de processo). Na dúvida, vale onde o serviço é executado ou o material é entregue.
+- A lista diária é dividida primeiro por tipo: **Serviços → Marketing** (chenjuqing, tandunxiang) e **Produtos → Trade** (songguangqiang, lilianwei, zhuzhiming, wangbeichen), sempre com Marcio Vianna e Li Kewei em cópia. Serviço + produto vai nas duas. Dentro de cada lista: Upstream, Midstream, Downstream.
+- `build_china.py` recebe `"team": "marketing" | "trade"` e `cadeia` em cada item. Os botões usam links com `email` = `marketing` ou `trade`.
+- "Interested": a tarefa de hora em hora envia ao time os documentos técnicos e a PPU (`build_email.py`) e grava `docs_mkt_em` / `docs_trade_em`. "Not interested": sai da lista daquele time (`descartada_mkt` / `descartada_trade`).
+- A aprovação do Marcio no Centro continua valendo só para o pipeline.

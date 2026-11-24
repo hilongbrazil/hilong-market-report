@@ -1,11 +1,16 @@
-"""Li Marcitao — lista diária de oportunidades Petrobras para a China (inglês e chinês).
+"""Li Marcitao — lista diária de oportunidades Petrobras por time (inglês e chinês).
+Desde 24/11/2026 são duas listas: "marketing" (Serviços) e "trade" (Produtos). Dentro de cada lista, as oportunidades
+vêm em três blocos: Upstream, Midstream e Downstream. Serviço + produto aparece nas duas listas.
 Uso: python3 build_china.py china.json email.html email.txt lista.xlsx
-china.json = {"date_en": "20 Nov 2026", "date_zh": "2026年11月20日", "link": "https://hilongbrazil.com/interesse/?t=",
-              "items": [{num, novo (true nas novas do dia), objeto_en, objeto_zh, resumo_en, resumo_zh, linha (nome em PT),
+china.json = {"team": "marketing" | "trade", "date_en": "20 Nov 2026", "date_zh": "2026年11月20日",
+              "link": "https://hilongbrazil.com/interesse/?t=",
+              "items": [{num, novo (true nas novas do dia), cadeia (upstream|midstream|downstream),
+                         objeto_en, objeto_zh, resumo_en, resumo_zh, linha (nome em PT),
                          aderencia (alta|média), tipo (servico|produto|ambos), ambiente (onshore|offshore|ambos), ppu (true|false),
                          prazo ("DD/MM/AAAA HH:MM"), end_date, local, status (pending|approved|rejected), tok_int, tok_no}]}
-Botões: "Interested / 有兴趣" e "Not interested / 无兴趣" (clicada sem interesse, sai da lista na próxima atualização).
-As novas vêm no topo (marcadas NEW / 新); depois, todas as abertas, pelo prazo. Imprime o assunto sugerido."""
+Botões: "Interested / 有兴趣" (o Li Marcitao envia os documentos técnicos e a PPU ao time) e "Not interested / 无兴趣"
+(sai da lista do time na próxima atualização).
+As novas vêm no topo (marcadas NEW / 新); depois, todas as abertas, por bloco e pelo prazo. Imprime o assunto sugerido."""
 import html, json, sys
 from openpyxl import Workbook
 from openpyxl.styles import Alignment, Font, PatternFill
@@ -16,6 +21,17 @@ e = html.escape
 TIPO = {"servico": ("Service", "服务"), "produto": ("Product", "产品"), "ambos": ("Service + Product", "服务 + 产品")}
 AMB = {"onshore": ("Onshore", "陆上"), "offshore": ("Offshore", "海上"), "ambos": ("Onshore + Offshore", "陆上 + 海上")}
 FIT = {"alta": ("High fit", "高度匹配"), "média": ("Medium fit", "中等匹配")}
+TEAM = {"marketing": ("Services", "服务", "Marketing team", "市场团队"), "trade": ("Products", "产品", "Trade team", "贸易团队")}
+CHAIN = [("upstream", "UPSTREAM", "上游", "Exploration, wells and production", "勘探、钻完井与生产"),
+         ("midstream", "MIDSTREAM", "中游", "Pipelines, gas processing, terminals and storage", "管道、天然气处理、码头与储存"),
+         ("downstream", "DOWNSTREAM", "下游", "Refining, power and petrochemicals", "炼化、电力与石化")]
+CH = {c[0]: c for c in CHAIN}
+
+
+def chain_of(o):
+    return o.get("cadeia") if o.get("cadeia") in CH else "upstream"
+
+
 ST = {"pending": ("Under review", "审核中"), "approved": ("Hilong pursuing", "海隆参与"), "rejected": ("Hilong not pursuing", "海隆不参与")}
 LINES = {
     "Serviços de sonda": ("Rig services", "钻修井服务"), "Elevação artificial": ("Artificial lift", "人工举升"), "Completação": ("Completion", "完井"),
@@ -67,7 +83,7 @@ def card(o, link):
            f'{e(pp)} · {e(ppu_txt(o, 1))}</div>') if pp else ""
     return f"""<tr><td style="padding:0 0 12px 0;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border:1px solid {LINE};border-left:4px solid {ORANGE};border-radius:8px;">
 <tr><td style="padding:14px 16px;">
-  <div style="font-family:{FONT};font-size:11px;font-weight:700;letter-spacing:.5px;color:{MUTED};"><span style="background:{ORANGE};color:#fff;border-radius:4px;padding:2px 6px;margin-right:8px;">NEW · 新</span>{e(o["num"])} · {e(ln[0])} · {e(ln[1])}</div>
+  <div style="font-family:{FONT};font-size:11px;font-weight:700;letter-spacing:.5px;color:{MUTED};"><span style="background:{ORANGE};color:#fff;border-radius:4px;padding:2px 6px;margin-right:8px;">NEW · 新</span>{e(o["num"])} · {e(CH[chain_of(o)][1])} {e(CH[chain_of(o)][2])} · {e(ln[0])} · {e(ln[1])}</div>
   <div style="font-family:{FONT};font-size:15px;line-height:21px;font-weight:700;color:{NAVY};padding-top:8px;">{e(o.get("objeto_en", ""))}</div>
   <div style="font-family:{FONT};font-size:14px;line-height:21px;font-weight:600;color:{NAVY};">{e(o.get("objeto_zh", ""))}</div>
   <div style="padding-top:6px;">{chips}</div>{ppu}
@@ -94,26 +110,28 @@ def row(o, n, link):
 AVATAR = "https://hilongbrazil.com/assets/img/li-marcitao-petronect-face.jpg"
 HERO = "https://hilongbrazil.com/assets/img/li-marcitao-petronect.jpg"
 
-HOW = [
-    ("Daily list of Petrobras (Petronect) opportunities within Hilong's scope. It is sent only on days with new opportunities.",
-     "本清单每日汇总海隆业务范围内的巴西国家石油公司（Petronect）招标商机，仅在有新商机的日子发送。"),
-    ("New opportunities are at the top, marked NEW / 新. Below them, every opportunity still open, ordered by proposal deadline.",
-     "新商机列于顶部并标注 NEW / 新；其下为所有仍在招标中的商机，按投标截止时间排序。"),
-    ("For each opportunity, click Interested or Not interested and press Confirm on the page that opens. Marcio Vianna and Li Kewei are notified.",
-     "请对每个商机点击“有兴趣”或“无兴趣”，并在打开的页面上点击“确认”；系统将通知 Marcio Vianna 和 Li Kewei。"),
-    ("Not interested: the opportunity leaves the list. No click: it stays on the list until the deadline. You can change your answer by clicking the other button.",
-     "点击“无兴趣”后，该商机将从清单中移除；未点击的商机将保留至截止日期。点击另一个按钮即可更改选择。"),
-    ("Status: Under review, Hilong pursuing or Hilong not pursuing. When Hilong Brazil approves an opportunity, you receive the full email with the technical specifications and the PPU.",
-     "状态：审核中、海隆参与或海隆不参与。海隆巴西批准后，您将收到包含技术规格和 PPU 的完整邮件。"),
-]
+def how(team):
+    t = TEAM[team]
+    return [
+        (f"Daily list of Petrobras (Petronect) opportunities for the {t[2]}: {t[0].lower()} within Hilong's scope. It is sent only on days with new opportunities.",
+         f"本清单为{t[3]}每日汇总海隆业务范围内的巴西国家石油公司（Petronect）{t[1]}类招标商机，仅在有新商机的日子发送。"),
+        ("Opportunities are grouped in three blocks: Upstream, Midstream and Downstream. New ones are at the top, marked NEW / 新; below them, every opportunity still open, by proposal deadline.",
+         "商机分为上游、中游、下游三个板块。新商机列于顶部并标注 NEW / 新；其下为所有仍在招标中的商机，按投标截止时间排序。"),
+        ("For each opportunity, click Interested or Not interested and press Confirm on the page that opens.",
+         "请对每个商机点击“有兴趣”或“无兴趣”，并在打开的页面上点击“确认”。"),
+        ("Interested: Li Marcitao sends your team the technical documents and the PPU (price sheet) of that opportunity by email, normally within one hour (7 am–10 pm Brasília time). Marcio Vianna and Li Kewei are in copy.",
+         "点击“有兴趣”后，Li Marcitao 将通过邮件向贵团队发送该商机的技术文件和 PPU（报价表），通常在 1 小时内（巴西利亚时间 7:00–22:00）发出，并抄送 Marcio Vianna 和 Li Kewei。"),
+        ("Not interested: the opportunity leaves your list. No click: it stays on the list until the deadline. You can change your answer by clicking the other button.",
+         "点击“无兴趣”后，该商机将从贵团队的清单中移除；未点击的商机将保留至截止日期。点击另一个按钮即可更改选择。"),
+    ]
 
 
-def how_rows():
+def how_rows(team):
     return "".join(
         f'<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top:7px;"><tr>'
         f'<td valign="top" width="20" style="font-family:{FONT};font-size:12px;font-weight:700;color:{ORANGE};">{i}.</td>'
         f'<td style="font-family:{FONT};font-size:12px;line-height:18px;color:{INK};">{e(en)}<br><span style="color:{MUTED};">{e(zh)}</span></td></tr></table>'
-        for i, (en, zh) in enumerate(HOW, 1))
+        for i, (en, zh) in enumerate(how(team), 1))
 
 
 def build(d):
@@ -121,10 +139,24 @@ def build(d):
     new = [o for o in items if o.get("novo")]
     rest = sorted(items, key=lambda o: (o.get("end_date") or "9999", (o.get("prazo") or "")[-5:], o["num"]))
     link = d["link"]
-    cards = "".join(card(o, link) for o in sorted(new, key=lambda o: (o.get("aderencia") != "alta", o.get("end_date") or "")))
+    team = d.get("team", "marketing"); tm = TEAM[team]
+    sub = lambda c, n: (f'<tr><td style="padding:8px 0 8px 0;font-family:{FONT};font-size:12.5px;font-weight:700;color:{ORANGE};letter-spacing:.6px;">'
+                        f'{e(CH[c][1])} · {e(CH[c][2])} <span style="color:{MUTED};font-weight:600;letter-spacing:0;">· {e(CH[c][3])} · {e(CH[c][4])} · {n}</span></td></tr>')
+    cards = ""
+    for c in CH:
+        g = sorted([o for o in new if chain_of(o) == c], key=lambda o: (o.get("aderencia") != "alta", o.get("end_date") or ""))
+        if g:
+            cards += sub(c, len(g)) + "".join(card(o, link) for o in g)
     cap = d.get("max_rows")
     shown = rest if not cap or cap >= len(rest) else rest[:cap]
-    rows = "".join(row(o, n, link) for n, o in enumerate(shown))
+    rows = ""
+    for c in CH:
+        g = [o for o in shown if chain_of(o) == c]
+        if g:
+            tot = sum(1 for o in rest if chain_of(o) == c)
+            rows += (f'<tr><td colspan="3" style="padding:8px 10px;background:{AMBER};font-family:{FONT};font-size:11px;font-weight:700;letter-spacing:.6px;color:{ORANGE};">'
+                     f'{e(CH[c][1])} · {e(CH[c][2])} <span style="color:{MUTED};font-weight:600;">· {tot}</span></td></tr>')
+            rows += "".join(row(o, n, link) for n, o in enumerate(g))
     if len(shown) < len(rest):
         rows += (f'<tr><td colspan="3" style="padding:10px;font-family:{FONT};font-size:11.5px;color:{MUTED};">'
                  f'Showing the {len(shown)} nearest deadlines of {len(rest)} open opportunities – full list in the attached Excel. · '
@@ -132,7 +164,9 @@ def build(d):
     sec = lambda en, zh: (f'<tr><td style="padding:22px 0 10px 0;"><table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>'
                           f'<td width="4" style="background:{ORANGE};border-radius:2px;font-size:0;">&nbsp;</td>'
                           f'<td style="padding-left:10px;font-family:{FONT};font-size:12px;font-weight:700;letter-spacing:1px;color:{NAVY};">{e(en)} · {e(zh)}</td></tr></table></td></tr>')
-    how_rows_html = how_rows()
+    how_rows_html = how_rows(team)
+    counts = " · ".join(f"{CH[c][1].title()} {sum(1 for o in items if chain_of(o) == c)}" for c in CH)
+    counts_zh = " · ".join(f"{CH[c][2]} {sum(1 for o in items if chain_of(o) == c)}" for c in CH)
     return f"""<!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{e(d.get("subject", ""))}</title>
 <style>
@@ -146,15 +180,15 @@ tr.z td{{background:{TILE}}} .m{{color:{MUTED};font-size:11px;font-weight:400}} 
 .sp{{color:{NAVY};font-size:11px;font-weight:600}} .sa{{color:{GREEN};font-size:11px;font-weight:600}} .sr{{color:{MUTED};font-size:11px;font-weight:600}}
 </style></head>
 <body style="margin:0;padding:0;background:{BG};">
-<div style="display:none;max-height:0;overflow:hidden;">{len(new)} new Petrobras opportunities · 新增 {len(new)} 项巴西国家石油公司商机</div>
+<div style="display:none;max-height:0;overflow:hidden;">{len(new)} new Petrobras opportunities ({e(tm[0].lower())}) · 新增 {len(new)} 项{e(tm[1])}商机</div>
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:{BG};"><tr><td align="center" style="padding:24px 12px;">
 <table role="presentation" width="640" cellpadding="0" cellspacing="0" border="0" style="width:640px;max-width:640px;background:#FFFFFF;border:1px solid {LINE};border-radius:10px;overflow:hidden;">
 <tr><td style="background:{NAVY};padding:22px 24px 22px 30px;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
   <td valign="middle">
-  <div style="font-family:{FONT};font-size:10.5px;font-weight:600;letter-spacing:1px;color:#B8C9DE;">HILONG BRAZIL · PETRONECT · EN / 中文</div>
-  <div style="font-family:{FONT};font-size:23px;line-height:29px;font-weight:700;color:#FFFFFF;padding-top:10px;">Petrobras opportunities · {e(d["date_en"])}</div>
-  <div style="font-family:{FONT};font-size:19px;line-height:27px;font-weight:700;color:#FFFFFF;">巴西国家石油公司商机 · {e(d["date_zh"])}</div>
-  <div style="font-family:{FONT};font-size:13px;line-height:19px;color:#D1DEED;padding-top:6px;">{len(new)} new today · {len(items)} open in total<br>今日新增 {len(new)} 项 · 共 {len(items)} 项在招</div>
+  <div style="font-family:{FONT};font-size:10.5px;font-weight:600;letter-spacing:1px;color:#B8C9DE;">HILONG BRAZIL · PETRONECT · {e(tm[2].upper())} · {e(tm[3])}</div>
+  <div style="font-family:{FONT};font-size:23px;line-height:29px;font-weight:700;color:#FFFFFF;padding-top:10px;">Petrobras opportunities · {e(tm[0])} · {e(d["date_en"])}</div>
+  <div style="font-family:{FONT};font-size:19px;line-height:27px;font-weight:700;color:#FFFFFF;">巴西国家石油公司{e(tm[1])}商机 · {e(d["date_zh"])}</div>
+  <div style="font-family:{FONT};font-size:13px;line-height:19px;color:#D1DEED;padding-top:6px;">{len(new)} new today · {len(items)} open in total<br>今日新增 {len(new)} 项 · 共 {len(items)} 项在招<br><span style="font-size:11.5px;color:#B8C9DE;">{e(counts)}<br>{e(counts_zh)}</span></div>
   </td>
   <td width="168" valign="middle" align="right" style="padding-left:12px;"><img src="{HERO}" width="160" height="160" alt="Li Marcitao" style="display:block;width:160px;height:160px;border-radius:10px;border:2px solid #58CFFF;"></td>
 </tr></table></td></tr>
@@ -184,37 +218,40 @@ tr.z td{{background:{TILE}}} .m{{color:{MUTED};font-size:11px;font-weight:400}} 
 
 def text(d):
     items = d["items"]; new = [o for o in items if o.get("novo")]
-    out = [f"Petrobras opportunities · {d['date_en']} / 巴西国家石油公司商机 · {d['date_zh']}",
+    team = d.get("team", "marketing"); tm = TEAM[team]
+    out = [f"Petrobras opportunities · {tm[0]} · {d['date_en']} / 巴西国家石油公司{tm[1]}商机 · {d['date_zh']}",
            f"{len(new)} new today · {len(items)} open / 今日新增 {len(new)} 项 · 共 {len(items)} 项", "", "HOW THIS LIST WORKS · 使用说明"]
-    out += [f"{i}. {en}\n   {zh}" for i, (en, zh) in enumerate(HOW, 1)] + [""]
+    out += [f"{i}. {en}\n   {zh}" for i, (en, zh) in enumerate(how(team), 1)] + [""]
     if new:
         out.append("NEW TODAY · 今日新增")
         for o in new:
-            out += [f"* {o['num']} · {o.get('objeto_en','')} / {o.get('objeto_zh','')}",
+            out += [f"* [{CH[chain_of(o)][1]}] {o['num']} · {o.get('objeto_en','')} / {o.get('objeto_zh','')}",
                     f"  {pair(TIPO, o.get('tipo'), 0)} · {pair(AMB, o.get('ambiente'), 0)} · {ppu_txt(o, 0)} · deadline {o.get('prazo','')} BRT",
                     f"  Interested / 有兴趣: {d['link']}{o.get('tok_int','')}", f"  Not interested / 无兴趣: {d['link']}{o.get('tok_no','')}", ""]
     out.append("ALL OPEN · 全部在招")
-    for o in sorted(items, key=lambda o: (o.get("end_date") or "9999", (o.get("prazo") or "")[-5:], o["num"])):
-        out.append(f"- {o['num']} · {o.get('objeto_en','')} / {o.get('objeto_zh','')} · {o.get('prazo','')} · {ST.get(o.get('status'),('',''))[0]}")
+    order = list(CH)
+    for o in sorted(items, key=lambda o: (order.index(chain_of(o)), o.get("end_date") or "9999", (o.get("prazo") or "")[-5:], o["num"])):
+        out.append(f"- [{CH[chain_of(o)][1]}] {o['num']} · {o.get('objeto_en','')} / {o.get('objeto_zh','')} · {o.get('prazo','')} · {ST.get(o.get('status'),('',''))[0]}")
     out += ["", "Li Marcitao · Hilong Brazil"]
     return "\n".join(out)
 
 
 def xlsx(d, path):
     wb = Workbook(); ws = wb.active; ws.title = "Opportunities"
-    hdr = ["New 新", "Petronect", "Opportunity (EN)", "商机 (中文)", "Line 业务", "Fit 匹配", "Type 类型", "Environment 环境",
+    hdr = ["New 新", "Chain 板块", "Petronect", "Opportunity (EN)", "商机 (中文)", "Line 业务", "Fit 匹配", "Type 类型", "Environment 环境",
            "PPU", "Deadline 截止 (BRT)", "Location 地点", "Status 状态", "Summary (EN)", "摘要 (中文)"]
     ws.append(hdr)
     for c in ws[1]:
         c.font = Font(bold=True, color="FFFFFF"); c.fill = PatternFill("solid", fgColor="0B2545"); c.alignment = Alignment(wrap_text=True, vertical="center")
-    items = sorted(d["items"], key=lambda o: (not o.get("novo"), o.get("end_date") or "9999", (o.get("prazo") or "")[-5:], o["num"]))
+    order = list(CH)
+    items = sorted(d["items"], key=lambda o: (order.index(chain_of(o)), not o.get("novo"), o.get("end_date") or "9999", (o.get("prazo") or "")[-5:], o["num"]))
     for o in items:
         ln = LINES.get(o.get("linha", ""), (o.get("linha", ""), ""))
-        ws.append(["NEW 新" if o.get("novo") else "", o["num"], o.get("objeto_en", ""), o.get("objeto_zh", ""), f"{ln[0]} {ln[1]}".strip(),
+        ws.append(["NEW 新" if o.get("novo") else "", f"{CH[chain_of(o)][1].title()} {CH[chain_of(o)][2]}", o["num"], o.get("objeto_en", ""), o.get("objeto_zh", ""), f"{ln[0]} {ln[1]}".strip(),
                    " ".join(FIT.get(o.get("aderencia"), ("", ""))).strip(), " ".join(TIPO.get(o.get("tipo"), ("", ""))).strip(),
                    " ".join(AMB.get(o.get("ambiente"), ("", ""))).strip(), f"{ppu_txt(o, 0)} {ppu_txt(o, 1)}".strip(), o.get("prazo", ""),
                    o.get("local", ""), " ".join(ST.get(o.get("status"), ("", ""))).strip(), o.get("resumo_en", ""), o.get("resumo_zh", "")])
-    for col, w in zip("ABCDEFGHIJKLMN", [8, 12, 44, 34, 22, 16, 18, 20, 30, 16, 18, 20, 60, 50]):
+    for col, w in zip("ABCDEFGHIJKLMNO", [8, 16, 12, 44, 34, 22, 16, 18, 20, 30, 16, 18, 20, 60, 50]):
         ws.column_dimensions[col].width = w
     for r in ws.iter_rows(min_row=2):
         for c in r:
@@ -222,14 +259,17 @@ def xlsx(d, path):
         if r[0].value:
             for c in r:
                 c.fill = PatternFill("solid", fgColor="FFF4E8")
-    ws.freeze_panes = "C2"; ws.auto_filter.ref = ws.dimensions
+    ws.freeze_panes = "D2"; ws.auto_filter.ref = ws.dimensions
     wb.save(path)
 
 
 if __name__ == "__main__":
     d = json.load(open(sys.argv[1], encoding="utf-8"))
     n = sum(1 for o in d["items"] if o.get("novo"))
-    d.setdefault("subject", f"Petrobras opportunities · {d['date_en']} · {n} new / 巴西国家石油公司商机 · 新增 {n} 项")
+    if d.get("team") not in TEAM:
+        d["team"] = "marketing"
+    tm = TEAM[d["team"]]
+    d.setdefault("subject", f"Petrobras opportunities · {tm[0]} · {d['date_en']} · {n} new / 巴西国家石油公司{tm[1]}商机 · 新增 {n} 项")
     def render():
         h = build(d)
         # tamanho: a fonte vai uma vez no <body> e no <style>, não em cada célula
