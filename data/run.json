@@ -1,5 +1,5 @@
 {
-  "run_at": "2026-11-23T12:40:00-03:00",
+  "run_at": "2026-11-23T22:30:00-03:00",
   "searches": 10,
   "new_items": 2,
   "schedule": {
@@ -13,92 +13,73 @@
   "terms": [
     "Petrobras",
     "Plano de Negócios 2027-2031",
+    "Click Petróleo e Gás",
     "eixos",
     "PetroNotícias",
     "Agência Petrobras",
-    "Click Petróleo e Gás",
-    "PetroReconcavo",
-    "Brava Energia",
-    "Carmo Energy",
-    "Origem Energia",
-    "Eneva",
-    "Alvopetro",
-    "PetroVictory",
-    "Mandacaru Energia",
-    "Seacrest Petróleo",
-    "Petroborn",
-    "Vipetro",
-    "PRIO",
-    "Equinor",
-    "TotalEnergies",
-    "Perenco",
-    "Transpetro",
-    "ANP",
-    "Gas Release"
+    "SLB",
+    "Baker Hughes",
+    "Weatherford",
+    "Expro",
+    "Tenaris",
+    "Confab",
+    "Jereh",
+    "Kerui",
+    "YPF",
+    "Vista",
+    "Vaca Muerta",
+    "Ecopetrol",
+    "Argentina",
+    "Colômbia"
   ],
   "queries": [
     {
-      "q": "Site oficial: Click Petróleo e Gás (categoria Petróleo e Gás) — página não abriu (WebFetch sem permissão nesta execução)",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Site oficial: Click Petróleo e Gás (categoria Setor Offshore) — página não abriu (WebFetch sem permissão nesta execução)",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Site oficial: Agência Petrobras (mais recentes) — página não abriu (WebFetch sem permissão nesta execução)",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Petrobras Plano de Negócios 2027-2031 investimentos",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "eixos.com.br petróleo e gás notícias 22 novembro 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "petronoticias.com.br contrato Petrobras novembro 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "PetroReconcavo OR Brava Energia OR Carmo Energy OR Origem Energia notícia novembro 2026",
+      "q": "Petrobras Plano de Negócios 2027-2031 aprovado investimentos",
       "ch": "site",
       "found": 1
     },
     {
-      "q": "Eneva OR Alvopetro OR PetroVictory OR Mandacaru OR Seacrest OR Petroborn OR Vipetro November 2026",
+      "q": "site:clickpetroleoegas.com.br petróleo (categoria Petróleo e Gás; página da categoria não abriu)",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "PRIO OR Equinor OR TotalEnergies OR Perenco OR Transpetro Brasil notícia 21-23 novembro 2026",
+      "q": "eixos petróleo e gás 23 novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "ANP petróleo gás notícia 21-23 novembro 2026",
+      "q": "SLB OR Baker Hughes OR Weatherford OR Expro Brazil contract November 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Tenaris OR Confab OR Jereh OR Kerui Brasil novembro 2026",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "Vaca Muerta YPF Vista Ecopetrol petróleo noticias 22 23 noviembre 2026",
       "ch": "site",
       "found": 1
     },
     {
-      "q": "site:clickpetroleoegas.com.br petróleo poços sonda campo novembro 2026",
+      "q": "petronoticias.com.br contrato sonda novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "site:clickpetroleoegas.com.br offshore plataforma FPSO Petrobras contrato",
+      "q": "Agência Petrobras plano estratégico 2050 plano de negócios 2027-2031",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Agência Petrobras comunicado 21-23 novembro 2026",
+      "q": "Baker Hughes Petrobras contract extension Brazil",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "site:clickpetroleoegas.com.br offshore plataforma Petrobras (categoria Setor Offshore; página da categoria não abriu)",
       "ch": "site",
       "found": 0
     }
