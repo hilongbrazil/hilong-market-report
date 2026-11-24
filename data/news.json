@@ -1,6 +1,25 @@
 {
-  "updated_at": "2026-11-24T06:17:50-03:00",
+  "updated_at": "2026-11-24T11:03:56-03:00",
   "items": [
+    {
+      "id": "2026-11-24-petrobras-neomille-etanol-milho",
+      "date": "2026-11-24",
+      "region": "BR",
+      "country": "BR",
+      "operator": "Petrobras",
+      "category": "fusoes",
+      "environment": "geral",
+      "relevance": 3,
+      "title_pt": "Petrobras aprova R$ 2,8 bi para comprar 42% da Neomille e entrar no etanol de milho",
+      "title_en": "Petrobras approves R$ 2.8 bn to buy 42% of Neomille and enter corn ethanol",
+      "title_zh": "Petrobras批准28亿雷亚尔收购Neomille 42%股权，进军玉米乙醇领域",
+      "summary_pt": "O conselho aprovou em 23/11 a compra de 42% da Neomille, do grupo CerradinhoBio: duas usinas em Chapadão do Céu (GO) e Maracaju (MS), com 800 milhões de litros/ano, que devem chegar a 1,5 bilhão com as expansões. Etanol e óleo de milho poderão abastecer a produção de SAF.",
+      "summary_en": "The board approved on Nov 23 the purchase of 42% of Neomille, part of CerradinhoBio: two plants in Chapadão do Céu (GO) and Maracaju (MS) with 800m litres/year, set to reach 1.5bn litres after expansions. The ethanol and corn oil may feed sustainable aviation fuel (SAF) output.",
+      "summary_zh": "董事会于11月23日批准收购CerradinhoBio旗下Neomille 42%股权。其在Chapadão do Céu（GO）和Maracaju（MS）拥有两座工厂，年产能8亿升，扩建后将达15亿升；所产乙醇和玉米油可用作可持续航空燃料（SAF）原料。",
+      "source": "Petrobras",
+      "url": "https://www.linkedin.com/feed/update/urn:li:activity:7530984468480843776/",
+      "via": "linkedin"
+    },
     {
       "id": "2026-11-23-petrobras-plano-negocios-2027-2031",
       "date": "2026-11-23",
