@@ -1,6 +1,25 @@
 {
-  "updated_at": "2026-11-24T22:20:00-03:00",
+  "updated_at": "2026-11-25T06:19:00-03:00",
   "items": [
+    {
+      "id": "2026-11-24-petrobras-plano-90-pocos-bahia-seap-rnest",
+      "date": "2026-11-24",
+      "region": "BR",
+      "country": "BR",
+      "operator": "Petrobras",
+      "category": "investimentos",
+      "environment": "geral",
+      "relevance": 5,
+      "title_pt": "Plano 2027-2031 da Petrobras prevê 90 poços em terra na Bahia, duas plataformas em Sergipe e ampliação da Rnest",
+      "title_en": "Petrobras' 2027–2031 plan foresees 90 onshore wells in Bahia, two platforms off Sergipe and Rnest expansion",
+      "title_zh": "Petrobras 2027-2031年计划：Bahia州90口陆上井、Sergipe海上两座平台及Rnest炼厂扩建",
+      "summary_pt": "O plano de negócios aprovado em 23/11 prevê 90 poços terrestres na Bahia, mantém as duas plataformas do projeto Sergipe Águas Profundas (SEAP) e inclui a ampliação da refinaria Abreu e Lima (Rnest), em Pernambuco.",
+      "summary_en": "The business plan approved on Nov 23 foresees 90 onshore wells in Bahia, keeps the two platforms of the Sergipe Deep Waters (SEAP) project and includes the expansion of the Abreu e Lima refinery (Rnest) in Pernambuco.",
+      "summary_zh": "11月23日获批的业务计划在Bahia州安排90口陆上井，保留Sergipe深水项目（SEAP）的两座平台，并纳入Pernambuco州Abreu e Lima炼厂（Rnest）扩建。",
+      "source": "Movimento Econômico",
+      "url": "https://movimentoeconomico.com.br/economia/combustivel/2026/11/24/petrobras-preve-ampliar-rnest-90-pocos-em-terra-na-ba-e-duas-plataformas-em-se/",
+      "via": "site"
+    },
     {
       "id": "2026-11-24-ypf-narambuena-rigi",
       "date": "2026-11-24",
