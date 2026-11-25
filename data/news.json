@@ -1,6 +1,25 @@
 {
-  "updated_at": "2026-11-24T11:03:56-03:00",
+  "updated_at": "2026-11-24T22:20:00-03:00",
   "items": [
+    {
+      "id": "2026-11-24-ypf-narambuena-rigi",
+      "date": "2026-11-24",
+      "region": "SA",
+      "country": "AR",
+      "operator": "YPF",
+      "category": "investimentos",
+      "environment": "onshore",
+      "relevance": 2,
+      "title_pt": "YPF pede adesão ao RIGI para Narambuena, projeto de US$ 11,7 bi e 606 poços no norte de Vaca Muerta",
+      "title_en": "YPF files RIGI request for Narambuena, a US$ 11.7 bn, 606-well shale project in northern Vaca Muerta",
+      "title_zh": "YPF为Narambuena项目申请加入RIGI，计划在Vaca Muerta北部投资117亿美元、钻606口井",
+      "summary_pt": "O projeto de óleo não convencional, operado pela YPF com 50%, prevê US$ 11.688 milhões em 21 anos, 606 poços e platô de cerca de 80 mil bpd entre 2035 e 2045, além de 3 milhões de m³/dia de gás associado.",
+      "summary_en": "The shale oil project, operated by YPF with a 50% stake, plans US$ 11,688 mn over 21 years, 606 wells and a plateau of about 80,000 bpd in 2035–2045, plus about 3 million m³/d of associated gas.",
+      "summary_zh": "该非常规石油项目由YPF作业并持股50%，计划21年内投资116.88亿美元，钻606口井，2035至2045年稳产约8万桶/日，另有约300万立方米/日伴生气。",
+      "source": "Infobae",
+      "url": "https://www.infobae.com/economia/2026/11/24/narambuena-como-es-el-proyecto-para-desarrollar-el-norte-de-vaca-muerta-para-el-que-ypf-presento-un-nuevo-rigi/",
+      "via": "site"
+    },
     {
       "id": "2026-11-24-petrobras-neomille-etanol-milho",
       "date": "2026-11-24",

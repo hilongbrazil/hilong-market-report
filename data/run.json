@@ -1,7 +1,7 @@
 {
-  "run_at": "2026-11-24T12:16:00-03:00",
-  "searches": 11,
-  "new_items": 0,
+  "run_at": "2026-11-24T22:20:00-03:00",
+  "searches": 15,
+  "new_items": 1,
   "schedule": {
     "type": "times",
     "times": [
@@ -15,26 +15,24 @@
     "eixos",
     "PetroNotícias",
     "Agência Petrobras",
-    "Carmo Energy",
-    "PetroReconcavo",
-    "Brava Energia",
-    "Origem Energia",
-    "Mandacaru Energia",
-    "Seacrest Petróleo",
-    "PetroVictory",
-    "Alvopetro",
-    "Petroborn",
-    "Eneva",
-    "Vipetro",
-    "Petrobras",
-    "Equinor",
-    "Perenco",
-    "PRIO",
-    "TotalEnergies",
-    "Transpetro",
-    "ANP",
-    "Oferta Permanente",
-    "Tarifas de gasodutos"
+    "SLB",
+    "Baker Hughes",
+    "Weatherford",
+    "Tenaris",
+    "Expro",
+    "Confab",
+    "Apolo Tubulars",
+    "Jereh",
+    "Kerui",
+    "Inpasa",
+    "TAG",
+    "Argentina",
+    "Vaca Muerta",
+    "YPF",
+    "Vista",
+    "Pan American Energy",
+    "Ecopetrol",
+    "Guyana"
   ],
   "queries": [
     {
@@ -63,57 +61,52 @@
       "found": 0
     },
     {
-      "q": "Petrobras plano de negócios 2027-2031 sondas poços onshore novembro 2026",
+      "q": "SLB OR Baker Hughes OR Weatherford Brazil contract November 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "PetroReconcavo OR Brava Energia OR Eneva OR Alvopetro OR Origem Energia notícia 24 novembro 2026",
+      "q": "Tenaris OR Confab OR Apolo Tubulars Brasil novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "ANP leilão oferta permanente novembro 2026",
+      "q": "Expro OR Jereh OR Kerui Brazil OR South America November 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "site:clickpetroleoegas.com.br petróleo novembro 2026 Petrobras sonda",
+      "q": "Inpasa OR TAG Transportadora Associada de Gás novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "\"ANP abre consulta de dez dias sobre tarifas dos gasodutos\"",
+      "q": "Vaca Muerta OR Ecopetrol OR Guyana oil news November 24 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "petronoticias Petrobras contrato sonda novembro 2026",
+      "q": "site:clickpetroleoegas.com.br petróleo 24 novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "PRIO OR Equinor OR TotalEnergies OR Perenco OR Transpetro Brasil 23 novembro 2026",
+      "q": "petronoticias.com.br contrato Petrobras sonda novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Petrobras segundo poço pré-sal Bacia de Campos bloco Norte de Brava",
+      "q": "Agência Petrobras notícia 24 de novembro de 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "ANP consulta tarifas gasodutos revisão NTS novembro 2026",
+      "q": "YPF Vista Pan American Energy Vaca Muerta perforación 24 noviembre 2026",
       "ch": "site",
-      "found": 0
+      "found": 1
     },
     {
-      "q": "Mandacaru OR Carmo Energy OR Seacrest OR PetroVictory OR Petroborn OR Vipetro onshore poço novembro 2026",
-      "ch": "site",
-      "found": 0
-    },
-    {
-      "q": "Petrobras anuncia 24/11/2026",
+      "q": "Baker Hughes OR SLB Petrobras OR Equinor Brasil contrato novembro 2026",
       "ch": "site",
       "found": 0
     }
