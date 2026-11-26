@@ -1,6 +1,25 @@
 {
-  "updated_at": "2026-11-25T06:19:00-03:00",
+  "updated_at": "2026-11-25T22:30:00-03:00",
   "items": [
+    {
+      "id": "2026-11-25-vmos-reabre-bono-us66mn",
+      "date": "2026-11-25",
+      "region": "SA",
+      "country": "AR",
+      "operator": "VMOS",
+      "category": "investimentos",
+      "environment": "onshore",
+      "relevance": 2,
+      "title_pt": "Oleoduto VMOS, de YPF, Pampa e Vista, reabre bônus para captar até US$ 66 milhões",
+      "title_en": "VMOS, the Vaca Muerta export pipeline of YPF, Pampa and Vista, reopens its bond to raise up to US$ 66 mn",
+      "title_zh": "YPF、Pampa 与 Vista 的 Vaca Muerta 出口管道 VMOS 增发债券，拟融资至多 6,600 万美元",
+      "summary_pt": "A VMOS reabre em 26/11 seu bônus em dólar com vencimento em 2030 (cupom de 6,25%) para captar até US$ 66,3 milhões e completar o programa de US$ 300 milhões. O oleoduto de quase 600 km até Punta Colorada, para 550 mil bpd, está 85% concluído; o enchimento começa em janeiro de 2027.",
+      "summary_en": "VMOS reopens its 2030 dollar bond (6.25% coupon) on Nov 26 to raise up to US$ 66.3 mn and complete its US$ 300 mn program. The almost 600 km pipeline to Punta Colorada, rated at 550,000 bpd, is 85% complete, with line fill due to start in January 2027.",
+      "summary_zh": "VMOS 将于 11 月 26 日增发 2030 年到期美元债券（票息 6.25%），拟融资至多 6,630 万美元，以完成 3 亿美元发行计划。这条通往 Punta Colorada、全长近 600 公里、输量 55 万桶/日的管道已完工 85%，计划 2027 年 1 月开始充油。",
+      "source": "Bloomberg Línea",
+      "url": "https://www.bloomberglinea.com/latinoamerica/argentina/vmos-el-oleoducto-de-ypf-pampa-y-vista-en-vaca-muerta-sale-a-buscar-hasta-us66-millones-mas/",
+      "via": "site"
+    },
     {
       "id": "2026-11-24-petrobras-plano-90-pocos-bahia-seap-rnest",
       "date": "2026-11-24",
