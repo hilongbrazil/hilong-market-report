@@ -1,7 +1,7 @@
 {
-  "run_at": "2026-11-26T12:16:00-03:00",
+  "run_at": "2026-11-26T22:20:00-03:00",
   "searches": 12,
-  "new_items": 3,
+  "new_items": 0,
   "schedule": {
     "type": "times",
     "times": [
@@ -15,85 +15,81 @@
     "eixos",
     "PetroNotícias",
     "Agência Petrobras",
-    "Carmo Energy",
-    "PetroReconcavo",
-    "Brava Energia",
-    "Origem Energia",
-    "Mandacaru Energia",
-    "Seacrest Petróleo",
-    "PetroVictory",
-    "Alvopetro",
-    "Petroborn",
-    "Eneva",
-    "Petrobras",
-    "Equinor",
-    "PRIO",
-    "TotalEnergies",
-    "Perenco",
-    "Transpetro",
-    "ANP",
-    "Gas release",
-    "Descomissionamento",
-    "Royalties"
+    "SLB",
+    "Baker Hughes",
+    "Weatherford",
+    "Tenaris",
+    "Confab",
+    "Apolo Tubulars",
+    "Expro",
+    "Jereh",
+    "Kerui",
+    "Inpasa",
+    "TAG",
+    "Argentina",
+    "Vaca Muerta",
+    "YPF",
+    "Ecopetrol",
+    "Guiana"
   ],
   "queries": [
     {
-      "q": "Site oficial: Click Petróleo e Gás (categoria Petróleo e Gás) — página não abriu; busca site:clickpetroleoegas.com.br",
+      "q": "Site oficial: Click Petróleo e Gás (categoria Petróleo e Gás) — página não abriu",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Site oficial: Click Petróleo e Gás (categoria Setor Offshore) — página não abriu; busca no site",
+      "q": "Site oficial: Click Petróleo e Gás (categoria Setor Offshore) — página não abriu",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "eixos petróleo gás notícias 26 novembro 2026",
-      "ch": "site",
-      "found": 2
-    },
-    {
-      "q": "Petronotícias contrato Petrobras sonda novembro 2026",
+      "q": "site:clickpetroleoegas.com.br petróleo Petrobras sonda",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Agência Petrobras notícias recentes",
+      "q": "site:clickpetroleoegas.com.br offshore plataforma FPSO",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "PetroReconcavo / Brava Energia / Origem Energia / Carmo Energy",
+      "q": "eixos petróleo gás 26 novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Eneva / Alvopetro / PetroVictory / Mandacaru / Seacrest / Petroborn",
+      "q": "Petronotícias contrato novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Equinor / PRIO / TotalEnergies / Perenco / Transpetro Brasil",
+      "q": "Agência Petrobras notícia 26 novembro 2026",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "ANP notícias 25-26 novembro 2026",
-      "ch": "site",
-      "found": 1
-    },
-    {
-      "q": "Petrobras leilão plataformas P-19 e P-26 (Superbid)",
+      "q": "SLB / Baker Hughes / Weatherford Brasil",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Ecopetrol Brava Energia controle",
+      "q": "Tenaris / Confab / Apolo Tubulars / Expro Brasil",
       "ch": "site",
       "found": 0
     },
     {
-      "q": "Petrobras projetos de gás e gas release (Sergipe)",
+      "q": "Jereh / Kerui / Expro Brasil e Argentina",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "TAG Transportadora Associada de Gás / Inpasa",
+      "ch": "site",
+      "found": 0
+    },
+    {
+      "q": "América do Sul: Vaca Muerta, YPF, Ecopetrol, Guiana",
       "ch": "site",
       "found": 0
     }
