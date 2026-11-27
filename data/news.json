@@ -1,6 +1,25 @@
 {
-  "updated_at": "2026-11-26T12:16:00-03:00",
+  "updated_at": "2026-11-27T06:30:00-03:00",
   "items": [
+    {
+      "id": "2026-11-26-ppsa-11-leilao-spot-exxonmobil",
+      "date": "2026-11-26",
+      "region": "BR",
+      "country": "BR",
+      "operator": "PPSA",
+      "category": "mercado",
+      "environment": "offshore",
+      "relevance": 3,
+      "title_en": "ExxonMobil takes a 1 million-barrel Búzios lot in PPSA's 11th spot auction of Union oil",
+      "title_pt": "ExxonMobil arremata lote de 1 milhão de barris de Búzios no 11º leilão spot de petróleo da União da PPSA",
+      "title_zh": "ExxonMobil 在 PPSA 第 11 次联邦原油现货拍卖中拍得 100 万桶 Búzios 原油",
+      "summary_en": "In the 11th spot auction run by PPSA to sell the Union's share of pre-salt oil, ExxonMobil won a lot of about 1 million barrels from the Búzios field.",
+      "summary_pt": "No 11º leilão spot realizado pela PPSA para vender a parcela de petróleo da União no pré-sal, a ExxonMobil arrematou um lote de cerca de 1 milhão de barris do campo de Búzios.",
+      "summary_zh": "在 PPSA 为出售联邦盐下原油份额而举行的第 11 次现货拍卖中，ExxonMobil 拍得来自 Búzios 油田的约 100 万桶原油。",
+      "source": "Cenário Energia",
+      "url": "https://cenarioenergia.com.br/2026/11/26/exxonmobil-leva-lote-de-1-milhao-de-barris-de-buzios-no-11o-leilao-spot-da-ppsa/",
+      "via": "site"
+    },
     {
       "id": "2026-11-26-petrobras-leilao-p19-p26-sucata",
       "date": "2026-11-26",
