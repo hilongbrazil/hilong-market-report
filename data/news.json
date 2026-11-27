@@ -1,6 +1,25 @@
 {
-  "updated_at": "2026-11-27T06:30:00-03:00",
+  "updated_at": "2026-11-27T12:40:00-03:00",
   "items": [
+    {
+      "id": "2026-11-27-brava-ppt53-papa-terra",
+      "date": "2026-11-27",
+      "region": "BR",
+      "country": "BR",
+      "operator": "Brava Energia",
+      "category": "producao",
+      "environment": "offshore",
+      "relevance": 4,
+      "title_pt": "Brava Energia põe em produção o poço PPT-53, em Papa-Terra, após aval do Ibama",
+      "title_en": "Brava Energia brings the PPT-53 well on stream at Papa-Terra after Ibama approval",
+      "title_zh": "Brava Energia 获 Ibama 批准后在 Papa-Terra 油田投产 PPT-53 井",
+      "summary_pt": "A Brava Energia iniciou a produção do poço PPT-53 no campo de Papa-Terra, na Bacia de Campos, depois de receber autorização do Ibama. É o segundo poço da campanha posto em produção no campo, o que conclui uma etapa dos trabalhos.",
+      "summary_en": "Brava Energia has started production from the PPT-53 well at the Papa-Terra field in the Campos Basin after receiving Ibama's authorisation. It is the second well of the campaign brought on stream at the field, completing a stage of the programme.",
+      "summary_zh": "Brava Energia 在获得 Ibama 授权后，已在坎波斯盆地 Papa-Terra 油田投产 PPT-53 井。这是该油田本轮作业中第二口投产的油井，标志着该阶段工作完成。",
+      "source": "Cenário Energia",
+      "url": "https://cenarioenergia.com.br/2026/11/27/brava-energia-inicia-producao-do-poco-ppt-53-no-campo-de-papa-terra-apos-aval-do-ibama/",
+      "via": "site"
+    },
     {
       "id": "2026-11-26-ppsa-11-leilao-spot-exxonmobil",
       "date": "2026-11-26",
