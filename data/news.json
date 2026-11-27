@@ -1,6 +1,25 @@
 {
-  "updated_at": "2026-11-27T12:40:00-03:00",
+  "updated_at": "2026-11-27T15:10:00-03:00",
   "items": [
+    {
+      "id": "2026-11-26-origem-fitch-perspectiva-positiva",
+      "date": "2026-11-26",
+      "region": "BR",
+      "country": "BR",
+      "operator": "Origem Energia",
+      "category": "resultados",
+      "environment": "geral",
+      "relevance": 3,
+      "title_pt": "Fitch mantém rating A(bra) da Origem Energia e eleva perspectiva para positiva",
+      "title_en": "Fitch affirms Origem Energia at A(bra) and raises its outlook to positive",
+      "title_zh": "惠誉维持Origem Energia的A(bra)评级，展望上调至正面",
+      "summary_pt": "A Origem Energia informou que a Fitch Ratings reafirmou seu rating de longo prazo em 'A(bra)' e revisou a perspectiva de estável para positiva. A empresa atribui a avaliação à melhora operacional, à geração de caixa e aos resultados do terceiro trimestre de 2026.",
+      "summary_en": "Origem Energia said Fitch Ratings affirmed its long-term rating at 'A(bra)' and revised the outlook from stable to positive. The company links the move to operational gains, stronger cash generation and its third-quarter 2026 results.",
+      "summary_zh": "Origem Energia表示，惠誉评级（Fitch Ratings）维持其长期评级为“A(bra)”，并将展望从稳定上调至正面。公司称，这一评级反映了运营效率提升、现金流增强以及2026年第三季度业绩表现。",
+      "source": "Origem Energia",
+      "url": "https://www.linkedin.com/feed/update/urn:li:activity:7531744631231901696/",
+      "via": "linkedin"
+    },
     {
       "id": "2026-11-27-brava-ppt53-papa-terra",
       "date": "2026-11-27",
