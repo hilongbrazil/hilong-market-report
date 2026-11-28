@@ -1,6 +1,25 @@
 {
-  "updated_at": "2026-11-28T06:40:00-03:00",
+  "updated_at": "2026-11-28T06:55:00-03:00",
   "items": [
+    {
+      "id": "2026-11-27-anp-consulta-instalacoes-movimentacao",
+      "date": "2026-11-27",
+      "region": "BR",
+      "country": "BR",
+      "operator": "ANP",
+      "category": "regulatorio",
+      "environment": "geral",
+      "relevance": 3,
+      "title_pt": "ANP abre consulta e audiência públicas para revisar norma de instalações de movimentação de petróleo, gás e combustíveis",
+      "title_en": "ANP to hold public consultation and hearing on revised rules for oil, gas and fuel handling facilities",
+      "title_zh": "ANP就石油、天然气及燃料输转设施监管规定修订启动公众咨询和听证",
+      "summary_pt": "A ANP fará consulta e audiência públicas para revisar a norma das instalações de movimentação de petróleo, derivados, gás natural, GNL e biocombustíveis, simplificando exigências e adequando-a ao mercado de gás. Avaliará dividi-la em duas normas: gás natural e combustíveis líquidos.",
+      "summary_en": "ANP will hold a public consultation and hearing on revising the resolution governing facilities that handle oil, oil products, natural gas, LNG and biofuels, aiming to simplify requirements and adapt the rule to the gas market. The agency will also assess splitting it into separate gas and liquid-fuel regulations.",
+      "summary_zh": "ANP将就监管石油、成品油、天然气、液化天然气（LNG）及生物燃料输转设施的决议修订举行公众咨询和听证，旨在简化程序和文件要求，并使规定适应天然气市场发展。ANP还将评估是否拆分为天然气输转设施和液体燃料输转设施两项规定。",
+      "source": "ANP",
+      "url": "https://www.linkedin.com/feed/update/urn:li:activity:7532171982793089024/",
+      "via": "linkedin"
+    },
     {
       "id": "2026-11-26-petrobras-ns42-mae-de-ouro",
       "date": "2026-11-26",
